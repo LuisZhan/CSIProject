@@ -1,19 +1,33 @@
 ﻿using Android.App;
-using Android.Widget;
 using Android.OS;
+using Android.Support.V7.App;
+using Android.Util;
+using Android.Widget;
+using CSIMobile;
 
-namespace CSIMobile
+namespace com.xamarin.sample.splashscreen
 {
-    [Activity(Label = "CSIMobile", MainLauncher = true)]
+    [Activity(Label = "@string/app_name")]
     public class MainActivity : Activity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
+        static readonly string TAG = "X:" + typeof(MainActivity).Name;
+        Button _button;
+        int _clickCount;
 
-            // Set our view from the "main" layout resource
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
+            
+            _button = FindViewById<Button>(Resource.Id.MyButton);
+            _button.Click += (sender, args) =>
+            {
+                string message = string.Format("You clicked {0} times.", ++_clickCount);
+                _button.Text = message;
+                Log.Debug(TAG, message);
+            };
+            
+            Log.Debug(TAG, "MainActivity is loaded.");
         }
     }
 }
-

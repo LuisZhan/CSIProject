@@ -1,6 +1,6 @@
 ﻿#pragma warning disable 1591
 
-namespace SyteLine.Classes.Core.CSIWebServices
+namespace CSIMobile.Class.Common
 {
     using System;
     using System.Web.Services;

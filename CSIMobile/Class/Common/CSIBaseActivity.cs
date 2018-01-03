@@ -23,7 +23,8 @@ namespace CSIMobile.Class.Common
             {
                 CSIContext.ParseBundle(Intent.GetBundleExtra("CSIContext"));
                 base.OnCreate(savedInstanceState);
-            }catch (Exception Ex)
+            }
+            catch (Exception Ex)
             {
                 ErrorLog(Ex);
             }
