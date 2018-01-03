@@ -54,6 +54,16 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Common\CSIBaseActivity.cs" />
+    <Compile Include="Class\Common\CSIBaseDataObject.cs" />
+    <Compile Include="Class\Common\CSIBaseFragment.cs" />
+    <Compile Include="Class\Common\CSIBaseObject.cs" />
+    <Compile Include="Class\Common\CSIConfiguration.cs" />
+    <Compile Include="Class\Common\CSIContext.cs" />
+    <Compile Include="Class\Common\CSIErrorLog.cs" />
+    <Compile Include="Class\Common\CSIJsonParser.cs" />
+    <Compile Include="Class\Common\CSIWebService.cs" />
+    <Compile Include="Class\Common\CSIXMLParser.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
