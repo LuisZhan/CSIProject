@@ -1642,7 +1642,7 @@ namespace CSIMobile
 			public const int abc_vector_test = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int home = 2130837587;
+			public const int Logo = 2130837587;
 			
 			// aapt resource value: 0x7f020054
 			public const int notification_action_background = 2130837588;
@@ -1681,7 +1681,7 @@ namespace CSIMobile
 			public const int notify_panel_notification_icon_bg = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int splash_screen = 2130837598;
+			public const int SplashScreen = 2130837598;
 			
 			static Drawable()
 			{
@@ -2227,422 +2227,419 @@ namespace CSIMobile
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f05009d
-			public const int About = 2131034269;
-			
-			// aapt resource value: 0x7f05009e
-			public const int AboutSystem = 2131034270;
-			
-			// aapt resource value: 0x7f0500ab
-			public const int Add = 2131034283;
-			
-			// aapt resource value: 0x7f050057
-			public const int Administration = 2131034199;
-			
-			// aapt resource value: 0x7f050056
-			public const int Administrator = 2131034198;
-			
-			// aapt resource value: 0x7f05008b
-			public const int AfterNext3Month = 2131034251;
-			
-			// aapt resource value: 0x7f050086
-			public const int All = 2131034246;
-			
-			// aapt resource value: 0x7f050021
-			public const int ApplicationName = 2131034145;
-			
-			// aapt resource value: 0x7f05008a
-			public const int BeforeLast3Months = 2131034250;
-			
-			// aapt resource value: 0x7f05007b
-			public const int Blanket = 2131034235;
-			
-			// aapt resource value: 0x7f0500a5
-			public const int BlanketLine = 2131034277;
-			
-			// aapt resource value: 0x7f050082
-			public const int Buyer = 2131034242;
-			
-			// aapt resource value: 0x7f05002a
-			public const int CSIWebServer = 2131034154;
-			
-			// aapt resource value: 0x7f05003b
-			public const int CannotGetEmployee = 2131034171;
-			
-			// aapt resource value: 0x7f05003c
-			public const int ClickBackToExit = 2131034172;
-			
-			// aapt resource value: 0x7f05007e
-			public const int Complete = 2131034238;
-			
-			// aapt resource value: 0x7f050038
-			public const int Configuration = 2131034168;
-			
-			// aapt resource value: 0x7f050081
-			public const int Customer = 2131034241;
-			
-			// aapt resource value: 0x7f050083
-			public const int Date = 2131034243;
-			
-			// aapt resource value: 0x7f050092
-			public const int Description = 2131034258;
-			
 			// aapt resource value: 0x7f05009c
-			public const int DocumentNum = 2131034268;
+			public const int About = 2131034268;
 			
-			// aapt resource value: 0x7f050093
-			public const int DueDate = 2131034259;
-			
-			// aapt resource value: 0x7f050071
-			public const int EffectiveDate = 2131034225;
-			
-			// aapt resource value: 0x7f05002d
-			public const int EnableHTTPS = 2131034157;
-			
-			// aapt resource value: 0x7f050096
-			public const int Error = 2131034262;
-			
-			// aapt resource value: 0x7f050070
-			public const int ExpirationDate = 2131034224;
-			
-			// aapt resource value: 0x7f05008c
-			public const int Filled = 2131034252;
-			
-			// aapt resource value: 0x7f05004e
-			public const int Fixture = 2131034190;
-			
-			// aapt resource value: 0x7f050067
-			public const int General = 2131034215;
-			
-			// aapt resource value: 0x7f050060
-			public const int GetMoreRows = 2131034208;
-			
-			// aapt resource value: 0x7f05007f
-			public const int History = 2131034239;
-			
-			// aapt resource value: 0x7f050088
-			public const int InLast3Month = 2131034248;
-			
-			// aapt resource value: 0x7f050089
-			public const int InNext3Month = 2131034249;
-			
-			// aapt resource value: 0x7f050087
-			public const int InThisMonth = 2131034247;
-			
-			// aapt resource value: 0x7f050023
-			public const int Inventory = 2131034147;
-			
-			// aapt resource value: 0x7f050050
-			public const int Item = 2131034192;
-			
-			// aapt resource value: 0x7f050048
-			public const int ItemDetails = 2131034184;
-			
-			// aapt resource value: 0x7f050051
-			public const int Items = 2131034193;
-			
-			// aapt resource value: 0x7f050076
-			public const int ItmIssueBy = 2131034230;
-			
-			// aapt resource value: 0x7f050079
-			public const int ItmwhseQtyOnHand = 2131034233;
-			
-			// aapt resource value: 0x7f05005f
-			public const int JobOrders = 2131034207;
-			
-			// aapt resource value: 0x7f050090
-			public const int Line = 2131034256;
-			
-			// aapt resource value: 0x7f0500a8
-			public const int Line0 = 2131034280;
-			
-			// aapt resource value: 0x7f050028
-			public const int LoadPicture = 2131034152;
-			
-			// aapt resource value: 0x7f050029
-			public const int LoadPictureMessage = 2131034153;
-			
-			// aapt resource value: 0x7f050061
-			public const int Loading = 2131034209;
-			
-			// aapt resource value: 0x7f050095
-			public const int LocDescription = 2131034261;
-			
-			// aapt resource value: 0x7f050074
-			public const int LocType = 2131034228;
-			
-			// aapt resource value: 0x7f05006f
-			public const int Location = 2131034223;
-			
-			// aapt resource value: 0x7f050035
-			public const int Login = 2131034165;
-			
-			// aapt resource value: 0x7f050062
-			public const int Lot = 2131034210;
-			
-			// aapt resource value: 0x7f05009f
-			public const int LotTrack = 2131034271;
-			
-			// aapt resource value: 0x7f050064
-			public const int LotTracked = 2131034212;
-			
-			// aapt resource value: 0x7f050049
-			public const int Manufactured = 2131034185;
-			
-			// aapt resource value: 0x7f05004c
-			public const int Material = 2131034188;
-			
-			// aapt resource value: 0x7f050046
-			public const int MaterialSource = 2131034182;
-			
-			// aapt resource value: 0x7f050045
-			public const int MaterialType = 2131034181;
-			
-			// aapt resource value: 0x7f050053
-			public const int MiscIssue = 2131034195;
-			
-			// aapt resource value: 0x7f050054
-			public const int MiscIssueReceipt = 2131034196;
-			
-			// aapt resource value: 0x7f050052
-			public const int MiscReceive = 2131034194;
-			
-			// aapt resource value: 0x7f050066
-			public const int OffLine = 2131034214;
-			
-			// aapt resource value: 0x7f050042
-			public const int OnHandQuantity = 2131034178;
-			
-			// aapt resource value: 0x7f05008f
-			public const int OrderDate = 2131034255;
-			
-			// aapt resource value: 0x7f050091
-			public const int OrderLine = 2131034257;
-			
-			// aapt resource value: 0x7f0500a1
-			public const int OrderNumber = 2131034273;
-			
-			// aapt resource value: 0x7f0500a2
-			public const int OrderRelease = 2131034274;
-			
-			// aapt resource value: 0x7f05007d
-			public const int Ordered = 2131034237;
-			
-			// aapt resource value: 0x7f05004f
-			public const int Other = 2131034191;
-			
-			// aapt resource value: 0x7f05006a
-			public const int Overview = 2131034218;
-			
-			// aapt resource value: 0x7f050031
-			public const int PassTest = 2131034161;
-			
-			// aapt resource value: 0x7f05002c
-			public const int Password = 2131034156;
-			
-			// aapt resource value: 0x7f050097
-			public const int Pending = 2131034263;
-			
-			// aapt resource value: 0x7f05007c
-			public const int Plan = 2131034236;
-			
-			// aapt resource value: 0x7f05003a
-			public const int PleaseGoToSettings = 2131034170;
-			
-			// aapt resource value: 0x7f0500ac
-			public const int Process = 2131034284;
-			
-			// aapt resource value: 0x7f050047
-			public const int ProductCode = 2131034183;
-			
-			// aapt resource value: 0x7f0500a7
-			public const int PromiseDate = 2131034279;
-			
-			// aapt resource value: 0x7f050024
-			public const int Purchase = 2131034148;
-			
-			// aapt resource value: 0x7f05008e
-			public const int PurchaseOrderBlanketDetails = 2131034254;
-			
-			// aapt resource value: 0x7f05008d
-			public const int PurchaseOrderDetails = 2131034253;
-			
-			// aapt resource value: 0x7f05005b
-			public const int PurchaseOrders = 2131034203;
-			
-			// aapt resource value: 0x7f05005c
-			public const int PurchaseReceive = 2131034204;
-			
-			// aapt resource value: 0x7f05004a
-			public const int Purchased = 2131034186;
-			
-			// aapt resource value: 0x7f050077
-			public const int QtyOnHand = 2131034231;
-			
-			// aapt resource value: 0x7f050078
-			public const int QtyRsvd = 2131034232;
-			
-			// aapt resource value: 0x7f050069
-			public const int Quantities = 2131034217;
-			
-			// aapt resource value: 0x7f050068
-			public const int Quantity = 2131034216;
-			
-			// aapt resource value: 0x7f050055
-			public const int QuantityMove = 2131034197;
-			
-			// aapt resource value: 0x7f0500a6
-			public const int QuantityReceived = 2131034278;
-			
-			// aapt resource value: 0x7f050075
-			public const int Rank = 2131034229;
-			
-			// aapt resource value: 0x7f0500a3
-			public const int Reason = 2131034275;
-			
-			// aapt resource value: 0x7f05003d
-			public const int RecordCap = 2131034173;
-			
-			// aapt resource value: 0x7f05009a
-			public const int RefLine = 2131034266;
-			
-			// aapt resource value: 0x7f050099
-			public const int RefNum = 2131034265;
-			
-			// aapt resource value: 0x7f05009b
-			public const int RefRel = 2131034267;
-			
-			// aapt resource value: 0x7f05003e
-			public const int Refresh = 2131034174;
-			
-			// aapt resource value: 0x7f05003f
-			public const int RefreshConfiguration = 2131034175;
-			
-			// aapt resource value: 0x7f05007a
-			public const int Regular = 2131034234;
+			// aapt resource value: 0x7f05009d
+			public const int AboutSystem = 2131034269;
 			
 			// aapt resource value: 0x7f0500aa
-			public const int Reset = 2131034282;
+			public const int Add = 2131034282;
 			
-			// aapt resource value: 0x7f050063
-			public const int SN = 2131034211;
+			// aapt resource value: 0x7f050056
+			public const int Administration = 2131034198;
 			
-			// aapt resource value: 0x7f0500a0
-			public const int SNTrack = 2131034272;
+			// aapt resource value: 0x7f050055
+			public const int Administrator = 2131034197;
 			
-			// aapt resource value: 0x7f050065
-			public const int SNTracked = 2131034213;
-			
-			// aapt resource value: 0x7f050025
-			public const int Sales = 2131034149;
-			
-			// aapt resource value: 0x7f05005d
-			public const int SalesOrders = 2131034205;
-			
-			// aapt resource value: 0x7f05005e
-			public const int SalesShip = 2131034206;
-			
-			// aapt resource value: 0x7f05002f
-			public const int Save = 2131034159;
-			
-			// aapt resource value: 0x7f050034
-			public const int SavePassword = 2131034164;
-			
-			// aapt resource value: 0x7f050041
-			public const int SaveSettings = 2131034177;
-			
-			// aapt resource value: 0x7f050033
-			public const int SaveUser = 2131034163;
-			
-			// aapt resource value: 0x7f050032
-			public const int Saved = 2131034162;
-			
-			// aapt resource value: 0x7f0500a9
-			public const int Search = 2131034281;
-			
-			// aapt resource value: 0x7f050027
-			public const int Settings = 2131034151;
-			
-			// aapt resource value: 0x7f050026
-			public const int Shopfloor = 2131034150;
-			
-			// aapt resource value: 0x7f050039
-			public const int SingOut = 2131034169;
+			// aapt resource value: 0x7f05008a
+			public const int AfterNext3Month = 2131034250;
 			
 			// aapt resource value: 0x7f050085
-			public const int Status = 2131034245;
+			public const int All = 2131034245;
 			
-			// aapt resource value: 0x7f050073
-			public const int Stock = 2131034227;
+			// aapt resource value: 0x7f050089
+			public const int BeforeLast3Months = 2131034249;
 			
-			// aapt resource value: 0x7f05006d
-			public const int Stockroom = 2131034221;
-			
-			// aapt resource value: 0x7f05006b
-			public const int Stockrooms = 2131034219;
-			
-			// aapt resource value: 0x7f05002e
-			public const int Test = 2131034158;
-			
-			// aapt resource value: 0x7f050040
-			public const int TestConnection = 2131034176;
-			
-			// aapt resource value: 0x7f05004d
-			public const int Tool = 2131034189;
-			
-			// aapt resource value: 0x7f050058
-			public const int TransferOrders = 2131034200;
-			
-			// aapt resource value: 0x7f05005a
-			public const int TransferReceive = 2131034202;
-			
-			// aapt resource value: 0x7f050059
-			public const int TransferShip = 2131034201;
-			
-			// aapt resource value: 0x7f05004b
-			public const int Transferred = 2131034187;
-			
-			// aapt resource value: 0x7f050072
-			public const int Transit = 2131034226;
-			
-			// aapt resource value: 0x7f050084
-			public const int Type = 2131034244;
-			
-			// aapt resource value: 0x7f050044
-			public const int UM = 2131034180;
-			
-			// aapt resource value: 0x7f050043
-			public const int UnitofMeasure = 2131034179;
-			
-			// aapt resource value: 0x7f050098
-			public const int Unposted = 2131034264;
-			
-			// aapt resource value: 0x7f050030
-			public const int UseRESTForRequest = 2131034160;
-			
-			// aapt resource value: 0x7f05002b
-			public const int User = 2131034155;
-			
-			// aapt resource value: 0x7f050080
-			public const int Vendor = 2131034240;
+			// aapt resource value: 0x7f05007a
+			public const int Blanket = 2131034234;
 			
 			// aapt resource value: 0x7f0500a4
-			public const int VendorItem = 2131034276;
+			public const int BlanketLine = 2131034276;
 			
-			// aapt resource value: 0x7f05006e
-			public const int Warehouse = 2131034222;
+			// aapt resource value: 0x7f050081
+			public const int Buyer = 2131034241;
 			
-			// aapt resource value: 0x7f050094
-			public const int WarehouseName = 2131034260;
+			// aapt resource value: 0x7f050029
+			public const int CSIWebServer = 2131034153;
 			
-			// aapt resource value: 0x7f05006c
-			public const int Warehouses = 2131034220;
+			// aapt resource value: 0x7f05003a
+			public const int CannotGetEmployee = 2131034170;
 			
-			// aapt resource value: 0x7f050036
-			public const int Welcome = 2131034166;
+			// aapt resource value: 0x7f05003b
+			public const int ClickBackToExit = 2131034171;
+			
+			// aapt resource value: 0x7f05007d
+			public const int Complete = 2131034237;
 			
 			// aapt resource value: 0x7f050037
-			public const int Welcome1 = 2131034167;
+			public const int Configuration = 2131034167;
+			
+			// aapt resource value: 0x7f050080
+			public const int Customer = 2131034240;
+			
+			// aapt resource value: 0x7f050082
+			public const int Date = 2131034242;
+			
+			// aapt resource value: 0x7f050091
+			public const int Description = 2131034257;
+			
+			// aapt resource value: 0x7f05009b
+			public const int DocumentNum = 2131034267;
+			
+			// aapt resource value: 0x7f050092
+			public const int DueDate = 2131034258;
+			
+			// aapt resource value: 0x7f050070
+			public const int EffectiveDate = 2131034224;
+			
+			// aapt resource value: 0x7f05002c
+			public const int EnableHTTPS = 2131034156;
+			
+			// aapt resource value: 0x7f050095
+			public const int Error = 2131034261;
+			
+			// aapt resource value: 0x7f05006f
+			public const int ExpirationDate = 2131034223;
+			
+			// aapt resource value: 0x7f05008b
+			public const int Filled = 2131034251;
+			
+			// aapt resource value: 0x7f05004d
+			public const int Fixture = 2131034189;
+			
+			// aapt resource value: 0x7f050066
+			public const int General = 2131034214;
+			
+			// aapt resource value: 0x7f05005f
+			public const int GetMoreRows = 2131034207;
+			
+			// aapt resource value: 0x7f05007e
+			public const int History = 2131034238;
+			
+			// aapt resource value: 0x7f050087
+			public const int InLast3Month = 2131034247;
+			
+			// aapt resource value: 0x7f050088
+			public const int InNext3Month = 2131034248;
+			
+			// aapt resource value: 0x7f050086
+			public const int InThisMonth = 2131034246;
+			
+			// aapt resource value: 0x7f050022
+			public const int Inventory = 2131034146;
+			
+			// aapt resource value: 0x7f05004f
+			public const int Item = 2131034191;
+			
+			// aapt resource value: 0x7f050047
+			public const int ItemDetails = 2131034183;
+			
+			// aapt resource value: 0x7f050050
+			public const int Items = 2131034192;
+			
+			// aapt resource value: 0x7f050075
+			public const int ItmIssueBy = 2131034229;
+			
+			// aapt resource value: 0x7f050078
+			public const int ItmwhseQtyOnHand = 2131034232;
+			
+			// aapt resource value: 0x7f05005e
+			public const int JobOrders = 2131034206;
+			
+			// aapt resource value: 0x7f05008f
+			public const int Line = 2131034255;
+			
+			// aapt resource value: 0x7f0500a7
+			public const int Line0 = 2131034279;
+			
+			// aapt resource value: 0x7f050027
+			public const int LoadPicture = 2131034151;
+			
+			// aapt resource value: 0x7f050028
+			public const int LoadPictureMessage = 2131034152;
+			
+			// aapt resource value: 0x7f050060
+			public const int Loading = 2131034208;
+			
+			// aapt resource value: 0x7f050094
+			public const int LocDescription = 2131034260;
+			
+			// aapt resource value: 0x7f050073
+			public const int LocType = 2131034227;
+			
+			// aapt resource value: 0x7f05006e
+			public const int Location = 2131034222;
+			
+			// aapt resource value: 0x7f050034
+			public const int Login = 2131034164;
+			
+			// aapt resource value: 0x7f050061
+			public const int Lot = 2131034209;
+			
+			// aapt resource value: 0x7f05009e
+			public const int LotTrack = 2131034270;
+			
+			// aapt resource value: 0x7f050063
+			public const int LotTracked = 2131034211;
+			
+			// aapt resource value: 0x7f050048
+			public const int Manufactured = 2131034184;
+			
+			// aapt resource value: 0x7f05004b
+			public const int Material = 2131034187;
+			
+			// aapt resource value: 0x7f050045
+			public const int MaterialSource = 2131034181;
+			
+			// aapt resource value: 0x7f050044
+			public const int MaterialType = 2131034180;
+			
+			// aapt resource value: 0x7f050052
+			public const int MiscIssue = 2131034194;
+			
+			// aapt resource value: 0x7f050053
+			public const int MiscIssueReceipt = 2131034195;
+			
+			// aapt resource value: 0x7f050051
+			public const int MiscReceive = 2131034193;
+			
+			// aapt resource value: 0x7f050065
+			public const int OffLine = 2131034213;
+			
+			// aapt resource value: 0x7f050041
+			public const int OnHandQuantity = 2131034177;
+			
+			// aapt resource value: 0x7f05008e
+			public const int OrderDate = 2131034254;
+			
+			// aapt resource value: 0x7f050090
+			public const int OrderLine = 2131034256;
+			
+			// aapt resource value: 0x7f0500a0
+			public const int OrderNumber = 2131034272;
+			
+			// aapt resource value: 0x7f0500a1
+			public const int OrderRelease = 2131034273;
+			
+			// aapt resource value: 0x7f05007c
+			public const int Ordered = 2131034236;
+			
+			// aapt resource value: 0x7f05004e
+			public const int Other = 2131034190;
+			
+			// aapt resource value: 0x7f050069
+			public const int Overview = 2131034217;
+			
+			// aapt resource value: 0x7f050030
+			public const int PassTest = 2131034160;
+			
+			// aapt resource value: 0x7f05002b
+			public const int Password = 2131034155;
+			
+			// aapt resource value: 0x7f050096
+			public const int Pending = 2131034262;
+			
+			// aapt resource value: 0x7f05007b
+			public const int Plan = 2131034235;
+			
+			// aapt resource value: 0x7f050039
+			public const int PleaseGoToSettings = 2131034169;
+			
+			// aapt resource value: 0x7f0500ab
+			public const int Process = 2131034283;
+			
+			// aapt resource value: 0x7f050046
+			public const int ProductCode = 2131034182;
+			
+			// aapt resource value: 0x7f0500a6
+			public const int PromiseDate = 2131034278;
+			
+			// aapt resource value: 0x7f050023
+			public const int Purchase = 2131034147;
+			
+			// aapt resource value: 0x7f05008d
+			public const int PurchaseOrderBlanketDetails = 2131034253;
+			
+			// aapt resource value: 0x7f05008c
+			public const int PurchaseOrderDetails = 2131034252;
+			
+			// aapt resource value: 0x7f05005a
+			public const int PurchaseOrders = 2131034202;
+			
+			// aapt resource value: 0x7f05005b
+			public const int PurchaseReceive = 2131034203;
+			
+			// aapt resource value: 0x7f050049
+			public const int Purchased = 2131034185;
+			
+			// aapt resource value: 0x7f050076
+			public const int QtyOnHand = 2131034230;
+			
+			// aapt resource value: 0x7f050077
+			public const int QtyRsvd = 2131034231;
+			
+			// aapt resource value: 0x7f050068
+			public const int Quantities = 2131034216;
+			
+			// aapt resource value: 0x7f050067
+			public const int Quantity = 2131034215;
+			
+			// aapt resource value: 0x7f050054
+			public const int QuantityMove = 2131034196;
+			
+			// aapt resource value: 0x7f0500a5
+			public const int QuantityReceived = 2131034277;
+			
+			// aapt resource value: 0x7f050074
+			public const int Rank = 2131034228;
+			
+			// aapt resource value: 0x7f0500a2
+			public const int Reason = 2131034274;
+			
+			// aapt resource value: 0x7f05003c
+			public const int RecordCap = 2131034172;
+			
+			// aapt resource value: 0x7f050099
+			public const int RefLine = 2131034265;
+			
+			// aapt resource value: 0x7f050098
+			public const int RefNum = 2131034264;
+			
+			// aapt resource value: 0x7f05009a
+			public const int RefRel = 2131034266;
+			
+			// aapt resource value: 0x7f05003d
+			public const int Refresh = 2131034173;
+			
+			// aapt resource value: 0x7f05003e
+			public const int RefreshConfiguration = 2131034174;
+			
+			// aapt resource value: 0x7f050079
+			public const int Regular = 2131034233;
+			
+			// aapt resource value: 0x7f0500a9
+			public const int Reset = 2131034281;
+			
+			// aapt resource value: 0x7f050062
+			public const int SN = 2131034210;
+			
+			// aapt resource value: 0x7f05009f
+			public const int SNTrack = 2131034271;
+			
+			// aapt resource value: 0x7f050064
+			public const int SNTracked = 2131034212;
+			
+			// aapt resource value: 0x7f050024
+			public const int Sales = 2131034148;
+			
+			// aapt resource value: 0x7f05005c
+			public const int SalesOrders = 2131034204;
+			
+			// aapt resource value: 0x7f05005d
+			public const int SalesShip = 2131034205;
+			
+			// aapt resource value: 0x7f05002e
+			public const int Save = 2131034158;
+			
+			// aapt resource value: 0x7f050033
+			public const int SavePassword = 2131034163;
+			
+			// aapt resource value: 0x7f050040
+			public const int SaveSettings = 2131034176;
+			
+			// aapt resource value: 0x7f050032
+			public const int SaveUser = 2131034162;
+			
+			// aapt resource value: 0x7f050031
+			public const int Saved = 2131034161;
+			
+			// aapt resource value: 0x7f0500a8
+			public const int Search = 2131034280;
+			
+			// aapt resource value: 0x7f050026
+			public const int Settings = 2131034150;
+			
+			// aapt resource value: 0x7f050025
+			public const int Shopfloor = 2131034149;
+			
+			// aapt resource value: 0x7f050038
+			public const int SingOut = 2131034168;
+			
+			// aapt resource value: 0x7f050084
+			public const int Status = 2131034244;
+			
+			// aapt resource value: 0x7f050072
+			public const int Stock = 2131034226;
+			
+			// aapt resource value: 0x7f05006c
+			public const int Stockroom = 2131034220;
+			
+			// aapt resource value: 0x7f05006a
+			public const int Stockrooms = 2131034218;
+			
+			// aapt resource value: 0x7f05002d
+			public const int Test = 2131034157;
+			
+			// aapt resource value: 0x7f05003f
+			public const int TestConnection = 2131034175;
+			
+			// aapt resource value: 0x7f05004c
+			public const int Tool = 2131034188;
+			
+			// aapt resource value: 0x7f050057
+			public const int TransferOrders = 2131034199;
+			
+			// aapt resource value: 0x7f050059
+			public const int TransferReceive = 2131034201;
+			
+			// aapt resource value: 0x7f050058
+			public const int TransferShip = 2131034200;
+			
+			// aapt resource value: 0x7f05004a
+			public const int Transferred = 2131034186;
+			
+			// aapt resource value: 0x7f050071
+			public const int Transit = 2131034225;
+			
+			// aapt resource value: 0x7f050083
+			public const int Type = 2131034243;
+			
+			// aapt resource value: 0x7f050043
+			public const int UM = 2131034179;
+			
+			// aapt resource value: 0x7f050042
+			public const int UnitofMeasure = 2131034178;
+			
+			// aapt resource value: 0x7f050097
+			public const int Unposted = 2131034263;
+			
+			// aapt resource value: 0x7f05002f
+			public const int UseRESTForRequest = 2131034159;
+			
+			// aapt resource value: 0x7f05002a
+			public const int User = 2131034154;
+			
+			// aapt resource value: 0x7f05007f
+			public const int Vendor = 2131034239;
+			
+			// aapt resource value: 0x7f0500a3
+			public const int VendorItem = 2131034275;
+			
+			// aapt resource value: 0x7f05006d
+			public const int Warehouse = 2131034221;
+			
+			// aapt resource value: 0x7f050093
+			public const int WarehouseName = 2131034259;
+			
+			// aapt resource value: 0x7f05006b
+			public const int Warehouses = 2131034219;
+			
+			// aapt resource value: 0x7f050035
+			public const int Welcome = 2131034165;
+			
+			// aapt resource value: 0x7f050036
+			public const int Welcome1 = 2131034166;
 			
 			// aapt resource value: 0x7f050000
 			public const int abc_action_bar_home_description = 2131034112;
@@ -2737,8 +2734,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f050012
 			public const int abc_toolbar_collapse_description = 2131034130;
 			
-			// aapt resource value: 0x7f050022
-			public const int app_name = 2131034146;
+			// aapt resource value: 0x7f050021
+			public const int app_name = 2131034145;
 			
 			// aapt resource value: 0x7f050013
 			public const int search_menu_title = 2131034131;

@@ -14,7 +14,7 @@ namespace CSIMobile.Class.Common
 {
     class CSIBaseDataObject : CSIBaseObject
     {
-        private string IDOName;
+        private string IDOName = "";
 
         public CSIBaseDataObject() : base()
         {
