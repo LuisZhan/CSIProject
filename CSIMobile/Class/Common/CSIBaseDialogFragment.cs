@@ -32,17 +32,21 @@ namespace CSIMobile.Class.Common
             return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
-        protected void ErrorLog(Exception Ex)
+        protected void WriteErrorLog(Exception Ex)
         {
+            if (CSIContext.DisplayWhenError)
+            {
+                Toast.MakeText(Context, Ex.Message, ToastLength.Long).Show();
+            }
             CSIErrorLog.WriteErrorLog(Ex);
         }
 
-        protected void Log(string content)
+        protected void WriteLog(string content)
         {
             CSIErrorLog.WriteLog(content);
         }
 
-        protected void Log()
+        protected void WriteLog()
         {
             CSIErrorLog.WriteLog(CSIContext);
         }

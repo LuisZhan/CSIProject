@@ -31,12 +31,17 @@ namespace CSIMobile.Class.Common
             CSIContext = MyContext;
         }
 
-        protected void Log(string content)
+        protected void WriteErrorLog(Exception Ex)
+        {
+            CSIErrorLog.WriteErrorLog(Ex);
+        }
+
+        protected void WriteLog(string content)
         {
             CSIErrorLog.WriteLog(content);
         }
 
-        protected void Log()
+        protected void WriteLog()
         {
             CSIErrorLog.WriteLog(CSIContext);
         }
