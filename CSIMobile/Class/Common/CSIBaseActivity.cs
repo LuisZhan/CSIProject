@@ -26,13 +26,13 @@ namespace CSIMobile.Class.Common
             }
             catch (Exception Ex)
             {
-                ErrorLog(Ex);
+                WriteErrorLog(Ex);
             }
 
             // Create your application here
         }
 
-        protected void ErrorLog(Exception Ex)
+        protected void WriteErrorLog(Exception Ex)
         {
             if (CSIContext.DisplayWhenError)
             {
@@ -41,12 +41,12 @@ namespace CSIMobile.Class.Common
             CSIErrorLog.WriteErrorLog(Ex);
         }
 
-        protected void Log(string content)
+        protected void WriteLog(string content)
         {
             CSIErrorLog.WriteLog(content);
         }
 
-        protected void Log()
+        protected void WriteLog()
         {
             CSIErrorLog.WriteLog(CSIContext);
         }

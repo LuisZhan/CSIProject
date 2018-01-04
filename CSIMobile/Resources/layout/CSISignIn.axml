@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/UserEdit"
+        android:hint="@string/User"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <EditText
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/PasswordEdit"
+        android:hint="@string/Password"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <Button
+        android:text="@string/Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SignInButton"
+        android:background="@android:color/holo_blue_light"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SaveUserSwitch"
+        android:text="@string/SaveUser"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SavePasswordSwitch"
+        android:text="@string/SavePassword"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+</LinearLayout>

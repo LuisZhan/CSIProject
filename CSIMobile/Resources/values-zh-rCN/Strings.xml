@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">SyteLine</string>
+  <string name="app_name">CSIMobile</string>
   <string name="Inventory">库存管理</string>
   <string name="Purchase">采购管理</string>
   <string name="Sales">销售管理</string>
