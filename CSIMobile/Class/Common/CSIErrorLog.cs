@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Util;
 using System;
 using System.IO;
 
@@ -12,17 +13,23 @@ namespace CSIMobile.Class.Common
 
         public static void WriteLog(CSIContext Context)
         {
-            File.AppendAllText(GetErrorLogFileName(), string.Format("{0} [Log] {1}\r\n{2}\r\n", DateTime.Now.ToShortDateString(), Context.ToString()));
+            string Message = string.Format("{0} [Log] {1}\r\n{2}\r\n", DateTime.Now.ToShortDateString(), Context.ToString());
+            Log.Debug(Context.File, Message);
+            File.AppendAllText(GetErrorLogFileName(), Message);
         }
 
         public static void WriteLog(string Content)
         {
-            File.AppendAllText(GetErrorLogFileName(), string.Format("{0} [Log] {1}\r\n{2}\r\n", DateTime.Now.ToShortDateString(), Content));
+            string Message = string.Format("{0} [Log] {1}\r\n{2}\r\n", DateTime.Now.ToShortDateString(), Content);
+            Log.Debug(typeof(CSIErrorLog).Name, Message);
+            File.AppendAllText(GetErrorLogFileName(), Message);
         }
 
         public static void WriteErrorLog(Exception Ex)
         {
-            File.AppendAllText(GetErrorLogFileName(), string.Format("{0} [Error] {1}\r\n{2}\r\n", DateTime.Now.ToShortDateString(), Ex.Message, Ex.StackTrace));
+            string Message = string.Format("{0} [Error] {1}\r\n{2}\r\n", DateTime.Now.ToShortDateString(), Ex.Message, Ex.StackTrace);
+            Log.Debug(Ex.Source, Message);
+            File.AppendAllText(GetErrorLogFileName(), Message);
         }
 
         private static void CheckLogFile()

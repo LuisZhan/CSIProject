@@ -13,6 +13,7 @@ namespace CSIMobile.Class.Common
         public static string Action_Search = "Search";
         public static string Action_Process = "Process";
         
+        public string File { get; set; }
         public string Activity { get; set; }
         public string Fragment { get; set; }
         public string IDO { get; set; }
@@ -77,9 +78,9 @@ namespace CSIMobile.Class.Common
 
         public override string ToString()
         {
-            string OutputFormat = "[User: {0}; IDO: {1}; Action: {2}; Method: {3}; Activity: {4}; Fragment: {5}; ]\r\n";
+            string OutputFormat = "[User: {0}; IDO: {1}; File: {2}; Action: {3}; Method: {4}; Activity: {5}; Fragment: {6}; ]\r\n";
             string Output = "";
-            Output = string.Format(OutputFormat, User, IDO, Action, Method, Activity, Fragment);
+            Output = string.Format(OutputFormat, User, IDO, File, Action, Method, Activity, Fragment);
             return Output;
         }
 
