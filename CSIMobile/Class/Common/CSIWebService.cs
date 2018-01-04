@@ -15,7 +15,7 @@ namespace CSIMobile.Class.Common
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name = "IDOWebServiceSoap", Namespace = "http://frontstep.com/IDOWebService")]
-    public partial class IDOWebService : System.Web.Services.Protocols.SoapHttpClientProtocol
+    public partial class CSIWebService : System.Web.Services.Protocols.SoapHttpClientProtocol
     {
 
         private System.Threading.SendOrPostCallback GetConfigurationNamesOperationCompleted;
@@ -35,7 +35,7 @@ namespace CSIMobile.Class.Common
         private bool useDefaultCredentialsSetExplicitly;
 
         /// <remarks/>
-        public IDOWebService(string url)
+        public CSIWebService(string url)
         {
             this.Url = url;
             if ((this.IsLocalFileSystemWebService(this.Url) == true))

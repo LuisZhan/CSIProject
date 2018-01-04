@@ -22,6 +22,7 @@ namespace CSIMobile.Class.Common
 
         //User Information
         public string User { get; set; }
+        public string Password { get; set; }
         public string UserName { get; set; }
         public string EmpNum { get; set; }
         public string EmpName { get; set; }
@@ -89,6 +90,7 @@ namespace CSIMobile.Class.Common
             Bundle bundle = new Bundle();
             //User Information
             bundle.PutString("User", User);
+            bundle.PutString("Password", Password);
             bundle.PutString("UserName", UserName);
             bundle.PutString("EmpNum", EmpNum);
             bundle.PutString("EmpName", EmpName);
