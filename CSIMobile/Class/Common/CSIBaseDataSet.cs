@@ -13,7 +13,7 @@ using static CSIMobile.Class.Common.CSIBaseDataProperty;
 
 namespace CSIMobile.Class.Common
 {
-    class CSIBaseDataSet : CSIBaseObject
+    public class CSIBaseDataSet : CSIBaseObject
     {
         private bool IsModified;
         private Dictionary<string, CSIBaseDataRow> Rows = new Dictionary<string, CSIBaseDataRow>(); //key is rowpointer
@@ -145,6 +145,49 @@ namespace CSIMobile.Class.Common
                     return;
                 }
             }
+        }
+
+        public void SetRow(int row)
+        {
+            CurrentRowNumber = row;
+        }
+
+        public object GetCurrentObjectValue(string Name)
+        {
+            CSIBaseDataRow CurrentRow = GetCurrentObject();
+            if (CurrentRow == null)
+            {
+                return null;
+            }
+            else
+            {
+                return GetCurrentObject().GetPropertyValue(Name);
+            }
+        }
+
+        public string GetCurrentObjectString(string Name,string Default = "")
+        {
+            CSIBaseDataRow CurrentRow = GetCurrentObject();
+            if (CurrentRow == null)
+            {
+                return Default;
+            }
+            else
+            {
+                return GetCurrentObject().GetPropertyString(Name);
+            }
+        }
+
+        private CSIBaseDataRow GetCurrentObject()
+        {
+            foreach (string Key in Rows.Keys)
+            {
+                if (Rows[Key].GetRowNumber() == CurrentRowNumber)
+                {
+                    return Rows[Key];
+                }
+            }
+            return null;
         }
     }
 }

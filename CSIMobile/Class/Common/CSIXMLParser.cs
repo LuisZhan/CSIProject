@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace CSIMobile.Class.Common
 {
-    class CSIXMLParser : CSIBaseObject
+    public class CSIXMLParser : CSIBaseObject
     {
     }
 

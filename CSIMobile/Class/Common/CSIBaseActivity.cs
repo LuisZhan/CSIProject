@@ -15,14 +15,15 @@ namespace CSIMobile.Class.Common
     [Activity(Label = "Activity1")]
     public class CSIBaseActivity : Activity
     {
-        CSIContext CSIContext = new CSIContext();
+        protected CSIContext CSISystemContext = new CSIContext();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             try
             {
-                CSIContext.ParseBundle(Intent.GetBundleExtra("CSIContext"));
                 base.OnCreate(savedInstanceState);
+                CSISystemContext.ParseBundle(Intent.GetBundleExtra("CSIContext"));
+                CSISystemContext.Activity = GetType().ToString();
             }
             catch (Exception Ex)
             {
@@ -32,9 +33,14 @@ namespace CSIMobile.Class.Common
             // Create your application here
         }
 
+        public virtual bool InvokeCommand(string Command, Dictionary<String, Object> ParmList = null)
+        {
+            return true;
+        }
+
         protected void WriteErrorLog(Exception Ex)
         {
-            if (CSIContext.DisplayWhenError)
+            if (CSISystemContext.DisplayWhenError)
             {
                 Toast.MakeText(this, Ex.Message, ToastLength.Long).Show();
             }
@@ -48,7 +54,12 @@ namespace CSIMobile.Class.Common
 
         protected void WriteLog()
         {
-            CSIErrorLog.WriteLog(CSIContext);
+            CSIErrorLog.WriteLog(CSISystemContext);
+        }
+
+        public string GetToken()
+        {
+            return CSISystemContext.Token;
         }
     }
 }

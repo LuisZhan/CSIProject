@@ -13,12 +13,13 @@ using Android.Widget;
 namespace CSIMobile.Class.Common
 {
 
-    class CSIBaseObject : Object
+    public class CSIBaseObject : Object
     {
-        private CSIContext CSIContext = new CSIContext();
+        protected CSIContext CSISystemContext = new CSIContext();
 
         public CSIBaseObject()
         {
+            CSISystemContext.File = GetType().ToString();
         }
 
         public CSIBaseObject(CSIContext MyContext)
@@ -28,22 +29,22 @@ namespace CSIMobile.Class.Common
 
         public void SetCSIContext(CSIContext MyContext)
         {
-            CSIContext = MyContext;
+            CSISystemContext = MyContext;
         }
 
-        protected void WriteErrorLog(Exception Ex)
+        protected static void WriteErrorLog(Exception Ex)
         {
             CSIErrorLog.WriteErrorLog(Ex);
         }
 
-        protected void WriteLog(string content)
+        protected static void WriteLog(string content)
         {
             CSIErrorLog.WriteLog(content);
         }
 
         protected void WriteLog()
         {
-            CSIErrorLog.WriteLog(CSIContext);
+            CSIErrorLog.WriteLog(CSISystemContext);
         }
     }
 }

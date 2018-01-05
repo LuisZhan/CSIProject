@@ -10,18 +10,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace CSIMobile.Class.Common
+namespace CSIMobile.Class.Business
 {
-    public class CSIJsonParser : CSIBaseObject
+    class CSISignIn
     {
-        public CSIJsonParser() : base()
-        {
-
-        }
-
-        public CSIJsonParser(CSIContext MyContext) : base(MyContext)
-        {
-
-        }
     }
 }

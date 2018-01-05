@@ -13,7 +13,7 @@ using static CSIMobile.Class.Common.CSIBaseDataProperty;
 
 namespace CSIMobile.Class.Common
 {
-    class CSIBaseDataRow : CSIBaseObject
+    public class CSIBaseDataRow : CSIBaseObject
     {
         private Dictionary<string, CSIBaseDataProperty> Properties = new Dictionary<string, CSIBaseDataProperty>(); //key is property name
         private bool IsModified;
@@ -47,12 +47,21 @@ namespace CSIMobile.Class.Common
             }
         }
 
+        public object GetPropertyValue(string Name)
+        {
+            return Properties[Name].GetValue();
+        }
+
+        public string GetPropertyString(string Name)
+        {
+            return Properties[Name].GetValueString();
+        }
+
         public bool SetPropertyValue(string Name, object Value)
         {
             try
             {
-                Types types;
-                if (CurrentDataSet.GetPropertyList().TryGetValue(Name, out types))
+                if (CurrentDataSet.GetPropertyList().TryGetValue(Name, out Types types))
                 {
                     if (types == Properties[Name].GetValueType())
                     {
@@ -68,7 +77,8 @@ namespace CSIMobile.Class.Common
                 {
                     return false;
                 }
-            }catch (Exception Ex)
+            }
+            catch (Exception Ex)
             {
                 WriteErrorLog(Ex);
                 return false;
@@ -103,10 +113,9 @@ namespace CSIMobile.Class.Common
 
         public string GetGUIDKey()
         {
-            CSIBaseDataProperty Key;
             if (string.IsNullOrEmpty(GUIDKey))
             {
-                if (Properties.TryGetValue(RowPointer, out Key))
+                if (Properties.TryGetValue(RowPointer, out CSIBaseDataProperty Key))
                 {
                     GUIDKey = Key.GetValueString();
                 }

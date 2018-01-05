@@ -15,8 +15,15 @@ namespace CSIMobile.Class.Common
 {
     public class CSIBaseDialogFragment : DialogFragment
     {
-        CSIContext CSIContext = new CSIContext();
-        
+        protected CSIBaseActivity ParentActivity;
+        protected CSIContext CSIContext = new CSIContext();
+
+        public CSIBaseDialogFragment(CSIBaseActivity activity) : base()
+        {
+            ParentActivity = activity;
+        }
+
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

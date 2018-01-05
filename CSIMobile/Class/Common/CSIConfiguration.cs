@@ -14,18 +14,18 @@ using Android.Util;
 
 namespace CSIMobile.Class.Common
 {
-    class CSIConfiguration : Object
+    public class CSIConfiguration : CSIBaseObject
     {
         private static string FileName = Path.Combine(
                     System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),
-                    Application.Context.GetString(Resource.String.app_name) + "\\CSIConfig.dat");
+                    "CSIConfig.dat");
 
         public static void WriteConfigure(CSIContext Context)
         {
             try
             {
                 CheckConfigureFile();
-                FileStream ConfigureStream = File.OpenWrite(FileName);
+                FileStream ConfigureStream = File.Open(FileName, FileMode.OpenOrCreate);
                 JsonWriter jWriter = new JsonWriter(new Java.IO.OutputStreamWriter(ConfigureStream));
                 jWriter.BeginObject();
                 jWriter.Name("CSIWebServerName").Value(Context.CSIWebServerName);
@@ -41,12 +41,40 @@ namespace CSIMobile.Class.Common
                 jWriter.EndObject();
                 jWriter.Close();
                 ConfigureStream.Close();
-            } catch (Exception Ex)
+            }
+            catch (Exception Ex)
             {
-                throw Ex;
+                WriteErrorLog(Ex);
             }
         }
 
+        public static void NewConfigure()
+        {
+            try
+            {
+                CheckConfigureFile();
+                FileStream ConfigureStream = File.Open(FileName, FileMode.OpenOrCreate);
+                JsonWriter jWriter = new JsonWriter(new Java.IO.OutputStreamWriter(ConfigureStream));
+                jWriter.BeginObject();
+                jWriter.Name("CSIWebServerName").Value("");
+                jWriter.Name("Configuration").Value("");
+                jWriter.Name("EnableHTTPS").Value(false);
+                jWriter.Name("UseRESTForRequest").Value(false);
+                jWriter.Name("SaveUser").Value(false);
+                jWriter.Name("SavePassword").Value(false);
+                jWriter.Name("SavedUser").Value("");
+                jWriter.Name("SavedPassword").Value("");
+                jWriter.Name("LoadPicture").Value(false);
+                jWriter.Name("RecordCap").Value(10);
+                jWriter.EndObject();
+                jWriter.Close();
+                ConfigureStream.Close();
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+        }
 
         public static void ReadConfigure(CSIContext Context)
         {
@@ -178,30 +206,19 @@ namespace CSIMobile.Class.Common
                 jReader.Close();
                 ConfigureStream.Close();
             }
-            catch
+            catch (Exception Ex)
             {
-                WriteConfigure(Context);
+                WriteErrorLog(Ex);
             }
         }
 
         private static void CheckConfigureFile()
         {
-            string FileName = GetErrorLogFileName();
             if (!File.Exists(FileName))
             {
-                File.Open(FileName, FileMode.CreateNew).Close();
+                File.Open(FileName, FileMode.CreateNew).Dispose();
+                NewConfigure();
             }
-        }
-
-        private static string GetErrorLogFileName()
-        {
-            return FileName + "Log.txt";
-        }
-
-        private static void DeleteErrorLogFile()
-        {
-            File.Delete(GetErrorLogFileName());
-            CheckConfigureFile();
         }
     }
 }

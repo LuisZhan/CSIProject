@@ -5,10 +5,10 @@ using Android.OS;
 
 namespace CSIMobile.Class.Common
 {
-    class CSIContext : Object
+    public class CSIContext : CSIBaseObject
     {
-        public static string Action_SignIn = "Sign In";
-        public static string Action_SignOut = "Sign Out";
+        public static string Action_SignIn = "SignIn";
+        public static string Action_SignOut = "SignOut";
         public static string Action_Query = "Query";
         public static string Action_Search = "Search";
         public static string Action_Process = "Process";
@@ -59,7 +59,14 @@ namespace CSIMobile.Class.Common
 
         public CSIContext()
         {
-            ReadConfigurations();
+            CSISystemContext.File = GetType().ToString();
+            try
+            {
+                ReadConfigurations();
+            }catch(Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
         }
 
         public void ReadConfigurations()

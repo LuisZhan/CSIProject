@@ -20,6 +20,7 @@
   <string name="SaveUser">记住用户</string>
   <string name="SavePassword">记住密码</string>
   <string name="Login">登入</string>
+  <string name="WrongUserOrPassword">用户名或密码错误</string>
   <string name="Welcome">欢迎</string>
   <string name="Welcome1">您好, {0}</string>
   <string name="Configuration">站点配置</string>

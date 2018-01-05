@@ -36,4 +36,14 @@
         android:id="@+id/SavePasswordSwitch"
         android:text="@string/SavePassword"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ErrorText"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:text="Error"
+        android:textColor="@android:color/holo_red_dark"
+        android:gravity="center"
+        android:visibility="gone" />
 </LinearLayout>

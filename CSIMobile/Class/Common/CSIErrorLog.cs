@@ -5,50 +5,45 @@ using System.IO;
 
 namespace CSIMobile.Class.Common
 {
-    class CSIErrorLog : Object
+    public class CSIErrorLog : Object
     {
-        private static string FilePath = Path.Combine(
+        private static string TAG = "D/CSIMobile";
+        private static string FileName = Path.Combine(
                     System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),
-                    Application.Context.GetString(Resource.String.app_name) + "\\");
+                    Application.Context.GetString(Resource.String.app_name)) + "_Log.txt";
 
         public static void WriteLog(CSIContext Context)
         {
             string Message = string.Format("{0} [Log] {1}\r\n{2}\r\n", DateTime.Now.ToShortDateString(), Context.ToString());
-            Log.Debug(Context.File, Message);
-            File.AppendAllText(GetErrorLogFileName(), Message);
+            Log.Debug(TAG, Message);
+            File.AppendAllText(FileName, Message);
         }
 
         public static void WriteLog(string Content)
         {
             string Message = string.Format("{0} [Log] {1}\r\n{2}\r\n", DateTime.Now.ToShortDateString(), Content);
-            Log.Debug(typeof(CSIErrorLog).Name, Message);
-            File.AppendAllText(GetErrorLogFileName(), Message);
+            Log.Debug(TAG, Message);
+            File.AppendAllText(FileName, Message);
         }
 
         public static void WriteErrorLog(Exception Ex)
         {
             string Message = string.Format("{0} [Error] {1}\r\n{2}\r\n", DateTime.Now.ToShortDateString(), Ex.Message, Ex.StackTrace);
-            Log.Debug(Ex.Source, Message);
-            File.AppendAllText(GetErrorLogFileName(), Message);
+            Log.Debug(TAG, Message);
+            File.AppendAllText(FileName, Message);
         }
 
         private static void CheckLogFile()
         {
-            string FileName = GetErrorLogFileName();
             if (!File.Exists(FileName))
             {
-                File.Open(FileName, FileMode.CreateNew).Close();
+                File.Open(FileName, FileMode.CreateNew).Dispose();
             }
-        }
-
-        private static string GetErrorLogFileName()
-        {
-            return FilePath + "Log.txt";
         }
 
         private static void DeleteErrorLogFile()
         {
-            File.Delete(GetErrorLogFileName());
+            File.Delete(FileName);
             CheckLogFile();
         }
     }

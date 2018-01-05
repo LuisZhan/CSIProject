@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace CSIMobile.Class.Common
 {
-    class CSIBaseInvoker : CSIBaseObject
+    public class CSIBaseInvoker : CSIBaseObject
     {
         private static string HTTP = "http://";
         private static string HTTPS = "https://";

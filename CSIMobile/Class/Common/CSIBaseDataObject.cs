@@ -12,13 +12,14 @@ using Android.Widget;
 
 namespace CSIMobile.Class.Common
 {
-    class CSIBaseDataObject : CSIBaseObject
+    public class CSIBaseDataObject : CSIBaseObject
     {
-        private string IDOName = "";
+        protected string IDOName = "";
 
         public CSIBaseDataObject() : base()
         {
-
+            CSISystemContext.File = GetType().ToString();
+            CSISystemContext.IDO = IDOName;
         }
 
         public CSIBaseDataObject(CSIContext MyContext) : base(MyContext)

@@ -113,6 +113,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Business\CSISignIn.cs" />
+    <Compile Include="Class\Common\CSIBaseDataRow.cs" />
+    <Compile Include="Class\Common\CSIBaseDataProperty.cs" />
+    <Compile Include="Class\Common\CSIBaseDataSet.cs" />
+    <Compile Include="Class\Common\CSIBaseDialogFragment.cs" />
+    <Compile Include="Class\Common\CSIBaseInvoker.cs" />
     <Compile Include="Class\Fragments\SignInDialogFragment.cs" />
     <Compile Include="Class\Common\CSIBaseActivity.cs" />
     <Compile Include="Class\Common\CSIBaseDataObject.cs" />

@@ -13,7 +13,7 @@ using Android.Graphics;
 
 namespace CSIMobile.Class.Common
 {
-    class CSIBaseDataProperty : CSIBaseObject
+    public class CSIBaseDataProperty : CSIBaseObject
     {
         public enum Types { Type_String, Type_Date, Type_DateTime, Type_Boolean, Type_Int, Type_Decimal, Type_DataSet, Type_Bitmap };
         private string Name;
@@ -71,6 +71,11 @@ namespace CSIMobile.Class.Common
                 WriteErrorLog(Ex);
                 return false;
             }
+        }
+
+        public object GetValue()
+        {
+            return Value;
         }
 
         public string GetValueString()

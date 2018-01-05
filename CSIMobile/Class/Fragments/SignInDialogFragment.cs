@@ -15,6 +15,18 @@ namespace CSIMobile.Class.Fragments
 {
     public class SignInDialogFragment : CSIBaseDialogFragment
     {
+        private EditText UserEdit;
+        private EditText PasswordEdit;
+        private Switch SaveUserSwitch;
+        private Switch SavePasswordSwitch;
+        private Button SignInButton;
+        private TextView ErrorText;
+
+        public SignInDialogFragment(CSIBaseActivity activity) : base(activity)
+        {
+
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             try
@@ -26,14 +38,45 @@ namespace CSIMobile.Class.Fragments
                 //not allow to cancel sign in process...
                 Cancelable = false;
 
+                UserEdit = view.FindViewById<EditText>(Resource.Id.UserEdit);
+                PasswordEdit = view.FindViewById<EditText>(Resource.Id.PasswordEdit);
+                SaveUserSwitch = view.FindViewById<Switch>(Resource.Id.SaveUserSwitch);
+                SavePasswordSwitch = view.FindViewById<Switch>(Resource.Id.SavePasswordSwitch);
+                SignInButton = view.FindViewById<Button>(Resource.Id.SignInButton);
+                ErrorText = view.FindViewById<TextView>(Resource.Id.ErrorText);
+
                 // Set up a handler to dismiss this DialogFragment when this button is clicked.
-                view.FindViewById<Button>(Resource.Id.SignInButton).Click += (sender, args) => Dismiss();
+                SignInButton.Click += (sender, args) =>
+                {
+                    if (string.IsNullOrEmpty(UserEdit.Text))
+                    {
+                        return;
+                    }
+                    Dictionary<String, Object> ParmList = new Dictionary<string, object>
+                    {
+                        { "User", UserEdit.Text },
+                        { "Password", PasswordEdit.Text },
+                        { "SaveUser", SaveUserSwitch.Checked },
+                        { "SavePassword", SavePasswordSwitch.Checked }
+                    };
+                    if (ParentActivity.InvokeCommand("GetToken", ParmList))
+                    {
+                        ErrorText.Visibility = ViewStates.Gone;
+                        Dismiss();
+                    }
+                    else
+                    {
+                        ErrorText.Text = GetString(Resource.String.WrongUserOrPassword);
+                        ErrorText.Visibility = ViewStates.Visible;
+                    }
+                    ParmList.Clear();
+                };
                 return view;
             }catch (Exception Ex)
             {
                 WriteErrorLog(Ex);
+                return null;
             }
         }
-
     }
 }
