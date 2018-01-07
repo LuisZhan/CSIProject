@@ -13,10 +13,10 @@ using Android.Support.V4.App;
 
 namespace CSIMobile.Class.Common
 {
-    class CSIBaseFragmentPagerAdapter : FragmentPagerAdapter
+    public class CSIBaseFragmentPagerAdapter : FragmentPagerAdapter
     {
 
-        public CSIBaseFragmentPagerAdapter(Android.Support.V4.App.FragmentManager fm, View ContextView)
+        public CSIBaseFragmentPagerAdapter(Android.Support.V4.App.FragmentManager fm)
             : base(fm)
         {
             return;

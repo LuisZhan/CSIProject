@@ -5,6 +5,8 @@
   <string name="Purchase">采购管理</string>
   <string name="Sales">销售管理</string>
   <string name="Shopfloor">车间管理</string>
+  <string name="MasterData">主数据</string>
+  <string name="InventoryActivities">仓库操作</string>
   <string name="Settings">设置</string>
   <string name="LoadPicture">加载图片</string>
   <string name="LoadPictureMessage">警告！加载图片可能导致性能下降。</string>
@@ -141,4 +143,10 @@
   <string name="Reset">重置</string>
   <string name="Add">添加</string>
   <string name="Process">处理</string>
+  <string name="Log">日志</string>
+  <string name="JobMaterial">作业领料</string>
+  <string name="JobTransaction">作业报工</string>
+  <string name="WorkCenterTransaction">车间报工</string>
+  <string name="ProductionSchedule">生产计划</string>
+  <string name="JustInTime">准时生产</string>
 </resources>

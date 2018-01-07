@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <Button
-        android:id="@+id/MyButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+    android:padding="5dp">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ModulePage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:persistentDrawingCache="animation" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/BottomLinearLayout"
+        android:layout_marginTop="-50dp">
+        <TextView
+            android:layout_height="match_parent"
+            android:id="@+id/MoudleButton1"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="@string/MasterData"
+            android:gravity="bottom|center"
+            android:drawableTop="@android:drawable/button_onoff_indicator_on"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
+        <TextView
+            android:text="@string/InventoryActivities"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/MoudleButton2"
+            android:layout_weight="1"
+            android:gravity="bottom|center"
+            android:drawableTop="@android:drawable/button_onoff_indicator_off"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp" />
+        <TextView
+            android:text="@string/Shopfloor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/MoudleButton3"
+            android:layout_weight="1"
+            android:gravity="bottom|center"
+            android:drawableTop="@android:drawable/button_onoff_indicator_off"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp" />
+        <TextView
+            android:text="@string/Settings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/MoudleButton4"
+            android:layout_weight="1"
+            android:gravity="bottom|center"
+            android:drawableTop="@android:drawable/button_onoff_indicator_off"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
+    </LinearLayout>
 </LinearLayout>

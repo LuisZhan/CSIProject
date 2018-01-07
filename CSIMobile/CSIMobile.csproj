@@ -113,6 +113,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Common\CSIBaseAdapter.cs" />
+    <Compile Include="Class\Common\CSIBaseGridViewerAdapter.cs" />
+    <Compile Include="Class\Fragments\Adapter\ModuleDeckAdapter.cs" />
+    <Compile Include="Class\Activities\ModuleDeck.cs" />
     <Compile Include="Class\Business\CSISignIn.cs" />
     <Compile Include="Class\Common\CSIBaseDataRow.cs" />
     <Compile Include="Class\Common\CSIBaseDataProperty.cs" />
@@ -121,6 +125,8 @@
     <Compile Include="Class\Common\CSIBaseInvoker.cs" />
     <Compile Include="Class\Common\CSIBaseFragmentPagerAdapter.cs" />
     <Compile Include="Class\Common\CSIMessageDialog.cs" />
+    <Compile Include="Class\Fragments\Adapter\ModuleGridViewerAdapter.cs" />
+    <Compile Include="Class\Fragments\ModuleDeckFragment.cs" />
     <Compile Include="Class\Fragments\SignInDialogFragment.cs" />
     <Compile Include="Class\Common\CSIBaseActivity.cs" />
     <Compile Include="Class\Common\CSIBaseDataObject.cs" />
@@ -149,6 +155,12 @@
     <AndroidResource Include="Resources\layout\CSISignIn.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\Module.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\GridItem.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -158,7 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Class\Activities\Adapter\" />
-    <Folder Include="Class\Fragments\Adapter\" />
     <Folder Include="Resources\mipmap-hdpi\" />
     <Folder Include="Resources\mipmap-mdpi\" />
     <Folder Include="Resources\mipmap-xhdpi\" />
@@ -180,6 +191,15 @@
     <AndroidResource Include="Resources\values\Colors.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\move.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\manufacturers.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets')" />

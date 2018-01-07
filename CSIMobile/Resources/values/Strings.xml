@@ -4,7 +4,9 @@
   <string name="Inventory">Inventory</string>
   <string name="Purchase">Purchase</string>
   <string name="Sales">Sales</string>
-  <string name="Shopfloor">Shop Floor</string>
+  <string name="Shopfloor">Shopfloor</string>
+  <string name="MasterData">Master Data</string>
+  <string name="InventoryActivities">Inventory Activities</string>
   <string name="Settings">Settings</string>
   <string name="LoadPicture">Load Picture</string>
   <string name="LoadPictureMessage">Warning! Load Picture will cause low performance.</string>
@@ -141,4 +143,10 @@
   <string name="Reset">Reset</string>
   <string name="Add">Add</string>
   <string name="Process">Process</string>
+  <string name="Log">Log</string>
+  <string name="JobMaterial">Job Material</string>
+  <string name="JobTransaction">Job Transaction</string>
+  <string name="WorkCenterTransaction">Work Center Transaction</string>
+  <string name="ProductionSchedule">Production Schedule</string>
+  <string name="JustInTime">Just In Time</string>
 </resources>
