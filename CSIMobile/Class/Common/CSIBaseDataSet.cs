@@ -22,6 +22,8 @@ namespace CSIMobile.Class.Common
 
         public CSIBaseDataSet()
         {
+            CSISystemContext.File = GetType().ToString();
+
             CurrentRowNumber = 0;
         }
 

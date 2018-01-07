@@ -7,6 +7,8 @@ using CSIMobile.Class.Common;
 using CSIMobile.Class.Fragments;
 using System;
 using System.Threading.Tasks;
+using Android.Runtime;
+using Android.Views;
 
 namespace CSIMobile
 {
@@ -18,7 +20,6 @@ namespace CSIMobile
             try
             {
                 base.OnCreate(bundle);
-                CSISystemContext.Activity = GetType().ToString();
 
                 SetContentView(Resource.Layout.Main);
 
@@ -35,22 +36,54 @@ namespace CSIMobile
             try
             {
                 FragmentTransaction ft = FragmentManager.BeginTransaction();
-                //Remove fragment else it will crash as it is already added to backstack
-                Fragment prev = FragmentManager.FindFragmentByTag("dialog");
-                if (prev != null)
-                {
-                    ft.Remove(prev);
-                }
 
-                ft.AddToBackStack(null);
-                // Create and show the dialog.
-                SignInDialogFragment newFragment = new SignInDialogFragment(this);
-                //Add fragment
-                newFragment.Show(ft, "");
+                SignInDialogFragment SignInDialog = (SignInDialogFragment)FragmentManager.FindFragmentByTag("SignIn");
+                if (SignInDialog != null)
+                {
+                    ft.Show(SignInDialog);
+                    //ft.AddToBackStack(null);
+                }
+                else
+                {
+                    // Create and show the dialog.
+                    SignInDialog = new SignInDialogFragment
+                    {
+                        //Cancelable = false
+                    };
+                    //Add fragment
+                    SignInDialog.Show(ft, "SignIn");
+                }
+                
             }catch (Exception Ex)
             {
                 WriteErrorLog(Ex);
             }
+        }
+
+        public override bool OnKeyDown([GeneratedEnum] Keycode keyCode, KeyEvent e)
+        {
+            if (keyCode == Keycode.Back && e.Action == KeyEventActions.Down)
+            {
+                FragmentTransaction ft = FragmentManager.BeginTransaction();
+
+                CSIMessageDialog SignOutDialog = (CSIMessageDialog)FragmentManager.FindFragmentByTag("Exit");
+
+                if (SignOutDialog != null)
+                {
+                    ft.Show(SignOutDialog);
+                }
+                else
+                {
+                    SignOutDialog = new CSIMessageDialog(GetString(Resource.String.app_name), string.Format(GetString(Resource.String.AskForExit), CSISystemContext.UserName));
+                    SignOutDialog.OkHandler += (sender, args) =>
+                    {
+                        Finish();
+                    };
+                    SignOutDialog.Show(ft, "Exit");
+                }
+                return true;
+            }
+            return base.OnKeyDown(keyCode, e);
         }
     }
 }

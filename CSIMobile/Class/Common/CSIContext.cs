@@ -5,7 +5,7 @@ using Android.OS;
 
 namespace CSIMobile.Class.Common
 {
-    public class CSIContext : CSIBaseObject
+    public class CSIContext : Object
     {
         public static string Action_SignIn = "SignIn";
         public static string Action_SignOut = "SignOut";
@@ -59,13 +59,13 @@ namespace CSIMobile.Class.Common
 
         public CSIContext()
         {
-            CSISystemContext.File = GetType().ToString();
+            Initializer();
             try
             {
                 ReadConfigurations();
             }catch(Exception Ex)
             {
-                WriteErrorLog(Ex);
+                CSIErrorLog.WriteErrorLog(Ex);
             }
         }
 
@@ -172,6 +172,35 @@ namespace CSIMobile.Class.Common
             Key2 = bundle.GetString("Key2");
             LineSuffix2 = bundle.GetString("LineSuffix2");
             Release2 = bundle.GetString("Release2");
+        }
+
+        private void Initializer()
+        {
+            User = "";
+            Password = "";
+            UserName = Application.Context.GetString(Resource.String.User);
+            EmpNum = "";
+            EmpName = Application.Context.GetString(Resource.String.User);
+            Currency = "";
+            DefaultWarehouse = "";
+            DefaultLocation = "";
+            QuantityFormat = "";
+            AmountFormat = "";
+
+            //Login Configurations
+            Token = "";
+            CSIWebServerName = "";
+            EnableHTTPS = false;
+            Configuration = "";
+            RecordCap = "";
+            UseHttps = false;
+            SaveUser = false;
+            SavedUser = "";
+            SavePassword = false;
+            SavedPassword = "";
+            LoadPicture = false;
+            UseRESTForRequest = false;
+            DisplayWhenError = false;
         }
     }
 }

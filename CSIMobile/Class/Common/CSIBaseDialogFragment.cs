@@ -15,14 +15,14 @@ namespace CSIMobile.Class.Common
 {
     public class CSIBaseDialogFragment : DialogFragment
     {
-        protected CSIBaseActivity ParentActivity;
-        protected CSIContext CSIContext = new CSIContext();
+        protected CSIBaseActivity BaseActivity;
+        protected CSIContext CSISystemContext = new CSIContext();
 
-        public CSIBaseDialogFragment(CSIBaseActivity activity) : base()
+        public CSIBaseDialogFragment() : base()
         {
-            ParentActivity = activity;
+            CSISystemContext.Fragment = GetType().ToString();
+            BaseActivity = (CSIBaseActivity)Activity;
         }
-
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -41,7 +41,7 @@ namespace CSIMobile.Class.Common
 
         protected void WriteErrorLog(Exception Ex)
         {
-            if (CSIContext.DisplayWhenError)
+            if (CSISystemContext.DisplayWhenError)
             {
                 Toast.MakeText(Context, Ex.Message, ToastLength.Long).Show();
             }
@@ -55,7 +55,7 @@ namespace CSIMobile.Class.Common
 
         protected void WriteLog()
         {
-            CSIErrorLog.WriteLog(CSIContext);
+            CSIErrorLog.WriteLog(CSISystemContext);
         }
     }
 }

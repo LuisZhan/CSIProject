@@ -9,41 +9,49 @@
         android:layout_height="wrap_content"
         android:id="@+id/UserEdit"
         android:hint="@string/User"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" />
     <EditText
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/PasswordEdit"
         android:hint="@string/Password"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" />
     <Button
         android:text="@string/Login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SignInButton"
-        android:background="@android:color/holo_blue_light"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" />
     <Switch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SaveUserSwitch"
         android:text="@string/SaveUser"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" />
     <Switch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SavePasswordSwitch"
         android:text="@string/SavePassword"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-    <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" />
+    <TextView xmlns:tools="http://schemas.android.com/tools"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ErrorText"
-        xmlns:tools="http://schemas.android.com/tools"
         tools:text="Error"
         android:textColor="@android:color/holo_red_dark"
         android:gravity="center"
-        android:visibility="gone" />
+        android:visibility="invisible" />
 </LinearLayout>

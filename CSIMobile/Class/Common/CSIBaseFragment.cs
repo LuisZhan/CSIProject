@@ -13,15 +13,15 @@ using Android.Widget;
 
 namespace CSIMobile.Class.Common
 {
-    public class CSIBaseFragment : Fragment
+    public class CSIBaseFragment : Android.Support.V4.App.Fragment
     {
         protected CSIContext CSISystemContext = new CSIContext();
         
         public override void OnCreate(Bundle savedInstanceState)
         {
-            CSISystemContext.Fragment = GetType().ToString();
             base.OnCreate(savedInstanceState);
 
+            CSISystemContext.Fragment = GetType().ToString();
             // Create your fragment here
         }
 

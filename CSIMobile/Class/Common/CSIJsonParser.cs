@@ -16,6 +16,7 @@ namespace CSIMobile.Class.Common
     {
         public CSIJsonParser() : base()
         {
+            CSISystemContext.File = GetType().ToString();
 
         }
 

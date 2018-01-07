@@ -18,8 +18,8 @@ namespace CSIMobile.Class.Common
 
         public CSIBaseDataObject() : base()
         {
-            CSISystemContext.File = GetType().ToString();
             CSISystemContext.IDO = IDOName;
+            CSISystemContext.File = GetType().ToString();
         }
 
         public CSIBaseDataObject(CSIContext MyContext) : base(MyContext)

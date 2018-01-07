@@ -28,6 +28,8 @@ namespace CSIMobile.Class.Common
         {
             try
             {
+                CSISystemContext.File = GetType().ToString();
+
                 GUIDKey = Guid.NewGuid().ToString();
                 this.CurrentDataSet = CurrentDataSet;
                 Dictionary<string, Types> PropertyNameTypeList = CurrentDataSet.GetPropertyList();

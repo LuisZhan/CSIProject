@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">CSIMobile</string>
+  <string name="app_name">CSI Mobile</string>
   <string name="Inventory">Inventory</string>
   <string name="Purchase">Purchase</string>
   <string name="Sales">Sales</string>
@@ -28,6 +28,7 @@
   <string name="PleaseGoToSettings">Cannot get configuration list. If this is your first time run application, please click Settings button to register.</string>
   <string name="CannotGetEmployee">Cannot get Employee Number associated with the account.Please ask Administrator for help.</string>
   <string name="ClickBackToExit">Click Back again to Exit.</string>
+  <string name="AskForExit">{0}, Click OK to Exit [CSI Mobile].</string>
   <string name="RecordCap">Record Cap</string>
   <string name="Refresh">Refresh</string>
   <string name="RefreshConfiguration">Refresh Configuration</string>

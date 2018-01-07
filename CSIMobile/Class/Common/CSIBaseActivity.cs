@@ -9,10 +9,11 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Support.V7.App;
 
 namespace CSIMobile.Class.Common
 {
-    [Activity(Label = "Activity1")]
+    [Activity(Theme = "@style/MyTheme", Label = "Activity1")]
     public class CSIBaseActivity : Activity
     {
         protected CSIContext CSISystemContext = new CSIContext();
@@ -40,7 +41,7 @@ namespace CSIMobile.Class.Common
 
         protected void WriteErrorLog(Exception Ex)
         {
-            if (CSISystemContext.DisplayWhenError)
+            //if (CSISystemContext.DisplayWhenError)
             {
                 Toast.MakeText(this, Ex.Message, ToastLength.Long).Show();
             }

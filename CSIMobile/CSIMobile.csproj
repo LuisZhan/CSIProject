@@ -119,6 +119,8 @@
     <Compile Include="Class\Common\CSIBaseDataSet.cs" />
     <Compile Include="Class\Common\CSIBaseDialogFragment.cs" />
     <Compile Include="Class\Common\CSIBaseInvoker.cs" />
+    <Compile Include="Class\Common\CSIBaseFragmentPagerAdapter.cs" />
+    <Compile Include="Class\Common\CSIMessageDialog.cs" />
     <Compile Include="Class\Fragments\SignInDialogFragment.cs" />
     <Compile Include="Class\Common\CSIBaseActivity.cs" />
     <Compile Include="Class\Common\CSIBaseDataObject.cs" />
@@ -155,6 +157,8 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Class\Activities\Adapter\" />
+    <Folder Include="Class\Fragments\Adapter\" />
     <Folder Include="Resources\mipmap-hdpi\" />
     <Folder Include="Resources\mipmap-mdpi\" />
     <Folder Include="Resources\mipmap-xhdpi\" />

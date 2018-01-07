@@ -22,9 +22,9 @@ namespace CSIMobile.Class.Fragments
         private Button SignInButton;
         private TextView ErrorText;
 
-        public SignInDialogFragment(CSIBaseActivity activity) : base(activity)
+        public SignInDialogFragment() : base()
         {
-
+            CSISystemContext.Fragment = GetType().ToString();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -34,10 +34,7 @@ namespace CSIMobile.Class.Fragments
                 base.OnCreate(savedInstanceState);
 
                 var view = inflater.Inflate(Resource.Layout.CSISignIn, container, false);
-
-                //not allow to cancel sign in process...
-                Cancelable = false;
-
+                
                 UserEdit = view.FindViewById<EditText>(Resource.Id.UserEdit);
                 PasswordEdit = view.FindViewById<EditText>(Resource.Id.PasswordEdit);
                 SaveUserSwitch = view.FindViewById<Switch>(Resource.Id.SaveUserSwitch);
@@ -59,7 +56,7 @@ namespace CSIMobile.Class.Fragments
                         { "SaveUser", SaveUserSwitch.Checked },
                         { "SavePassword", SavePasswordSwitch.Checked }
                     };
-                    if (ParentActivity.InvokeCommand("GetToken", ParmList))
+                    if (BaseActivity.InvokeCommand("GetToken", ParmList))
                     {
                         ErrorText.Visibility = ViewStates.Gone;
                         Dismiss();
@@ -71,6 +68,7 @@ namespace CSIMobile.Class.Fragments
                     }
                     ParmList.Clear();
                 };
+                
                 return view;
             }catch (Exception Ex)
             {
