@@ -32,6 +32,11 @@ namespace CSIMobile.Class.Common
             CSISystemContext = MyContext;
         }
 
+        public CSIContext GetCSISystemContext()
+        {
+            return CSISystemContext;
+        }
+
         protected static void WriteErrorLog(Exception Ex)
         {
             CSIErrorLog.WriteErrorLog(Ex);

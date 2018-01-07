@@ -15,10 +15,12 @@ namespace CSIMobile.Class.Common
 {
     public class CSIBaseFragmentPagerAdapter : FragmentPagerAdapter
     {
+        protected CSIBaseActivity BaseActivity;
 
-        public CSIBaseFragmentPagerAdapter(Android.Support.V4.App.FragmentManager fm)
+        public CSIBaseFragmentPagerAdapter(Android.Support.V4.App.FragmentManager fm, Activity a = null)
             : base(fm)
         {
+            BaseActivity = (CSIBaseActivity)a;
             return;
         }
 

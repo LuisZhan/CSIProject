@@ -23,7 +23,7 @@ namespace CSIMobile.Class.Common
             try
             {
                 base.OnCreate(savedInstanceState);
-                CSISystemContext.ParseBundle(Intent.GetBundleExtra("CSIContext"));
+                CSISystemContext.ParseBundle(Intent.GetBundleExtra("CSISystemContext"));
                 CSISystemContext.Activity = GetType().ToString();
             }
             catch (Exception Ex)
@@ -37,6 +37,11 @@ namespace CSIMobile.Class.Common
         public virtual bool InvokeCommand(string Command, Dictionary<String, Object> ParmList = null)
         {
             return true;
+        }
+
+        public CSIContext GetCSISystemContext()
+        {
+            return CSISystemContext;
         }
 
         protected void WriteErrorLog(Exception Ex)

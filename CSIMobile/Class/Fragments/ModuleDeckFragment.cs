@@ -13,15 +13,16 @@ using Android.Widget;
 using CSIMobile.Class.Activities;
 using CSIMobile.Class.Fragments.Adapter;
 using static Android.Widget.AdapterView;
+using CSIMobile.Class.Common;
 
 namespace CSIMobile.Class.Fragments
 {
-    public class ModuleDeckFragment : Android.Support.V4.App.Fragment
+    public class ModuleDeckFragment : CSIBaseFragment
     {
         private static string MODULE_NAME = "module_name";
         private Module Module;
 
-        public ModuleDeckFragment()
+        public ModuleDeckFragment() : base()
         {
         }
 
@@ -57,13 +58,24 @@ namespace CSIMobile.Class.Fragments
             ModuleGrid.ItemClick += delegate (object sender, ItemClickEventArgs args)
             {
                 ModuleAction Action = (ModuleAction)GridAdapter.ActionItems[args.Position];
-                   Toast.MakeText(ModuleGrid.Context, Action.ActionName, ToastLength.Short).Show();
-                //if (!(GridAdapter.ActionItems[args.Position].ActivityType is null))
-                //{
-                //    Intent intent = new Intent(this, GridAdapter.ActionItems[args.Position].ActivityType);
-                //    SetDefaultIntent(intent);
-                //    this.StartActivity(intent);
-                //}
+                Toast.MakeText(ModuleGrid.Context, Action.ActionName, ToastLength.Short).Show();
+                if (Action.InvokeCommands.Length > 0)
+                {
+                    foreach (string command in Action.InvokeCommands)
+                    {
+                        if (!BaseActivity.InvokeCommand(command))
+                        {
+                            return;
+                        }
+                    }
+                }
+                else if (Action.ActivityType != null)
+                {
+                    Bundle bundle = CSISystemContext.BuildBundle();
+                    Intent intent = new Intent(Context, Action.ActivityType);
+                    intent.PutExtra("CSISystemContext", bundle);
+                    StartActivity(intent);
+                }
             };
 
             return view;

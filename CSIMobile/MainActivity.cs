@@ -10,13 +10,14 @@ using Android.Views;
 using Android.Support.V4.View;
 using CSIMobile.Class.Activities;
 using CSIMobile.Class.Fragments.Adapter;
+using System.Collections.Generic;
 
 namespace CSIMobile
 {
     [Activity(Label = "@string/app_name")]
     public class MainActivity : CSIBaseActivity
     {
-        public TextView[] MoudleButton = { null, null, null };
+        public TextView[] MoudleButton = { null, null, null, null };
         ModuleDeck Modules;
         ModuleDeckAdapter DeckAdapter;
         ViewPager ModulePage;
@@ -35,7 +36,7 @@ namespace CSIMobile
                 Modules = new ModuleDeck();
 
                 // Instantiate the adapter and pass in the deck of flash cards:
-                DeckAdapter = new ModuleDeckAdapter(SupportFragmentManager, Modules);
+                DeckAdapter = new ModuleDeckAdapter(SupportFragmentManager, Modules, this);
 
                 // Find the ViewPager and plug in the adapter:
                 ModulePage.Adapter = DeckAdapter;
@@ -75,10 +76,8 @@ namespace CSIMobile
                 else
                 {
                     // Create and show the dialog.
-                    SignInDialog = new SignInDialogFragment
-                    {
-                        //Cancelable = false
-                    };
+                    SignInDialog = new SignInDialogFragment();
+                    SignInDialog.SetBaseActivity(this);
                     //Add fragment
                     SignInDialog.Show(ft, "SignIn");
                 }
@@ -134,6 +133,43 @@ namespace CSIMobile
         {
             ModulePage.SetCurrentItem(Position, true);
             GetModuleDeck();
+        }
+
+        public override bool InvokeCommand(string Command, Dictionary<string, object> ParmList = null)
+        {
+            bool Success = false;
+            switch (Command)
+            {
+                case "CreateToken":
+                    CSISystemContext.Token = new CSIBaseInvoker().CreateToken(CSISystemContext);
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        Success = false;
+                    }
+                    else
+                    {
+                        Success = true;
+                    }
+                    break;
+                case "GetToken":
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else
+                    {
+                        Success = true;
+                    }
+                    break;
+                case "ShowSignIn":
+                    ShowSignInDialog();
+                    Success = true;
+                    break;
+                default:
+                    break;
+            }
+            return Success;
         }
     }
 }

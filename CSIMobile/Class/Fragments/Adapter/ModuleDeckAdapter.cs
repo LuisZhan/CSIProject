@@ -21,7 +21,7 @@ namespace CSIMobile.Class.Fragments.Adapter
     {
         public ModuleDeck ModuleDecks;
 
-        public ModuleDeckAdapter(Android.Support.V4.App.FragmentManager fm, ModuleDeck ModuleDecks) : base(fm)
+        public ModuleDeckAdapter(Android.Support.V4.App.FragmentManager fm, ModuleDeck ModuleDecks, Activity a) : base(fm, a)
         {
             this.ModuleDecks = ModuleDecks;
         }
@@ -35,13 +35,15 @@ namespace CSIMobile.Class.Fragments.Adapter
         // Returns a new fragment for the flash card at this position:
         public override Android.Support.V4.App.Fragment GetItem(int position)
         {
-            return (Android.Support.V4.App.Fragment)ModuleDeckFragment.NewInstance(ModuleDecks[position]);
+            ModuleDeckFragment f = ModuleDeckFragment.NewInstance(ModuleDecks[position]);
+            f.SetBaseActivity(BaseActivity);
+            return (Android.Support.V4.App.Fragment)f;
         }
 
         // Display the problem number in the PagerTitleStrip:
         public override Java.Lang.ICharSequence GetPageTitleFormatted(int position)
         {
-            return new Java.Lang.String("Module: " + (position + 1));
+            return new Java.Lang.String(ModuleDecks[position].ModuleName);
         }
     }
 }

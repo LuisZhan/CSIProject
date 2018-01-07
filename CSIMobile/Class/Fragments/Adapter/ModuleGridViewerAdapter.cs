@@ -38,8 +38,20 @@ namespace CSIMobile.Class.Fragments.Adapter
                 ModuleAction Action = (ModuleAction)ActionItems[position];
 
                 View view = convertView;
+
                 if (view == null) // no view to re-use, create new
-                    view = Fragment.LayoutInflater.Inflate(Resource.Layout.GridItem, null);
+                {
+                    if (Activity != null)
+                    {
+                        view = Activity.LayoutInflater.Inflate(Resource.Layout.GridItem, null);
+                    }
+                    else if (Fragment != null)
+                    {
+                        view = Fragment.LayoutInflater.Inflate(Resource.Layout.GridItem, null);
+                    }else{
+                        return null;
+                    }
+                }
 
                 ImageView imageView = view.FindViewById<ImageView>(Resource.Id.ImageView);
                 TextView textView = view.FindViewById<TextView>(Resource.Id.ActionText);

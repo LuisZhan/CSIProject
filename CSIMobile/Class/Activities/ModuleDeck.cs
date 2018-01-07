@@ -14,7 +14,7 @@ using Java.Lang;
 
 namespace CSIMobile.Class.Activities
 {
-    public class Module
+    public class Module : CSIBaseObject
     {
         public string ModuleName;
         public ModuleAction[] ModuleActions;
@@ -24,10 +24,11 @@ namespace CSIMobile.Class.Activities
         }
     }
 
-    public class ModuleAction
+    public class ModuleAction : CSIBaseObject
     {
         public string ActionName;
         public Type ActivityType;
+        public string[] InvokeCommands = { "GetToken" };
         public int DrawableId;
         public ModuleAction()
         {
@@ -40,7 +41,7 @@ namespace CSIMobile.Class.Activities
         }
     }
 
-    public class ModuleDeck
+    public class ModuleDeck : CSIBaseObject
     {
         private static Module[] builtInModules =
         {
@@ -153,22 +154,22 @@ namespace CSIMobile.Class.Activities
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.Login),
                         DrawableId = Resource.Drawable.Logo,
-                        //ActivityType = typeof(object)
+                        InvokeCommands = new string[] { "ShowSignIn" }
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.Settings),
                         DrawableId = Resource.Drawable.Logo,
-                        //ActivityType = typeof(object)
+                        InvokeCommands = new string[] { "ShowSettings" }
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.About),
                         DrawableId = Resource.Drawable.Logo,
-                        //ActivityType = typeof(object)
+                        InvokeCommands = new string[] { "ShowAbout" }
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.Log),
                         DrawableId = Resource.Drawable.Logo,
-                        //ActivityType = typeof(object)
+                        InvokeCommands = new string[] { "ShowLog" }
                     }
                 }
             }

@@ -20,7 +20,7 @@ namespace CSIMobile.Class.Common
         private static string RESTBaseURL = "/IDORequestService/MGRestService.svc";
         private static string SOAPBaseURL = "/IDORequestService/IDOWebService.asmx";
 
-        private static string GetToken(CSIContext context)
+        public static string GetToken(CSIContext context)
         {
             if (context == null || string.IsNullOrEmpty(context.Token))
             {

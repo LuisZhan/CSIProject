@@ -39,6 +39,11 @@ namespace CSIMobile.Class.Common
             return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
+        public void SetBaseActivity(Activity a)
+        {
+            BaseActivity = (CSIBaseActivity)a;
+        }
+
         protected void WriteErrorLog(Exception Ex)
         {
             if (CSISystemContext.DisplayWhenError)

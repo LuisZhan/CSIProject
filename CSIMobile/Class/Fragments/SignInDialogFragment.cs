@@ -56,7 +56,7 @@ namespace CSIMobile.Class.Fragments
                         { "SaveUser", SaveUserSwitch.Checked },
                         { "SavePassword", SavePasswordSwitch.Checked }
                     };
-                    if (BaseActivity.InvokeCommand("GetToken", ParmList))
+                    if (BaseActivity.InvokeCommand("CreateToken", ParmList))
                     {
                         ErrorText.Visibility = ViewStates.Gone;
                         Dismiss();
