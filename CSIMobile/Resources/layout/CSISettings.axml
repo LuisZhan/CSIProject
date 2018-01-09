@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|top"
+        android:padding="10dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/TitleLinearLayout"
+            android:gravity="right|top">
+            <ImageView
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/CloseImage" />
+        </LinearLayout>
+        <TextView
+            android:text="@string/CSIWebServer"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/CSIWebServerLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/CSIWebServerEdit"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:hint="@string/CSIWebServer"
+            android:inputType="textNoSuggestions" />
+        <TextView
+            android:text="@string/Configuration"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ConfigurationLabel" />
+        <Spinner
+            android:id="@+id/ConfigurationEdit"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/NumberPerPageLinearLayout">
+            <TextView
+                android:text="@string/RecordCap"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/NumberPerPageLabel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:layout_marginRight="100dp" />
+            <EditText
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/RecordCapEdit"
+                android:numeric="integer"
+                android:text="20"
+                android:gravity="right"
+                android:singleLine="true"
+                android:maxLength="4"
+                android:layout_marginLeft="-100dp"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+        <Switch
+            android:id="@+id/EnableHTTPSEdit"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/EnableHTTPS" />
+        <Switch
+            android:id="@+id/UseRESTForRequestEdit"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/UseRESTForRequest"
+            android:visibility="gone" />
+        <Switch
+            android:id="@+id/LoadPictureEdit"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/LoadPicture" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/UserLinearLayout">
+            <Switch
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/SaveUserSwitch"
+                android:text="@string/SaveUser" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/UserEdit"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:hint="@string/User"
+            android:inputType="textNoSuggestions" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/PasswordLinearLayout">
+            <Switch
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/SavePasswordSwitch"
+                android:layout_width="match_parent"
+                android:text="@string/SavePassword" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/PasswordEdit"
+            android:singleLine="true"
+            android:password="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:hint="@string/Password"
+            android:inputType="textVisiblePassword" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1"
+            android:gravity="right">
+            <Button
+                android:text="@string/Test"
+                android:id="@+id/TestButton"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <Button
+                android:text="@string/Save"
+                android:id="@+id/SaveButton"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

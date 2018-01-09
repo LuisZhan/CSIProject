@@ -20,6 +20,11 @@ namespace CSIMobile.Class.Common
         private static string RESTBaseURL = "/IDORequestService/MGRestService.svc";
         private static string SOAPBaseURL = "/IDORequestService/IDOWebService.asmx";
 
+        public CSIBaseInvoker(CSIContext SrcContext = null) : base(SrcContext)
+        {
+            CSISystemContext.File = "CSIBaseInvoker";
+        }
+
         public static string GetToken(CSIContext context)
         {
             if (context == null || string.IsNullOrEmpty(context.Token))
@@ -57,7 +62,7 @@ namespace CSIMobile.Class.Common
             return URLPath;
         }
 
-        public string CreateToken(CSIContext context)
+        public static string CreateToken(CSIContext context)
         {
             string Token = "";
             string URL = GetURL(context);
@@ -65,16 +70,53 @@ namespace CSIMobile.Class.Common
             {
                 return "";
             }
-            if (context.UseRESTForRequest)
+            try
             {
-                //REST
-            }
-            else
+                if (context.UseRESTForRequest)
+                {
+                    //REST
+                }
+                else
+                {
+                    //SOAP
+                    Token = new CSIWebService(URL).CreateSessionToken(context.User, context.Password, context.Configuration);
+                }
+            }catch (Exception Ex)
             {
-                //SOAP
-                Token = new CSIWebService(URL).CreateSessionToken(context.User, context.Password, context.Configuration);
+                WriteErrorLog(Ex);
             }
             return Token;
+        }
+
+        public static string[] GetConfigurationList(CSIContext context)
+        {
+            string[] List = { "" };
+            string URL = GetURL(context);
+            if (string.IsNullOrEmpty(URL))
+            {
+                return List;
+            }
+            CSIWebService webService = new CSIWebService(URL)
+            {
+                //webservice调用完成后触发
+                Timeout = 20000
+            };
+            try
+            {
+                if (context.UseRESTForRequest)
+                {
+                    //REST
+                }
+                else
+                {
+                    //SOAP
+                    List = webService.GetConfigurationNames();
+                }
+            }catch(Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+            return List;
         }
 
         public static CSIBaseDataSet InvokeLoad(CSIContext context)

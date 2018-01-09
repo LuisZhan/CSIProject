@@ -16,15 +16,10 @@ namespace CSIMobile.Class.Common
     {
         protected string IDOName = "";
 
-        public CSIBaseDataObject() : base()
+        public CSIBaseDataObject(CSIContext SrcContext = null) : base(SrcContext)
         {
             CSISystemContext.IDO = IDOName;
-            CSISystemContext.File = GetType().ToString();
-        }
-
-        public CSIBaseDataObject(CSIContext MyContext) : base(MyContext)
-        {
-
+            CSISystemContext.File = "CSIBaseDataObject";
         }
     }
 }

@@ -20,24 +20,36 @@ namespace CSIMobile.Class.Common
                     System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),
                     "CSIConfig.dat");
 
-        public static void WriteConfigure(CSIContext Context)
+        public CSIConfiguration(CSIContext SrcContext = null) : base(SrcContext)
+        {
+            CSISystemContext.File = "CSIConfiguration";
+        }
+
+        public static void WriteConfigure(CSIContext c)
         {
             try
             {
-                CheckConfigureFile();
+                File.Delete(FileName);
                 FileStream ConfigureStream = File.Open(FileName, FileMode.OpenOrCreate);
                 JsonWriter jWriter = new JsonWriter(new Java.IO.OutputStreamWriter(ConfigureStream));
                 jWriter.BeginObject();
-                jWriter.Name("CSIWebServerName").Value(Context.CSIWebServerName);
-                jWriter.Name("Configuration").Value(Context.Configuration);
-                jWriter.Name("EnableHTTPS").Value(Context.EnableHTTPS);
-                jWriter.Name("UseRESTForRequest").Value(Context.UseRESTForRequest);
-                jWriter.Name("SaveUser").Value(Context.SaveUser);
-                jWriter.Name("SavePassword").Value(Context.SavePassword);
-                jWriter.Name("SavedUser").Value(Context.SaveUser ? Context.SavedUser : "");
-                jWriter.Name("SavedPassword").Value(Context.SaveUser && Context.SavePassword ? Context.SavedPassword : "");
-                jWriter.Name("LoadPicture").Value(Context.LoadPicture);
-                jWriter.Name("RecordCap").Value(Context.RecordCap);
+                jWriter.Name("CSIWebServerName").Value(c.CSIWebServerName);
+                jWriter.Name("Configuration").Value(c.Configuration);
+                jWriter.Name("ConfigurationList");
+                jWriter.BeginArray();
+                foreach(string config in c.ConfigurationList)
+                {
+                    jWriter.Value(config);
+                }
+                jWriter.EndArray();
+                jWriter.Name("EnableHTTPS").Value(c.EnableHTTPS);
+                jWriter.Name("UseRESTForRequest").Value(c.UseRESTForRequest);
+                jWriter.Name("SaveUser").Value(c.SaveUser);
+                jWriter.Name("SavePassword").Value(c.SavePassword);
+                jWriter.Name("SavedUser").Value(c.SaveUser ? c.SavedUser : "");
+                jWriter.Name("SavedPassword").Value(c.SaveUser && c.SavePassword ? c.SavedPassword : "");
+                jWriter.Name("LoadPicture").Value(c.LoadPicture);
+                jWriter.Name("RecordCap").Value(c.RecordCap);
                 jWriter.EndObject();
                 jWriter.Close();
                 ConfigureStream.Close();
@@ -66,6 +78,10 @@ namespace CSIMobile.Class.Common
                 jWriter.Name("SavedPassword").Value("");
                 jWriter.Name("LoadPicture").Value(false);
                 jWriter.Name("RecordCap").Value(10);
+                jWriter.Name("ConfigurationList");
+                jWriter.BeginArray();
+                jWriter.Value("");
+                jWriter.EndArray();
                 jWriter.EndObject();
                 jWriter.Close();
                 ConfigureStream.Close();
@@ -76,7 +92,7 @@ namespace CSIMobile.Class.Common
             }
         }
 
-        public static void ReadConfigure(CSIContext Context)
+        public static void ReadConfigure(CSIContext c)
         {
             try
             {
@@ -95,7 +111,7 @@ namespace CSIMobile.Class.Common
                         }
                         else
                         {
-                            Context.CSIWebServerName = jReader.NextString();
+                            c.CSIWebServerName = jReader.NextString();
                         }
                     }
                     else if (name.Equals("Configuration"))
@@ -106,7 +122,30 @@ namespace CSIMobile.Class.Common
                         }
                         else
                         {
-                            Context.Configuration = jReader.NextString();
+                            c.Configuration = jReader.NextString();
+                        }
+                    }
+                    else if (name.Equals("ConfigurationList"))
+                    {
+                        if (jReader.Peek() == null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            jReader.BeginArray();
+                            while (jReader.HasNext)
+                            {
+                                if (jReader.Peek() == null)
+                                {
+                                    jReader.SkipValue();
+                                }
+                                else
+                                {
+                                    c.ConfigurationList.Add(jReader.NextString());
+                                }
+                            }
+                            jReader.EndArray();
                         }
                     }
                     else if (name.Equals("SavedUser"))
@@ -117,7 +156,7 @@ namespace CSIMobile.Class.Common
                         }
                         else
                         {
-                            Context.SavedUser = jReader.NextString();
+                            c.SavedUser = jReader.NextString();
                         }
                     }
                     else if (name.Equals("SavedPassword"))
@@ -128,7 +167,7 @@ namespace CSIMobile.Class.Common
                         }
                         else
                         {
-                            Context.SavedPassword = jReader.NextString();
+                            c.SavedPassword = jReader.NextString();
                         }
                     }
                     else if (name.Equals("EnableHTTPS"))
@@ -139,7 +178,7 @@ namespace CSIMobile.Class.Common
                         }
                         else
                         {
-                            Context.EnableHTTPS = jReader.NextBoolean();
+                            c.EnableHTTPS = jReader.NextBoolean();
                         }
                     }
                     else if (name.Equals("UseRESTForRequest"))
@@ -150,7 +189,7 @@ namespace CSIMobile.Class.Common
                         }
                         else
                         {
-                            Context.UseRESTForRequest = jReader.NextBoolean();
+                            c.UseRESTForRequest = jReader.NextBoolean();
                         }
                     }
                     else if (name.Equals("SaveUser"))
@@ -161,7 +200,7 @@ namespace CSIMobile.Class.Common
                         }
                         else
                         {
-                            Context.SaveUser = jReader.NextBoolean();
+                            c.SaveUser = jReader.NextBoolean();
                         }
                     }
                     else if (name.Equals("SavePassword"))
@@ -172,7 +211,7 @@ namespace CSIMobile.Class.Common
                         }
                         else
                         {
-                            Context.SavePassword = jReader.NextBoolean();
+                            c.SavePassword = jReader.NextBoolean();
                         }
                     }
                     else if (name.Equals("LoadPicture"))
@@ -183,7 +222,7 @@ namespace CSIMobile.Class.Common
                         }
                         else
                         {
-                            Context.LoadPicture = jReader.NextBoolean();
+                            c.LoadPicture = jReader.NextBoolean();
                         }
                     }
                     else if (name.Equals("RecordCap"))
@@ -194,7 +233,7 @@ namespace CSIMobile.Class.Common
                         }
                         else
                         {
-                            Context.RecordCap = jReader.NextString();
+                            c.RecordCap = jReader.NextString();
                         }
                     }
                     else

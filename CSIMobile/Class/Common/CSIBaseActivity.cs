@@ -13,15 +13,20 @@ using Android.Support.V7.App;
 
 namespace CSIMobile.Class.Common
 {
-    [Activity(Theme = "@style/MyTheme", Label = "Activity1")]
+    [Activity(Theme = "@style/MyTheme", Label = "@string/app_name")]
     public class CSIBaseActivity : AppCompatActivity
     {
-        protected CSIContext CSISystemContext = new CSIContext();
+        protected CSIContext CSISystemContext;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             try
             {
+                if (CSISystemContext == null)
+                {
+                    CSISystemContext = new CSIContext();
+                    CSISystemContext.ReadConfigurations();
+                }
                 base.OnCreate(savedInstanceState);
                 CSISystemContext.ParseBundle(Intent.GetBundleExtra("CSISystemContext"));
                 CSISystemContext.Activity = GetType().ToString();
@@ -46,7 +51,7 @@ namespace CSIMobile.Class.Common
 
         protected void WriteErrorLog(Exception Ex)
         {
-            //if (CSISystemContext.DisplayWhenError)
+            if (CSISystemContext.DisplayWhenError)
             {
                 Toast.MakeText(this, Ex.Message, ToastLength.Long).Show();
             }

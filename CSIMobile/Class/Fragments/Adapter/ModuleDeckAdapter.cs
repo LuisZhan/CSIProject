@@ -21,8 +21,9 @@ namespace CSIMobile.Class.Fragments.Adapter
     {
         public ModuleDeck ModuleDecks;
 
-        public ModuleDeckAdapter(Android.Support.V4.App.FragmentManager fm, ModuleDeck ModuleDecks, Activity a) : base(fm, a)
+        public ModuleDeckAdapter(Android.Support.V4.App.FragmentManager fm, ModuleDeck ModuleDecks, CSIBaseActivity activity = null) : base(fm, activity)
         {
+            CSISystemContext.Adapter = "ModuleDeckAdapter";
             this.ModuleDecks = ModuleDecks;
         }
         
@@ -35,8 +36,7 @@ namespace CSIMobile.Class.Fragments.Adapter
         // Returns a new fragment for the flash card at this position:
         public override Android.Support.V4.App.Fragment GetItem(int position)
         {
-            ModuleDeckFragment f = ModuleDeckFragment.NewInstance(ModuleDecks[position]);
-            f.SetBaseActivity(BaseActivity);
+            ModuleDeckFragment f = ModuleDeckFragment.NewInstance(ModuleDecks[position], BaseActivity);
             return (Android.Support.V4.App.Fragment)f;
         }
 

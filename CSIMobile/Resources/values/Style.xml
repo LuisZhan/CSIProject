@@ -4,12 +4,13 @@
 
   <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
   </style>
+  
+  <style name="MyTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
+  </style>
 
-  <style name="MyTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
+  <style name="MyTheme.Splash" parent ="MyTheme.Base">
     <item name="android:windowBackground">@drawable/SplashScreen</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>
-  </style>
-  <style name="MyTheme.Button" parent="MyTheme.Base">
   </style>
 </resources>

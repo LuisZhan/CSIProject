@@ -20,16 +20,18 @@ namespace CSIMobile.Class.Common
 
         public List<Object> ActionItems = new List<Object>();
 
-        public CSIBaseGridViewerAdapter(Activity o, GridView gridView) : base()
+        public CSIBaseGridViewerAdapter(CSIBaseActivity activity, GridView gridView) : base((activity == null) ? null : activity.GetCSISystemContext())
         {
+            CSISystemContext.Adapter = "CSIBaseGridViewerAdapter";
             GridView = gridView;
-            Activity = o;
+            Activity = activity;
         }
 
-        public CSIBaseGridViewerAdapter(Android.Support.V4.App.Fragment o, GridView gridView) : base()
+        public CSIBaseGridViewerAdapter(Android.Support.V4.App.Fragment fragment, GridView gridView, CSIContext SrcContext = null) : base(SrcContext)
         {
+            CSISystemContext.Adapter = "CSIBaseGridViewerAdapter";
             GridView = gridView;
-            Fragment = o;
+            Fragment = fragment;
         }
 
         public override int Count

@@ -31,6 +31,7 @@
   <string name="CannotGetEmployee">Cannot get Employee Number associated with the account.Please ask Administrator for help.</string>
   <string name="ClickBackToExit">Click Back again to Exit.</string>
   <string name="AskForExit">{0}, Click OK to Exit [CSI Mobile].</string>
+  <string name="AlreadySignIn">{0}, You have already Signed In [CSI Mobile]. Click OK to Sign In with another user.</string>
   <string name="RecordCap">Record Cap</string>
   <string name="Refresh">Refresh</string>
   <string name="RefreshConfiguration">Refresh Configuration</string>

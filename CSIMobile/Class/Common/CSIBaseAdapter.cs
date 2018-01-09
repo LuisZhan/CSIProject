@@ -15,6 +15,16 @@ namespace CSIMobile.Class.Common
 {
     public class CSIBaseAdapter : BaseAdapter
     {
+        protected CSIContext CSISystemContext;
+
+        public CSIBaseAdapter(CSIContext SrcContext = null)
+        {
+            CSISystemContext = new CSIContext(SrcContext)
+            {
+                Adapter = "CSIBaseAdapter"
+            };
+        }
+
         public override int Count => throw new NotImplementedException();
 
         public override Java.Lang.Object GetItem(int position)

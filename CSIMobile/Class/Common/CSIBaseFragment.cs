@@ -16,17 +16,25 @@ namespace CSIMobile.Class.Common
     public class CSIBaseFragment : Android.Support.V4.App.Fragment
     {
         protected CSIBaseActivity BaseActivity;
-        protected CSIContext CSISystemContext = new CSIContext();
-
-        public CSIBaseFragment() : base()
+        protected CSIContext CSISystemContext;
+        
+        public CSIBaseFragment(CSIBaseActivity activity = null) : base()
         {
-            CSISystemContext.Fragment = GetType().ToString();
-            BaseActivity = (CSIBaseActivity)Activity;
-        }
-
-        public void SetBaseActivity(Activity a)
-        {
-            BaseActivity = (CSIBaseActivity)a;
+            if (activity == null)
+            {
+                CSISystemContext = new CSIContext()
+                {
+                    Fragment = "CSIBaseFragment"
+                };
+            }
+            else
+            {
+                BaseActivity = activity;
+                CSISystemContext = new CSIContext(BaseActivity.GetCSISystemContext())
+                {
+                    Fragment = "CSIBaseFragment"
+                };
+            }
         }
 
         public void SetCSISystemContext(CSIContext CSIContext)

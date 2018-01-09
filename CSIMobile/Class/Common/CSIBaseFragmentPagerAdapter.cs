@@ -16,12 +16,26 @@ namespace CSIMobile.Class.Common
     public class CSIBaseFragmentPagerAdapter : FragmentPagerAdapter
     {
         protected CSIBaseActivity BaseActivity;
+        protected CSIContext CSISystemContext;
 
-        public CSIBaseFragmentPagerAdapter(Android.Support.V4.App.FragmentManager fm, Activity a = null)
+        public CSIBaseFragmentPagerAdapter(Android.Support.V4.App.FragmentManager fm, CSIBaseActivity activity = null)
             : base(fm)
         {
-            BaseActivity = (CSIBaseActivity)a;
-            return;
+            if(activity == null)
+            {
+                CSISystemContext = new CSIContext()
+                {
+                    Adapter = "CSIBaseFragmentPagerAdapter"
+                };
+            }
+            else
+            {
+                BaseActivity = activity;
+                CSISystemContext = new CSIContext(BaseActivity.GetCSISystemContext())
+                {
+                    Adapter = "CSIBaseFragmentPagerAdapter"
+                };
+            }
         }
 
         public override int Count

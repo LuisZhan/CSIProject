@@ -30,6 +30,7 @@
   <string name="PleaseGoToSettings">不能获得服务器配置信息。如果您是第一次使用，请点击设置进行注册。</string>
   <string name="CannotGetEmployee">不能获得用户相关的员工信息。请向管理员求助。</string>
   <string name="ClickBackToExit">再按一次退出。</string>
+  <string name="AlreadySignIn">{0}, 您已经登入【CSI 移动端系统】。点击“确定”,换用户重新登入。</string>
   <string name="AskForExit">{0}, 点击“确定”暂时退出【CSI 移动端系统】。</string>
   <string name="RecordCap">每次读取记录数</string>
   <string name="Refresh">刷新</string>

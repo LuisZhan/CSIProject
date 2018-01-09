@@ -43,11 +43,11 @@ namespace CSIMobile.Class.Fragments.Adapter
                 {
                     if (Activity != null)
                     {
-                        view = Activity.LayoutInflater.Inflate(Resource.Layout.GridItem, null);
+                        view = Activity.LayoutInflater.Inflate(Resource.Layout.CSIGridItem, null);
                     }
                     else if (Fragment != null)
                     {
-                        view = Fragment.LayoutInflater.Inflate(Resource.Layout.GridItem, null);
+                        view = Fragment.LayoutInflater.Inflate(Resource.Layout.CSIGridItem, null);
                     }else{
                         return null;
                     }

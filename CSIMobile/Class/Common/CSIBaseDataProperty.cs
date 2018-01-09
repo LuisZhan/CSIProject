@@ -22,9 +22,9 @@ namespace CSIMobile.Class.Common
         private bool IsModified;
         private CSIBaseDataRow CurrentRow;
 
-        public CSIBaseDataProperty(CSIBaseDataRow CurrentRow, string Name, object Value, Types Type, bool IsModified = false)
+        public CSIBaseDataProperty(CSIBaseDataRow CurrentRow, string Name, object Value, Types Type, bool IsModified, CSIContext SrcContext = null) : base(SrcContext)
         {
-            CSISystemContext.File = GetType().ToString();
+            CSISystemContext.File = "CSIBaseDataProperty";
 
             this.Name = Name;
             this.Value = Value;

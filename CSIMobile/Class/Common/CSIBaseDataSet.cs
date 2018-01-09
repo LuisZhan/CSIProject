@@ -20,10 +20,9 @@ namespace CSIMobile.Class.Common
         private Dictionary<string, Types> PropertyNameTypeList = new Dictionary<string, Types>();
         private int CurrentRowNumber = 0;
 
-        public CSIBaseDataSet()
+        public CSIBaseDataSet(CSIContext SrcContext = null) : base(SrcContext)
         {
-            CSISystemContext.File = GetType().ToString();
-
+            CSISystemContext.File = "CSIBaseDataSet";
             CurrentRowNumber = 0;
         }
 
@@ -44,7 +43,7 @@ namespace CSIMobile.Class.Common
 
         public int Add()
         {
-            CSIBaseDataRow DataRow = new CSIBaseDataRow(this);
+            CSIBaseDataRow DataRow = new CSIBaseDataRow(this, CSISystemContext);
             Rows.Add(DataRow.GetGUIDKey(), DataRow);
             return Rows.Count();
         }
@@ -57,7 +56,7 @@ namespace CSIMobile.Class.Common
 
         public int Add(string GUIDKey)
         {
-            Rows.Add(GUIDKey, new CSIBaseDataRow(this));
+            Rows.Add(GUIDKey, new CSIBaseDataRow(this, CSISystemContext));
             return Rows.Count();
         }
 

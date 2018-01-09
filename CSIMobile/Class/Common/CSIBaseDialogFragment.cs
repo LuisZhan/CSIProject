@@ -16,12 +16,26 @@ namespace CSIMobile.Class.Common
     public class CSIBaseDialogFragment : DialogFragment
     {
         protected CSIBaseActivity BaseActivity;
-        protected CSIContext CSISystemContext = new CSIContext();
+        protected CSIContext CSISystemContext;
 
-        public CSIBaseDialogFragment() : base()
+
+        public CSIBaseDialogFragment(CSIBaseActivity activity = null)
         {
-            CSISystemContext.Fragment = GetType().ToString();
-            BaseActivity = (CSIBaseActivity)Activity;
+            if (activity == null)
+            {
+                CSISystemContext = new CSIContext()
+                {
+                    Fragment = "CSIBaseDialogFragment"
+                };
+            }
+            else
+            {
+                BaseActivity = activity;
+                CSISystemContext = new CSIContext(BaseActivity.GetCSISystemContext())
+                {
+                    Fragment = "CSIBaseDialogFragment"
+                };
+            }
         }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -39,9 +53,9 @@ namespace CSIMobile.Class.Common
             return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
-        public void SetBaseActivity(Activity a)
+        public void SetBaseActivity(Activity activity)
         {
-            BaseActivity = (CSIBaseActivity)a;
+            BaseActivity = (CSIBaseActivity)activity;
         }
 
         protected void WriteErrorLog(Exception Ex)

@@ -25,8 +25,9 @@ namespace CSIMobile.Class.Common
         public EventHandler<DialogClickEventArgs> CustomeHandler;
         private DialogTypes DefaultType = DialogTypes.OKCancel;
 
-        public CSIMessageDialog(string DialogTitle, String DialogMessage, DialogTypes DialogType = DialogTypes.OKCancel)
+        public CSIMessageDialog(string DialogTitle, String DialogMessage, DialogTypes DialogType = DialogTypes.OKCancel, CSIBaseActivity activity = null) : base(activity)
         {
+            CSISystemContext.Fragment = "CSIMessageDialog";
             Title = DialogTitle;
             Message = DialogMessage;
             DefaultType = DialogType;

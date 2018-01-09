@@ -15,21 +15,26 @@ namespace CSIMobile.Class.Common
 
     public class CSIBaseObject : Object
     {
-        protected CSIContext CSISystemContext = new CSIContext();
+        protected CSIContext CSISystemContext;
 
-        public CSIBaseObject()
+        public CSIBaseObject(CSIContext SrcContext = null)
         {
-            CSISystemContext.File = GetType().ToString();
+            CSISystemContext = new CSIContext(SrcContext)
+            {
+                File = "CSIBaseObject"
+            };
         }
 
-        public CSIBaseObject(CSIContext MyContext)
+        public void SetCSIContext(CSIContext SrcContext)
         {
-            SetCSIContext(MyContext);
-        }
-
-        public void SetCSIContext(CSIContext MyContext)
-        {
-            CSISystemContext = MyContext;
+            if (CSISystemContext == null)
+            {
+                CSISystemContext = new CSIContext(SrcContext);
+            }
+            else
+            {
+                CSIContext.Copy(SrcContext, CSISystemContext);
+            }
         }
 
         public CSIContext GetCSISystemContext()

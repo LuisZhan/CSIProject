@@ -2,6 +2,7 @@
 using Android.App;
 using System.Text;
 using Android.OS;
+using System.Collections.Generic;
 
 namespace CSIMobile.Class.Common
 {
@@ -16,6 +17,7 @@ namespace CSIMobile.Class.Common
         public string File { get; set; }
         public string Activity { get; set; }
         public string Fragment { get; set; }
+        public string Adapter { get; set; }
         public string IDO { get; set; }
         public string Action { get; set; }
         public string Method { get; set; }
@@ -37,6 +39,7 @@ namespace CSIMobile.Class.Common
         public string CSIWebServerName { get; set; }
         public bool EnableHTTPS { get; set; }
         public string Configuration { get; set; }
+        public List<String> ConfigurationList { get; set; }
         public string RecordCap { get; set; }
         public bool UseHttps { get; set; }
         public bool SaveUser { get; set; }
@@ -60,13 +63,11 @@ namespace CSIMobile.Class.Common
         public CSIContext()
         {
             Initializer();
-            try
-            {
-                ReadConfigurations();
-            }catch(Exception Ex)
-            {
-                CSIErrorLog.WriteErrorLog(Ex);
-            }
+        }
+        
+        public CSIContext(CSIContext src)
+        {
+            Copy(src, this);
         }
 
         public void ReadConfigurations()
@@ -112,6 +113,7 @@ namespace CSIMobile.Class.Common
             bundle.PutString("CSIWebServerName", CSIWebServerName);
             bundle.PutBoolean("EnableHTTPS", EnableHTTPS);
             bundle.PutString("Configuration", Configuration);
+            bundle.PutStringArray("ConfigurationList", ConfigurationList.ToArray());
             bundle.PutString("RecordCap", RecordCap);
             bundle.PutBoolean("UseHttps", UseHttps);
             bundle.PutBoolean("SaveUser", SaveUser);
@@ -155,6 +157,7 @@ namespace CSIMobile.Class.Common
             CSIWebServerName = bundle.GetString("CSIWebServerName");
             EnableHTTPS = bundle.GetBoolean("EnableHTTPS");
             CSIWebServerName = bundle.GetString("Configuration");
+            ConfigurationList = new List<String>(bundle.GetStringArray("ConfigurationList"));
             RecordCap = bundle.GetString("RecordCap");
             UseHttps = bundle.GetBoolean("UseHttps");
             SaveUser = bundle.GetBoolean("SaveUser");
@@ -172,6 +175,18 @@ namespace CSIMobile.Class.Common
             Key2 = bundle.GetString("Key2");
             LineSuffix2 = bundle.GetString("LineSuffix2");
             Release2 = bundle.GetString("Release2");
+        }
+
+        public static void Copy(CSIContext src, CSIContext tgt)
+        {
+            if ((tgt != null) && (src != null))
+            {
+                tgt.ParseBundle(src.BuildBundle());
+            }
+            if (tgt == null)
+            {
+                tgt = new CSIContext();
+            }
         }
 
         private void Initializer()
@@ -192,6 +207,7 @@ namespace CSIMobile.Class.Common
             CSIWebServerName = "";
             EnableHTTPS = false;
             Configuration = "";
+            ConfigurationList = new List<string>();
             RecordCap = "";
             UseHttps = false;
             SaveUser = false;

@@ -11,6 +11,7 @@ using Android.Support.V4.View;
 using CSIMobile.Class.Activities;
 using CSIMobile.Class.Fragments.Adapter;
 using System.Collections.Generic;
+using static CSIMobile.Class.Common.CSIMessageDialog;
 
 namespace CSIMobile
 {
@@ -28,12 +29,17 @@ namespace CSIMobile
             {
                 base.OnCreate(bundle);
 
-                SetContentView(Resource.Layout.Main);
+                if (CSISystemContext == null)
+                {
+                    CSISystemContext = new CSIContext();
+                }
+
+                SetContentView(Resource.Layout.CSIMain);
 
                 ModulePage = FindViewById<ViewPager>(Resource.Id.ModulePage);
 
                 // Instantiate the deck of flash cards:
-                Modules = new ModuleDeck();
+                Modules = new ModuleDeck(CSISystemContext);
 
                 // Instantiate the adapter and pass in the deck of flash cards:
                 DeckAdapter = new ModuleDeckAdapter(SupportFragmentManager, Modules, this);
@@ -61,6 +67,32 @@ namespace CSIMobile
             }
         }
 
+        private void ShowSettingsDialog()
+        {
+            try
+            {
+                FragmentTransaction ft = FragmentManager.BeginTransaction();
+
+                SettingsDialogFragment SettingsDialog = (SettingsDialogFragment)FragmentManager.FindFragmentByTag("Settings");
+                if (SettingsDialog != null)
+                {
+                    ft.Show(SettingsDialog);
+                    //ft.AddToBackStack(null);
+                }
+                else
+                {
+                    // Create and show the dialog.
+                    SettingsDialog = new SettingsDialogFragment(this);
+                    //Add fragment
+                    SettingsDialog.Show(ft, "Settings");
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+        }
+
         private void ShowSignInDialog()
         {
             try
@@ -76,13 +108,12 @@ namespace CSIMobile
                 else
                 {
                     // Create and show the dialog.
-                    SignInDialog = new SignInDialogFragment();
-                    SignInDialog.SetBaseActivity(this);
+                    SignInDialog = new SignInDialogFragment(this);
                     //Add fragment
                     SignInDialog.Show(ft, "SignIn");
                 }
-                
-            }catch (Exception Ex)
+            }
+            catch (Exception Ex)
             {
                 WriteErrorLog(Ex);
             }
@@ -102,7 +133,7 @@ namespace CSIMobile
                 }
                 else
                 {
-                    SignOutDialog = new CSIMessageDialog(GetString(Resource.String.app_name), string.Format(GetString(Resource.String.AskForExit), CSISystemContext.UserName));
+                    SignOutDialog = new CSIMessageDialog(GetString(Resource.String.app_name), string.Format(GetString(Resource.String.AskForExit), CSISystemContext.UserName), DialogTypes.OKCancel, this);
                     SignOutDialog.OkHandler += (sender, args) =>
                     {
                         Finish();
@@ -141,15 +172,25 @@ namespace CSIMobile
             switch (Command)
             {
                 case "CreateToken":
-                    CSISystemContext.Token = new CSIBaseInvoker().CreateToken(CSISystemContext);
+                    object User, Password, SaveUser, SavePassword, Configuration;
+                    CSISystemContext.Token = "";
+
+                    if (ParmList.TryGetValue("User", out User))
+                        CSISystemContext.User = (string)User;
+                    if (ParmList.TryGetValue("Password", out Password))
+                        CSISystemContext.Password = (string)Password;
+                    if (ParmList.TryGetValue("SaveUser", out SaveUser))
+                        CSISystemContext.SaveUser = (bool)SaveUser;
+                    if (ParmList.TryGetValue("SavePassword", out SavePassword))
+                        CSISystemContext.SavePassword = (bool)SavePassword;
+                    if (ParmList.TryGetValue("Configuration", out Configuration))
+                        CSISystemContext.Configuration = (string)Configuration;
+
+                    CSISystemContext.Token = CSIBaseInvoker.CreateToken(CSISystemContext);
                     if (string.IsNullOrEmpty(CSISystemContext.Token))
-                    {
                         Success = false;
-                    }
                     else
-                    {
                         Success = true;
-                    }
                     break;
                 case "GetToken":
                     if (string.IsNullOrEmpty(CSISystemContext.Token))
@@ -163,7 +204,23 @@ namespace CSIMobile
                     }
                     break;
                 case "ShowSignIn":
-                    ShowSignInDialog();
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                        ShowSignInDialog();
+                    else
+                    {
+                        FragmentTransaction ft = FragmentManager.BeginTransaction();
+                        CSIMessageDialog AlertDialog = new CSIMessageDialog(GetString(Resource.String.app_name), string.Format(GetString(Resource.String.AlreadySignIn), CSISystemContext.UserName), DialogTypes.OKCancel, this);
+                        AlertDialog.OkHandler += (sender, args) =>
+                        {
+                            CSISystemContext.Token = "";
+                            ShowSignInDialog();
+                        };
+                        AlertDialog.Show(ft, "Exit");
+                    }
+                    Success = true;
+                    break;
+                case "ShowSettings":
+                    ShowSettingsDialog();
                     Success = true;
                     break;
                 default:

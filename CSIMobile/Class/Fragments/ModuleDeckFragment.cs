@@ -22,13 +22,14 @@ namespace CSIMobile.Class.Fragments
         private static string MODULE_NAME = "module_name";
         private Module Module;
 
-        public ModuleDeckFragment() : base()
+        public ModuleDeckFragment(CSIBaseActivity activity = null) : base(activity)
         {
+            CSISystemContext.Fragment = "ModuleDeckFragment";
         }
 
-        public static ModuleDeckFragment NewInstance(Module Module)
+        public static ModuleDeckFragment NewInstance(Module Module, CSIBaseActivity activity = null)
         {
-            ModuleDeckFragment fragment = new ModuleDeckFragment();
+            ModuleDeckFragment fragment = new ModuleDeckFragment(activity);
 
             Bundle args = new Bundle();
             args.PutString(MODULE_NAME, Module.ModuleName);
@@ -42,7 +43,7 @@ namespace CSIMobile.Class.Fragments
             string question = Arguments.GetString(MODULE_NAME, "");
 
             // Inflate this fragment from the "flashcard_layout"
-            View view = inflater.Inflate(Resource.Layout.Module, container, false);
+            View view = inflater.Inflate(Resource.Layout.CSIModule, container, false);
 
             GridView ModuleGrid = view.FindViewById<GridView>(Resource.Id.ModuleGrid);
 
@@ -58,7 +59,7 @@ namespace CSIMobile.Class.Fragments
             ModuleGrid.ItemClick += delegate (object sender, ItemClickEventArgs args)
             {
                 ModuleAction Action = (ModuleAction)GridAdapter.ActionItems[args.Position];
-                Toast.MakeText(ModuleGrid.Context, Action.ActionName, ToastLength.Short).Show();
+                //Toast.MakeText(ModuleGrid.Context, Action.ActionName, ToastLength.Short).Show();
                 if (Action.InvokeCommands.Length > 0)
                 {
                     foreach (string command in Action.InvokeCommands)

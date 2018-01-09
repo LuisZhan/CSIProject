@@ -24,18 +24,18 @@ namespace CSIMobile.Class.Common
         private string GUIDKey;
         private string RowPointer = "RowPointer";
 
-        public CSIBaseDataRow(CSIBaseDataSet CurrentDataSet)
+        public CSIBaseDataRow(CSIBaseDataSet CurrentDataSet, CSIContext SrcContext = null) : base(SrcContext)
         {
             try
             {
-                CSISystemContext.File = GetType().ToString();
+                CSISystemContext.File = "CSIBaseDataRow";
 
                 GUIDKey = Guid.NewGuid().ToString();
                 this.CurrentDataSet = CurrentDataSet;
                 Dictionary<string, Types> PropertyNameTypeList = CurrentDataSet.GetPropertyList();
                 foreach (string Name in PropertyNameTypeList.Keys)
                 {
-                    Properties.Add(Name, new CSIBaseDataProperty(this, Name, null, PropertyNameTypeList[Name]));
+                    Properties.Add(Name, new CSIBaseDataProperty(this, Name, null, PropertyNameTypeList[Name], false, CSISystemContext));
                     if (Name == RowPointer)
                     {
                         Properties[Name].SetValue(GUIDKey);

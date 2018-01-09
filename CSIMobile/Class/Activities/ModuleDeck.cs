@@ -18,9 +18,9 @@ namespace CSIMobile.Class.Activities
     {
         public string ModuleName;
         public ModuleAction[] ModuleActions;
-        public Module()
+        public Module(CSIContext SrcContext = null) : base(SrcContext)
         {
-
+            CSISystemContext.File = "Module";
         }
     }
 
@@ -30,14 +30,9 @@ namespace CSIMobile.Class.Activities
         public Type ActivityType;
         public string[] InvokeCommands = { "GetToken" };
         public int DrawableId;
-        public ModuleAction()
+        public ModuleAction(CSIContext SrcContext = null) : base(SrcContext)
         {
-
-        }
-
-        public static explicit operator ModuleAction(Java.Lang.Object v)
-        {
-            throw new NotImplementedException();
+            CSISystemContext.File = "ModuleAction";
         }
     }
 
@@ -177,8 +172,9 @@ namespace CSIMobile.Class.Activities
 
         public static Module[] Modules;
 
-        public ModuleDeck()
+        public ModuleDeck(CSIContext SrcContext = null) : base(SrcContext)
         {
+            CSISystemContext.File = "ModuleDeck";
             Modules = builtInModules;
         }
 
