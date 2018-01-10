@@ -41,7 +41,6 @@ namespace CSIMobile.Class.Common
         public string Configuration { get; set; }
         public List<String> ConfigurationList { get; set; }
         public string RecordCap { get; set; }
-        public bool UseHttps { get; set; }
         public bool SaveUser { get; set; }
         public string SavedUser { get; set; }
         public bool SavePassword { get; set; }
@@ -115,7 +114,6 @@ namespace CSIMobile.Class.Common
             bundle.PutString("Configuration", Configuration);
             bundle.PutStringArray("ConfigurationList", ConfigurationList.ToArray());
             bundle.PutString("RecordCap", RecordCap);
-            bundle.PutBoolean("UseHttps", UseHttps);
             bundle.PutBoolean("SaveUser", SaveUser);
             bundle.PutString("SavedUser", SavedUser);
             bundle.PutBoolean("SavePassword", SavePassword);
@@ -156,10 +154,9 @@ namespace CSIMobile.Class.Common
             Token = bundle.GetString("Token");
             CSIWebServerName = bundle.GetString("CSIWebServerName");
             EnableHTTPS = bundle.GetBoolean("EnableHTTPS");
-            CSIWebServerName = bundle.GetString("Configuration");
+            Configuration = bundle.GetString("Configuration");
             ConfigurationList = new List<String>(bundle.GetStringArray("ConfigurationList"));
             RecordCap = bundle.GetString("RecordCap");
-            UseHttps = bundle.GetBoolean("UseHttps");
             SaveUser = bundle.GetBoolean("SaveUser");
             SavedUser = bundle.GetString("SavedUser");
             SavePassword = bundle.GetBoolean("SavePassword");
@@ -209,7 +206,6 @@ namespace CSIMobile.Class.Common
             Configuration = "";
             ConfigurationList = new List<string>();
             RecordCap = "";
-            UseHttps = false;
             SaveUser = false;
             SavedUser = "";
             SavePassword = false;

@@ -56,5 +56,22 @@ namespace CSIMobile.Class.Common
         {
             CSIErrorLog.WriteLog(CSISystemContext);
         }
+
+        public static void DisableEnableControls(bool enable, ViewGroup vg)
+        {
+            for (int i = 0; i < vg.ChildCount; i++)
+            {
+                View child = vg.GetChildAt(i);
+                child.Enabled = enable;
+                try
+                {
+                    DisableEnableControls(enable, (ViewGroup)child);
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+        }
     }
 }

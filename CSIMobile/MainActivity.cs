@@ -59,10 +59,12 @@ namespace CSIMobile
                 GetModuleDeck();
 
                 //Show SignIn
-                Task startupWork = new Task(() => { ShowSignInDialog(); });
-                startupWork.Start();
+
+                ShowSignInDialog();
+                //Task startupWork = new Task(() => { ShowSignInDialog(); });
+                //startupWork.Start();
             }
-            catch (Exception Ex){
+            catch (Exception Ex) {
                 WriteErrorLog(Ex);
             }
         }
@@ -147,7 +149,7 @@ namespace CSIMobile
 
         public void GetModuleDeck()
         {
-            for(int i= 0; i< MoudleButton.Length; i++)
+            for (int i = 0; i < MoudleButton.Length; i++)
             {
                 if (i == ModulePage.CurrentItem)
                 {
@@ -172,7 +174,8 @@ namespace CSIMobile
             switch (Command)
             {
                 case "CreateToken":
-                    object User, Password, SaveUser, SavePassword, Configuration;
+                    object User, Password, SaveUser, SavePassword, Configuration, EnableHTTPS, oUseAsync;
+                    bool bUseAsync = false;
                     CSISystemContext.Token = "";
 
                     if (ParmList.TryGetValue("User", out User))
@@ -185,13 +188,47 @@ namespace CSIMobile
                         CSISystemContext.SavePassword = (bool)SavePassword;
                     if (ParmList.TryGetValue("Configuration", out Configuration))
                         CSISystemContext.Configuration = (string)Configuration;
+                    if (ParmList.TryGetValue("EnableHTTPS", out EnableHTTPS))
+                        CSISystemContext.EnableHTTPS = (bool)EnableHTTPS;
+                    if (ParmList.TryGetValue("UseAsync", out oUseAsync))
+                        bUseAsync = (bool)oUseAsync;
 
-                    CSISystemContext.Token = CSIBaseInvoker.CreateToken(CSISystemContext);
-                    if (string.IsNullOrEmpty(CSISystemContext.Token))
-                        Success = false;
+                    //CSISystemContext.Token = CSIBaseInvoker.CreateToken(CSISystemContext);
+                    CSIBaseInvoker invoker = new CSIBaseInvoker(CSISystemContext)
+                    {
+                        UseAsync = bUseAsync
+                    };
+                    if (bUseAsync)
+                    {
+                        CreateSessionTokenCompletedEventHandler CreateSessionTokenCompleted;
+                        object oCreateSessionTokenCompleted;
+                        oCreateSessionTokenCompleted = ParmList.GetValueOrDefault("CreateSessionTokenCompleted");
+                        if (ParmList.TryGetValue("CreateSessionTokenCompleted", out oCreateSessionTokenCompleted))
+                        {
+                            CreateSessionTokenCompleted = (CreateSessionTokenCompletedEventHandler)oCreateSessionTokenCompleted;
+                            invoker.CreateSessionTokenCompleted += (o, e) =>
+                            {
+                                if (e.Error == null)
+                                {
+                                    CSISystemContext.Token = e.Result;
+                                }
+                                CreateSessionTokenCompleted(o, e);
+                            };
+                        }
+                    }
+                    CSISystemContext.Token = invoker.CreateToken(CSISystemContext);
+                    if (invoker.UseAsync)
+                    {
+                        return true;
+                    }
                     else
-                        Success = true;
-                    break;
+                    {
+                        if (string.IsNullOrEmpty(CSISystemContext.Token))
+                            Success = false;
+                        else
+                            Success = true;
+                        break;
+                    }
                 case "GetToken":
                     if (string.IsNullOrEmpty(CSISystemContext.Token))
                     {
@@ -228,5 +265,34 @@ namespace CSIMobile
             }
             return Success;
         }
+
+        private ProgressFragment ShowProcess()
+        {
+            try
+            {
+                FragmentTransaction ft = FragmentManager.BeginTransaction();
+
+                ProgressFragment progress = (ProgressFragment)FragmentManager.FindFragmentByTag("Progress");
+                if (progress != null)
+                {
+                    ft.Show(progress);
+                    //ft.AddToBackStack(null);
+                }
+                else
+                {
+                    // Create and show the dialog.
+                    progress = new ProgressFragment(this);
+                    //Add fragment
+                    progress.Show(ft, "Progress");
+                }
+                return progress;
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+            return null;
+        }
+
     }
 }

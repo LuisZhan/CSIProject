@@ -9,10 +9,11 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using System.Threading;
 
 namespace CSIMobile.Class.Common
 {
-    public class CSIBaseInvoker : CSIBaseObject
+    public class CSIBaseInvoker : CSIBaseObject, CSIWebServiceEventInterface
     {
         private static string HTTP = "http://";
         private static string HTTPS = "https://";
@@ -20,12 +21,42 @@ namespace CSIMobile.Class.Common
         private static string RESTBaseURL = "/IDORequestService/MGRestService.svc";
         private static string SOAPBaseURL = "/IDORequestService/IDOWebService.asmx";
 
+        private static int TimeOutInterval = 1000;
+        private CSIWebService WebService;
+        private string URL;
+        public bool UseAsync = false;
+
+        public event CreateSessionTokenCompletedEventHandler CreateSessionTokenCompleted;
+        public event GetConfigurationNamesCompletedEventHandler GetConfigurationNamesCompleted;
+        public event LoadDataSetCompletedEventHandler LoadDataSetCompleted;
+        public event SaveDataSetCompletedEventHandler SaveDataSetCompleted;
+        public event CallMethodCompletedEventHandler CallMethodCompleted;
+        public event LoadJsonCompletedEventHandler LoadJsonCompleted;
+        public event SaveJsonCompletedEventHandler SaveJsonCompleted;
+
         public CSIBaseInvoker(CSIContext SrcContext = null) : base(SrcContext)
         {
             CSISystemContext.File = "CSIBaseInvoker";
+            InitWebService();
         }
 
-        public static string GetToken(CSIContext context)
+        private void InitWebService()
+        {
+            URL = GetURL(CSISystemContext);
+            WebService = new CSIWebService(URL)
+            {
+                Timeout = TimeOutInterval
+            };
+            WebService.GetConfigurationNamesCompleted += (o, e) => { GetConfigurationNamesCompleted(o, e); };
+            WebService.CreateSessionTokenCompleted += (o, e) => { CreateSessionTokenCompleted(o, e); };
+            WebService.LoadDataSetCompleted += (o, e) => { LoadDataSetCompleted(o, e); };
+            WebService.SaveDataSetCompleted += (o, e) => { SaveDataSetCompleted(o, e); };
+            WebService.CallMethodCompleted += (o, e) => { CallMethodCompleted(o, e); };
+            WebService.LoadJsonCompleted += (o, e) => { LoadJsonCompleted(o, e); };
+            WebService.SaveJsonCompleted += (o, e) => { SaveJsonCompleted(o, e); };
+        }
+
+        public string GetToken(CSIContext context)
         {
             if (context == null || string.IsNullOrEmpty(context.Token))
             {
@@ -56,16 +87,15 @@ namespace CSIMobile.Class.Common
                 }
                 else
                 {
-                    URLPath = (context.UseHttps ? HTTPS : HTTP) + context.CSIWebServerName + (context.UseRESTForRequest ? RESTBaseURL : SOAPBaseURL);
+                    URLPath = (context.EnableHTTPS ? HTTPS : HTTP) + context.CSIWebServerName + (context.UseRESTForRequest ? RESTBaseURL : SOAPBaseURL);
                 }
             }
             return URLPath;
         }
 
-        public static string CreateToken(CSIContext context)
+        public string CreateToken(CSIContext context)
         {
             string Token = "";
-            string URL = GetURL(context);
             if (string.IsNullOrEmpty(URL))
             {
                 return "";
@@ -79,7 +109,15 @@ namespace CSIMobile.Class.Common
                 else
                 {
                     //SOAP
-                    Token = new CSIWebService(URL).CreateSessionToken(context.User, context.Password, context.Configuration);
+                    if (UseAsync)
+                    {
+                        WebService.CreateSessionTokenAsync(context.User, context.Password, context.Configuration);
+                    }
+                    else
+                    {
+                        Token = WebService.CreateSessionToken(context.User, context.Password, context.Configuration);
+                    }
+                    
                 }
             }catch (Exception Ex)
             {
@@ -88,19 +126,13 @@ namespace CSIMobile.Class.Common
             return Token;
         }
 
-        public static string[] GetConfigurationList(CSIContext context)
+        public string[] GetConfigurationList(CSIContext context)
         {
             string[] List = { "" };
-            string URL = GetURL(context);
             if (string.IsNullOrEmpty(URL))
             {
                 return List;
             }
-            CSIWebService webService = new CSIWebService(URL)
-            {
-                //webservice调用完成后触发
-                Timeout = 20000
-            };
             try
             {
                 if (context.UseRESTForRequest)
@@ -110,7 +142,14 @@ namespace CSIMobile.Class.Common
                 else
                 {
                     //SOAP
-                    List = webService.GetConfigurationNames();
+                    if (UseAsync)
+                    {
+                        WebService.GetConfigurationNamesAsync();
+                    }
+                    else
+                    {
+                        List = WebService.GetConfigurationNames();
+                    }
                 }
             }catch(Exception Ex)
             {
@@ -119,7 +158,7 @@ namespace CSIMobile.Class.Common
             return List;
         }
 
-        public static CSIBaseDataSet InvokeLoad(CSIContext context)
+        public CSIBaseDataSet InvokeLoad(CSIContext context)
         {
             string URL = GetURL(context);
             string Token = GetToken(context);
@@ -138,7 +177,7 @@ namespace CSIMobile.Class.Common
             return null;
         }
 
-        public static bool InvokeUpdate(CSIContext context, CSIBaseDataSet DataSet)
+        public bool InvokeUpdate(CSIContext context, CSIBaseDataSet DataSet)
         {
             string URL = GetURL(context);
             string Token = GetToken(context);
@@ -157,7 +196,7 @@ namespace CSIMobile.Class.Common
             return true;
         }
 
-        public static bool InvokeDelete(CSIContext context, CSIBaseDataSet DataSet)
+        public bool InvokeDelete(CSIContext context, CSIBaseDataSet DataSet)
         {
             string URL = GetURL(context);
             string Token = GetToken(context);
@@ -176,7 +215,7 @@ namespace CSIMobile.Class.Common
             return true;
         }
 
-        public static bool InvokeInsert(CSIContext context, CSIBaseDataSet DataSet)
+        public bool InvokeInsert(CSIContext context, CSIBaseDataSet DataSet)
         {
             string URL = GetURL(context);
             string Token = GetToken(context);

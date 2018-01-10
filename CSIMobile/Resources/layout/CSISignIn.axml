@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
+        android:id="@+id/LinearLayout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,6 +17,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/TitleLinearLayout"
             android:gravity="right|top">
+            <ProgressBar
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/ProgressBar" />
             <ImageView
                 android:src="@android:drawable/ic_menu_close_clear_cancel"
                 android:layout_width="wrap_content"
@@ -56,7 +62,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
         <Switch
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/SavePasswordSwitch"
             android:text="@string/SavePassword"
             android:textAppearance="?android:attr/textAppearanceSmall" />

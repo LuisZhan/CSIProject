@@ -22,6 +22,7 @@
   <string name="SaveUser">Save User</string>
   <string name="SavePassword">Save Password</string>
   <string name="Login">Sign In</string>
+  <string name="ConnectionError">Connection Error</string>
   <string name="WrongUserOrPassword">Wrong User Or Password</string>
   <string name="Welcome">Welcome</string>
   <string name="Welcome1">Welcome, {0}</string>
