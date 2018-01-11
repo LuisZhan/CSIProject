@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using CSIMobile.Class.Common;
 using System.Threading.Tasks;
+using CSIMobile.Class.Business;
 
 namespace CSIMobile.Class.Fragments
 {
@@ -27,17 +28,42 @@ namespace CSIMobile.Class.Fragments
         private ProgressBar ProgressBar;
         private LinearLayout Layout;
 
-        public event CreateSessionTokenCompletedEventHandler CreateSessionTokenCompleted;
+        private CSIUserNames Users;
+        private CSIUserLocals UsersLocals;
+
+        //public event CreateSessionTokenCompletedEventHandler CreateSessionTokenCompleted;
 
         public SignInDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {
-            CSISystemContext.ReadConfigurations();
-            CSISystemContext.Fragment = "SignInDialogFragment";
-            CreateSessionTokenCompleted += OnCreateSessionTokenCompleted;
+            //CreateSessionTokenCompleted += OnCreateSessionTokenCompleted;
+            Users = new CSIUserNames(CSISystemContext);
+            Users.CreateSessionTokenCompleted += OnCreateSessionTokenCompleted;
+            Users.LoadDataSetCompleted += OnLoadDataSetCompleted;
+            UsersLocals = new CSIUserLocals(CSISystemContext);
+            UsersLocals.LoadDataSetCompleted += OnLoadDataSetCompleted;
+        }
+
+        private void OnLoadDataSetCompleted(object sender, LoadDataSetCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                Users.ConvertDataSet(e.Result);
+                CSISystemContext.UserDesc = Users.CSIDataSet.GetCurrentObjectString("UserDesc");
+                ErrorText.Visibility = ViewStates.Gone;
+                Dismiss();
+                Dispose();
+            }
+            else
+            {
+                WriteErrorLog(e.Error);
+                ErrorText.Text = CSIBaseInvoker.TranslateError(e.Error);
+                ErrorText.Visibility = ViewStates.Visible;
+            }
         }
 
         private void OnCreateSessionTokenCompleted(object sender, CreateSessionTokenCompletedEventArgs e)
         {
+            ShowProgressBar(false);
             if (e.Error == null)
             {
                 CSISystemContext.Token = e.Result;
@@ -47,26 +73,15 @@ namespace CSIMobile.Class.Fragments
                 CSISystemContext.SavePassword = SavePasswordSwitch.Checked;
                 CSISystemContext.Configuration = (string)ConfigurationEdit.SelectedItem;
                 CSISystemContext.WriteConfigurations();
-                ErrorText.Visibility = ViewStates.Gone;
-                Dismiss();
-                Dispose();
+
+                GetUserInfor();
             }
             else
             {
                 WriteErrorLog(e.Error);
-                switch (e.Error.Message)
-                {
-                    case "Error: NameResolutionFailure":
-                        //e.Error.Source = "system";
-                        ErrorText.Text = GetString(Resource.String.ConnectionError) + string.Format("\r\n({0})", e.Error.Message);
-                        break;
-                    default:
-                        ErrorText.Text = GetString(Resource.String.WrongUserOrPassword) + string.Format("\r\n({0})", e.Error.Message);
-                        break;
-                }
+                ErrorText.Text = CSIBaseInvoker.TranslateError(e.Error);
                 ErrorText.Visibility = ViewStates.Visible;
             }
-            ShowProgressBar(false);
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -107,6 +122,10 @@ namespace CSIMobile.Class.Fragments
                 // Set up a handler to dismiss this DialogFragment when this button is clicked.
                 SignInButton.Click += (sender, args) =>
                 {
+                    if (string.IsNullOrEmpty(UserEdit.Text))
+                    {
+                        return;
+                    }
                     SignIn();
                 };
                 
@@ -120,36 +139,59 @@ namespace CSIMobile.Class.Fragments
 
         private void SignIn()
         {
-            if (string.IsNullOrEmpty(UserEdit.Text))
-            {
-                return;
-            }
-            Dictionary<String, Object> ParmList = new Dictionary<string, object>
-            {
-                { "User", UserEdit.Text },
-                { "Password", PasswordEdit.Text },
-                { "SaveUser", SaveUserSwitch.Checked },
-                { "SavePassword", SavePasswordSwitch.Checked },
-                { "Configuration", (string)ConfigurationEdit.SelectedItem },
-                { "EnableHTTPS", CSISystemContext.EnableHTTPS },
-                { "UseAsync", true },
-                { "CreateSessionTokenCompleted", CreateSessionTokenCompleted }
-            };
-            try
-            {
-                ShowProgressBar(true);
-                BaseActivity.InvokeCommand("CreateToken", ParmList);
-                
-            }
-            catch (Exception Ex)
-            {
-                WriteErrorLog(Ex);
-                ErrorText.Text = GetString(Resource.String.WrongUserOrPassword);
-                ErrorText.Visibility = ViewStates.Visible;
-            }
-            ParmList.Clear();
+            ShowProgressBar(true);
+            CSISystemContext.User = UserEdit.Text;
+            CSISystemContext.Password = PasswordEdit.Text;
+            CSISystemContext.SaveUser = SaveUserSwitch.Checked;
+            CSISystemContext.SavePassword = SavePasswordSwitch.Checked;
+            CSISystemContext.Configuration = (string)ConfigurationEdit.SelectedItem;
+            CSISystemContext.Token = Users.CreateToken();
+            //Dictionary<String, Object> ParmList = new Dictionary<string, object>
+            //{
+            //    { "User", UserEdit.Text },
+            //    { "Password", PasswordEdit.Text },
+            //    { "SaveUser", SaveUserSwitch.Checked },
+            //    { "SavePassword", SavePasswordSwitch.Checked },
+            //    { "Configuration", (string)ConfigurationEdit.SelectedItem },
+            //    { "EnableHTTPS", CSISystemContext.EnableHTTPS },
+            //    { "UseAsync", true },
+            //    { "CreateSessionTokenCompleted", CreateSessionTokenCompleted }
+            //};
+            //try
+            //{
+            //    ShowProgressBar(true);
+            //    BaseActivity.InvokeCommand("CreateToken", ParmList);
+
+            //}
+            //catch (Exception Ex)
+            //{
+            //    WriteErrorLog(Ex);
+            //    ErrorText.Text = GetString(Resource.String.WrongUserOrPassword);
+            //    ErrorText.Visibility = ViewStates.Visible;
+            //}
+            //ParmList.Clear();
         }
-        
+
+        private void GetUserInfor()
+        {
+            ShowProgressBar(true);
+            Users.AddProperty("UserId");
+            Users.AddProperty("Username");
+            Users.AddProperty("UserDesc");
+            Users.SetFilter(string.Format("Username = '{0}'", UserEdit.Text));
+            Users.LoadIDO();
+        }
+
+        private void GetEmpInfor()
+        {
+            ShowProgressBar(true);
+            Users.AddProperty("UserId");
+            Users.AddProperty("Username");
+            Users.AddProperty("UserDesc");
+            Users.SetFilter(string.Format("Username = '{0}'", UserEdit.Text));
+            Users.LoadIDO();
+        }
+
         private void SetConfigurationSpin()
         {
             int index = 0, i = 0;

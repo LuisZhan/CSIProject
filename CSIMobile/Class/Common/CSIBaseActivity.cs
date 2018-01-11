@@ -25,11 +25,9 @@ namespace CSIMobile.Class.Common
                 if (CSISystemContext == null)
                 {
                     CSISystemContext = new CSIContext();
-                    CSISystemContext.ReadConfigurations();
                 }
                 base.OnCreate(savedInstanceState);
                 CSISystemContext.ParseBundle(Intent.GetBundleExtra("CSISystemContext"));
-                CSISystemContext.Activity = GetType().ToString();
             }
             catch (Exception Ex)
             {

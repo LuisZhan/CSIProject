@@ -23,7 +23,6 @@ namespace CSIMobile.Class.Fragments.Adapter
 
         public ModuleDeckAdapter(Android.Support.V4.App.FragmentManager fm, ModuleDeck ModuleDecks, CSIBaseActivity activity = null) : base(fm, activity)
         {
-            CSISystemContext.Adapter = "ModuleDeckAdapter";
             this.ModuleDecks = ModuleDecks;
         }
         

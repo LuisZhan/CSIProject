@@ -22,25 +22,32 @@ namespace CSIMobile.Class.Common
         {
             if (activity == null)
             {
-                CSISystemContext = new CSIContext()
-                {
-                    Fragment = "CSIBaseFragment"
-                };
+                CSISystemContext = new CSIContext();
             }
             else
             {
                 BaseActivity = activity;
-                CSISystemContext = new CSIContext(BaseActivity.GetCSISystemContext())
+                if (BaseActivity.GetCSISystemContext() == null)
                 {
-                    Fragment = "CSIBaseFragment"
-                };
+                    CSISystemContext = new CSIContext();
+                }
+                else
+                {
+                    CSISystemContext = BaseActivity.GetCSISystemContext();
+                }
             }
         }
 
-        public void SetCSISystemContext(CSIContext CSIContext)
+        public void SetCSISystemContext(CSIContext SrcContext)
         {
-            CSISystemContext.ParseBundle(CSIContext.BuildBundle());
-            CSISystemContext.Fragment = GetType().ToString();
+            if (SrcContext == null)
+            {
+                CSISystemContext = new CSIContext();
+            }
+            else
+            {
+                CSISystemContext = SrcContext;
+            }
         }
 
         public override void OnCreate(Bundle savedInstanceState)

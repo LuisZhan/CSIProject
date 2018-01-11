@@ -3,6 +3,7 @@ using Android.App;
 using System.Text;
 using Android.OS;
 using System.Collections.Generic;
+using Android.Media;
 
 namespace CSIMobile.Class.Common
 {
@@ -13,19 +14,11 @@ namespace CSIMobile.Class.Common
         public static string Action_Query = "Query";
         public static string Action_Search = "Search";
         public static string Action_Process = "Process";
-        
-        public string File { get; set; }
-        public string Activity { get; set; }
-        public string Fragment { get; set; }
-        public string Adapter { get; set; }
-        public string IDO { get; set; }
-        public string Action { get; set; }
-        public string Method { get; set; }
 
         //User Information
         public string User { get; set; }
         public string Password { get; set; }
-        public string UserName { get; set; }
+        public string UserDesc { get; set; }
         public string EmpNum { get; set; }
         public string EmpName { get; set; }
         public string Currency { get; set; }
@@ -33,6 +26,7 @@ namespace CSIMobile.Class.Common
         public string DefaultLocation { get; set; }
         public string QuantityFormat { get; set; }
         public string AmountFormat { get; set; }
+        public Image EmpImage { get; set; }
 
         //Login Configurations
         public string Token { get; set; }
@@ -62,11 +56,7 @@ namespace CSIMobile.Class.Common
         public CSIContext()
         {
             Initializer();
-        }
-        
-        public CSIContext(CSIContext src)
-        {
-            Copy(src, this);
+            ReadConfigurations();
         }
 
         public void ReadConfigurations()
@@ -86,9 +76,9 @@ namespace CSIMobile.Class.Common
 
         public override string ToString()
         {
-            string OutputFormat = "[User: {0}; IDO: {1}; File: {2}; Action: {3}; Method: {4}; Activity: {5}; Fragment: {6}; ]\r\n";
+            //string OutputFormat = "[User: {0}; IDO: {1}; File: {2}; Action: {3}; Method: {4}; Activity: {5}; Fragment: {6}; ]\r\n";
             string Output = "";
-            Output = string.Format(OutputFormat, User, IDO, File, Action, Method, Activity, Fragment);
+            //Output = string.Format(OutputFormat, User, IDO, File, Action, Method, Activity, Fragment);
             return Output;
         }
 
@@ -98,7 +88,7 @@ namespace CSIMobile.Class.Common
             //User Information
             bundle.PutString("User", User);
             bundle.PutString("Password", Password);
-            bundle.PutString("UserName", UserName);
+            bundle.PutString("UserDesc", UserDesc);
             bundle.PutString("EmpNum", EmpNum);
             bundle.PutString("EmpName", EmpName);
             bundle.PutString("Currency", Currency);
@@ -141,7 +131,7 @@ namespace CSIMobile.Class.Common
             }
             //User Information
             User = bundle.GetString("User");
-            UserName = bundle.GetString("UserName");
+            UserDesc = bundle.GetString("UserDesc");
             EmpNum = bundle.GetString("EmpNum");
             EmpName = bundle.GetString("EmpName");
             Currency = bundle.GetString("Currency");
@@ -190,7 +180,7 @@ namespace CSIMobile.Class.Common
         {
             User = "";
             Password = "";
-            UserName = Application.Context.GetString(Resource.String.User);
+            UserDesc = Application.Context.GetString(Resource.String.User);
             EmpNum = "";
             EmpName = Application.Context.GetString(Resource.String.User);
             Currency = "";

@@ -24,8 +24,6 @@ namespace CSIMobile.Class.Common
 
         public CSIBaseDataProperty(CSIBaseDataRow CurrentRow, string Name, object Value, Types Type, bool IsModified, CSIContext SrcContext = null) : base(SrcContext)
         {
-            CSISystemContext.File = "CSIBaseDataProperty";
-
             this.Name = Name;
             this.Value = Value;
             this.Type = Type;

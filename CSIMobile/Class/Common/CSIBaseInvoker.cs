@@ -23,8 +23,11 @@ namespace CSIMobile.Class.Common
 
         private static int TimeOutInterval = 1000;
         private CSIWebService WebService;
+
         private string URL;
+        private string Token;
         public bool UseAsync = false;
+        private System.Data.DataSet DataSet;
 
         public event CreateSessionTokenCompletedEventHandler CreateSessionTokenCompleted;
         public event GetConfigurationNamesCompletedEventHandler GetConfigurationNamesCompleted;
@@ -36,13 +39,13 @@ namespace CSIMobile.Class.Common
 
         public CSIBaseInvoker(CSIContext SrcContext = null) : base(SrcContext)
         {
-            CSISystemContext.File = "CSIBaseInvoker";
             InitWebService();
         }
 
         private void InitWebService()
         {
-            URL = GetURL(CSISystemContext);
+            URL = GetURL();
+            Token = GetToken();
             WebService = new CSIWebService(URL)
             {
                 Timeout = TimeOutInterval
@@ -56,44 +59,44 @@ namespace CSIMobile.Class.Common
             WebService.SaveJsonCompleted += (o, e) => { SaveJsonCompleted(o, e); };
         }
 
-        public string GetToken(CSIContext context)
+        public string GetToken()
         {
-            if (context == null || string.IsNullOrEmpty(context.Token))
+            if (CSISystemContext == null || string.IsNullOrEmpty(CSISystemContext.Token))
             {
                 return "";
             }
             else
             {
-                return context.Token;
+                return CSISystemContext.Token;
             }
         }
 
-        private static string GetURL(CSIContext context)
+        private string GetURL()
         {
             string URLPath = "";
-            if (context == null)
+            if (CSISystemContext == null)
             {
                 URLPath = "";
             }
             else
             {
-                if (string.IsNullOrEmpty(context.CSIWebServerName))
+                if (string.IsNullOrEmpty(CSISystemContext.CSIWebServerName))
                 {
-                    CSIConfiguration.ReadConfigure(context);
+                    CSIConfiguration.ReadConfigure(CSISystemContext);
                 }
-                if (string.IsNullOrEmpty(context.CSIWebServerName))
+                if (string.IsNullOrEmpty(CSISystemContext.CSIWebServerName))
                 {
                     URLPath = "";//still is null, return ""
                 }
                 else
                 {
-                    URLPath = (context.EnableHTTPS ? HTTPS : HTTP) + context.CSIWebServerName + (context.UseRESTForRequest ? RESTBaseURL : SOAPBaseURL);
+                    URLPath = (CSISystemContext.EnableHTTPS ? HTTPS : HTTP) + CSISystemContext.CSIWebServerName + (CSISystemContext.UseRESTForRequest ? RESTBaseURL : SOAPBaseURL);
                 }
             }
             return URLPath;
         }
 
-        public string CreateToken(CSIContext context)
+        public string CreateToken()
         {
             string Token = "";
             if (string.IsNullOrEmpty(URL))
@@ -102,7 +105,7 @@ namespace CSIMobile.Class.Common
             }
             try
             {
-                if (context.UseRESTForRequest)
+                if (CSISystemContext.UseRESTForRequest)
                 {
                     //REST
                 }
@@ -111,11 +114,11 @@ namespace CSIMobile.Class.Common
                     //SOAP
                     if (UseAsync)
                     {
-                        WebService.CreateSessionTokenAsync(context.User, context.Password, context.Configuration);
+                        WebService.CreateSessionTokenAsync(CSISystemContext.User, CSISystemContext.Password, CSISystemContext.Configuration);
                     }
                     else
                     {
-                        Token = WebService.CreateSessionToken(context.User, context.Password, context.Configuration);
+                        Token = WebService.CreateSessionToken(CSISystemContext.User, CSISystemContext.Password, CSISystemContext.Configuration);
                     }
                     
                 }
@@ -126,7 +129,7 @@ namespace CSIMobile.Class.Common
             return Token;
         }
 
-        public string[] GetConfigurationList(CSIContext context)
+        public string[] GetConfigurationList()
         {
             string[] List = { "" };
             if (string.IsNullOrEmpty(URL))
@@ -135,7 +138,7 @@ namespace CSIMobile.Class.Common
             }
             try
             {
-                if (context.UseRESTForRequest)
+                if (CSISystemContext.UseRESTForRequest)
                 {
                     //REST
                 }
@@ -158,34 +161,42 @@ namespace CSIMobile.Class.Common
             return List;
         }
 
-        public CSIBaseDataSet InvokeLoad(CSIContext context)
+        public CSIBaseDataSet InvokeLoad(string strIDOName, string strPropertyList, string strFilter, string strOrderBy, string strPostQueryMethod, int iRecordCap)
         {
-            string URL = GetURL(context);
-            string Token = GetToken(context);
+            if (string.IsNullOrEmpty(Token))
+            {
+                Token = GetToken();
+            }
             if (string.IsNullOrEmpty(URL) || string.IsNullOrEmpty(Token))
             {
                 return null;
             }
-            if (context.UseRESTForRequest)
+            if (CSISystemContext.UseRESTForRequest)
             {
                 //REST
             }
             else
             {
                 //SOAP
+                if (UseAsync)
+                {
+                    WebService.LoadDataSetAsync(Token, strIDOName, strPropertyList, strFilter, strOrderBy, strPostQueryMethod, iRecordCap);
+                }
+                else
+                {
+                    DataSet = WebService.LoadDataSet(Token, strIDOName, strPropertyList, strFilter, strOrderBy, strPostQueryMethod, iRecordCap);
+                }
             }
-            return null;
+            return new CSIBaseDataSet(DataSet);
         }
 
-        public bool InvokeUpdate(CSIContext context, CSIBaseDataSet DataSet)
+        public bool InvokeUpdate(CSIBaseDataSet DataSet)
         {
-            string URL = GetURL(context);
-            string Token = GetToken(context);
             if (string.IsNullOrEmpty(URL) || string.IsNullOrEmpty(Token))
             {
                 return false;
             }
-            if (context.UseRESTForRequest)
+            if (CSISystemContext.UseRESTForRequest)
             {
                 //REST
             }
@@ -196,15 +207,13 @@ namespace CSIMobile.Class.Common
             return true;
         }
 
-        public bool InvokeDelete(CSIContext context, CSIBaseDataSet DataSet)
+        public bool InvokeDelete(CSIBaseDataSet DataSet)
         {
-            string URL = GetURL(context);
-            string Token = GetToken(context);
             if (string.IsNullOrEmpty(URL) || string.IsNullOrEmpty(Token))
             {
                 return false;
             }
-            if (context.UseRESTForRequest)
+            if (CSISystemContext.UseRESTForRequest)
             {
                 //REST
             }
@@ -215,15 +224,13 @@ namespace CSIMobile.Class.Common
             return true;
         }
 
-        public bool InvokeInsert(CSIContext context, CSIBaseDataSet DataSet)
+        public bool InvokeInsert(CSIBaseDataSet DataSet)
         {
-            string URL = GetURL(context);
-            string Token = GetToken(context);
             if (string.IsNullOrEmpty(URL) || string.IsNullOrEmpty(Token))
             {
                 return false;
             }
-            if (context.UseRESTForRequest)
+            if (CSISystemContext.UseRESTForRequest)
             {
                 //REST
             }
@@ -232,6 +239,30 @@ namespace CSIMobile.Class.Common
                 //SOAP
             }
             return true;
+        }
+
+        public static string TranslateError(Exception Ex)
+        {
+            string Message = "";
+            switch (Ex.Message)
+            {
+                case "Error: NameResolutionFailure":
+                    //e.Error.Source = "system";
+                    Message = Application.Context.GetString(Resource.String.ConnectionError);
+                    break;
+                case "Error: ConnectFailure (Connection timed out)":
+                    //e.Error.Source = "system";
+                    Message = Application.Context.GetString(Resource.String.ConnectionError);
+                    break;
+                case "Error authenticating user: InvalidCredentials\r\n":
+                case "Error authenticating user: InvalidCredentials":
+                    Message = Application.Context.GetString(Resource.String.WrongUserOrPassword);
+                    break;
+                default:
+                    Message = Ex.Message;
+                    break;
+            }
+            return Message;
         }
     }
 }

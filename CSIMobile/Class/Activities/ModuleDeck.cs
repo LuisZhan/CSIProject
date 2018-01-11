@@ -20,7 +20,6 @@ namespace CSIMobile.Class.Activities
         public ModuleAction[] ModuleActions;
         public Module(CSIContext SrcContext = null) : base(SrcContext)
         {
-            CSISystemContext.File = "Module";
         }
     }
 
@@ -32,7 +31,6 @@ namespace CSIMobile.Class.Activities
         public int DrawableId;
         public ModuleAction(CSIContext SrcContext = null) : base(SrcContext)
         {
-            CSISystemContext.File = "ModuleAction";
         }
     }
 
@@ -174,7 +172,6 @@ namespace CSIMobile.Class.Activities
 
         public ModuleDeck(CSIContext SrcContext = null) : base(SrcContext)
         {
-            CSISystemContext.File = "ModuleDeck";
             Modules = builtInModules;
         }
 

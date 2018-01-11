@@ -19,10 +19,14 @@ namespace CSIMobile.Class.Common
 
         public CSIBaseAdapter(CSIContext SrcContext = null)
         {
-            CSISystemContext = new CSIContext(SrcContext)
+            if (SrcContext == null)
             {
-                Adapter = "CSIBaseAdapter"
-            };
+                CSISystemContext = new CSIContext();
+            }
+            else
+            {
+                CSISystemContext = SrcContext;
+            }
         }
 
         public override int Count => throw new NotImplementedException();

@@ -20,16 +20,14 @@ namespace CSIMobile.Class.Common
 
         public List<Object> ActionItems = new List<Object>();
 
-        public CSIBaseGridViewerAdapter(CSIBaseActivity activity, GridView gridView) : base((activity == null) ? null : activity.GetCSISystemContext())
+        public CSIBaseGridViewerAdapter(CSIBaseActivity activity, GridView gridView) : base(activity?.GetCSISystemContext())
         {
-            CSISystemContext.Adapter = "CSIBaseGridViewerAdapter";
             GridView = gridView;
             Activity = activity;
         }
 
         public CSIBaseGridViewerAdapter(Android.Support.V4.App.Fragment fragment, GridView gridView, CSIContext SrcContext = null) : base(SrcContext)
         {
-            CSISystemContext.Adapter = "CSIBaseGridViewerAdapter";
             GridView = gridView;
             Fragment = fragment;
         }

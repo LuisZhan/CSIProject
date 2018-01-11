@@ -21,20 +21,21 @@ namespace CSIMobile.Class.Common
         public CSIBaseFragmentPagerAdapter(Android.Support.V4.App.FragmentManager fm, CSIBaseActivity activity = null)
             : base(fm)
         {
-            if(activity == null)
+            if (activity == null)
             {
-                CSISystemContext = new CSIContext()
-                {
-                    Adapter = "CSIBaseFragmentPagerAdapter"
-                };
+                CSISystemContext = new CSIContext();
             }
             else
             {
                 BaseActivity = activity;
-                CSISystemContext = new CSIContext(BaseActivity.GetCSISystemContext())
+                if (BaseActivity.GetCSISystemContext() == null)
                 {
-                    Adapter = "CSIBaseFragmentPagerAdapter"
-                };
+                    CSISystemContext = new CSIContext();
+                }
+                else
+                {
+                    CSISystemContext = BaseActivity.GetCSISystemContext();
+                }
             }
         }
 

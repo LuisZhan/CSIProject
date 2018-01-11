@@ -151,4 +151,5 @@
   <string name="WorkCenterTransaction">Work Center Transaction</string>
   <string name="ProductionSchedule">Production Schedule</string>
   <string name="JustInTime">Just In Time</string>
+  <string name="Employee">Employee</string>
 </resources>

@@ -33,6 +33,7 @@ namespace CSIMobile
                 {
                     CSISystemContext = new CSIContext();
                 }
+                CSISystemContext.ReadConfigurations();
 
                 SetContentView(Resource.Layout.CSIMain);
 
@@ -135,7 +136,7 @@ namespace CSIMobile
                 }
                 else
                 {
-                    SignOutDialog = new CSIMessageDialog(GetString(Resource.String.app_name), string.Format(GetString(Resource.String.AskForExit), CSISystemContext.UserName), DialogTypes.OKCancel, this);
+                    SignOutDialog = new CSIMessageDialog(GetString(Resource.String.app_name), string.Format(GetString(Resource.String.AskForExit), CSISystemContext.UserDesc), DialogTypes.OKCancel, this);
                     SignOutDialog.OkHandler += (sender, args) =>
                     {
                         Finish();
@@ -216,7 +217,7 @@ namespace CSIMobile
                             };
                         }
                     }
-                    CSISystemContext.Token = invoker.CreateToken(CSISystemContext);
+                    CSISystemContext.Token = invoker.CreateToken();
                     if (invoker.UseAsync)
                     {
                         return true;
@@ -246,7 +247,7 @@ namespace CSIMobile
                     else
                     {
                         FragmentTransaction ft = FragmentManager.BeginTransaction();
-                        CSIMessageDialog AlertDialog = new CSIMessageDialog(GetString(Resource.String.app_name), string.Format(GetString(Resource.String.AlreadySignIn), CSISystemContext.UserName), DialogTypes.OKCancel, this);
+                        CSIMessageDialog AlertDialog = new CSIMessageDialog(GetString(Resource.String.app_name), string.Format(GetString(Resource.String.AlreadySignIn), CSISystemContext.UserDesc), DialogTypes.OKCancel, this);
                         AlertDialog.OkHandler += (sender, args) =>
                         {
                             CSISystemContext.Token = "";

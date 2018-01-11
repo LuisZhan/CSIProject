@@ -24,7 +24,6 @@ namespace CSIMobile.Class.Fragments
 
         public ModuleDeckFragment(CSIBaseActivity activity = null) : base(activity)
         {
-            CSISystemContext.Fragment = "ModuleDeckFragment";
         }
 
         public static ModuleDeckFragment NewInstance(Module Module, CSIBaseActivity activity = null)

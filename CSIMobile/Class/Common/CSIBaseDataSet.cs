@@ -19,10 +19,17 @@ namespace CSIMobile.Class.Common
         private Dictionary<string, CSIBaseDataRow> Rows = new Dictionary<string, CSIBaseDataRow>(); //key is rowpointer
         private Dictionary<string, Types> PropertyNameTypeList = new Dictionary<string, Types>();
         private int CurrentRowNumber = 0;
+        private System.Data.DataSet SysDataSet;
 
         public CSIBaseDataSet(CSIContext SrcContext = null) : base(SrcContext)
         {
-            CSISystemContext.File = "CSIBaseDataSet";
+            SysDataSet = new System.Data.DataSet();
+            CurrentRowNumber = 0;
+        }
+
+        public CSIBaseDataSet(System.Data.DataSet DataSet, CSIContext SrcContext = null) : base(SrcContext)
+        {
+            SysDataSet = DataSet;
             CurrentRowNumber = 0;
         }
 
@@ -189,6 +196,20 @@ namespace CSIMobile.Class.Common
                 }
             }
             return null;
+        }
+
+        public System.Data.DataSet BuildSysDataSet()
+        {
+
+            //System.Data.DataSet ds = e.Result;
+            ////ds.Tables[0].Rows.Count;
+            //foreach (System.Data.DataRow r in ds.Tables[0].Rows)
+            //{
+            //    string a = r.GetColumnError(1);
+            //    string b = r.GetColumnError(2);
+            //}
+            //ShowProgressBar(false);
+            return SysDataSet;
         }
     }
 }

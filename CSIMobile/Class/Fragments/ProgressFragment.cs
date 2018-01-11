@@ -18,7 +18,6 @@ namespace CSIMobile.Class.Fragments
 
         public ProgressFragment(CSIBaseActivity activity = null) : base(activity)
         {
-            CSISystemContext.Fragment = "ProgressFragment";
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

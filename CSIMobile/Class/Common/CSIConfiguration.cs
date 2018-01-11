@@ -22,7 +22,6 @@ namespace CSIMobile.Class.Common
 
         public CSIConfiguration(CSIContext SrcContext = null) : base(SrcContext)
         {
-            CSISystemContext.File = "CSIConfiguration";
         }
 
         public static void WriteConfigure(CSIContext c)
@@ -134,6 +133,7 @@ namespace CSIMobile.Class.Common
                         else
                         {
                             jReader.BeginArray();
+                            c.ConfigurationList.Clear();
                             while (jReader.HasNext)
                             {
                                 if (jReader.Peek() == null)

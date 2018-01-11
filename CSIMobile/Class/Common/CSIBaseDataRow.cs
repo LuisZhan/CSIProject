@@ -28,8 +28,6 @@ namespace CSIMobile.Class.Common
         {
             try
             {
-                CSISystemContext.File = "CSIBaseDataRow";
-
                 GUIDKey = Guid.NewGuid().ToString();
                 this.CurrentDataSet = CurrentDataSet;
                 Dictionary<string, Types> PropertyNameTypeList = CurrentDataSet.GetPropertyList();

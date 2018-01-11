@@ -16,8 +16,6 @@ namespace CSIMobile.Class.Common
     {
         public CSIXMLParser(CSIContext SrcContext = null) : base(SrcContext)
         {
-            CSISystemContext.File = "CSIXMLParser";
-
         }
     }
 

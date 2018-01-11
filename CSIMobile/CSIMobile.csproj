@@ -118,12 +118,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Business\CSIUserLocals.cs" />
     <Compile Include="Class\Common\CSIBaseAdapter.cs" />
+    <Compile Include="Class\Common\CSIBaseFullScreenDialogFragment.cs" />
     <Compile Include="Class\Common\CSIBaseGridViewerAdapter.cs" />
     <Compile Include="Class\Common\CSIWebServiceEventInterface.cs" />
     <Compile Include="Class\Fragments\Adapter\ModuleDeckAdapter.cs" />
     <Compile Include="Class\Activities\ModuleDeck.cs" />
-    <Compile Include="Class\Business\CSISignIn.cs" />
+    <Compile Include="Class\Business\CSIUserNames.cs" />
     <Compile Include="Class\Common\CSIBaseDataRow.cs" />
     <Compile Include="Class\Common\CSIBaseDataProperty.cs" />
     <Compile Include="Class\Common\CSIBaseDataSet.cs" />
@@ -173,6 +175,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\CSIProgressBar.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CSIAbout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -35,7 +35,6 @@ namespace CSIMobile.Class.Fragments
         public SettingsDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {
             CSISystemContext.ReadConfigurations();
-            CSISystemContext.Fragment = "SettingsDialogFragment";
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -100,8 +99,8 @@ namespace CSIMobile.Class.Fragments
                 SaveButton.Click += (sender, args) =>
                 {
                     SaveConfiguration();
-                    //Dismiss();
-                    //Dispose();
+                    Dismiss();
+                    Dispose();
                 };
 
                 TestButton.Click += (sender, args) =>
@@ -122,7 +121,7 @@ namespace CSIMobile.Class.Fragments
                         UseAsync = true
                     };
                     invoker.GetConfigurationNamesCompleted += OnGetConfigurationNamesCompleted;
-                    CSISystemContext.ConfigurationList = new List<string>(invoker.GetConfigurationList(CSISystemContext));
+                    CSISystemContext.ConfigurationList = new List<string>(invoker.GetConfigurationList());
                 };
 
                 return view;
@@ -143,16 +142,7 @@ namespace CSIMobile.Class.Fragments
             else
             {
                 WriteErrorLog(e.Error);
-                switch (e.Error.Message)
-                {
-                    case "Error: NameResolutionFailure":
-                        //e.Error.Source = "system";
-                        Toast.MakeText(Context, GetString(Resource.String.ConnectionError) + string.Format("\r\n({0})", e.Error.Message), ToastLength.Short).Show();
-                        break;
-                    default:
-                        Toast.MakeText(Context, GetString(Resource.String.ConnectionError) + string.Format("\r\n({0})", e.Error.Message), ToastLength.Short).Show();
-                        break;
-                }
+                Toast.MakeText(Context, CSIBaseInvoker.TranslateError(e.Error), ToastLength.Short).Show();
             }
             ShowProgressBar(false);
         }

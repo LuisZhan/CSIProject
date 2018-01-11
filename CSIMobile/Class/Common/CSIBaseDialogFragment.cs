@@ -23,18 +23,19 @@ namespace CSIMobile.Class.Common
         {
             if (activity == null)
             {
-                CSISystemContext = new CSIContext()
-                {
-                    Fragment = "CSIBaseDialogFragment"
-                };
+                CSISystemContext = new CSIContext();
             }
             else
             {
                 BaseActivity = activity;
-                CSISystemContext = new CSIContext(BaseActivity.GetCSISystemContext())
+                if (BaseActivity.GetCSISystemContext() == null)
                 {
-                    Fragment = "CSIBaseDialogFragment"
-                };
+                    CSISystemContext = new CSIContext();
+                }
+                else
+                {
+                    CSISystemContext = BaseActivity.GetCSISystemContext();
+                }
             }
         }
 
@@ -53,12 +54,27 @@ namespace CSIMobile.Class.Common
             return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
-        public void SetBaseActivity(Activity activity)
+        public virtual void SetBaseActivity(CSIBaseActivity activity)
         {
-            BaseActivity = (CSIBaseActivity)activity;
+            if (activity == null)
+            {
+                CSISystemContext = new CSIContext();
+            }
+            else
+            {
+                BaseActivity = activity;
+                if (BaseActivity.GetCSISystemContext() == null)
+                {
+                    CSISystemContext = new CSIContext();
+                }
+                else
+                {
+                    CSISystemContext = BaseActivity.GetCSISystemContext();
+                }
+            }
         }
 
-        protected void WriteErrorLog(Exception Ex)
+        protected virtual void WriteErrorLog(Exception Ex)
         {
             if (CSISystemContext.DisplayWhenError)
             {
@@ -67,12 +83,12 @@ namespace CSIMobile.Class.Common
             CSIErrorLog.WriteErrorLog(Ex);
         }
 
-        protected void WriteLog(string content)
+        protected virtual void WriteLog(string content)
         {
             CSIErrorLog.WriteLog(content);
         }
 
-        protected void WriteLog()
+        protected virtual void WriteLog()
         {
             CSIErrorLog.WriteLog(CSISystemContext);
         }

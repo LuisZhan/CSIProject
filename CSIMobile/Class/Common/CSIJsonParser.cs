@@ -16,8 +16,6 @@ namespace CSIMobile.Class.Common
     {
         public CSIJsonParser(CSIContext SrcContext = null) : base(SrcContext)
         {
-            CSISystemContext.File = "CSIJsonParser";
-
         }
     }
 }
