@@ -153,4 +153,8 @@
   <string name="JustInTime">准时生产</string>
   <string name="Employee">员工</string>
   <string name="DeleteLogFile">删除日志文件</string>
+  <string name="FromLocation">原始货位</string>
+  <string name="FromLot">原始批号</string>
+  <string name="ToLocation">目的货位</string>
+  <string name="ToLot">目的批号</string>
 </resources>

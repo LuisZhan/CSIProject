@@ -12,10 +12,11 @@ using CSIMobile.Class.Activities;
 using CSIMobile.Class.Fragments.Adapter;
 using System.Collections.Generic;
 using static CSIMobile.Class.Common.CSIMessageDialog;
+using Android.Content.PM;
 
 namespace CSIMobile
 {
-    [Activity(Label = "@string/app_name")]
+    [Activity(Label = "@string/app_name", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : CSIBaseActivity
     {
         public TextView[] MoudleButton = { null, null, null, null };
@@ -225,62 +226,6 @@ namespace CSIMobile
             bool Success = false;
             switch (Command)
             {
-                case "CreateToken":
-                    object User, Password, SaveUser, SavePassword, Configuration, EnableHTTPS, oUseAsync;
-                    bool bUseAsync = false;
-                    CSISystemContext.Token = "";
-
-                    if (ParmList.TryGetValue("User", out User))
-                        CSISystemContext.User = (string)User;
-                    if (ParmList.TryGetValue("Password", out Password))
-                        CSISystemContext.Password = (string)Password;
-                    if (ParmList.TryGetValue("SaveUser", out SaveUser))
-                        CSISystemContext.SaveUser = (bool)SaveUser;
-                    if (ParmList.TryGetValue("SavePassword", out SavePassword))
-                        CSISystemContext.SavePassword = (bool)SavePassword;
-                    if (ParmList.TryGetValue("Configuration", out Configuration))
-                        CSISystemContext.Configuration = (string)Configuration;
-                    if (ParmList.TryGetValue("EnableHTTPS", out EnableHTTPS))
-                        CSISystemContext.EnableHTTPS = (bool)EnableHTTPS;
-                    if (ParmList.TryGetValue("UseAsync", out oUseAsync))
-                        bUseAsync = (bool)oUseAsync;
-
-                    //CSISystemContext.Token = CSIBaseInvoker.CreateToken(CSISystemContext);
-                    CSIBaseInvoker invoker = new CSIBaseInvoker(CSISystemContext)
-                    {
-                        UseAsync = bUseAsync
-                    };
-                    if (bUseAsync)
-                    {
-                        CreateSessionTokenCompletedEventHandler CreateSessionTokenCompleted;
-                        object oCreateSessionTokenCompleted;
-                        oCreateSessionTokenCompleted = ParmList.GetValueOrDefault("CreateSessionTokenCompleted");
-                        if (ParmList.TryGetValue("CreateSessionTokenCompleted", out oCreateSessionTokenCompleted))
-                        {
-                            CreateSessionTokenCompleted = (CreateSessionTokenCompletedEventHandler)oCreateSessionTokenCompleted;
-                            invoker.CreateSessionTokenCompleted += (o, e) =>
-                            {
-                                if (e.Error == null)
-                                {
-                                    CSISystemContext.Token = e.Result;
-                                }
-                                CreateSessionTokenCompleted(o, e);
-                            };
-                        }
-                    }
-                    CSISystemContext.Token = invoker.CreateToken();
-                    if (invoker.UseAsync)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        if (string.IsNullOrEmpty(CSISystemContext.Token))
-                            Success = false;
-                        else
-                            Success = true;
-                        break;
-                    }
                 case "GetToken":
                     if (string.IsNullOrEmpty(CSISystemContext.Token))
                     {
@@ -292,6 +237,7 @@ namespace CSIMobile
                         Success = true;
                     }
                     break;
+                case "CreateToken":
                 case "ShowSignIn":
                     if (string.IsNullOrEmpty(CSISystemContext.Token))
                         ShowSignInDialog();
@@ -320,10 +266,100 @@ namespace CSIMobile
                     ShowLog();
                     Success = true;
                     break;
+                case "QtyMove":
+                    ShowQtyMove();
+                    Success = true;
+                    break;
+                case "MiscIssue":
+                    ShowMiscIssue();
+                    Success = true;
+                    break;
+                case "MiscReceive":
+                    ShowMiscReceive();
+                    Success = true;
+                    break;
                 default:
                     break;
             }
             return Success;
+        }
+
+        private void ShowQtyMove()
+        {
+            try
+            {
+                FragmentTransaction ft = FragmentManager.BeginTransaction();
+
+                DCQuantityMoveFragment QtyMoveDialog = (DCQuantityMoveFragment)FragmentManager.FindFragmentByTag("QtyMove");
+                if (QtyMoveDialog != null)
+                {
+                    ft.Show(QtyMoveDialog);
+                    //ft.AddToBackStack(null);
+                }
+                else
+                {
+                    // Create and show the dialog.
+                    QtyMoveDialog = new DCQuantityMoveFragment(this);
+                    //Add fragment
+                    QtyMoveDialog.Show(ft, "QtyMove");
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+        }
+
+        private void ShowMiscIssue()
+        {
+            try
+            {
+                FragmentTransaction ft = FragmentManager.BeginTransaction();
+
+                DCMiscIssueFragment MiscIssueDialog = (DCMiscIssueFragment)FragmentManager.FindFragmentByTag("MiscIssue");
+                if (MiscIssueDialog != null)
+                {
+                    ft.Show(MiscIssueDialog);
+                    //ft.AddToBackStack(null);
+                }
+                else
+                {
+                    // Create and show the dialog.
+                    MiscIssueDialog = new DCMiscIssueFragment(this);
+                    //Add fragment
+                    MiscIssueDialog.Show(ft, "MiscIssue");
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+        }
+
+        private void ShowMiscReceive()
+        {
+            try
+            {
+                FragmentTransaction ft = FragmentManager.BeginTransaction();
+
+                DCMiscReceiveFragment MiscReceiveDialog = (DCMiscReceiveFragment)FragmentManager.FindFragmentByTag("MiscReceive");
+                if (MiscReceiveDialog != null)
+                {
+                    ft.Show(MiscReceiveDialog);
+                    //ft.AddToBackStack(null);
+                }
+                else
+                {
+                    // Create and show the dialog.
+                    MiscReceiveDialog = new DCMiscReceiveFragment(this);
+                    //Add fragment
+                    MiscReceiveDialog.Show(ft, "MiscReceive");
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
         }
 
         private ProgressFragment ShowProcess()
@@ -353,6 +389,6 @@ namespace CSIMobile
             }
             return null;
         }
-
+        
     }
 }

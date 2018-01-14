@@ -118,12 +118,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Business\CSIDcitems.cs" />
+    <Compile Include="Class\Business\CSIDcmoves.cs" />
     <Compile Include="Class\Business\CSIEmployees.cs" />
     <Compile Include="Class\Business\CSIUserLocals.cs" />
     <Compile Include="Class\Common\CSIBaseAdapter.cs" />
     <Compile Include="Class\Common\CSIBaseFullScreenDialogFragment.cs" />
     <Compile Include="Class\Common\CSIBaseGridViewerAdapter.cs" />
     <Compile Include="Class\Common\CSIWebServiceEventInterface.cs" />
+    <Compile Include="Class\Fragments\DCMiscIssueFragment.cs" />
+    <Compile Include="Class\Fragments\DCMiscReceiveFragment.cs" />
+    <Compile Include="Class\Fragments\DCQuantityMoveFragment.cs" />
     <Compile Include="Class\Fragments\LogDialogFragment.cs" />
     <Compile Include="Class\Fragments\Adapter\ModuleDeckAdapter.cs" />
     <Compile Include="Class\Activities\ModuleDeck.cs" />
@@ -183,6 +188,8 @@
     <AndroidResource Include="Resources\layout\CSILog.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\CSIQuantityMove.axml" />
+    <AndroidResource Include="Resources\layout\CSIMiscIssueReceipt.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\CSIMain.axml">
@@ -227,6 +234,9 @@
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\scanner.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets')" />
