@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace CSIMobile.Class.Common
 {
-    interface CSIWebServiceEventInterface
+    interface ICSIWebServiceEventInterface
     {        
         /// <remarks/>
         event GetConfigurationNamesCompletedEventHandler GetConfigurationNamesCompleted;
@@ -29,10 +29,10 @@ namespace CSIMobile.Class.Common
         /// <remarks/>
         event CallMethodCompletedEventHandler CallMethodCompleted;
 
-        /// <remarks/>
-        event LoadJsonCompletedEventHandler LoadJsonCompleted;
+        ///// <remarks/>
+        //event LoadJsonCompletedEventHandler LoadJsonCompleted;
 
-        /// <remarks/>
-        event SaveJsonCompletedEventHandler SaveJsonCompleted;
+        ///// <remarks/>
+        //event SaveJsonCompletedEventHandler SaveJsonCompleted;
     }
 }

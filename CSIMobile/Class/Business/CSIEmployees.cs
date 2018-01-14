@@ -13,19 +13,19 @@ using CSIMobile.Class.Common;
 
 namespace CSIMobile.Class.Business 
 {
-    public class CSIUserLocals : CSIBaseDataObject
+    public class CSIEmployees : CSIBaseDataObject
     {
-        public CSIUserLocals(CSIContext SrcContext = null) : base(SrcContext)
+        public CSIEmployees(CSIContext SrcContext = null) : base(SrcContext)
         {
-            IDOName = "SLUserLocals";
+            IDOName = "SLEmployees";
         }
 
         protected override void InitialPreopertyList()
         {
             base.InitialPreopertyList();
-            PreSetPropertyList.Add("UserId");
+            PreSetPropertyList.Add("EmpNum");
+            PreSetPropertyList.Add("Name");
             PreSetPropertyList.Add("Username");
-            PreSetPropertyList.Add("Whse");
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Threading;
 
 namespace CSIMobile.Class.Common
 {
-    public class CSIBaseInvoker : CSIBaseObject, CSIWebServiceEventInterface
+    public class CSIBaseInvoker : CSIBaseObject, ICSIWebServiceEventInterface
     {
         private static string HTTP = "http://";
         private static string HTTPS = "https://";
@@ -34,8 +34,8 @@ namespace CSIMobile.Class.Common
         public event LoadDataSetCompletedEventHandler LoadDataSetCompleted;
         public event SaveDataSetCompletedEventHandler SaveDataSetCompleted;
         public event CallMethodCompletedEventHandler CallMethodCompleted;
-        public event LoadJsonCompletedEventHandler LoadJsonCompleted;
-        public event SaveJsonCompletedEventHandler SaveJsonCompleted;
+        //public event LoadJsonCompletedEventHandler LoadJsonCompleted;
+        //public event SaveJsonCompletedEventHandler SaveJsonCompleted;
 
         public CSIBaseInvoker(CSIContext SrcContext = null) : base(SrcContext)
         {
@@ -55,8 +55,8 @@ namespace CSIMobile.Class.Common
             WebService.LoadDataSetCompleted += (o, e) => { LoadDataSetCompleted(o, e); };
             WebService.SaveDataSetCompleted += (o, e) => { SaveDataSetCompleted(o, e); };
             WebService.CallMethodCompleted += (o, e) => { CallMethodCompleted(o, e); };
-            WebService.LoadJsonCompleted += (o, e) => { LoadJsonCompleted(o, e); };
-            WebService.SaveJsonCompleted += (o, e) => { SaveJsonCompleted(o, e); };
+            //WebService.LoadJsonCompleted += (o, e) => { LoadJsonCompleted(o, e); };
+            //WebService.SaveJsonCompleted += (o, e) => { SaveJsonCompleted(o, e); };
         }
 
         public string GetToken()
@@ -161,7 +161,7 @@ namespace CSIMobile.Class.Common
             return List;
         }
 
-        public CSIBaseDataSet InvokeLoad(string strIDOName, string strPropertyList, string strFilter, string strOrderBy, string strPostQueryMethod, int iRecordCap)
+        public System.Data.DataSet InvokeLoad(string strIDOName, string strPropertyList, string strFilter, string strOrderBy, string strPostQueryMethod, int iRecordCap)
         {
             if (string.IsNullOrEmpty(Token))
             {
@@ -187,10 +187,10 @@ namespace CSIMobile.Class.Common
                     DataSet = WebService.LoadDataSet(Token, strIDOName, strPropertyList, strFilter, strOrderBy, strPostQueryMethod, iRecordCap);
                 }
             }
-            return new CSIBaseDataSet(DataSet);
+            return DataSet;
         }
 
-        public bool InvokeUpdate(CSIBaseDataSet DataSet)
+        public bool InvokeUpdate(System.Data.DataSet DataSet)
         {
             if (string.IsNullOrEmpty(URL) || string.IsNullOrEmpty(Token))
             {
@@ -207,7 +207,7 @@ namespace CSIMobile.Class.Common
             return true;
         }
 
-        public bool InvokeDelete(CSIBaseDataSet DataSet)
+        public bool InvokeDelete(System.Data.DataSet DataSet)
         {
             if (string.IsNullOrEmpty(URL) || string.IsNullOrEmpty(Token))
             {
@@ -224,7 +224,7 @@ namespace CSIMobile.Class.Common
             return true;
         }
 
-        public bool InvokeInsert(CSIBaseDataSet DataSet)
+        public bool InvokeInsert(System.Data.DataSet DataSet)
         {
             if (string.IsNullOrEmpty(URL) || string.IsNullOrEmpty(Token))
             {

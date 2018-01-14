@@ -126,9 +126,6 @@
     <Compile Include="Class\Fragments\Adapter\ModuleDeckAdapter.cs" />
     <Compile Include="Class\Activities\ModuleDeck.cs" />
     <Compile Include="Class\Business\CSIUserNames.cs" />
-    <Compile Include="Class\Common\CSIBaseDataRow.cs" />
-    <Compile Include="Class\Common\CSIBaseDataProperty.cs" />
-    <Compile Include="Class\Common\CSIBaseDataSet.cs" />
     <Compile Include="Class\Common\CSIBaseDialogFragment.cs" />
     <Compile Include="Class\Common\CSIBaseInvoker.cs" />
     <Compile Include="Class\Common\CSIBaseFragmentPagerAdapter.cs" />

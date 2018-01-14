@@ -96,6 +96,58 @@ namespace CSIMobile
             }
         }
 
+        private void ShowAbout()
+        {
+            try
+            {
+                FragmentTransaction ft = FragmentManager.BeginTransaction();
+
+                SettingsDialogFragment SettingsDialog = (SettingsDialogFragment)FragmentManager.FindFragmentByTag("Settings");
+                if (SettingsDialog != null)
+                {
+                    ft.Show(SettingsDialog);
+                    //ft.AddToBackStack(null);
+                }
+                else
+                {
+                    // Create and show the dialog.
+                    SettingsDialog = new SettingsDialogFragment(this);
+                    //Add fragment
+                    SettingsDialog.Show(ft, "Settings");
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+        }
+
+        private void ShowLog()
+        {
+            try
+            {
+                FragmentTransaction ft = FragmentManager.BeginTransaction();
+
+                SettingsDialogFragment SettingsDialog = (SettingsDialogFragment)FragmentManager.FindFragmentByTag("Settings");
+                if (SettingsDialog != null)
+                {
+                    ft.Show(SettingsDialog);
+                    //ft.AddToBackStack(null);
+                }
+                else
+                {
+                    // Create and show the dialog.
+                    SettingsDialog = new SettingsDialogFragment(this);
+                    //Add fragment
+                    SettingsDialog.Show(ft, "Settings");
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+        }
+
         private void ShowSignInDialog()
         {
             try
@@ -259,6 +311,14 @@ namespace CSIMobile
                     break;
                 case "ShowSettings":
                     ShowSettingsDialog();
+                    Success = true;
+                    break;
+                case "ShowAbout":
+                    ShowAbout();
+                    Success = true;
+                    break;
+                case "ShowLog":
+                    ShowLog();
                     Success = true;
                     break;
                 default:

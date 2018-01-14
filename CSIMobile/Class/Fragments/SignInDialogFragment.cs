@@ -29,7 +29,9 @@ namespace CSIMobile.Class.Fragments
         private LinearLayout Layout;
 
         private CSIUserNames Users;
-        private CSIUserLocals UsersLocals;
+        private CSIUserLocals UsersLocal;
+        private CSIEmployees Employee;
+        private int ProcessCount = 0;
 
         //public event CreateSessionTokenCompletedEventHandler CreateSessionTokenCompleted;
 
@@ -39,31 +41,52 @@ namespace CSIMobile.Class.Fragments
             Users = new CSIUserNames(CSISystemContext);
             Users.CreateSessionTokenCompleted += OnCreateSessionTokenCompleted;
             Users.LoadDataSetCompleted += OnLoadDataSetCompleted;
-            UsersLocals = new CSIUserLocals(CSISystemContext);
-            UsersLocals.LoadDataSetCompleted += OnLoadDataSetCompleted;
+            UsersLocal = new CSIUserLocals(CSISystemContext);
+            UsersLocal.LoadDataSetCompleted += OnLoadDataSetCompleted;
+            Employee = new CSIEmployees(CSISystemContext);
+            Employee.LoadDataSetCompleted += OnLoadDataSetCompleted;
         }
 
         private void OnLoadDataSetCompleted(object sender, LoadDataSetCompletedEventArgs e)
         {
             if (e.Error == null)
             {
-                Users.ConvertDataSet(e.Result);
-                CSISystemContext.UserDesc = Users.CSIDataSet.GetCurrentObjectString("UserDesc");
-                ErrorText.Visibility = ViewStates.Gone;
-                Dismiss();
-                Dispose();
+                if (sender.GetType() == Users.GetType())
+                {
+                    CSISystemContext.User = Users.GetCurrentPropertyStringValue("Username");
+                    CSISystemContext.UserDesc = Users.GetCurrentPropertyStringValue("UserDesc");
+                    GetUserLocalInfor();
+                }
+                if (sender.GetType() == UsersLocal.GetType())
+                {
+                    CSISystemContext.DefaultWarehouse = UsersLocal.GetCurrentPropertyStringValue("Whse");
+                    GetEmpInfor();
+                }
+                if (sender.GetType() == Employee.GetType())
+                {
+                    CSISystemContext.EmpNum = Employee.GetCurrentPropertyStringValue("EmpNum");
+                    CSISystemContext.EmpName = Employee.GetCurrentPropertyStringValue("Name");
+                }
+
+                if (ProgressBar.Visibility == ViewStates.Gone)
+                {
+                    ErrorText.Visibility = ViewStates.Invisible;
+                    Dismiss();
+                    Dispose();
+                }
             }
             else
             {
                 WriteErrorLog(e.Error);
+                CSISystemContext.Token = "";
                 ErrorText.Text = CSIBaseInvoker.TranslateError(e.Error);
                 ErrorText.Visibility = ViewStates.Visible;
             }
+            ShowProgressBar(false);
         }
 
         private void OnCreateSessionTokenCompleted(object sender, CreateSessionTokenCompletedEventArgs e)
         {
-            ShowProgressBar(false);
             if (e.Error == null)
             {
                 CSISystemContext.Token = e.Result;
@@ -82,6 +105,7 @@ namespace CSIMobile.Class.Fragments
                 ErrorText.Text = CSIBaseInvoker.TranslateError(e.Error);
                 ErrorText.Visibility = ViewStates.Visible;
             }
+            ShowProgressBar(false);
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -146,30 +170,6 @@ namespace CSIMobile.Class.Fragments
             CSISystemContext.SavePassword = SavePasswordSwitch.Checked;
             CSISystemContext.Configuration = (string)ConfigurationEdit.SelectedItem;
             CSISystemContext.Token = Users.CreateToken();
-            //Dictionary<String, Object> ParmList = new Dictionary<string, object>
-            //{
-            //    { "User", UserEdit.Text },
-            //    { "Password", PasswordEdit.Text },
-            //    { "SaveUser", SaveUserSwitch.Checked },
-            //    { "SavePassword", SavePasswordSwitch.Checked },
-            //    { "Configuration", (string)ConfigurationEdit.SelectedItem },
-            //    { "EnableHTTPS", CSISystemContext.EnableHTTPS },
-            //    { "UseAsync", true },
-            //    { "CreateSessionTokenCompleted", CreateSessionTokenCompleted }
-            //};
-            //try
-            //{
-            //    ShowProgressBar(true);
-            //    BaseActivity.InvokeCommand("CreateToken", ParmList);
-
-            //}
-            //catch (Exception Ex)
-            //{
-            //    WriteErrorLog(Ex);
-            //    ErrorText.Text = GetString(Resource.String.WrongUserOrPassword);
-            //    ErrorText.Visibility = ViewStates.Visible;
-            //}
-            //ParmList.Clear();
         }
 
         private void GetUserInfor()
@@ -182,12 +182,22 @@ namespace CSIMobile.Class.Fragments
             Users.LoadIDO();
         }
 
+        private void GetUserLocalInfor()
+        {
+            ShowProgressBar(true);
+            UsersLocal.AddProperty("UserId");
+            UsersLocal.AddProperty("Username");
+            UsersLocal.AddProperty("UserDesc");
+            UsersLocal.SetFilter(string.Format("Username = '{0}'", UserEdit.Text));
+            UsersLocal.LoadIDO();
+        }
+        
         private void GetEmpInfor()
         {
             ShowProgressBar(true);
-            Users.AddProperty("UserId");
+            Users.AddProperty("EmpNum");
+            Users.AddProperty("Name");
             Users.AddProperty("Username");
-            Users.AddProperty("UserDesc");
             Users.SetFilter(string.Format("Username = '{0}'", UserEdit.Text));
             Users.LoadIDO();
         }
@@ -221,10 +231,21 @@ namespace CSIMobile.Class.Fragments
 
         private void ShowProgressBar(bool show)
         {
-            ProgressBar.Visibility = show ? ViewStates.Visible : ViewStates.Gone;
-            CSIBaseObject.DisableEnableControls(!show, Layout);
+            if (show)
+            {
+                ProcessCount += 1;
+                ProgressBar.Visibility = ViewStates.Visible;
+                CSIBaseObject.DisableEnableControls(false, Layout);
+            }
+            else
+            {
+                ProcessCount -= ProcessCount == 0 ? 0 : 1;
+                if(ProcessCount == 0)
+                {
+                    ProgressBar.Visibility = ViewStates.Gone;
+                    CSIBaseObject.DisableEnableControls(true, Layout);
+                }
+            }
         }
-
-
     }
 }

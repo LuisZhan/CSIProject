@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data;
 using System.Text;
 
 using Android.App;
@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace CSIMobile.Class.Common
 {
-    public class CSIBaseDataObject : CSIBaseObject, CSIWebServiceEventInterface
+    public class CSIBaseDataObject : CSIBaseObject, ICSIWebServiceEventInterface
     {
         protected string IDOName = "";
         protected CSIBaseInvoker Invoker;
@@ -22,30 +22,63 @@ namespace CSIMobile.Class.Common
         protected string OrderBy = "";
         protected string PostQueryMethod = "";
         protected int RecordCap = -1;
-        public CSIBaseDataSet CSIDataSet;
+        public int CurrentRow = 0;
+        public DataSet CSIDataSet;
+        public DataTable CurrentTable
+        {
+            get
+            {
+                if (CSIDataSet == null)
+                {
+                    return null;
+                }
+                if (CSIDataSet.Tables.Count <= 0)
+                {
+                    return null;
+                }
+                return CSIDataSet.Tables[0];
+            }
+        }
 
         public event GetConfigurationNamesCompletedEventHandler GetConfigurationNamesCompleted;
         public event CreateSessionTokenCompletedEventHandler CreateSessionTokenCompleted;
         public event LoadDataSetCompletedEventHandler LoadDataSetCompleted;
         public event SaveDataSetCompletedEventHandler SaveDataSetCompleted;
         public event CallMethodCompletedEventHandler CallMethodCompleted;
-        public event LoadJsonCompletedEventHandler LoadJsonCompleted;
-        public event SaveJsonCompletedEventHandler SaveJsonCompleted;
+        //public event LoadJsonCompletedEventHandler LoadJsonCompleted;
+        //public event SaveJsonCompletedEventHandler SaveJsonCompleted;
 
         public CSIBaseDataObject(CSIContext SrcContext = null) : base(SrcContext)
         {
-            Invoker = new CSIBaseInvoker(SrcContext)
-            {
-                UseAsync = true
-            };
+            CSIDataSet = null;
+            NewInvoker();
 
-            Invoker.GetConfigurationNamesCompleted += (o, e) => { GetConfigurationNamesCompleted(o, e); };
-            Invoker.CreateSessionTokenCompleted += (o, e) => { CreateSessionTokenCompleted(o, e); };
-            Invoker.LoadDataSetCompleted += (o, e) => { ConvertDataSet(e.Result); LoadDataSetCompleted(o, e); };
-            Invoker.SaveDataSetCompleted += (o, e) => { SaveDataSetCompleted(o, e); };
-            Invoker.CallMethodCompleted += (o, e) => { CallMethodCompleted(o, e); };
-            Invoker.LoadJsonCompleted += (o, e) => { LoadJsonCompleted(o, e); };
-            Invoker.SaveJsonCompleted += (o, e) => { SaveJsonCompleted(o, e); };
+            Invoker.GetConfigurationNamesCompleted += (o, e) => { GetConfigurationNamesCompleted(this, e); };
+            Invoker.CreateSessionTokenCompleted += (o, e) => { CreateSessionTokenCompleted(this, e); };
+            Invoker.LoadDataSetCompleted += (o, e) => {
+                if (e.Error == null)
+                {
+                    CSIDataSet = e.Result;
+                }
+                LoadDataSetCompleted(this, e);
+            };
+            Invoker.SaveDataSetCompleted += (o, e) => {
+                if (e.Error == null)
+                {
+                    CSIDataSet = e.Result;
+                }
+                SaveDataSetCompleted(this, e); };
+            Invoker.CallMethodCompleted += (o, e) => 
+            {
+                if (e.Error == null)
+                {
+                    //TO DO, No idea what's the return result
+                    //CSIDataSet = e.Result;
+                }
+                CallMethodCompleted(this, e);
+            };
+            //Invoker.LoadJsonCompleted += (o, e) => { LoadJsonCompleted(this, e); };
+            //Invoker.SaveJsonCompleted += (o, e) => { SaveJsonCompleted(this, e); };
 
             InitialPreopertyList();
             RecordCap = int.Parse(CSISystemContext.RecordCap);
@@ -123,12 +156,31 @@ namespace CSIMobile.Class.Common
         {
             string ListStr = "";
             string Dot = "";
-            foreach (string property in PropertyList)
+            if (PropertyList.Count == 0)
             {
-                ListStr += Dot + property;
-                Dot = ",";
+                foreach (string property in PreSetPropertyList)
+                {
+                    ListStr += Dot + property;
+                    Dot = ",";
+                }
+            }
+            else
+            {
+                foreach (string property in PropertyList)
+                {
+                    ListStr += Dot + property;
+                    Dot = ",";
+                }
             }
             return ListStr;
+        }
+
+        private void NewInvoker()
+        {
+            Invoker = new CSIBaseInvoker(CSISystemContext)
+            {
+                UseAsync = true
+            };
         }
 
         public virtual void LoadIDO()
@@ -154,19 +206,44 @@ namespace CSIMobile.Class.Common
             return rtn;
         }
 
-        public void ConvertDataSet(System.Data.DataSet DataSet)
+        public object GetPropertyValue(int Row, int Column)
         {
-            CSIDataSet = new CSIBaseDataSet(DataSet, CSISystemContext);
+            if (CurrentTable == null)
+            {
+                return null;
+            }
+            return CurrentTable.Rows[Row].ItemArray[Column];
         }
 
-        public System.Data.DataSet ConvertDataSet()
+        public object GetPropertyValue(int Row, string PropertyName)
         {
-            return ConvertDataSet(CSIDataSet);
+            if (CurrentTable == null)
+            {
+                return null;
+            }
+            if (!CurrentTable.Columns.Contains(PropertyName))
+            {
+                return null;
+            }
+            int Column = CurrentTable.Columns.IndexOf(PropertyName);
+            return GetPropertyValue(Row, Column);
         }
 
-        public System.Data.DataSet ConvertDataSet(CSIBaseDataSet DataSet)
+        public object GetCurrentPropertyValue(string PropertyName)
         {
-            return DataSet.BuildSysDataSet();
+            return GetPropertyValue(CurrentRow, PropertyName);
+        }
+
+        public string GetCurrentPropertyStringValue(string PropertyName, string Default = "")
+        {
+            try
+            {
+                return (string)GetPropertyValue(CurrentRow, PropertyName);
+            }catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                return Default;
+            }
         }
     }
 }
