@@ -215,12 +215,21 @@ namespace CSIMobile.Class.Common
             {
                 return null;
             }
+            if (CurrentTable.Rows.Count <= 0)
+            {
+                WriteLog("No Rows Return");
+                return null;
+            }
             return CurrentTable.Rows[Row].ItemArray[Column];
         }
 
         public object GetPropertyValue(int Row, string PropertyName)
         {
             if (CurrentTable == null)
+            {
+                return null;
+            }
+            if (CurrentTable.Columns.Count <= 0)
             {
                 return null;
             }

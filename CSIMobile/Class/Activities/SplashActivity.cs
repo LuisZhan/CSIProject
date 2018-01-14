@@ -37,7 +37,7 @@ namespace CSIMobile.Class.Activites
         // Simulates background work that happens behind the splash screen
         private async void SimulateStartup()
         {
-            await Task.Delay(500); // Simulate a bit of startup work.
+            await Task.Delay(100); // Simulate a bit of startup work.
 
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
