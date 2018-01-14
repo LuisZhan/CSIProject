@@ -153,4 +153,8 @@
   <string name="JustInTime">Just In Time</string>
   <string name="Employee">Employee</string>
   <string name="DeleteLogFile">Delete Log File</string>
+  <string name="FromLocation">From Location</string>
+  <string name="FromLot">From Lot</string>
+  <string name="ToLocation">To Location</string>
+  <string name="ToLot">To Lot</string>
 </resources>

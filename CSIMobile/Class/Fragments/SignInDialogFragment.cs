@@ -60,6 +60,7 @@ namespace CSIMobile.Class.Fragments
                 if (sender.GetType() == UsersLocal.GetType())
                 {
                     CSISystemContext.DefaultWarehouse = UsersLocal.GetCurrentPropertyStringValue("Whse");
+                    if (string.IsNullOrEmpty(CSISystemContext.DefaultWarehouse)) CSISystemContext.DefaultWarehouse = "MAIN";
                     GetEmpInfor();
                 }
                 if (sender.GetType() == Employee.GetType())

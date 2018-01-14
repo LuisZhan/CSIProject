@@ -73,17 +73,17 @@ namespace CSIMobile.Class.Activities
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.QuantityMove),
                         DrawableId = Resource.Drawable.Logo,
-                        //ActivityType = typeof(object)
+                        InvokeCommands = new string[] { "QtyMove" }
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.MiscIssue),
                         DrawableId = Resource.Drawable.Logo,
-                        //ActivityType = typeof(object)
+                        InvokeCommands = new string[] { "MiscIssue" }
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.MiscReceive),
                         DrawableId = Resource.Drawable.Logo,
-                        //ActivityType = typeof(object)
+                        InvokeCommands = new string[] { "MiscReceive" }
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.PurchaseReceive),

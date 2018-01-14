@@ -18,6 +18,11 @@ namespace CSIMobile.Class.Common
     {
         protected CSIContext CSISystemContext;
 
+        public CSIBaseActivity()
+        {
+
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             try
