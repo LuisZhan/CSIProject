@@ -118,11 +118,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Business\CSIEmployees.cs" />
     <Compile Include="Class\Business\CSIUserLocals.cs" />
     <Compile Include="Class\Common\CSIBaseAdapter.cs" />
     <Compile Include="Class\Common\CSIBaseFullScreenDialogFragment.cs" />
     <Compile Include="Class\Common\CSIBaseGridViewerAdapter.cs" />
     <Compile Include="Class\Common\CSIWebServiceEventInterface.cs" />
+    <Compile Include="Class\Fragments\LogDialogFragment.cs" />
     <Compile Include="Class\Fragments\Adapter\ModuleDeckAdapter.cs" />
     <Compile Include="Class\Activities\ModuleDeck.cs" />
     <Compile Include="Class\Business\CSIUserNames.cs" />
@@ -132,6 +134,7 @@
     <Compile Include="Class\Common\CSIMessageDialog.cs" />
     <Compile Include="Class\Fragments\Adapter\ModuleGridViewerAdapter.cs" />
     <Compile Include="Class\Fragments\ModuleDeckFragment.cs" />
+    <Compile Include="Class\Fragments\AboutDialogFragment.cs" />
     <Compile Include="Class\Fragments\SettingsDialogFragment.cs" />
     <Compile Include="Class\Fragments\ProgressFragment.cs" />
     <Compile Include="Class\Fragments\SignInDialogFragment.cs" />
@@ -177,12 +180,17 @@
     <AndroidResource Include="Resources\layout\CSIAbout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\CSILog.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\CSIMain.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\values\Strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Class\Activities\Adapter\" />

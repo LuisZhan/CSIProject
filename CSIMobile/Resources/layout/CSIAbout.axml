@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minWidth="25px"
-    android:minHeight="25px">
+    android:minHeight="25px"
+    android:padding="10dp"
+    android:layout_width="match_parent">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout1"
-        android:padding="10dp">
+        android:id="@+id/linearLayout1">
         <LinearLayout
             android:orientation="vertical"
-            android:minWidth="25px"
-            android:minHeight="25px"
+            android:minWidth="50px"
+            android:minHeight="50px"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/linearLayout2"
-            android:layout_marginRight="100dp"
+            android:layout_marginRight="50dp"
             android:gravity="center">
             <LinearLayout
                 android:orientation="horizontal"
@@ -32,13 +32,12 @@
                     android:layout_height="match_parent"
                     android:id="@+id/textView2"
                     android:layout_weight="2" />
-                <TextView
+                <TextView xmlns:tools="http://schemas.android.com/tools"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/UserText"
                     android:layout_weight="1"
-                    xmlns:tools="http://schemas.android.com/tools"
                     tools:text="@string/User" />
             </LinearLayout>
             <LinearLayout
@@ -52,13 +51,12 @@
                     android:layout_height="match_parent"
                     android:id="@+id/textView3"
                     android:layout_weight="2" />
-                <TextView
+                <TextView xmlns:tools="http://schemas.android.com/tools"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/UserNameText"
                     android:layout_weight="1"
-                    xmlns:tools="http://schemas.android.com/tools"
                     tools:text="@string/User" />
             </LinearLayout>
             <LinearLayout
@@ -73,13 +71,12 @@
                     android:id="@+id/textView5"
                     android:layout_weight="2"
                     android:text="@string/Employee" />
-                <TextView
+                <TextView xmlns:tools="http://schemas.android.com/tools"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/EmployeeText"
                     android:layout_weight="1"
-                    xmlns:tools="http://schemas.android.com/tools"
                     tools:text="@string/Employee" />
             </LinearLayout>
             <LinearLayout
@@ -93,26 +90,25 @@
                     android:layout_height="match_parent"
                     android:id="@+id/textView7"
                     android:layout_weight="2" />
-                <TextView
+                <TextView xmlns:tools="http://schemas.android.com/tools"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/EmployeeNameText"
                     android:layout_weight="1"
-                    xmlns:tools="http://schemas.android.com/tools"
                     tools:text="@string/Employee" />
             </LinearLayout>
         </LinearLayout>
         <ImageView
             android:src="@android:drawable/ic_menu_gallery"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/EmployeeImage"
-            android:layout_marginLeft="-100dp" />
+            android:layout_marginLeft="-50dp" />
     </LinearLayout>
     <ListView
-        android:minWidth="25px"
-        android:minHeight="25px"
+        android:minWidth="300dp"
+        android:minHeight="300dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/ListView" />

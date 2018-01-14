@@ -42,10 +42,15 @@ namespace CSIMobile.Class.Common
             }
         }
 
-        private static void DeleteErrorLogFile()
+        public static void DeleteErrorLogFile()
         {
             File.Delete(FileName);
             CheckLogFile();
+        }
+
+        public static string ReadLog()
+        {
+            return File.ReadAllText(FileName);
         }
     }
 }

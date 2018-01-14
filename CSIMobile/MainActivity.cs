@@ -102,18 +102,17 @@ namespace CSIMobile
             {
                 FragmentTransaction ft = FragmentManager.BeginTransaction();
 
-                SettingsDialogFragment SettingsDialog = (SettingsDialogFragment)FragmentManager.FindFragmentByTag("Settings");
-                if (SettingsDialog != null)
+                AboutDialogFragment AboutDialog = (AboutDialogFragment)FragmentManager.FindFragmentByTag("About");
+                if (AboutDialog != null)
                 {
-                    ft.Show(SettingsDialog);
-                    //ft.AddToBackStack(null);
+                    ft.Show(AboutDialog);
                 }
                 else
                 {
                     // Create and show the dialog.
-                    SettingsDialog = new SettingsDialogFragment(this);
+                    AboutDialog = new AboutDialogFragment(this);
                     //Add fragment
-                    SettingsDialog.Show(ft, "Settings");
+                    AboutDialog.Show(ft, "About");
                 }
             }
             catch (Exception Ex)
@@ -128,18 +127,18 @@ namespace CSIMobile
             {
                 FragmentTransaction ft = FragmentManager.BeginTransaction();
 
-                SettingsDialogFragment SettingsDialog = (SettingsDialogFragment)FragmentManager.FindFragmentByTag("Settings");
-                if (SettingsDialog != null)
+                LogDialogFragment LogDialog = (LogDialogFragment)FragmentManager.FindFragmentByTag("Settings");
+                if (LogDialog != null)
                 {
-                    ft.Show(SettingsDialog);
+                    ft.Show(LogDialog);
                     //ft.AddToBackStack(null);
                 }
                 else
                 {
                     // Create and show the dialog.
-                    SettingsDialog = new SettingsDialogFragment(this);
+                    LogDialog = new LogDialogFragment(this);
                     //Add fragment
-                    SettingsDialog.Show(ft, "Settings");
+                    LogDialog.Show(ft, "Settings");
                 }
             }
             catch (Exception Ex)

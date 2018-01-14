@@ -68,6 +68,8 @@ namespace CSIMobile.Class.Fragments
                     CSISystemContext.EmpName = Employee.GetCurrentPropertyStringValue("Name");
                 }
 
+                ShowProgressBar(false);
+
                 if (ProgressBar.Visibility == ViewStates.Gone)
                 {
                     ErrorText.Visibility = ViewStates.Invisible;
@@ -77,12 +79,13 @@ namespace CSIMobile.Class.Fragments
             }
             else
             {
+                ShowProgressBar(false);
                 WriteErrorLog(e.Error);
                 CSISystemContext.Token = "";
                 ErrorText.Text = CSIBaseInvoker.TranslateError(e.Error);
                 ErrorText.Visibility = ViewStates.Visible;
             }
-            ShowProgressBar(false);
+
         }
 
         private void OnCreateSessionTokenCompleted(object sender, CreateSessionTokenCompletedEventArgs e)
@@ -195,11 +198,11 @@ namespace CSIMobile.Class.Fragments
         private void GetEmpInfor()
         {
             ShowProgressBar(true);
-            Users.AddProperty("EmpNum");
-            Users.AddProperty("Name");
-            Users.AddProperty("Username");
-            Users.SetFilter(string.Format("Username = '{0}'", UserEdit.Text));
-            Users.LoadIDO();
+            Employee.AddProperty("EmpNum");
+            Employee.AddProperty("Name");
+            Employee.AddProperty("Username");
+            Employee.SetFilter(string.Format("Username = '{0}'", UserEdit.Text));
+            Employee.LoadIDO();
         }
 
         private void SetConfigurationSpin()

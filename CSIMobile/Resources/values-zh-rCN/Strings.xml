@@ -152,4 +152,5 @@
   <string name="ProductionSchedule">生产计划</string>
   <string name="JustInTime">准时生产</string>
   <string name="Employee">员工</string>
+  <string name="DeleteLogFile">删除日志文件</string>
 </resources>

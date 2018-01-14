@@ -98,7 +98,10 @@ namespace CSIMobile.Class.Common
         {
             if (PreSetPropertyList.Contains(PropertyName))
             {
-                PropertyList.Add(PropertyName);
+                if (!PropertyList.Contains(PropertyName))
+                {
+                    PropertyList.Add(PropertyName);
+                }
             }
         }
 
