@@ -20,9 +20,11 @@ namespace CSIMobile.Class.Common
 
         public static async Task<String> ScanAsync()
         {
-            MobileBarcodeScanningOptions opts = new MobileBarcodeScanningOptions
+            try
             {
-                PossibleFormats = new List<BarcodeFormat>
+                MobileBarcodeScanningOptions opts = new MobileBarcodeScanningOptions
+                {
+                    PossibleFormats = new List<BarcodeFormat>
                 {
                 BarcodeFormat.CODE_39,
                 BarcodeFormat.CODE_93,
@@ -31,10 +33,15 @@ namespace CSIMobile.Class.Common
                 BarcodeFormat.EAN_8,
                 BarcodeFormat.QR_CODE
                 }
-            };
-            MobileBarcodeScanner scanner = new MobileBarcodeScanner();
-            ZXing.Result result = await scanner.Scan(opts);
-            return result?.Text ?? string.Empty;
+                };
+                MobileBarcodeScanner scanner = new MobileBarcodeScanner();
+                var result = await scanner.Scan(opts);
+                return result?.Text ?? string.Empty;
+            }catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                return "";
+            }
         }
     }
 }

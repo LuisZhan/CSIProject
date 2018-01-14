@@ -17,6 +17,9 @@ namespace CSIMobile.Class.Fragments
 {
     public class DCQuantityMoveFragment : CSIBaseFullScreenDialogFragment
     {
+        ImageButton ItemScanButton;
+        EditText ItemEdit;
+
         public DCQuantityMoveFragment(CSIBaseActivity activity = null) : base(activity)
         {
             CSISystemContext.ReadConfigurations();
@@ -30,15 +33,21 @@ namespace CSIMobile.Class.Fragments
 
                 var view = inflater.Inflate(Resource.Layout.CSIQuantityMove, container, false);
 
-                //LogEdit = view.FindViewById<EditText>(Resource.Id.LogEdit);
-                
+                ItemScanButton = view.FindViewById<ImageButton>(Resource.Id.ItemScanButton);
+                ItemEdit = view.FindViewById<EditText>(Resource.Id.ItemEdit);
 
+                ItemScanButton.Click += ItemScanButton_Click;
                 return view;
             }catch (Exception Ex)
             {
                 WriteErrorLog(Ex);
                 return null;
             }
+        }
+
+        private async void ItemScanButton_Click(object sender, EventArgs e)
+        {
+            ItemEdit.Text = await CSISanner.ScanAsync();
         }
     }
 }

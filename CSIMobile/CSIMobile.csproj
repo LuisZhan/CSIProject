@@ -125,6 +125,7 @@
     <Compile Include="Class\Common\CSIBaseAdapter.cs" />
     <Compile Include="Class\Common\CSIBaseFullScreenDialogFragment.cs" />
     <Compile Include="Class\Common\CSIBaseGridViewerAdapter.cs" />
+    <Compile Include="Class\Common\CSISanner.cs" />
     <Compile Include="Class\Common\CSIWebServiceEventInterface.cs" />
     <Compile Include="Class\Fragments\DCMiscIssueFragment.cs" />
     <Compile Include="Class\Fragments\DCMiscReceiveFragment.cs" />
