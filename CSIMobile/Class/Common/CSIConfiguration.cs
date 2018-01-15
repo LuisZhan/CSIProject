@@ -32,23 +32,23 @@ namespace CSIMobile.Class.Common
                 FileStream ConfigureStream = File.Open(FileName, FileMode.OpenOrCreate);
                 JsonWriter jWriter = new JsonWriter(new Java.IO.OutputStreamWriter(ConfigureStream));
                 jWriter.BeginObject();
-                jWriter.Name("CSIWebServerName").Value(c.CSIWebServerName);
-                jWriter.Name("Configuration").Value(c.Configuration);
+                jWriter.Name("CSIWebServerName").Value(c.CSIWebServerName ?? string.Empty);
+                jWriter.Name("Configuration").Value(c.Configuration ?? string.Empty);
                 jWriter.Name("ConfigurationList");
                 jWriter.BeginArray();
                 foreach(string config in c.ConfigurationList)
                 {
-                    jWriter.Value(config);
+                    jWriter.Value(config ?? string.Empty);
                 }
                 jWriter.EndArray();
                 jWriter.Name("EnableHTTPS").Value(c.EnableHTTPS);
                 jWriter.Name("UseRESTForRequest").Value(c.UseRESTForRequest);
                 jWriter.Name("SaveUser").Value(c.SaveUser);
                 jWriter.Name("SavePassword").Value(c.SavePassword);
-                jWriter.Name("SavedUser").Value(c.SaveUser ? c.SavedUser : "");
-                jWriter.Name("SavedPassword").Value(c.SaveUser && c.SavePassword ? c.SavedPassword : "");
+                jWriter.Name("SavedUser").Value(c.SaveUser ? c.SavedUser : string.Empty);
+                jWriter.Name("SavedPassword").Value(c.SaveUser && c.SavePassword ? c.SavedPassword : string.Empty);
                 jWriter.Name("LoadPicture").Value(c.LoadPicture);
-                jWriter.Name("RecordCap").Value(c.RecordCap);
+                jWriter.Name("RecordCap").Value(c.RecordCap ?? "10");
                 jWriter.EndObject();
                 jWriter.Close();
                 ConfigureStream.Close();
@@ -67,19 +67,19 @@ namespace CSIMobile.Class.Common
                 FileStream ConfigureStream = File.Open(FileName, FileMode.OpenOrCreate);
                 JsonWriter jWriter = new JsonWriter(new Java.IO.OutputStreamWriter(ConfigureStream));
                 jWriter.BeginObject();
-                jWriter.Name("CSIWebServerName").Value("");
-                jWriter.Name("Configuration").Value("");
+                jWriter.Name("CSIWebServerName").Value(string.Empty);
+                jWriter.Name("Configuration").Value(string.Empty);
                 jWriter.Name("EnableHTTPS").Value(false);
                 jWriter.Name("UseRESTForRequest").Value(false);
                 jWriter.Name("SaveUser").Value(false);
                 jWriter.Name("SavePassword").Value(false);
-                jWriter.Name("SavedUser").Value("");
-                jWriter.Name("SavedPassword").Value("");
+                jWriter.Name("SavedUser").Value(string.Empty);
+                jWriter.Name("SavedPassword").Value(string.Empty);
                 jWriter.Name("LoadPicture").Value(false);
                 jWriter.Name("RecordCap").Value(10);
                 jWriter.Name("ConfigurationList");
                 jWriter.BeginArray();
-                jWriter.Value("");
+                jWriter.Value(string.Empty);
                 jWriter.EndArray();
                 jWriter.EndObject();
                 jWriter.Close();
@@ -104,45 +104,63 @@ namespace CSIMobile.Class.Common
                     string name = jReader.NextName();
                     if (name.Equals("CSIWebServerName"))
                     {
-                        if (jReader.Peek() == null)
+                        //WriteLog("Read CSIWebServerName");
+                        if (jReader.Peek() == JsonToken.Null)
                         {
                             jReader.SkipValue();
                         }
                         else
                         {
-                            c.CSIWebServerName = jReader.NextString();
+                            try
+                            {
+                                c.CSIWebServerName = jReader.NextString() ?? string.Empty;
+                            }catch (Exception Ex)
+                            {
+                                WriteErrorLog(Ex);
+                                c.CSIWebServerName = string.Empty;
+                            }
                         }
                     }
                     else if (name.Equals("Configuration"))
                     {
-                        if (jReader.Peek() == null)
+                        //WriteLog("Read Configuration");
+                        if (jReader.Peek() == JsonToken.Null)
                         {
                             jReader.SkipValue();
                         }
                         else
                         {
-                            c.Configuration = jReader.NextString();
+                            try
+                            {
+                                c.Configuration = jReader.NextString() ?? string.Empty;
+                            }
+                            catch (Exception Ex)
+                            {
+                                WriteErrorLog(Ex);
+                                c.CSIWebServerName = string.Empty;
+                            }
                         }
                     }
                     else if (name.Equals("ConfigurationList"))
                     {
-                        if (jReader.Peek() == null)
+                        //WriteLog("Read ConfigurationList");
+                        if (jReader.Peek() == JsonToken.Null)
                         {
                             jReader.SkipValue();
                         }
                         else
                         {
-                            jReader.BeginArray();
                             c.ConfigurationList.Clear();
+                            jReader.BeginArray();
                             while (jReader.HasNext)
                             {
-                                if (jReader.Peek() == null)
+                                if (jReader.Peek() == JsonToken.Null)
                                 {
                                     jReader.SkipValue();
                                 }
                                 else
                                 {
-                                    c.ConfigurationList.Add(jReader.NextString());
+                                    c.ConfigurationList.Add(jReader.NextString() ?? string.Empty);
                                 }
                             }
                             jReader.EndArray();
@@ -150,7 +168,8 @@ namespace CSIMobile.Class.Common
                     }
                     else if (name.Equals("SavedUser"))
                     {
-                        if (jReader.Peek() == null)
+                        //WriteLog("Read SavedUser");
+                        if (jReader.Peek() == JsonToken.Null)
                         {
                             jReader.SkipValue();
                         }
@@ -161,18 +180,20 @@ namespace CSIMobile.Class.Common
                     }
                     else if (name.Equals("SavedPassword"))
                     {
-                        if (jReader.Peek() == null)
+                        //WriteLog("Read SavedPassword");
+                        if (jReader.Peek() == JsonToken.Null)
                         {
                             jReader.SkipValue();
                         }
                         else
                         {
-                            c.SavedPassword = jReader.NextString();
+                            c.SavedPassword = jReader.NextString() ?? string.Empty;
                         }
                     }
                     else if (name.Equals("EnableHTTPS"))
                     {
-                        if (jReader.Peek() == null)
+                        //WriteLog("Read EnableHTTPS");
+                        if (jReader.Peek() == JsonToken.Null)
                         {
                             jReader.SkipValue();
                         }
@@ -183,7 +204,8 @@ namespace CSIMobile.Class.Common
                     }
                     else if (name.Equals("UseRESTForRequest"))
                     {
-                        if (jReader.Peek() == null)
+                        //WriteLog("Read UseRESTForRequest");
+                        if (jReader.Peek() == JsonToken.Null)
                         {
                             jReader.SkipValue();
                         }
@@ -194,7 +216,8 @@ namespace CSIMobile.Class.Common
                     }
                     else if (name.Equals("SaveUser"))
                     {
-                        if (jReader.Peek() == null)
+                        //WriteLog("Read SaveUser");
+                        if (jReader.Peek() == JsonToken.Null)
                         {
                             jReader.SkipValue();
                         }
@@ -205,7 +228,8 @@ namespace CSIMobile.Class.Common
                     }
                     else if (name.Equals("SavePassword"))
                     {
-                        if (jReader.Peek() == null)
+                        //WriteLog("Read SavePassword");
+                        if (jReader.Peek() == JsonToken.Null)
                         {
                             jReader.SkipValue();
                         }
@@ -216,7 +240,8 @@ namespace CSIMobile.Class.Common
                     }
                     else if (name.Equals("LoadPicture"))
                     {
-                        if (jReader.Peek() == null)
+                        //WriteLog("Read LoadPicture");
+                        if (jReader.Peek() == JsonToken.Null)
                         {
                             jReader.SkipValue();
                         }
@@ -227,13 +252,14 @@ namespace CSIMobile.Class.Common
                     }
                     else if (name.Equals("RecordCap"))
                     {
-                        if (jReader.Peek() == null)
+                        //WriteLog("Read RecordCap");
+                        if (jReader.Peek() == JsonToken.Null)
                         {
                             jReader.SkipValue();
                         }
                         else
                         {
-                            c.RecordCap = jReader.NextString();
+                            c.RecordCap = jReader.NextString() ?? string.Empty;
                         }
                     }
                     else

@@ -68,7 +68,7 @@ namespace CSIMobile.Class.Common
         {
             if (CSISystemContext.DisplayWhenError)
             {
-                Toast.MakeText(Context, Ex.Message, ToastLength.Long).Show();
+                Toast.MakeText(Application.Context, Ex.Message, ToastLength.Long).Show();
             }
             CSIErrorLog.WriteErrorLog(Ex);
         }

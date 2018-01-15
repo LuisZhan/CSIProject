@@ -37,49 +37,66 @@ namespace CSIMobile.Class.Fragments
 
         public SignInDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {
-            //CreateSessionTokenCompleted += OnCreateSessionTokenCompleted;
-            Users = new CSIUserNames(CSISystemContext);
-            Users.CreateSessionTokenCompleted += OnCreateSessionTokenCompleted;
-            Users.LoadDataSetCompleted += OnLoadDataSetCompleted;
-            UsersLocal = new CSIUserLocals(CSISystemContext);
-            UsersLocal.LoadDataSetCompleted += OnLoadDataSetCompleted;
-            Employee = new CSIEmployees(CSISystemContext);
-            Employee.LoadDataSetCompleted += OnLoadDataSetCompleted;
+            try
+            {
+                //CreateSessionTokenCompleted += OnCreateSessionTokenCompleted;
+                Users = new CSIUserNames(CSISystemContext);
+                Users.CreateSessionTokenCompleted += OnCreateSessionTokenCompleted;
+                Users.LoadDataSetCompleted += OnLoadDataSetCompleted;
+                UsersLocal = new CSIUserLocals(CSISystemContext);
+                UsersLocal.LoadDataSetCompleted += OnLoadDataSetCompleted;
+                Employee = new CSIEmployees(CSISystemContext);
+                Employee.LoadDataSetCompleted += OnLoadDataSetCompleted;
+            }catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
         }
 
         private void OnLoadDataSetCompleted(object sender, LoadDataSetCompletedEventArgs e)
         {
-            if (e.Error == null)
+            try
             {
-                if (sender.GetType() == Users.GetType())
+                if (e.Error == null)
                 {
-                    CSISystemContext.User = Users.GetCurrentPropertyStringValue("Username");
-                    CSISystemContext.UserDesc = Users.GetCurrentPropertyStringValue("UserDesc");
-                    GetUserLocalInfor();
-                }
-                if (sender.GetType() == UsersLocal.GetType())
-                {
-                    CSISystemContext.DefaultWarehouse = UsersLocal.GetCurrentPropertyStringValue("Whse");
-                    if (string.IsNullOrEmpty(CSISystemContext.DefaultWarehouse)) CSISystemContext.DefaultWarehouse = "MAIN";
-                    GetEmpInfor();
-                }
-                if (sender.GetType() == Employee.GetType())
-                {
-                    CSISystemContext.EmpNum = Employee.GetCurrentPropertyStringValue("EmpNum");
-                    CSISystemContext.EmpName = Employee.GetCurrentPropertyStringValue("Name");
-                }
+                    if (sender.GetType() == Users.GetType())
+                    {
+                        CSISystemContext.User = Users.GetCurrentPropertyStringValue("Username");
+                        CSISystemContext.UserDesc = Users.GetCurrentPropertyStringValue("UserDesc");
+                        GetUserLocalInfor();
+                    }
+                    if (sender.GetType() == UsersLocal.GetType())
+                    {
+                        CSISystemContext.DefaultWarehouse = UsersLocal.GetCurrentPropertyStringValue("Whse");
+                        if (string.IsNullOrEmpty(CSISystemContext.DefaultWarehouse)) CSISystemContext.DefaultWarehouse = "MAIN";
+                        GetEmpInfor();
+                    }
+                    if (sender.GetType() == Employee.GetType())
+                    {
+                        CSISystemContext.EmpNum = Employee.GetCurrentPropertyStringValue("EmpNum");
+                        CSISystemContext.EmpName = Employee.GetCurrentPropertyStringValue("Name");
+                    }
 
-                ShowProgressBar(false);
+                    ShowProgressBar(false);
 
-                if (ProgressBar.Visibility == ViewStates.Gone)
-                {
-                    ErrorText.Visibility = ViewStates.Invisible;
-                    Dismiss();
-                    Dispose();
+                    if (ProgressBar.Visibility == ViewStates.Gone)
+                    {
+                        ErrorText.Visibility = ViewStates.Invisible;
+                        Dismiss();
+                        Dispose();
+                    }
                 }
-            }
-            else
+                else
+                {
+                    ShowProgressBar(false);
+                    WriteErrorLog(e.Error);
+                    CSISystemContext.Token = "";
+                    ErrorText.Text = CSIBaseInvoker.TranslateError(e.Error);
+                    ErrorText.Visibility = ViewStates.Visible;
+                }
+            }catch (Exception Ex)
             {
+                WriteErrorLog(Ex);
                 ShowProgressBar(false);
                 WriteErrorLog(e.Error);
                 CSISystemContext.Token = "";
@@ -117,7 +134,7 @@ namespace CSIMobile.Class.Fragments
             try
             {
                 base.OnCreate(savedInstanceState);
-                Cancelable = false;
+                //Cancelable = false;
 
                 var view = inflater.Inflate(Resource.Layout.CSISignIn, container, false);
 
@@ -138,8 +155,8 @@ namespace CSIMobile.Class.Fragments
                 SavePasswordSwitch.Checked = CSISystemContext.SavePassword;
 
                 ShowProgressBar(false);
-                SetConfigurationSpin();
 
+                SetConfigurationSpin();
 
                 CloseImage.Click += (sender, args) =>
                 {
@@ -156,7 +173,7 @@ namespace CSIMobile.Class.Fragments
                     }
                     SignIn();
                 };
-                
+
                 return view;
             }catch (Exception Ex)
             {
@@ -209,9 +226,13 @@ namespace CSIMobile.Class.Fragments
         private void SetConfigurationSpin()
         {
             int index = 0, i = 0;
-            ArrayAdapter adapter = new ArrayAdapter(Context, Android.Resource.Layout.SimpleSpinnerItem);
+            ArrayAdapter adapter = new ArrayAdapter(Application.Context, Android.Resource.Layout.SimpleSpinnerItem);
             try
             {
+                if ((CSISystemContext.ConfigurationList == null) || (CSISystemContext.ConfigurationList.Count <= 0))
+                {
+                    return;
+                }
                 foreach (string config in CSISystemContext.ConfigurationList)
                 {
                     adapter.Add(config);

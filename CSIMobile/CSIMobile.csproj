@@ -32,9 +32,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
@@ -49,13 +49,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
-    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
     <AndroidSupportedAbis>armeabi;armeabi-v7a;x86;x86_64;arm64-v8a</AndroidSupportedAbis>
+    <EnableProguard>true</EnableProguard>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FastAndroidCamera, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -121,6 +122,7 @@
     <Compile Include="Class\Business\CSIDcitems.cs" />
     <Compile Include="Class\Business\CSIDcmoves.cs" />
     <Compile Include="Class\Business\CSIEmployees.cs" />
+    <Compile Include="Class\Business\CSIJsonObjects.cs" />
     <Compile Include="Class\Business\CSIUserLocals.cs" />
     <Compile Include="Class\Common\CSIBaseAdapter.cs" />
     <Compile Include="Class\Common\CSIBaseFullScreenDialogFragment.cs" />
@@ -168,6 +170,8 @@
     <AndroidResource Include="Resources\drawable\SplashScreen.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\CSIMiscIssueReceipt.axml" />
+    <AndroidResource Include="Resources\layout\CSIQuantityMove.axml" />
     <AndroidResource Include="Resources\layout\CSISignIn.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -189,8 +193,6 @@
     <AndroidResource Include="Resources\layout\CSILog.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\CSIQuantityMove.axml" />
-    <AndroidResource Include="Resources\layout\CSIMiscIssueReceipt.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\CSIMain.axml">

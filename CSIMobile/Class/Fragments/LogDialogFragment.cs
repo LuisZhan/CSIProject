@@ -19,8 +19,6 @@ namespace CSIMobile.Class.Fragments
     {
         private EditText LogEdit;
         private Button DeleteLogFileButton;
-        private DateTime DT;
-        private int Count;
 
         public LogDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {

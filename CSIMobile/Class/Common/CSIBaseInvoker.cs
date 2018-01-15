@@ -237,6 +237,14 @@ namespace CSIMobile.Class.Common
             else
             {
                 //SOAP
+                if (UseAsync)
+                {
+                    WebService.SaveDataSetAsync(Token, DataSet, true, string.Empty,string.Empty,string.Empty);
+                }
+                else
+                {
+                    DataSet = WebService.SaveDataSet(Token, DataSet, true, string.Empty, string.Empty, string.Empty);
+                }
             }
             return true;
         }

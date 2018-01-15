@@ -61,8 +61,14 @@ namespace CSIMobile
                 GetModuleDeck();
 
                 //Show SignIn
-
-                ShowSignInDialog();
+                if (string.IsNullOrEmpty(CSISystemContext.CSIWebServerName))
+                {
+                    ShowSettingsDialog();
+                }
+                else
+                {
+                    ShowSignInDialog();
+                }
                 //Task startupWork = new Task(() => { ShowSignInDialog(); });
                 //startupWork.Start();
             }
@@ -150,6 +156,11 @@ namespace CSIMobile
 
         private void ShowSignInDialog()
         {
+            if (string.IsNullOrEmpty(CSISystemContext.CSIWebServerName))
+            {
+                ShowSettingsDialog();
+                return;
+            }
             try
             {
                 FragmentTransaction ft = FragmentManager.BeginTransaction();

@@ -72,7 +72,7 @@ namespace CSIMobile.Class.Fragments
                 else if (Action.ActivityType != null)
                 {
                     Bundle bundle = CSISystemContext.BuildBundle();
-                    Intent intent = new Intent(Context, Action.ActivityType);
+                    Intent intent = new Intent(Application.Context, Action.ActivityType);
                     intent.PutExtra("CSISystemContext", bundle);
                     StartActivity(intent);
                 }

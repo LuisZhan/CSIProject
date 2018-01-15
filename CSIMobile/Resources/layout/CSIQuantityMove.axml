@@ -4,8 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minWidth="1000dp"
-    android:minHeight="1000dp"
-    android:padding="10dp">
+    android:minHeight="1000dp">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TitleLinearLayout"
+        android:gravity="right|top">
+        <ProgressBar
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/ProgressBar" />
+        <ImageView
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/CloseImage" />
+    </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -41,7 +59,7 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/linearLayout2">
         <LinearLayout
             android:orientation="horizontal"
@@ -93,7 +111,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/UMText"
+                    android:id="@+id/ItemUMText"
                     tools:text="@string/UM"
                     android:gravity="center"
                     android:singleLine="true" />
@@ -169,7 +187,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/QuantityEdit"
+                    android:id="@+id/QtyEdit"
                     android:gravity="right"
                     android:singleLine="true"
                     android:layout_marginRight="42dp"

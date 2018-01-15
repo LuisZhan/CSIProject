@@ -22,6 +22,8 @@ namespace CSIMobile.Class.Common
         {
             try
             {
+                Application app = new Application();
+                MobileBarcodeScanner.Initialize(app);
                 MobileBarcodeScanningOptions opts = new MobileBarcodeScanningOptions
                 {
                     PossibleFormats = new List<BarcodeFormat>
@@ -34,7 +36,7 @@ namespace CSIMobile.Class.Common
                 BarcodeFormat.QR_CODE
                 }
                 };
-                MobileBarcodeScanner scanner = new MobileBarcodeScanner();
+                var scanner = new MobileBarcodeScanner();
                 var result = await scanner.Scan(opts);
                 return result?.Text ?? string.Empty;
             }catch (Exception Ex)

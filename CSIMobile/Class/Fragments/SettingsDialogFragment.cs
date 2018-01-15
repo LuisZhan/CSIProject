@@ -39,11 +39,11 @@ namespace CSIMobile.Class.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            base.OnCreate(savedInstanceState);
+            //Cancelable = false;
+            var view = inflater.Inflate(Resource.Layout.CSISettings, container, false);
             try
             {
-                base.OnCreate(savedInstanceState);
-                Cancelable = false;
-                var view = inflater.Inflate(Resource.Layout.CSISettings, container, false);
                 
                 Layout = view.FindViewById<LinearLayout>(Resource.Id.LinearLayout);
                 CSIWebServerEdit = view.FindViewById<EditText>(Resource.Id.CSIWebServerEdit);
@@ -75,6 +75,7 @@ namespace CSIMobile.Class.Fragments
                 PasswordEdit.Enabled = SavePasswordSwitch.Checked;
 
                 ShowProgressBar(false);
+
                 SetConfigurationSpin();
 
                 CloseImage.Click += (sender, args) =>
@@ -107,7 +108,7 @@ namespace CSIMobile.Class.Fragments
                 {
                     ShowProgressBar(true);
                     CSISystemContext.CSIWebServerName = CSIWebServerEdit.Text;
-                    CSISystemContext.Configuration = (string)ConfigurationSpinner.SelectedItem;
+                    CSISystemContext.Configuration = (string)ConfigurationSpinner.SelectedItem??string.Empty;
                     CSISystemContext.SavedUser = UserEdit.Text;
                     CSISystemContext.SavedPassword = PasswordEdit.Text;
                     CSISystemContext.EnableHTTPS = EnableHTTPS.Checked;
@@ -128,7 +129,7 @@ namespace CSIMobile.Class.Fragments
             }catch (Exception Ex)
             {
                 WriteErrorLog(Ex);
-                return null;
+                return view;
             }
         }
 
@@ -142,7 +143,7 @@ namespace CSIMobile.Class.Fragments
             else
             {
                 WriteErrorLog(e.Error);
-                Toast.MakeText(Context, CSIBaseInvoker.TranslateError(e.Error), ToastLength.Short).Show();
+                Toast.MakeText(Application.Context, CSIBaseInvoker.TranslateError(e.Error), ToastLength.Short).Show();
             }
             ShowProgressBar(false);
         }
@@ -150,17 +151,24 @@ namespace CSIMobile.Class.Fragments
         private void SetConfigurationSpin()
         {
             int index = 0, i = 0;
-            ArrayAdapter adapter = new ArrayAdapter(Context, Android.Resource.Layout.SimpleSpinnerItem);
+            ArrayAdapter adapter = new ArrayAdapter(Application.Context, Android.Resource.Layout.SimpleSpinnerItem);
             try
             {
-                foreach (string config in CSISystemContext.ConfigurationList)
+                if ((CSISystemContext.ConfigurationList == null) || (CSISystemContext.ConfigurationList.Count <= 0))
                 {
-                    adapter.Add(config);
-                    if (CSISystemContext.Configuration == config)
+                    adapter.Add(string.Empty);
+                }
+                else
+                {
+                    foreach (string config in CSISystemContext.ConfigurationList)
                     {
-                        index = i;
+                        adapter.Add(config);
+                        if (CSISystemContext.Configuration == config)
+                        {
+                            index = i;
+                        }
+                        i += 1;
                     }
-                    i += 1;
                 }
                 adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
                 ConfigurationSpinner.Adapter = adapter;

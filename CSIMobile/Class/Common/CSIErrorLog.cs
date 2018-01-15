@@ -15,21 +15,24 @@ namespace CSIMobile.Class.Common
 
         public static void WriteLog(CSIContext Context)
         {
-            string Message = string.Format("{0} [Log] {1}\r\n{2}\r\n", DateTime.Now.ToShortDateString(), Context.ToString());
+            string Message = string.Format("{0} {1} [Log] {2}\r\n", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), Context.ToString());
             Log.Debug(TAG, Message);
             File.AppendAllText(FileName, Message);
         }
 
         public static void WriteLog(string Content)
         {
-            string Message = string.Format("{0} [Log] {1}\r\n{2}\r\n", DateTime.Now.ToShortDateString(), Content);
+            string Message = string.Format("{0} {1} [Log] {2}\r\n", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), Content);
             Log.Debug(TAG, Message);
             File.AppendAllText(FileName, Message);
         }
 
         public static void WriteErrorLog(Exception Ex)
         {
-            string Message = string.Format("{0} [Error] {1}\r\n{2}\r\n", DateTime.Now.ToShortDateString(), Ex.Message, Ex.StackTrace);
+            string Message = string.Format("{0} {1} [Error] {2}\r\n", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), Ex.Message);
+            Log.Debug(ErrorTAG, Message);
+            File.AppendAllText(FileName, Message);
+            Message = string.Format("{0} {1} [Error] {2}\r\n", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), Ex.StackTrace);
             Log.Debug(ErrorTAG, Message);
             File.AppendAllText(FileName, Message);
         }

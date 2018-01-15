@@ -2,7 +2,7 @@
   <style name="MyTheme.Base" parent="Theme.AppCompat.Light">
   </style>
 
-  <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
+  <style name="MyTheme" parent="Theme.AppCompat.NoActionBar">
   </style>
   
   <style name="MyTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
