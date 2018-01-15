@@ -134,7 +134,7 @@ namespace CSIMobile.Class.Fragments
             try
             {
                 base.OnCreate(savedInstanceState);
-                //Cancelable = false;
+                Cancelable = false;
 
                 var view = inflater.Inflate(Resource.Layout.CSISignIn, container, false);
 

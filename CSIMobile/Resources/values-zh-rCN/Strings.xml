@@ -157,4 +157,5 @@
   <string name="FromLot">原始批号</string>
   <string name="ToLocation">目的货位</string>
   <string name="ToLot">目的批号</string>
+  <string name="SNPicked">序列号 (已选{0}件)</string>
 </resources>

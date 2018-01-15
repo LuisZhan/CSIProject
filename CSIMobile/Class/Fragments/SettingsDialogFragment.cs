@@ -40,7 +40,7 @@ namespace CSIMobile.Class.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            //Cancelable = false;
+            Cancelable = false;
             var view = inflater.Inflate(Resource.Layout.CSISettings, container, false);
             try
             {

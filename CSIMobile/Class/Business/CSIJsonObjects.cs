@@ -99,7 +99,7 @@ namespace CSIMobile.Class.Business
                             Qty = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Loc1"))
+                    else if (name.Equals("Loc1") || name.Equals("FromLoc"))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -110,7 +110,7 @@ namespace CSIMobile.Class.Business
                             Loc1 = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Lot1"))
+                    else if (name.Equals("Lot1") || name.Equals("FromLot"))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -121,7 +121,7 @@ namespace CSIMobile.Class.Business
                             Lot1 = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Loc2"))
+                    else if (name.Equals("Loc2") || name.Equals("ToLoc"))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -132,7 +132,7 @@ namespace CSIMobile.Class.Business
                             Loc2 = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Lot2"))
+                    else if (name.Equals("Lot2") || name.Equals("ToLot"))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {

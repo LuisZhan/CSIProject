@@ -17,6 +17,7 @@ namespace CSIMobile.Class.Common
     {
         protected CSIBaseActivity BaseActivity;
         protected CSIContext CSISystemContext;
+        protected bool HasTitle = false;
 
 
         public CSIBaseDialogFragment(CSIBaseActivity activity = null)
@@ -42,7 +43,8 @@ namespace CSIMobile.Class.Common
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            if (!HasTitle)
+                SetStyle(DialogFragmentStyle.NoTitle, 0);
             // Create your fragment here
         }
 

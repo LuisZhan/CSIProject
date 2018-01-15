@@ -4,6 +4,7 @@ using System.Text;
 using Android.OS;
 using System.Collections.Generic;
 using Android.Media;
+using static Android.Provider.Settings;
 
 namespace CSIMobile.Class.Common
 {
@@ -52,6 +53,8 @@ namespace CSIMobile.Class.Common
         public string LineSuffix2 { get; set; }
         public string Release2 { get; set; }
 
+        //
+        public string AndroidId { get; set; }
 
         public CSIContext()
         {
@@ -203,6 +206,9 @@ namespace CSIMobile.Class.Common
             LoadPicture = false;
             UseRESTForRequest = false;
             DisplayWhenError = false;
+
+            //others
+            AndroidId = Secure.GetString(Application.Context.ContentResolver, Secure.AndroidId);
         }
     }
 }

@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minWidth="1000dp"
-    android:minHeight="1000dp">
+    android:minHeight="1000dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:id="@+id/LinearLayout">
     <LinearLayout
         android:orientation="horizontal"
         android:minWidth="25px"
@@ -81,7 +84,7 @@
                 android:layout_height="36dp"
                 android:scaleType="fitCenter"
                 android:padding="0dp"
-                android:layout_marginLeft="-36dp" />
+                android:layout_marginLeft="-40dp" />
         </LinearLayout>
         <TextView xmlns:tools="http://schemas.android.com/tools"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -173,7 +176,7 @@
                     android:layout_height="36dp"
                     android:scaleType="fitCenter"
                     android:padding="0dp"
-                    android:layout_marginLeft="-36dp" />
+                    android:layout_marginLeft="-40dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -199,7 +202,7 @@
                     android:layout_height="36dp"
                     android:scaleType="fitCenter"
                     android:padding="0dp"
-                    android:layout_marginLeft="-36dp" />
+                    android:layout_marginLeft="-40dp" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -209,27 +212,63 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/FromLinearLayout">
+            <TextView
+                android:text="@string/FromLocation"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/linearLayout8">
-                <EditText
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/FromLocEdit"
-                    android:hint="@string/FromLocation"
+                android:id="@+id/linearLayout10">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout8"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="42dp"
-                    android:singleLine="true" />
-                <ImageButton
-                    android:src="@drawable/scanner"
-                    android:id="@+id/FromLocScanButton"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:scaleType="fitCenter"
-                    android:padding="0dp"
-                    android:layout_marginLeft="-36dp" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+                    <EditText
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/FromLocEdit"
+                        android:hint="@string/Location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="42dp"
+                        android:singleLine="true" />
+                    <ImageButton
+                        android:src="@drawable/scanner"
+                        android:id="@+id/FromLocScanButton"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:scaleType="fitCenter"
+                        android:padding="0dp"
+                        android:layout_marginLeft="-40dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/FromLotLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+                    <EditText
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/FromLotEdit"
+                        android:hint="@string/Lot"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="42dp"
+                        android:singleLine="true" />
+                    <ImageButton
+                        android:src="@drawable/scanner"
+                        android:id="@+id/FromLotScanButton"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:scaleType="fitCenter"
+                        android:padding="0dp"
+                        android:layout_marginLeft="-40dp" />
+                </LinearLayout>
             </LinearLayout>
             <TextView xmlns:tools="http://schemas.android.com/tools"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -237,28 +276,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/FromLocDescText"
                 tools:text="@string/Description" />
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/linearLayout8">
-                <EditText
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/FromLotEdit"
-                    android:hint="@string/FromLot"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="42dp"
-                    android:singleLine="true" />
-                <ImageButton
-                    android:src="@drawable/scanner"
-                    android:id="@+id/FromLotScanButton"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:scaleType="fitCenter"
-                    android:padding="0dp"
-                    android:layout_marginLeft="-36dp" />
-            </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
@@ -267,27 +284,63 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ToLinearLayout">
+            <TextView
+                android:text="@string/ToLocation"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/linearLayout8">
-                <EditText
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/ToLocEdit"
-                    android:hint="@string/ToLocation"
+                android:id="@+id/linearLayout11">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout8"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="42dp"
-                    android:singleLine="true" />
-                <ImageButton
-                    android:src="@drawable/scanner"
-                    android:id="@+id/ToLocScanButton"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:scaleType="fitCenter"
-                    android:padding="0dp"
-                    android:layout_marginLeft="-36dp" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+                    <EditText
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/ToLocEdit"
+                        android:hint="@string/Location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="42dp"
+                        android:singleLine="true" />
+                    <ImageButton
+                        android:src="@drawable/scanner"
+                        android:id="@+id/ToLocScanButton"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:scaleType="fitCenter"
+                        android:padding="0dp"
+                        android:layout_marginLeft="-40dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/ToLotLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+                    <EditText
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/ToLotEdit"
+                        android:hint="@string/Lot"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="42dp"
+                        android:singleLine="true" />
+                    <ImageButton
+                        android:src="@drawable/scanner"
+                        android:id="@+id/ToLotScanButton"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:scaleType="fitCenter"
+                        android:padding="0dp"
+                        android:layout_marginLeft="-40dp" />
+                </LinearLayout>
             </LinearLayout>
             <TextView xmlns:tools="http://schemas.android.com/tools"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -295,38 +348,24 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/ToLocDescText"
                 tools:text="@string/Description" />
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/linearLayout8">
-                <EditText
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/ToLotEdit"
-                    android:hint="@string/ToLot"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="42dp"
-                    android:singleLine="true" />
-                <ImageButton
-                    android:src="@drawable/scanner"
-                    android:id="@+id/ToLotScanButton"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:scaleType="fitCenter"
-                    android:padding="0dp"
-                    android:layout_marginLeft="-36dp" />
-            </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout9">
         <Button
-            android:text="@string/SN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/SNButton" />
+            android:text="@string/SNPicked"
+            android:id="@+id/SNButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
         <Button
             android:text="@string/Process"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ProcessButton" />
+            android:id="@+id/ProcessButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>

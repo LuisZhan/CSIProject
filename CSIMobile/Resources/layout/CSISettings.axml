@@ -7,10 +7,13 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/LinearLayout">
+        android:id="@+id/LinearLayout"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+            android:gravity="right|top">
         <LinearLayout
             android:orientation="horizontal"
-            android:minWidth="25px"
+            android:minWidth="300dp"
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -44,9 +44,15 @@ namespace CSIMobile.Class.Fragments
         TextView ToLocDescText;
         LinearLayout QtyLinearLayout;
         LinearLayout FromLinearLayout;
-        LinearLayout ToLinearLayout;
+        LinearLayout ToLinearLayout; 
+        LinearLayout FromLotLinearLayout;
+        LinearLayout ToLotLinearLayout;
         Button SNButton;
         Button ProcessButton;
+
+        ImageView CloseImage;
+        ProgressBar ProgressBar;
+        LinearLayout Layout;
 
         bool LotTracked = false, SNTracked = false;
 
@@ -58,7 +64,11 @@ namespace CSIMobile.Class.Fragments
         {
             CSISystemContext.ReadConfigurations();
             SLDcmoves = new CSIDcmoves(CSISystemContext);
+            SLDcmoves.AddProperty("TransNum");
+            SLDcmoves.AddProperty("TransType");
+            SLDcmoves.AddProperty("Stat");
             SLDcmoves.AddProperty("Termid");
+            SLDcmoves.AddProperty("TransDate");
             SLDcmoves.AddProperty("Whse");
             SLDcmoves.AddProperty("EmpNum");
             SLDcmoves.AddProperty("Item");
@@ -78,6 +88,8 @@ namespace CSIMobile.Class.Fragments
                 base.OnCreate(savedInstanceState);
 
                 var view = inflater.Inflate(Resource.Layout.CSIQuantityMove, container, false);
+                Cancelable = false;
+                
 
                 ItemScanButton = view.FindViewById<ImageButton>(Resource.Id.ItemScanButton);
                 ItemEdit = view.FindViewById<EditText>(Resource.Id.ItemEdit);
@@ -93,16 +105,25 @@ namespace CSIMobile.Class.Fragments
                 ToLocEdit = view.FindViewById<EditText>(Resource.Id.ToLocEdit);
                 ToLotScanButton = view.FindViewById<ImageButton>(Resource.Id.ToLotScanButton);
                 ToLotEdit = view.FindViewById<EditText>(Resource.Id.ToLotEdit);
+
                 QtyLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.QtyLinearLayout);
                 FromLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.FromLinearLayout);
                 ToLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.ToLinearLayout);
+                FromLotLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.FromLotLinearLayout);
+                ToLotLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.ToLotLinearLayout);
+
                 SNButton = view.FindViewById<Button>(Resource.Id.SNButton);
                 ProcessButton = view.FindViewById<Button>(Resource.Id.ProcessButton);
+                Layout = view.FindViewById<LinearLayout>(Resource.Id.LinearLayout);
+
                 ItemDescText = view.FindViewById<TextView>(Resource.Id.ItemDescText);
                 ItemUMText = view.FindViewById<TextView>(Resource.Id.ItemUMText);
                 OnHandQuantityText = view.FindViewById<TextView>(Resource.Id.OnHandQuantityText);
                 FromLocDescText = view.FindViewById<TextView>(Resource.Id.FromLocDescText);
                 ToLocDescText = view.FindViewById<TextView>(Resource.Id.ToLocDescText);
+
+                CloseImage = view.FindViewById<ImageView>(Resource.Id.CloseImage);
+                ProgressBar = view.FindViewById<ProgressBar>(Resource.Id.ProgressBar);
 
                 ItemScanButton.Click += ItemScanButton_Click;
                 UMScanButton.Click += UMScanButton_Click;
@@ -123,6 +144,13 @@ namespace CSIMobile.Class.Fragments
                 SNButton.Click += SNButton_Click;
                 ProcessButton.Click += ProcessButton_Click;
 
+                CloseImage.Click += (sender, args) =>
+                {
+                    Dismiss();
+                    Dispose();
+                };
+
+                Initialize();
                 EnableDisableComponents();
 
                 return view;
@@ -147,6 +175,8 @@ namespace CSIMobile.Class.Fragments
             OnHandQuantityText.Text = string.Empty;
             FromLocDescText.Text = string.Empty;
             ToLocDescText.Text = string.Empty;
+            SetSNLabel();
+            ShowProgressBar(false);
         }
 
         private void SLDcmoves_SaveDataSetCompleted(object sender, SaveDataSetCompletedEventArgs e)
@@ -168,16 +198,20 @@ namespace CSIMobile.Class.Fragments
                 SLDcmoves.CurrentTable.Rows.Clear();
                 DataRow Row = SLDcmoves.CurrentTable.NewRow();
                 Row.BeginEdit();
-                Row.ItemArray[0] = "";//Termid
-                Row.ItemArray[0] = CSISystemContext.DefaultWarehouse;//Whse
-                Row.ItemArray[0] = CSISystemContext.EmpNum;//EmpNum
-                Row.ItemArray[0] = ItemEdit.Text;//Item
-                Row.ItemArray[0] = UMEdit.Text;//UM
-                Row.ItemArray[0] = QtyEdit.Text;//QtyMoved
-                Row.ItemArray[0] = FromLocEdit.Text;//Loc1
-                Row.ItemArray[0] = FromLotEdit.Text;//Lot1
-                Row.ItemArray[0] = ToLocEdit.Text;//Loc2
-                Row.ItemArray[0] = ToLotEdit.Text;//Lot2
+                Row.ItemArray[0] = "";//TransNum
+                Row.ItemArray[1] = "";//TransType
+                Row.ItemArray[2] = "";//Stat
+                Row.ItemArray[3] = DateTime.Now;//TransDate
+                Row.ItemArray[4] = "";//Termid
+                Row.ItemArray[5] = CSISystemContext.DefaultWarehouse;//Whse
+                Row.ItemArray[6] = CSISystemContext.EmpNum;//EmpNum
+                Row.ItemArray[7] = ItemEdit.Text;//Item
+                Row.ItemArray[8] = UMEdit.Text;//UM
+                Row.ItemArray[9] = QtyEdit.Text;//QtyMoved
+                Row.ItemArray[10] = FromLocEdit.Text;//Loc1
+                Row.ItemArray[11] = FromLotEdit.Text;//Lot1
+                Row.ItemArray[12] = ToLocEdit.Text;//Loc2
+                Row.ItemArray[13] = ToLotEdit.Text;//Lot2
                 Row.EndEdit();
                 Row.AcceptChanges();
                 SLDcmoves.InsertIDO();
@@ -350,8 +384,11 @@ namespace CSIMobile.Class.Fragments
                 FromLinearLayout.Visibility = ViewStates.Visible;
                 ToLinearLayout.Visibility = ViewStates.Visible;
             }
+            FromLotLinearLayout.Visibility = LotTracked ? ViewStates.Visible : ViewStates.Gone;
+            ToLotLinearLayout.Visibility = LotTracked ? ViewStates.Visible : ViewStates.Gone;
             FromLotScanButton.Enabled = LotTracked;
             ToLotScanButton.Enabled = LotTracked;
+            SNButton.Visibility = SNTracked ? ViewStates.Visible : ViewStates.Gone;
             SNButton.Enabled = SNTracked;
             ProcessButton.Enabled = ItemValidated && UMValidated && QtyValidated && FromLocValidated && FromLotValidated && ToLocValidated && ToLotValidated && SNPicked;
         }
@@ -566,6 +603,19 @@ namespace CSIMobile.Class.Fragments
         private bool PerformValidation()
         {
             return ValidateItem() && ValidateUM() && ValidateQty() && ValidateFromLoc() && ValidateFromLot() && ValidateToLoc() && ValidateToLot();
+        }
+
+        private void SetSNLabel()
+        {
+            SNButton.Text = string.Format(GetString(Resource.String.SNPicked), SNs.Count.ToString());
+        }
+
+        private void ShowProgressBar(bool show)
+        {
+            ProgressBar.Visibility = show ? ViewStates.Visible : ViewStates.Gone;
+            CSIBaseObject.DisableEnableControls(!show, Layout);
+            
+            EnableDisableComponents();
         }
     }
 }

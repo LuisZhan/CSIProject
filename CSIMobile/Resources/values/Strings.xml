@@ -157,4 +157,5 @@
   <string name="FromLot">From Lot</string>
   <string name="ToLocation">To Location</string>
   <string name="ToLot">To Lot</string>
+  <string name="SNPicked">S/N ({0} Picked)</string>
 </resources>

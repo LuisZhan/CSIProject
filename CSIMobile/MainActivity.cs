@@ -278,16 +278,40 @@ namespace CSIMobile
                     Success = true;
                     break;
                 case "QtyMove":
-                    ShowQtyMove();
-                    Success = true;
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else
+                    {
+                        ShowQtyMove();
+                        Success = true;
+                    }
                     break;
                 case "MiscIssue":
-                    ShowMiscIssue();
-                    Success = true;
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else
+                    {
+                        ShowMiscIssue();
+                        Success = true;
+                    }
                     break;
                 case "MiscReceive":
-                    ShowMiscReceive();
-                    Success = true;
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else
+                    {
+                        ShowMiscReceive();
+                        Success = true;
+                    }
                     break;
                 default:
                     break;
