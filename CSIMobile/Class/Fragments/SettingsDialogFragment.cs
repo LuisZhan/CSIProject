@@ -32,6 +32,8 @@ namespace CSIMobile.Class.Fragments
         private ProgressBar ProgressBar;
         private LinearLayout Layout;
 
+        private int ProcessCount = 0;
+
         public SettingsDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {
             CSISystemContext.ReadConfigurations();
@@ -200,8 +202,21 @@ namespace CSIMobile.Class.Fragments
         
         private void ShowProgressBar(bool show)
         {
-            ProgressBar.Visibility = show ? ViewStates.Visible : ViewStates.Gone;
-            CSIBaseObject.DisableEnableControls(!show, Layout);
+            if (show)
+            {
+                ProcessCount += 1;
+                ProgressBar.Visibility = ViewStates.Visible;
+                SetStyleNoInput();
+            }
+            else
+            {
+                ProcessCount -= ProcessCount == 0 ? 0 : 1;
+                if (ProcessCount == 0)
+                {
+                    ProgressBar.Visibility = ViewStates.Gone;
+                    SetDialogStyle();
+                }
+            }
 
             UserEdit.Enabled = SaveUserSwitch.Enabled && SaveUserSwitch.Checked;
             PasswordEdit.Enabled = SavePasswordSwitch.Enabled && SavePasswordSwitch.Checked;

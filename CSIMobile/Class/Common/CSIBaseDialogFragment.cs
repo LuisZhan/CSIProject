@@ -43,8 +43,7 @@ namespace CSIMobile.Class.Common
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            if (!HasTitle)
-                SetStyle(DialogFragmentStyle.NoTitle, 0);
+            SetDialogStyle();
             // Create your fragment here
         }
 
@@ -93,6 +92,27 @@ namespace CSIMobile.Class.Common
         protected virtual void WriteLog()
         {
             CSIErrorLog.WriteLog(CSISystemContext);
+        }
+        
+        protected void SetDialogStyle()
+        {
+            if (!HasTitle)
+                SetStyleNoTitle();
+        }
+
+        protected void SetStyleNoTitle()
+        {
+            SetStyle(DialogFragmentStyle.NoTitle, Resource.Style.MyTheme_Dialog);
+        }
+
+        protected void SetStyleNormal()
+        {
+            SetStyle(DialogFragmentStyle.Normal, Resource.Style.MyTheme_Dialog);
+        }
+
+        protected void SetStyleNoInput()
+        {
+            SetStyle(DialogFragmentStyle.NoInput, Resource.Style.MyTheme_Dialog);
         }
     }
 }

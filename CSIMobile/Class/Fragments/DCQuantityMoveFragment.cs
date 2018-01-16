@@ -60,6 +60,8 @@ namespace CSIMobile.Class.Fragments
         List<string> SNs = new List<string>();
         bool SNPicked = false;
 
+        private int ProcessCount = 0;
+
         public DCQuantityMoveFragment(CSIBaseActivity activity = null) : base(activity)
         {
             CSISystemContext.ReadConfigurations();
@@ -612,8 +614,21 @@ namespace CSIMobile.Class.Fragments
 
         private void ShowProgressBar(bool show)
         {
-            ProgressBar.Visibility = show ? ViewStates.Visible : ViewStates.Gone;
-            CSIBaseObject.DisableEnableControls(!show, Layout);
+            if (show)
+            {
+                ProcessCount += 1;
+                ProgressBar.Visibility = ViewStates.Visible;
+                SetStyleNoInput();
+            }
+            else
+            {
+                ProcessCount -= ProcessCount == 0 ? 0 : 1;
+                if (ProcessCount == 0)
+                {
+                    ProgressBar.Visibility = ViewStates.Gone;
+                    SetDialogStyle();
+                }
+            }
             
             EnableDisableComponents();
         }
