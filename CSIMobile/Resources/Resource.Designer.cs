@@ -3810,7 +3810,10 @@ namespace CSIMobile
 			public const int MyTheme_Dialog = 2131165550;
 			
 			// aapt resource value: 0x7f07016f
-			public const int MyTheme_Splash = 2131165551;
+			public const int MyTheme_Dialog_FullScreen = 2131165551;
+			
+			// aapt resource value: 0x7f070170
+			public const int MyTheme_Splash = 2131165552;
 			
 			// aapt resource value: 0x7f07001e
 			public const int Platform_AppCompat = 2131165214;

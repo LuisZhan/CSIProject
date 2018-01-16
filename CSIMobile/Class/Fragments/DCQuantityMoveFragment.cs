@@ -30,6 +30,8 @@ namespace CSIMobile.Class.Fragments
         ImageButton FromLotScanButton;
         ImageButton ToLocScanButton;
         ImageButton ToLotScanButton;
+        EditText WhseEdit;
+        TextView TransDateText;
         EditText ItemEdit;
         EditText UMEdit;
         EditText QtyEdit;
@@ -56,9 +58,9 @@ namespace CSIMobile.Class.Fragments
 
         bool LotTracked = false, SNTracked = false;
 
-        bool ItemValidated = false, UMValidated = false, QtyValidated = false, FromLocValidated = false, FromLotValidated = false, ToLocValidated = false, ToLotValidated = false;
+        bool ItemValidated = true, UMValidated = true, QtyValidated = true, FromLocValidated = true, FromLotValidated = true, ToLocValidated = true, ToLotValidated = true;
         List<string> SNs = new List<string>();
-        bool SNPicked = false;
+        bool SNPicked = true;
 
         private int ProcessCount = 0;
 
@@ -80,7 +82,138 @@ namespace CSIMobile.Class.Fragments
             SLDcmoves.AddProperty("Lot1");
             SLDcmoves.AddProperty("Loc2");
             SLDcmoves.AddProperty("Lot2");
+            SLDcmoves.AddProperty("DocumentNum");
+            SLDcmoves.AddProperty("ErrorMessage");
+
+            SLDcmoves.SetFilter("1=0");
+            SLDcmoves.LoadIDO();
             SLDcmoves.SaveDataSetCompleted += SLDcmoves_SaveDataSetCompleted;
+            SLDcmoves.LoadDataSetCompleted += SLDcmoves_LoadDataSetCompleted;
+            SLDcmoves.CallMethodCompleted += SLDcmoves_CallMethodCompleted;
+        }
+
+        private void SLDcmoves_SaveDataSetCompleted(object sender, SaveDataSetCompletedEventArgs e)
+        {
+            try
+            {
+                if (e.Error == null)
+                {
+                    //check result status
+                    if (SLDcmoves.CurrentTable.Rows.Count <= 0)
+                    {
+                        //nothing happen or just delete rows
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(SLDcmoves.CurrentTable.Rows[0]["ErrorMessage"].ToString()))
+                        {
+                            //Ready to Post -- calling DcmovePVb
+                            ShowProgressBar(true);
+                            string strParmeters = "";
+                            strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "");
+                            strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "", true);
+                            SLDcmoves.InvokeMethod("DcmovePVb", strParmeters);
+                        }
+                        else
+                        {
+                            //delete first before prompt message.
+                            SLDcmoves.CurrentTable.Rows[0].Delete();
+                            ShowProgressBar(true);
+                            SLDcmoves.DeleteIDO();
+
+                            //Populate Error
+                            string ErrorMessage = (string)SLDcmoves.CurrentTable.Rows[0]["ErrorMessage"];
+                            FragmentTransaction ft = FragmentManager.BeginTransaction();
+                            CSIMessageDialog DeleteDialog = (CSIMessageDialog)FragmentManager.FindFragmentByTag("DeleteDialog");
+
+                            if (DeleteDialog != null)
+                            {
+                                ft.Show(DeleteDialog);
+                            }
+                            else
+                            {
+                                DeleteDialog = new CSIMessageDialog(GetString(Resource.String.app_name), ErrorMessage, DialogTypes.OK);
+                                //DeleteDialog.OkHandler += (o, args) =>
+                                //{
+                                //    SLDcmoves.CurrentTable.Rows[0].Delete();
+                                //    ShowProgressBar(true);
+                                //    SLDcmoves.DeleteIDO();
+                                //};
+                                //DeleteDialog.CancelHandler += (o, args) =>
+                                //{
+                                //    SLDcmoves.CurrentTable.Rows[0].Delete();
+                                //    ShowProgressBar(true);
+                                //    SLDcmoves.DeleteIDO();
+                                //};
+                                DeleteDialog.Show(ft, "DeleteDialog");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    WriteErrorLog(e.Error);
+                }
+            }catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+            ShowProgressBar(false);
+        }
+
+        private void SLDcmoves_CallMethodCompleted(object sender, CallMethodCompletedEventArgs e)
+        {
+            try
+            {
+                //throw new NotImplementedException();
+                if (e.Error == null)
+                {
+                    if (e.Result.ToString() == "0")
+                    {
+                        Initialize();
+                    }
+                    else
+                    {
+                        //get error - delete first.
+                        SLDcmoves.CurrentTable.Rows[0].Delete();
+                        ShowProgressBar(true);
+                        SLDcmoves.DeleteIDO();
+                        WriteErrorLog(new Exception(CSIBaseInvoker.GetXMLParameters(e.strMethodParameters,1)));
+                    }
+                }
+                else
+                {
+                    //try to delete post
+                    SLDcmoves.CurrentTable.Rows[0].Delete();
+                    ShowProgressBar(true);
+                    SLDcmoves.DeleteIDO();
+                    WriteErrorLog(e.Error);
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+            ShowProgressBar(false);
+        }
+
+        private void SLDcmoves_LoadDataSetCompleted(object sender, LoadDataSetCompletedEventArgs e)
+        {
+            try
+            {
+                //throw new NotImplementedException();
+                if (e.Error == null)
+                {
+                }
+                else
+                {
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+            ShowProgressBar(false);
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -92,7 +225,8 @@ namespace CSIMobile.Class.Fragments
                 var view = inflater.Inflate(Resource.Layout.CSIQuantityMove, container, false);
                 Cancelable = false;
                 
-
+                WhseEdit = view.FindViewById<EditText>(Resource.Id.WhseEdit);
+                TransDateText = view.FindViewById<TextView>(Resource.Id.TransDateText);
                 ItemScanButton = view.FindViewById<ImageButton>(Resource.Id.ItemScanButton);
                 ItemEdit = view.FindViewById<EditText>(Resource.Id.ItemEdit);
                 UMScanButton = view.FindViewById<ImageButton>(Resource.Id.UMScanButton);
@@ -152,6 +286,7 @@ namespace CSIMobile.Class.Fragments
                     Dispose();
                 };
 
+                ShowProgressBar(false);
                 Initialize();
                 EnableDisableComponents();
 
@@ -165,6 +300,8 @@ namespace CSIMobile.Class.Fragments
 
         private void Initialize()
         {
+            WhseEdit.Text = CSISystemContext.DefaultWarehouse;
+            TransDateText.Text = string.Format("{0} {1}",DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
             ItemEdit.Text = string.Empty;
             UMEdit.Text = string.Empty;
             QtyEdit.Text = "0";
@@ -178,45 +315,35 @@ namespace CSIMobile.Class.Fragments
             FromLocDescText.Text = string.Empty;
             ToLocDescText.Text = string.Empty;
             SetSNLabel();
-            ShowProgressBar(false);
-        }
-
-        private void SLDcmoves_SaveDataSetCompleted(object sender, SaveDataSetCompletedEventArgs e)
-        {
-            if (e.Error == null)
-            {
-                Initialize();
-            }
-            else
-            {
-                WriteErrorLog(e.Error);
-            }
         }
 
         private void ProcessButton_Click(object sender, EventArgs e)
         {
+            PerformValidation();
             if (ItemValidated && UMValidated && QtyValidated && FromLocValidated && FromLotValidated && ToLocValidated && ToLotValidated && SNPicked)
             {
                 SLDcmoves.CurrentTable.Rows.Clear();
                 DataRow Row = SLDcmoves.CurrentTable.NewRow();
-                Row.BeginEdit();
-                Row.ItemArray[0] = "";//TransNum
-                Row.ItemArray[1] = "";//TransType
-                Row.ItemArray[2] = "";//Stat
-                Row.ItemArray[3] = DateTime.Now;//TransDate
-                Row.ItemArray[4] = "";//Termid
-                Row.ItemArray[5] = CSISystemContext.DefaultWarehouse;//Whse
-                Row.ItemArray[6] = CSISystemContext.EmpNum;//EmpNum
-                Row.ItemArray[7] = ItemEdit.Text;//Item
-                Row.ItemArray[8] = UMEdit.Text;//UM
-                Row.ItemArray[9] = QtyEdit.Text;//QtyMoved
-                Row.ItemArray[10] = FromLocEdit.Text;//Loc1
-                Row.ItemArray[11] = FromLotEdit.Text;//Lot1
-                Row.ItemArray[12] = ToLocEdit.Text;//Loc2
-                Row.ItemArray[13] = ToLotEdit.Text;//Lot2
-                Row.EndEdit();
-                Row.AcceptChanges();
+                Row["TransNum"] = 0;//TransNum
+                Row["TransType"] = "1";//TransType
+                Row["Stat"] = "U";//Stat
+                Row["Termid"] = CSISystemContext.AndroidId.Substring(CSISystemContext.AndroidId.Length - 4, 4);//Termid
+                Row["TransDate"] = DateTime.Now;//TransDate
+                Row["Whse"] = CSISystemContext.DefaultWarehouse;//Whse
+                Row["EmpNum"] = CSISystemContext.EmpNum;//EmpNum
+                Row["Item"] = ItemEdit.Text;//Item
+                Row["UM"] = UMEdit.Text;//UM
+                Row["QtyMoved"] = QtyEdit.Text;//QtyMoved
+                Row["Loc1"] = FromLocEdit.Text;//Loc1
+                Row["Lot1"] = FromLotEdit.Text;//Lot1
+                Row["Loc2"] = ToLocEdit.Text;//Loc2
+                Row["Lot2"] = ToLotEdit.Text;//Lot2
+                SLDcmoves.CurrentTable.Rows.Add(Row);
+                //Row.BeginEdit();
+                //Row.EndEdit();
+                //Row.AcceptChanges();
                 SLDcmoves.InsertIDO();
+                ShowProgressBar(true);
             }
         }
 
@@ -315,6 +442,7 @@ namespace CSIMobile.Class.Fragments
             {
                 ItemValidated = true;
             }
+            EnableDisableComponents();
             return ItemValidated;
         }
 
@@ -324,6 +452,7 @@ namespace CSIMobile.Class.Fragments
             {
                 UMValidated = true;
             }
+            EnableDisableComponents();
             return UMValidated;
         }
 
@@ -333,6 +462,7 @@ namespace CSIMobile.Class.Fragments
             {
                 QtyValidated = true;
             }
+            EnableDisableComponents();
             return QtyValidated;
         }
 
@@ -342,6 +472,7 @@ namespace CSIMobile.Class.Fragments
             {
                 FromLocValidated = true;
             }
+            EnableDisableComponents();
             return FromLocValidated;
         }
 
@@ -351,6 +482,7 @@ namespace CSIMobile.Class.Fragments
             {
                 FromLotValidated = true;
             }
+            EnableDisableComponents();
             return FromLotValidated;
         }
 
@@ -369,6 +501,7 @@ namespace CSIMobile.Class.Fragments
             {
                 ToLotValidated = true;
             }
+            EnableDisableComponents();
             return ToLotValidated;
         }
 
@@ -376,15 +509,15 @@ namespace CSIMobile.Class.Fragments
         {
             if (string.IsNullOrEmpty(ItemEdit.Text))
             {
-                QtyLinearLayout.Visibility = ViewStates.Gone;
-                FromLinearLayout.Visibility = ViewStates.Gone;
-                ToLinearLayout.Visibility = ViewStates.Gone;
+                //QtyLinearLayout.Visibility = ViewStates.Gone;
+                //FromLinearLayout.Visibility = ViewStates.Gone;
+                //ToLinearLayout.Visibility = ViewStates.Gone;
             }
             else
             {
-                QtyLinearLayout.Visibility = ViewStates.Visible;
-                FromLinearLayout.Visibility = ViewStates.Visible;
-                ToLinearLayout.Visibility = ViewStates.Visible;
+                //QtyLinearLayout.Visibility = ViewStates.Visible;
+                //FromLinearLayout.Visibility = ViewStates.Visible;
+                //ToLinearLayout.Visibility = ViewStates.Visible;
             }
             FromLotLinearLayout.Visibility = LotTracked ? ViewStates.Visible : ViewStates.Gone;
             ToLotLinearLayout.Visibility = LotTracked ? ViewStates.Visible : ViewStates.Gone;
@@ -392,7 +525,10 @@ namespace CSIMobile.Class.Fragments
             ToLotScanButton.Enabled = LotTracked;
             SNButton.Visibility = SNTracked ? ViewStates.Visible : ViewStates.Gone;
             SNButton.Enabled = SNTracked;
-            ProcessButton.Enabled = ItemValidated && UMValidated && QtyValidated && FromLocValidated && FromLotValidated && ToLocValidated && ToLotValidated && SNPicked;
+            ProcessButton.Enabled = ItemValidated && UMValidated && QtyValidated
+                && FromLocValidated && ((LotTracked && FromLotValidated) || !LotTracked) 
+                && ToLocValidated && ((LotTracked && ToLotValidated) || !LotTracked)  
+                && ((SNTracked && SNPicked) || !SNTracked);
         }
 
         private async void ToLotScanButton_Click(object sender, EventArgs e)
@@ -420,7 +556,6 @@ namespace CSIMobile.Class.Fragments
                         ProcessButton.RequestFocus();
                     }
                 }
-                EnableDisableComponents();
             }
         }
 
@@ -456,7 +591,6 @@ namespace CSIMobile.Class.Fragments
                         }
                     }
                 }
-                EnableDisableComponents();
             }
         }
 
@@ -478,7 +612,6 @@ namespace CSIMobile.Class.Fragments
                 {
                     ToLocEdit.RequestFocus();
                 }
-                EnableDisableComponents();
             }
         }
 
@@ -507,7 +640,6 @@ namespace CSIMobile.Class.Fragments
                         ToLocEdit.RequestFocus();
                     }
                 }
-                EnableDisableComponents();
             }
         }
 
@@ -529,7 +661,6 @@ namespace CSIMobile.Class.Fragments
                 {
                     FromLocEdit.RequestFocus();
                 }
-                EnableDisableComponents();
             }
         }
 
@@ -551,7 +682,6 @@ namespace CSIMobile.Class.Fragments
                 {
                     QtyEdit.RequestFocus();
                 }
-                EnableDisableComponents();
             }
         }
 
@@ -573,7 +703,6 @@ namespace CSIMobile.Class.Fragments
                 {
                     UMEdit.RequestFocus();
                 }
-                EnableDisableComponents();
             }
         }
 
@@ -598,12 +727,20 @@ namespace CSIMobile.Class.Fragments
                 ToLotEdit.Text = Lot2;
                 ValidateToLot();
                 EnableDisableComponents();
+                try
+                {
+                    ProcessButton_Click(null, null);
+                }catch(Exception Ex)
+                {
+                    WriteErrorLog(Ex);
+                }
             }
             return rtn;
         }
 
         private bool PerformValidation()
         {
+            TransDateText.Text = string.Format("{0} {1}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
             return ValidateItem() && ValidateUM() && ValidateQty() && ValidateFromLoc() && ValidateFromLot() && ValidateToLoc() && ValidateToLot();
         }
 
@@ -618,7 +755,7 @@ namespace CSIMobile.Class.Fragments
             {
                 ProcessCount += 1;
                 ProgressBar.Visibility = ViewStates.Visible;
-                SetStyleNoInput();
+                CSIBaseObject.DisableEnableControls(false, Layout);
             }
             else
             {
@@ -626,10 +763,10 @@ namespace CSIMobile.Class.Fragments
                 if (ProcessCount == 0)
                 {
                     ProgressBar.Visibility = ViewStates.Gone;
-                    SetDialogStyle();
+                    CSIBaseObject.DisableEnableControls(true, Layout);
                 }
             }
-            
+
             EnableDisableComponents();
         }
     }

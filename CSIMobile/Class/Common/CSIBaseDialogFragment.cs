@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using static CSIMobile.Class.Common.CSIMessageDialog;
 
 namespace CSIMobile.Class.Common
 {
@@ -18,6 +19,7 @@ namespace CSIMobile.Class.Common
         protected CSIBaseActivity BaseActivity;
         protected CSIContext CSISystemContext;
         protected bool HasTitle = false;
+        protected int ThemeId = 0;//Resource.Style.MyTheme_Dialog;
 
 
         public CSIBaseDialogFragment(CSIBaseActivity activity = null)
@@ -82,6 +84,7 @@ namespace CSIMobile.Class.Common
                 Toast.MakeText(Application.Context, Ex.Message, ToastLength.Long).Show();
             }
             CSIErrorLog.WriteErrorLog(Ex);
+            ShowDialog(Ex);
         }
 
         protected virtual void WriteLog(string content)
@@ -102,17 +105,33 @@ namespace CSIMobile.Class.Common
 
         protected void SetStyleNoTitle()
         {
-            SetStyle(DialogFragmentStyle.NoTitle, Resource.Style.MyTheme_Dialog);
+            SetStyle(DialogFragmentStyle.NoTitle, ThemeId);
         }
 
         protected void SetStyleNormal()
         {
-            SetStyle(DialogFragmentStyle.Normal, Resource.Style.MyTheme_Dialog);
+            SetStyle(DialogFragmentStyle.Normal, ThemeId);
         }
 
         protected void SetStyleNoInput()
         {
-            SetStyle(DialogFragmentStyle.NoInput, Resource.Style.MyTheme_Dialog);
+            SetStyle(DialogFragmentStyle.NoInput, ThemeId);
+        }
+
+        private void ShowDialog(Exception Ex)
+        {
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+            CSIMessageDialog Dialog = (CSIMessageDialog)FragmentManager.FindFragmentByTag("Dialog");
+
+            if (Dialog != null)
+            {
+                ft.Show(Dialog);
+            }
+            else
+            {
+                Dialog = new CSIMessageDialog(Application.Context.GetString(Resource.String.app_name), Ex.Message, DialogTypes.OK);
+                Dialog.Show(ft, "Dialog");
+            }
         }
     }
 }

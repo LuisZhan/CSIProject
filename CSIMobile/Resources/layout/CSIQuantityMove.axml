@@ -168,7 +168,8 @@
                     android:gravity="center"
                     android:singleLine="true"
                     android:layout_marginRight="42dp"
-                    android:hint="@string/UM" />
+                    android:hint="@string/UM"
+                    android:textAllCaps="true" />
                 <ImageButton
                     android:src="@drawable/scanner"
                     android:id="@+id/UMScanButton"

@@ -88,7 +88,7 @@ namespace CSIMobile.Class.Business
                             UM = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Qty"))
+                    else if (name.Equals("Qty") || name.Equals("Quantity"))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {

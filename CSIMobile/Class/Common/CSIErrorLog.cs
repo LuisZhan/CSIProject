@@ -2,6 +2,7 @@
 using Android.Util;
 using System;
 using System.IO;
+using static CSIMobile.Class.Common.CSIMessageDialog;
 
 namespace CSIMobile.Class.Common
 {

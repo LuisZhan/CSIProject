@@ -1,11 +1,14 @@
 ﻿<resources>
-  <style name="MyTheme.Base" parent="Theme.AppCompat.Light">
+  <style name="MyTheme.Base" parent="Theme.AppCompat">
   </style>
 
-  <style name="MyTheme" parent="Theme.AppCompat.Light">
+  <style name="MyTheme" parent="Theme.AppCompat.NoActionBar">
+  </style>
+
+  <style name="MyTheme.Dialog" parent="Theme.AppCompat.Dialog">
   </style>
   
-  <style name="MyTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
+  <style name="MyTheme.Dialog.FullScreen" parent="Theme.AppCompat.DialogWhenLarge">
   </style>
 
   <style name="MyTheme.Splash" parent ="MyTheme.Base">

@@ -206,7 +206,7 @@ namespace CSIMobile.Class.Fragments
             {
                 ProcessCount += 1;
                 ProgressBar.Visibility = ViewStates.Visible;
-                SetStyleNoInput();
+                CSIBaseObject.DisableEnableControls(false, Layout);
             }
             else
             {
@@ -214,7 +214,7 @@ namespace CSIMobile.Class.Fragments
                 if (ProcessCount == 0)
                 {
                     ProgressBar.Visibility = ViewStates.Gone;
-                    SetDialogStyle();
+                    CSIBaseObject.DisableEnableControls(true, Layout);
                 }
             }
 

@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-            android:gravity="right|top">
+        android:gravity="right|top">
         <LinearLayout
             android:orientation="horizontal"
             android:minWidth="300dp"
@@ -47,9 +47,9 @@
             android:gravity="center" />
         <Spinner
             android:id="@+id/ConfigurationEdit"
-            android:textAlignment="center"
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="30dp"
+            android:theme="@android:style/Widget.Holo.Light.Spinner" />
         <Button
             android:text="@string/Login"
             android:layout_width="match_parent"

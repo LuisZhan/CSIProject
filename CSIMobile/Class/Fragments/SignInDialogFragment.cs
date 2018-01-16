@@ -61,20 +61,20 @@ namespace CSIMobile.Class.Fragments
                 {
                     if (sender.GetType() == Users.GetType())
                     {
-                        CSISystemContext.User = Users.GetCurrentPropertyStringValue("Username");
-                        CSISystemContext.UserDesc = Users.GetCurrentPropertyStringValue("UserDesc");
+                        CSISystemContext.User = Users.GetCurrentPropertyValueOfString("Username");
+                        CSISystemContext.UserDesc = Users.GetCurrentPropertyValueOfString("UserDesc");
                         GetUserLocalInfor();
                     }
                     if (sender.GetType() == UsersLocal.GetType())
                     {
-                        CSISystemContext.DefaultWarehouse = UsersLocal.GetCurrentPropertyStringValue("Whse");
+                        CSISystemContext.DefaultWarehouse = UsersLocal.GetCurrentPropertyValueOfString("Whse");
                         if (string.IsNullOrEmpty(CSISystemContext.DefaultWarehouse)) CSISystemContext.DefaultWarehouse = "MAIN";
                         GetEmpInfor();
                     }
                     if (sender.GetType() == Employee.GetType())
                     {
-                        CSISystemContext.EmpNum = Employee.GetCurrentPropertyStringValue("EmpNum");
-                        CSISystemContext.EmpName = Employee.GetCurrentPropertyStringValue("Name");
+                        CSISystemContext.EmpNum = Employee.GetCurrentPropertyValueOfString("EmpNum");
+                        CSISystemContext.EmpName = Employee.GetCurrentPropertyValueOfString("Name");
                     }
 
                     ShowProgressBar(false);
@@ -260,7 +260,7 @@ namespace CSIMobile.Class.Fragments
             {
                 ProcessCount += 1;
                 ProgressBar.Visibility = ViewStates.Visible;
-                SetStyleNoInput();
+                CSIBaseObject.DisableEnableControls(false, Layout);
             }
             else
             {
@@ -268,7 +268,7 @@ namespace CSIMobile.Class.Fragments
                 if(ProcessCount == 0)
                 {
                     ProgressBar.Visibility = ViewStates.Gone;
-                    SetDialogStyle();
+                    CSIBaseObject.DisableEnableControls(true, Layout);
                 }
             }
         }

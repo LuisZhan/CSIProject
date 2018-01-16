@@ -21,6 +21,7 @@ namespace CSIMobile.Class.Common
 
         public override void OnCreate(Bundle savedInstanceState)
         {
+            ThemeId = Resource.Style.MyTheme_Dialog_FullScreen;
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here

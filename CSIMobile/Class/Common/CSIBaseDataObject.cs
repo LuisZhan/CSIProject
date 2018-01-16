@@ -203,6 +203,12 @@ namespace CSIMobile.Class.Common
             return rtn;
         }
 
+        public virtual bool InvokeMethod(string strMethodName, string strMethodParameters)
+        {
+            bool rtn = Invoker.InvokeMethod(IDOName, strMethodName, strMethodParameters);
+            return rtn;
+        }
+
         public virtual bool DeleteIDO()
         {
             bool rtn = Invoker.InvokeDelete(CSIDataSet);
@@ -217,7 +223,6 @@ namespace CSIMobile.Class.Common
             }
             if (CurrentTable.Rows.Count <= 0)
             {
-                WriteLog("No Rows Return");
                 return null;
             }
             return CurrentTable.Rows[Row].ItemArray[Column];
@@ -246,11 +251,11 @@ namespace CSIMobile.Class.Common
             return GetPropertyValue(CurrentRow, PropertyName);
         }
 
-        public string GetCurrentPropertyStringValue(string PropertyName, string Default = "")
+        public string GetCurrentPropertyValueOfString(string PropertyName, string Default = "")
         {
             try
             {
-                return (string)GetPropertyValue(CurrentRow, PropertyName);
+                return (string)GetPropertyValue(CurrentRow, PropertyName)??string.Empty;
             }catch (Exception Ex)
             {
                 WriteErrorLog(Ex);

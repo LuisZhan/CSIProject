@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System.Threading;
+using System.Xml;
 
 namespace CSIMobile.Class.Common
 {
@@ -203,6 +204,14 @@ namespace CSIMobile.Class.Common
             else
             {
                 //SOAP
+                if (UseAsync)
+                {
+                    WebService.SaveDataSetAsync(Token, DataSet, true, string.Empty, string.Empty, string.Empty);
+                }
+                else
+                {
+                    DataSet = WebService.SaveDataSet(Token, DataSet, true, string.Empty, string.Empty, string.Empty);
+                }
             }
             return true;
         }
@@ -220,6 +229,14 @@ namespace CSIMobile.Class.Common
             else
             {
                 //SOAP
+                if (UseAsync)
+                {
+                    WebService.SaveDataSetAsync(Token, DataSet, true, string.Empty, string.Empty, string.Empty);
+                }
+                else
+                {
+                    DataSet = WebService.SaveDataSet(Token, DataSet, true, string.Empty, string.Empty, string.Empty);
+                }
             }
             return true;
         }
@@ -249,6 +266,31 @@ namespace CSIMobile.Class.Common
             return true;
         }
 
+        public bool InvokeMethod(string strIDOName, string strMethodName,string strMethodParameters)
+        {
+            if (string.IsNullOrEmpty(URL) || string.IsNullOrEmpty(Token))
+            {
+                return false;
+            }
+            if (CSISystemContext.UseRESTForRequest)
+            {
+                //REST
+            }
+            else
+            {
+                //SOAP
+                if (UseAsync)
+                {
+                    WebService.CallMethodAsync(Token, strIDOName, strMethodName, strMethodParameters);
+                }
+                else
+                {
+                    var o = WebService.CallMethod(Token, strIDOName, strMethodName, ref strMethodParameters);
+                }
+            }
+            return true;
+        }
+
         public static string TranslateError(Exception Ex)
         {
             string Message = "";
@@ -271,6 +313,48 @@ namespace CSIMobile.Class.Common
                     break;
             }
             return Message;
+        }
+
+        public static string BuildXMLParameters(string strXML, string strParm, bool bOutput = false)
+        {
+            XmlElement Root;
+            XmlElement Node;
+            XmlDocument DOM = new XmlDocument();
+            if (string.IsNullOrEmpty(strXML))
+            {
+                DOM.AppendChild(DOM.CreateXmlDeclaration("1.0", "utf-8", null));
+                Root = DOM.CreateElement("Parameters");
+                DOM.AppendChild(Root);
+            }
+            else
+            {
+                DOM.LoadXml(strXML);
+                Root = DOM.DocumentElement;
+            }
+            try
+            {
+                Node = DOM.CreateElement("Parameter");
+                Node.InnerText = strParm;
+                Node.SetAttribute("ByRef", bOutput ? "Y" : "N");
+                Root.AppendChild(Node);
+                strXML = DOM.OuterXml;
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+            return strXML;
+        }
+
+        public static string GetXMLParameters(string strXML, int position)
+        {
+            XmlElement Root;
+            XmlElement Node;
+            XmlDocument DOM = new XmlDocument();
+            DOM.LoadXml(strXML);
+            Root = DOM.DocumentElement;
+            Node = (XmlElement)Root.GetElementsByTagName("Parameter").Item(position);
+            return Node.InnerText;
         }
     }
 }
