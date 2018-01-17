@@ -53,7 +53,7 @@ namespace CSIMobile.Class.Business
                 {
                     SLItemLoc.SetFilter(string.Format("Item = N'{0}' And Loc = N'{1}'", Item, Loc));
                 }
-                SLItemLoc.SetOrderBy("Rank Desc");
+                SLItemLoc.SetOrderBy("Rank");
                 SLItemLoc.SetRecordCap(1);
                 SLItemLoc.LoadIDO();
                 if (SLItemLoc.CurrentTable.Rows.Count <= 0)
