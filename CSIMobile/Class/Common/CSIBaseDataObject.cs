@@ -22,6 +22,7 @@ namespace CSIMobile.Class.Common
         protected string OrderBy = "";
         protected string PostQueryMethod = "";
         protected int RecordCap = -1;
+        
         public int CurrentRow = 0;
         public DataSet CSIDataSet;
         public DataTable CurrentTable
@@ -255,12 +256,69 @@ namespace CSIMobile.Class.Common
         {
             try
             {
-                return (string)GetPropertyValue(CurrentRow, PropertyName)??string.Empty;
+                return Convert.ToString(GetPropertyValue(CurrentRow, PropertyName)) ?? Default;
             }catch (Exception Ex)
             {
                 WriteErrorLog(Ex);
                 return Default;
             }
+        }
+
+        public DateTime GetCurrentPropertyValueOfDateTime(string PropertyName, bool DefaultUserCurrent = true)
+        {
+            try
+            {
+                return Convert.ToDateTime(GetPropertyValue(CurrentRow, PropertyName));
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                return DefaultUserCurrent ? DateTime.Now : DateTime.MinValue;
+            }
+        }
+
+        public int GetCurrentPropertyValueOfInteger(string PropertyName, int Default = 0)
+        {
+            try
+            {
+                return Convert.ToInt16(GetPropertyValue(CurrentRow, PropertyName));
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                return Default;
+            }
+        }
+
+        public decimal GetCurrentPropertyValueOfDecimal(string PropertyName, decimal Default = 0)
+        {
+            try
+            {
+                return Convert.ToDecimal(GetPropertyValue(CurrentRow, PropertyName));
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                return Default;
+            }
+        }
+
+        public bool GetCurrentPropertyValueOfBoolean(string PropertyName, bool Default = false)
+        {
+            try
+            {
+                return Convert.ToBoolean(GetPropertyValue(CurrentRow, PropertyName));
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                return Default;
+            }
+        }
+
+        public void UseSync(bool use)
+        {
+            Invoker.UseAsync = use;
         }
     }
 }

@@ -145,7 +145,7 @@ namespace CSIMobile.Class.Fragments
             else
             {
                 WriteErrorLog(e.Error);
-                Toast.MakeText(Application.Context, CSIBaseInvoker.TranslateError(e.Error), ToastLength.Short).Show();
+                //Toast.MakeText(Application.Context, CSIBaseInvoker.TranslateError(e.Error), ToastLength.Short).Show();
             }
             ShowProgressBar(false);
         }

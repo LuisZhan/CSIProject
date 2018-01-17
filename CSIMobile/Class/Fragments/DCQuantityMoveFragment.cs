@@ -105,7 +105,8 @@ namespace CSIMobile.Class.Fragments
                     }
                     else
                     {
-                        if (string.IsNullOrEmpty(SLDcmoves.CurrentTable.Rows[0]["ErrorMessage"].ToString()))
+                        string ErrorMessage = (string)SLDcmoves.CurrentTable.Rows[0]["ErrorMessage"];
+                        if (string.IsNullOrEmpty(ErrorMessage))
                         {
                             //Ready to Post -- calling DcmovePVb
                             ShowProgressBar(true);
@@ -122,7 +123,6 @@ namespace CSIMobile.Class.Fragments
                             SLDcmoves.DeleteIDO();
 
                             //Populate Error
-                            string ErrorMessage = (string)SLDcmoves.CurrentTable.Rows[0]["ErrorMessage"];
                             FragmentTransaction ft = FragmentManager.BeginTransaction();
                             CSIMessageDialog DeleteDialog = (CSIMessageDialog)FragmentManager.FindFragmentByTag("DeleteDialog");
 
@@ -277,6 +277,14 @@ namespace CSIMobile.Class.Fragments
                 ToLocEdit.FocusChange += ToLocEdit_FocusChange;
                 ToLotEdit.FocusChange += ToLotEdit_FocusChange;
 
+                ItemEdit.KeyPress += ItemEdit_KeyPress;
+                UMEdit.KeyPress += UMEdit_KeyPress;
+                QtyEdit.KeyPress += QtyEdit_KeyPress;
+                FromLocEdit.KeyPress += FromLocEdit_KeyPress;
+                FromLotEdit.KeyPress += FromLotEdit_KeyPress;
+                ToLocEdit.KeyPress += ToLocEdit_KeyPress;
+                ToLotEdit.KeyPress += ToLotEdit_KeyPress;
+
                 SNButton.Click += SNButton_Click;
                 ProcessButton.Click += ProcessButton_Click;
 
@@ -295,6 +303,105 @@ namespace CSIMobile.Class.Fragments
             {
                 WriteErrorLog(Ex);
                 return null;
+            }
+        }
+
+        private void ToLotEdit_KeyPress(object sender, View.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            {
+                //
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = false;
+                ToLotValidated = false;
+            }
+        }
+
+        private void ToLocEdit_KeyPress(object sender, View.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keycode.Enter && LotTracked && e.Event.Action == KeyEventActions.Up)
+            {
+                ToLotEdit.RequestFocus();
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+                ToLocValidated = false;
+            }
+
+        }
+
+        private void FromLotEdit_KeyPress(object sender, View.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            {
+                ToLocEdit.RequestFocus();
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+                FromLotValidated = false;
+            }
+        }
+
+        private void FromLocEdit_KeyPress(object sender, View.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keycode.Enter && LotTracked && e.Event.Action == KeyEventActions.Up)
+            {
+                FromLotEdit.RequestFocus();
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+                FromLocValidated = false;
+            }
+        }
+
+        private void QtyEdit_KeyPress(object sender, View.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            {
+                FromLocEdit.RequestFocus();
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+                QtyValidated = false;
+            }
+        }
+
+        private void UMEdit_KeyPress(object sender, View.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            {
+                QtyEdit.RequestFocus();
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+                UMValidated = false;
+            }
+        }
+
+        private void ItemEdit_KeyPress(object sender, View.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            {
+                //
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = false;
+                ItemValidated = false;
             }
         }
 
@@ -356,7 +463,7 @@ namespace CSIMobile.Class.Fragments
         {
             if (e.HasFocus)
             {//gain focus
-
+                ToLotEdit.SelectAll();
             }
             else
             {//lose focus
@@ -368,7 +475,7 @@ namespace CSIMobile.Class.Fragments
         {
             if (e.HasFocus)
             {//gain focus
-
+                ToLocEdit.SelectAll();
             }
             else
             {//lose focus
@@ -380,7 +487,7 @@ namespace CSIMobile.Class.Fragments
         {
             if (e.HasFocus)
             {//gain focus
-
+                FromLotEdit.SelectAll();
             }
             else
             {//lose focus
@@ -392,7 +499,7 @@ namespace CSIMobile.Class.Fragments
         {
             if (e.HasFocus)
             {//gain focus
-
+                FromLocEdit.SelectAll();
             }
             else
             {//lose focus
@@ -404,7 +511,7 @@ namespace CSIMobile.Class.Fragments
         {
             if (e.HasFocus)
             {//gain focus
-
+                QtyEdit.SelectAll();
             }
             else
             {//lose focus
@@ -416,7 +523,7 @@ namespace CSIMobile.Class.Fragments
         {
             if (e.HasFocus)
             {//gain focus
-
+                UMEdit.SelectAll();
             }
             else
             {//lose focus
@@ -428,7 +535,7 @@ namespace CSIMobile.Class.Fragments
         {
             if (e.HasFocus)
             {//gain focus
-
+                ItemEdit.SelectAll();
             }
             else
             {//lose focus
@@ -440,7 +547,43 @@ namespace CSIMobile.Class.Fragments
         {
             if (!ItemValidated)
             {
-                ItemValidated = true;
+                if (string.IsNullOrEmpty(ItemEdit.Text))
+                {
+                    UMValidated = false;
+                }
+                else
+                {
+                    try
+                    {
+                        string Item = ItemEdit.Text, Desc = ItemDescText.Text, UM = ItemUMText.Text, Qty = OnHandQuantityText.Text;
+                        ItemValidated = CSIItems.GetItemInfor(CSISystemContext, ref Item, ref Desc, ref UM, ref Qty, ref LotTracked, ref SNTracked);
+                        if (ItemValidated == true)
+                        {
+                            ItemDescText.Text = Desc;
+                            ItemUMText.Text = UM;
+                            if (string.IsNullOrEmpty(UMEdit.Text))
+                            {
+                                UMEdit.Text = UM;
+                            }
+                            OnHandQuantityText.Text = Qty;
+                        }
+
+                        string Loc = FromLocEdit.Text, LocType = "";
+                        bool RtnCSIItemLocs = CSIItemLocs.GetItemLocInfor(CSISystemContext, ItemEdit.Text, WhseEdit.Text, ref Loc, ref LocType, ref Qty);
+                        if (RtnCSIItemLocs == true)
+                        {
+                            FromLocEdit.Text = Loc;
+                            FromLocValidated = false;
+                            ValidateFromLoc();
+                            //OnHandQuantityText.Text = Qty; //used for validate Qty
+                        }
+                    }
+                    catch (Exception Ex)
+                    {
+                        WriteErrorLog(Ex);
+                        ItemValidated = false;
+                    }
+                }
             }
             EnableDisableComponents();
             return ItemValidated;
@@ -450,7 +593,14 @@ namespace CSIMobile.Class.Fragments
         {
             if (!UMValidated)
             {
-                UMValidated = true;
+                if (string.IsNullOrEmpty(UMEdit.Text))
+                {
+                    UMValidated = false;
+                }
+                else
+                {
+                    UMValidated = true;
+                }
             }
             EnableDisableComponents();
             return UMValidated;
@@ -460,7 +610,14 @@ namespace CSIMobile.Class.Fragments
         {
             if (!QtyValidated)
             {
-                QtyValidated = true;
+                if (string.IsNullOrEmpty(QtyEdit.Text))
+                {
+                    QtyValidated = false;
+                }
+                else
+                {
+                    QtyValidated = true;
+                }
             }
             EnableDisableComponents();
             return QtyValidated;
@@ -470,7 +627,28 @@ namespace CSIMobile.Class.Fragments
         {
             if (!FromLocValidated)
             {
-                FromLocValidated = true;
+                if (string.IsNullOrEmpty(FromLocEdit.Text))
+                {
+                    FromLocValidated = false;
+                }
+                else
+                {
+                    string Loc = FromLocEdit.Text, LocDescription = "", Lot = FromLotEdit.Text, Qty = "";
+                    FromLocValidated = CSIItemLocs.GetItemLocInfor(CSISystemContext, ItemEdit.Text, WhseEdit.Text, ref Loc, ref LocDescription, ref Qty);
+                    if (FromLocValidated)
+                    {
+                        FromLocEdit.Text = Loc;
+                        FromLocDescText.Text = LocDescription;
+                        bool RtnCSILotLocs = CSILotLocs.GetItemLotLocInfor(CSISystemContext, ItemEdit.Text, WhseEdit.Text, FromLocEdit.Text, ref Lot, ref Qty);
+                        if (RtnCSILotLocs)
+                        {
+                            FromLotEdit.Text = Lot;
+                            FromLotValidated = false;
+                            ValidateFromLot();
+                            //OnHandQuantityText.Text = Qty; //used for validate Qty
+                        }
+                    }
+                }
             }
             EnableDisableComponents();
             return FromLocValidated;
@@ -480,7 +658,18 @@ namespace CSIMobile.Class.Fragments
         {
             if (!FromLotValidated)
             {
-                FromLotValidated = true;
+                if (string.IsNullOrEmpty(FromLotEdit.Text))
+                {
+                    FromLotValidated = false;
+                }
+                else
+                {
+                    FromLotValidated = true;
+                    if (string.IsNullOrEmpty(ToLotEdit.Text))
+                    {
+                        ToLotEdit.Text = FromLotEdit.Text;
+                    }
+                }
             }
             EnableDisableComponents();
             return FromLotValidated;
@@ -490,8 +679,30 @@ namespace CSIMobile.Class.Fragments
         {
             if (!ToLocValidated)
             {
-                ToLocValidated = true;
+                if (string.IsNullOrEmpty(ToLocEdit.Text))
+                {
+                    ToLocValidated = false;
+                }
+                else
+                {
+                    string Loc = ToLocEdit.Text, LocDescription = "", Lot = ToLotEdit.Text, Qty = "";
+                    ToLocValidated = CSIItemLocs.GetItemLocInfor(CSISystemContext, ItemEdit.Text, WhseEdit.Text, ref Loc, ref LocDescription, ref Qty);
+                    if (ToLocValidated)
+                    {
+                        ToLocEdit.Text = Loc;
+                        ToLocDescText.Text = LocDescription;
+                        bool RtnCSILotLocs = CSILotLocs.GetItemLotLocInfor(CSISystemContext, ItemEdit.Text, WhseEdit.Text, Loc, ref Lot, ref Qty);
+                        if (RtnCSILotLocs)
+                        {
+                            ToLotEdit.Text = Lot;
+                            ToLotValidated = false;
+                            ValidateToLot();
+                            //OnHandQuantityText.Text = Qty; //used for validate Qty
+                        }
+                    }
+                }
             }
+            EnableDisableComponents();
             return ToLocValidated;
         }
 
@@ -499,10 +710,30 @@ namespace CSIMobile.Class.Fragments
         {
             if (!ToLotValidated)
             {
-                ToLotValidated = true;
+                if (string.IsNullOrEmpty(ToLotEdit.Text))
+                {
+                    ToLotValidated = false;
+                }
+                else
+                {
+                    ToLotValidated = true;
+                }
             }
             EnableDisableComponents();
             return ToLotValidated;
+        }
+
+        private bool ValidateSN()
+        {
+            if (SNTracked)
+            {
+                SNPicked = SNs.Count == int.Parse(QtyEdit.Text);
+            }
+            else
+            {
+                SNPicked = true;
+            }
+            return SNPicked;
         }
 
         private void EnableDisableComponents()
@@ -712,20 +943,53 @@ namespace CSIMobile.Class.Fragments
             bool rtn = CSIJsonObjects.ReadQtyMoveJson(Result, out string Item, out string UM, out string Qty, out string Loc1, out string Lot1, out string Loc2, out string Lot2);
             if (rtn)
             {
-                ItemEdit.Text = Item;
-                ValidateItem();
-                UMEdit.Text = UM;
-                ValidateUM();
-                QtyEdit.Text = Qty;
-                ValidateQty();
-                FromLocEdit.Text = Loc1;
-                ValidateFromLoc();
-                FromLotEdit.Text = Lot1;
-                ValidateFromLot();
-                ToLocEdit.Text = Loc2;
-                ValidateToLoc();
-                ToLotEdit.Text = Lot2;
-                ValidateToLot();
+                if (!string.IsNullOrEmpty(Item))
+                {
+                    ItemEdit.Text = Item;
+                    ItemValidated = false;
+                    ValidateItem();
+                }
+                if (!string.IsNullOrEmpty(UM))
+                {
+                    UMEdit.Text = UM;
+                    UMValidated = false;
+                    ValidateUM();
+                }
+                if (!string.IsNullOrEmpty(Qty))
+                {
+                    QtyEdit.Text = Qty;
+                    QtyValidated = false;
+                    ValidateQty();
+                }
+                if (!string.IsNullOrEmpty(Loc1))
+                {
+                    FromLocEdit.Text = Loc1;
+                    FromLocValidated = false;
+                    ValidateFromLoc();
+                }
+                if (!string.IsNullOrEmpty(Lot1))
+                {
+                    FromLotEdit.Text = Lot1;
+                    FromLotValidated = false;
+                    ValidateFromLot();
+                }
+                if (!string.IsNullOrEmpty(Loc2))
+                {
+                    ToLocEdit.Text = Loc2;
+                    ToLocValidated = false;
+                    ValidateToLoc();
+                }
+                if (!string.IsNullOrEmpty(Lot2))
+                {
+                    ToLotEdit.Text = Lot2;
+                    ToLotValidated = false;
+                    ValidateToLot();
+                }
+                if (SNTracked)
+                {
+                    SNPicked = false;
+                    ValidateSN();
+                }
                 EnableDisableComponents();
                 try
                 {

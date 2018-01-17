@@ -129,7 +129,7 @@ namespace CSIMobile.Class.Common
             }
             else
             {
-                Dialog = new CSIMessageDialog(Application.Context.GetString(Resource.String.app_name), Ex.Message, DialogTypes.OK);
+                Dialog = new CSIMessageDialog(Application.Context.GetString(Resource.String.app_name), CSIBaseInvoker.TranslateError(Ex), DialogTypes.OK);
                 Dialog.Show(ft, "Dialog");
             }
         }

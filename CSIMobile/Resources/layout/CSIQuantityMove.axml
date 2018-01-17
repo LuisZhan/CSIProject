@@ -76,7 +76,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="42dp"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:inputType="text"
+                android:maxLength="30" />
             <ImageButton
                 android:src="@drawable/scanner"
                 android:id="@+id/ItemScanButton"
@@ -165,11 +167,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/UMEdit"
-                    android:gravity="center"
                     android:singleLine="true"
                     android:layout_marginRight="42dp"
                     android:hint="@string/UM"
-                    android:textAllCaps="true" />
+                    android:textAllCaps="true"
+                    android:inputType="text"
+                    android:maxLength="3" />
                 <ImageButton
                     android:src="@drawable/scanner"
                     android:id="@+id/UMScanButton"
@@ -195,7 +198,10 @@
                     android:gravity="right"
                     android:singleLine="true"
                     android:layout_marginRight="42dp"
-                    android:hint="@string/Quantity" />
+                    android:hint="@string/Quantity"
+                    android:inputType="numberDecimal"
+                    android:maxLength="18"
+                    android:numeric="decimal" />
                 <ImageButton
                     android:src="@drawable/scanner"
                     android:id="@+id/QtyScanButton"
@@ -215,7 +221,7 @@
             android:id="@+id/FromLinearLayout">
             <TextView
                 android:text="@string/FromLocation"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView2" />
@@ -237,7 +243,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="42dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:maxLength="15" />
                     <ImageButton
                         android:src="@drawable/scanner"
                         android:id="@+id/FromLocScanButton"
@@ -260,7 +268,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="42dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:maxLength="15" />
                     <ImageButton
                         android:src="@drawable/scanner"
                         android:id="@+id/FromLotScanButton"
@@ -272,7 +282,7 @@
                 </LinearLayout>
             </LinearLayout>
             <TextView xmlns:tools="http://schemas.android.com/tools"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/FromLocDescText"
@@ -309,7 +319,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="42dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:maxLength="15" />
                     <ImageButton
                         android:src="@drawable/scanner"
                         android:id="@+id/ToLocScanButton"
@@ -332,7 +344,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="42dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:maxLength="15" />
                     <ImageButton
                         android:src="@drawable/scanner"
                         android:id="@+id/ToLotScanButton"

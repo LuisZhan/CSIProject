@@ -123,7 +123,11 @@
     <Compile Include="Class\Business\CSIDcmoves.cs" />
     <Compile Include="Class\Business\CSIEmployees.cs" />
     <Compile Include="Class\Business\CSIJsonObjects.cs" />
+    <Compile Include="Class\Business\CSIItemLocs.cs" />
     <Compile Include="Class\Business\CSIUserLocals.cs" />
+    <Compile Include="Class\Business\CSILocations.cs" />
+    <Compile Include="Class\Business\CSILotLocs.cs" />
+    <Compile Include="Class\Business\CSIUserNames.cs" />
     <Compile Include="Class\Common\CSIBaseAdapter.cs" />
     <Compile Include="Class\Common\CSIBaseFullScreenDialogFragment.cs" />
     <Compile Include="Class\Common\CSIBaseGridViewerAdapter.cs" />
@@ -135,7 +139,7 @@
     <Compile Include="Class\Fragments\LogDialogFragment.cs" />
     <Compile Include="Class\Fragments\Adapter\ModuleDeckAdapter.cs" />
     <Compile Include="Class\Activities\ModuleDeck.cs" />
-    <Compile Include="Class\Business\CSIUserNames.cs" />
+    <Compile Include="Class\Business\CSIItems.cs" />
     <Compile Include="Class\Common\CSIBaseDialogFragment.cs" />
     <Compile Include="Class\Common\CSIBaseInvoker.cs" />
     <Compile Include="Class\Common\CSIBaseFragmentPagerAdapter.cs" />
