@@ -1,8 +1,11 @@
 ﻿using Android.App;
+using Android.Print;
 using Android.Util;
+using Android.Webkit;
 using System;
 using System.IO;
 using static CSIMobile.Class.Common.CSIMessageDialog;
+using Android.Content;
 
 namespace CSIMobile.Class.Common
 {
@@ -55,6 +58,27 @@ namespace CSIMobile.Class.Common
         public static string ReadLog()
         {
             return File.ReadAllText(FileName);
+        }
+
+        public static void PrintLog(Activity activity)
+        {
+            try
+            {
+                // Get a PrintManager instance
+                PrintManager printManager = (PrintManager)activity.GetSystemService(Context.PrintService);
+
+                // Set job name, which will be displayed in the print queue
+                String jobName = FileName;
+
+                WebView myWebView = new WebView(activity);
+                PrintDocumentAdapter printDocumentAdapter = myWebView.CreatePrintDocumentAdapter(jobName);
+                printManager.Print("MyWebPage", printDocumentAdapter, null);
+
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
         }
     }
 }

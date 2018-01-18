@@ -50,6 +50,7 @@ namespace CSIMobile.Class.Fragments
 
         private void DeleteLogFileButton_Click(object sender, EventArgs args)
         {
+            CSIErrorLog.PrintLog(this.BaseActivity);
             FragmentTransaction ft = FragmentManager.BeginTransaction();
 
             CSIMessageDialog DeleteLogFileDialog = (CSIMessageDialog)FragmentManager.FindFragmentByTag("DeleteLogFileDialog");
