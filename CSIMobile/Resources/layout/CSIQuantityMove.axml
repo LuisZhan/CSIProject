@@ -282,7 +282,7 @@
                 </LinearLayout>
             </LinearLayout>
             <TextView xmlns:tools="http://schemas.android.com/tools"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/FromLocDescText"
@@ -297,7 +297,7 @@
             android:id="@+id/ToLinearLayout">
             <TextView
                 android:text="@string/ToLocation"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3" />
