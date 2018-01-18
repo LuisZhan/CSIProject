@@ -105,15 +105,18 @@ namespace CSIMobile.Class.Fragments
                     }
                     else
                     {
-                        string ErrorMessage = (string)SLDcmoves.CurrentTable.Rows[0]["ErrorMessage"];
-                        if (string.IsNullOrEmpty(ErrorMessage))
+                        string RowStatus = SLDcmoves.GetCurrentPropertyValueOfString("Stat");
+                        string ErrorMessage = SLDcmoves.GetCurrentPropertyValueOfString("ErrorMessage");
+
+                        if ((RowStatus != "E") || string.IsNullOrEmpty(ErrorMessage))
                         {
-                            //Ready to Post -- calling DcmovePVb
+                            //Ready to Post -- calling DcmovePSp
                             ShowProgressBar(true);
                             string strParmeters = "";
+                            strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, SLDcmoves.GetCurrentPropertyValueOfString("TransNum"));
                             strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "");
                             strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "", true);
-                            SLDcmoves.InvokeMethod("DcmovePVb", strParmeters);
+                            SLDcmoves.InvokeMethod("DcmovePSp", strParmeters);
                         }
                         else
                         {
