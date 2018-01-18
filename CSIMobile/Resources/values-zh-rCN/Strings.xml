@@ -158,4 +158,10 @@
   <string name="ToLocation">目的货位</string>
   <string name="ToLot">目的批号</string>
   <string name="SNPicked">序列号 (已选{0}件)</string>
+  <string name="Job">作业</string>
+  <string name="Suffix">后缀</string>
+  <string name="Operation">工艺</string>
+  <string name="WorkCenter">工作中心</string>
+  <string name="ReleasedQuantity">下达数量</string>
+  <string name="JobReceipt">作业入库</string>
 </resources>

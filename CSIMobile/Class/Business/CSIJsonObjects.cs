@@ -157,6 +157,109 @@ namespace CSIMobile.Class.Business
                 rtn = false;
             }
             return rtn;
-        } 
+        }
+
+
+        public static bool ReadJobReceiptJson(string JsonString, out string Job, out string Suffix, out string OperNum, out string Qty, out string Loc, out string Lot)
+        {
+            bool rtn = true;
+            Job = string.Empty;
+            Suffix = string.Empty;
+            OperNum = string.Empty;
+            Qty = string.Empty;
+            Loc = string.Empty;
+            Lot = string.Empty;
+            if (string.IsNullOrEmpty(JsonString)) return false;
+            try
+            {
+                byte[] data = Encoding.Default.GetBytes(JsonString.ToString());
+                MemoryStream QtyMoveStream = new MemoryStream(data);
+                JsonReader jReader = new JsonReader(new Java.IO.InputStreamReader(QtyMoveStream));
+                jReader.BeginObject();
+                while (jReader.HasNext)
+                {
+                    string name = jReader.NextName();
+                    if (name.Equals("Job"))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Job = jReader.NextString();
+                        }
+                    }
+                    else if (name.Equals("Suffix"))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Suffix = jReader.NextString();
+                        }
+                    }
+                    else if (name.Equals("Qty") || name.Equals("Quantity"))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Qty = jReader.NextString();
+                        }
+                    }
+                    else if (name.Equals("OperNum") || name.Equals("Oper") || name.Equals("Operation"))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            OperNum = jReader.NextString();
+                        }
+                    }
+                    else if (name.Equals("Loc") || name.Equals("ToLoc"))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Loc = jReader.NextString();
+                        }
+                    }
+                    else if (name.Equals("Lot") || name.Equals("ToLot"))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Lot = jReader.NextString();
+                        }
+                    }
+                    else
+                    {
+                        jReader.SkipValue();
+                    }
+                }
+                jReader.EndObject();
+                jReader.Close();
+                QtyMoveStream.Close();
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                rtn = false;
+            }
+            return rtn;
+        }
     }
 }

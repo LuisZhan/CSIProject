@@ -313,6 +313,18 @@ namespace CSIMobile
                         Success = true;
                     }
                     break;
+                case "JobReceipt":
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else
+                    {
+                        ShowJobReceipt();
+                        Success = true;
+                    }
+                    break; 
                 default:
                     break;
             }
@@ -337,6 +349,32 @@ namespace CSIMobile
                     QtyMoveDialog = new DCQuantityMoveFragment(this);
                     //Add fragment
                     QtyMoveDialog.Show(ft, "QtyMove");
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+        }
+
+        private void ShowJobReceipt()
+        {
+            try
+            {
+                FragmentTransaction ft = FragmentManager.BeginTransaction();
+
+                DCJobReceiptFragment JobReceiptDialog = (DCJobReceiptFragment)FragmentManager.FindFragmentByTag("JobReceipt");
+                if (JobReceiptDialog != null)
+                {
+                    ft.Show(JobReceiptDialog);
+                    //ft.AddToBackStack(null);
+                }
+                else
+                {
+                    // Create and show the dialog.
+                    JobReceiptDialog = new DCJobReceiptFragment(this);
+                    //Add fragment
+                    JobReceiptDialog.Show(ft, "JobReceipt");
                 }
             }
             catch (Exception Ex)

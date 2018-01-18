@@ -158,4 +158,10 @@
   <string name="ToLocation">To Location</string>
   <string name="ToLot">To Lot</string>
   <string name="SNPicked">S/N ({0} Picked)</string>
+  <string name="Job">Job</string>
+  <string name="Suffix">Suffix</string>
+  <string name="Operation">Operation</string>
+  <string name="WorkCenter">Work Center</string>
+  <string name="ReleasedQuantity">Released Quantity</string>
+  <string name="JobReceipt">Job Receipt</string>
 </resources>

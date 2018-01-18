@@ -123,6 +123,11 @@ namespace CSIMobile.Class.Activities
                         //ActivityType = typeof(object)
                     },
                     new ModuleAction {
+                        ActionName = Application.Context.GetString(Resource.String.JobReceipt),
+                        DrawableId = Resource.Drawable.Logo,
+                        InvokeCommands = new string[] { "JobReceipt" }
+                    },
+                    new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.WorkCenterTransaction),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)

@@ -120,8 +120,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Business\CSIDcitems.cs" />
+    <Compile Include="Class\Business\CSIDcjms.cs" />
     <Compile Include="Class\Business\CSIDcmoves.cs" />
     <Compile Include="Class\Business\CSIEmployees.cs" />
+    <Compile Include="Class\Business\CSIJobRoutes.cs" />
+    <Compile Include="Class\Business\CSIJobs.cs" />
     <Compile Include="Class\Business\CSIJsonObjects.cs" />
     <Compile Include="Class\Business\CSIItemLocs.cs" />
     <Compile Include="Class\Business\CSIUserLocals.cs" />
@@ -137,6 +140,7 @@
     <Compile Include="Class\Common\CSIWebServiceEventInterface.cs" />
     <Compile Include="Class\Fragments\DCMiscIssueFragment.cs" />
     <Compile Include="Class\Fragments\DCMiscReceiveFragment.cs" />
+    <Compile Include="Class\Fragments\DCJobReceiptFragment.cs" />
     <Compile Include="Class\Fragments\DCQuantityMoveFragment.cs" />
     <Compile Include="Class\Fragments\LogDialogFragment.cs" />
     <Compile Include="Class\Fragments\Adapter\ModuleDeckAdapter.cs" />
@@ -199,6 +203,7 @@
     <AndroidResource Include="Resources\layout\CSILog.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\CSIJobReceipt.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\CSIMain.axml">

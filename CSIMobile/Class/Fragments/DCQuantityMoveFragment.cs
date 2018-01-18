@@ -136,18 +136,6 @@ namespace CSIMobile.Class.Fragments
                             else
                             {
                                 DeleteDialog = new CSIMessageDialog(GetString(Resource.String.app_name), ErrorMessage, DialogTypes.OK);
-                                //DeleteDialog.OkHandler += (o, args) =>
-                                //{
-                                //    SLDcmoves.CurrentTable.Rows[0].Delete();
-                                //    ShowProgressBar(true);
-                                //    SLDcmoves.DeleteIDO();
-                                //};
-                                //DeleteDialog.CancelHandler += (o, args) =>
-                                //{
-                                //    SLDcmoves.CurrentTable.Rows[0].Delete();
-                                //    ShowProgressBar(true);
-                                //    SLDcmoves.DeleteIDO();
-                                //};
                                 DeleteDialog.Show(ft, "DeleteDialog");
                             }
                         }
@@ -552,7 +540,7 @@ namespace CSIMobile.Class.Fragments
             {
                 if (string.IsNullOrEmpty(ItemEdit.Text))
                 {
-                    UMValidated = false;
+                    ItemValidated = false;
                 }
                 else
                 {
@@ -562,6 +550,7 @@ namespace CSIMobile.Class.Fragments
                         ItemValidated = CSIItems.GetItemInfor(CSISystemContext, ref Item, ref Desc, ref UM, ref Qty, ref LotTracked, ref SNTracked);
                         if (ItemValidated == true)
                         {
+                            ItemEdit.Text = Item;
                             ItemDescText.Text = Desc;
                             ItemUMText.Text = UM;
                             if (string.IsNullOrEmpty(UMEdit.Text))
