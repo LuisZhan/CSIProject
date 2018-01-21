@@ -20,7 +20,7 @@ using CSIMobile.Class.Business.IO;
 
 namespace CSIMobile.Class.Fragments
 {
-    public class DCJobReceiptFragment : CSIBaseFullScreenDialogFragment
+    public class DCJobReceiptFragment : CSIBaseDialogFragment
     {
         CSIDcjms SLDcjms;
 
@@ -386,6 +386,7 @@ namespace CSIMobile.Class.Fragments
             WhseEdit.Text = CSISystemContext.DefaultWarehouse;
             TransDateText.Text = string.Format("{0} {1}",DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
             JobEdit.Text = string.Empty;
+            JobDescText.Text = string.Empty;
             SuffixEdit.Text = string.Empty;
             QtyEdit.Text = "0";
             OperNumEdit.Text = string.Empty;
@@ -564,6 +565,7 @@ namespace CSIMobile.Class.Fragments
                 }
                 else
                 {
+                    SuffixEdit.Text = string.Format("{0000}", SuffixEdit.Text);
                     try
                     {
                         string Job = JobEdit.Text, Suffix = SuffixEdit.Text, Desc = JobDescText.Text, Item = ItemText.Text
@@ -656,6 +658,29 @@ namespace CSIMobile.Class.Fragments
                     LocValidated = CSIItemLocs.GetItemLocInfor(CSISystemContext, JobEdit.Text, WhseEdit.Text, ref Loc, ref LocDescription, ref Qty);
                     if (LocValidated)
                     {
+                        
+                    }else
+                    {
+                        try
+                        {
+                            CSILocations SLLoc = new CSILocations(CSISystemContext);
+                            SLLoc.UseSync(false);
+                            SLLoc.AddProperty("Loc");
+                            SLLoc.SetFilter(string.Format("Loc = N'{0}'", Loc));
+                            SLLoc.LoadIDO();
+                            if (SLLoc.CurrentTable.Rows.Count <= 0)
+                            {
+                                LocValidated = false;
+                            }
+                            else
+                            {
+                                LocValidated = true;
+                            }
+                        }catch (Exception Ex)
+                        {
+                            WriteErrorLog(Ex);
+                            LocValidated = false;
+                        }
                         //LocEdit.Text = Loc;
                         //LocDescText.Text = LocDescription;
                         //bool RtnCSILotLocs = CSILotLocs.GetItemLotLocInfor(CSISystemContext, JobEdit.Text, WhseEdit.Text, Loc, ref Lot, ref Qty);
@@ -951,10 +976,10 @@ namespace CSIMobile.Class.Fragments
                 {
                     ProgressBar.Visibility = ViewStates.Gone;
                     CSIBaseObject.DisableEnableControls(true, Layout);
+
+                    EnableDisableComponents();
                 }
             }
-
-            EnableDisableComponents();
         }
     }
 }

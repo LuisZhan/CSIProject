@@ -51,7 +51,7 @@ namespace CSIMobile.Class.Business
                 }
                 else
                 {
-                    SLJobRoute.SetFilter(string.Format("Job = N'{0}' And Suffix = N'{1} And OperNum = N'{2}''", Job, Suffix, OperNum));
+                    SLJobRoute.SetFilter(string.Format("Job = N'{0}' And Suffix = N'{1}' And OperNum = N'{2}'", Job, Suffix, OperNum));
                 }
                 SLJobRoute.SetOrderBy("OperNum Desc");
                 SLJobRoute.LoadIDO();

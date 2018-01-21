@@ -41,6 +41,8 @@ namespace CSIMobile.Class.Business
             PreSetPropertyList.Add("JobDate");
             PreSetPropertyList.Add("LstTrxDate");
             PreSetPropertyList.Add("ProdMix");
+            PreSetPropertyList.Add("ItemLotTracked");
+            PreSetPropertyList.Add("ItemSerialTracked");
         }
 
         public static bool GetJobInfor(CSIContext SrcContext, ref string Job, ref string Suffix, ref string Desc, ref string Item, ref string ItemDesc, ref string ItemUM
@@ -57,8 +59,8 @@ namespace CSIMobile.Class.Business
                 SLJob.AddProperty("ItemUM");
                 SLJob.AddProperty("ItemDescription");
                 SLJob.AddProperty("QtyReleased");
-                SLJob.AddProperty("LotTracked");
-                SLJob.AddProperty("SerialTracked");
+                SLJob.AddProperty("ItemLotTracked");
+                SLJob.AddProperty("ItemSerialTracked");
                 if (string.IsNullOrEmpty(Suffix))
                 {
                     Suffix = "0000";
@@ -76,8 +78,8 @@ namespace CSIMobile.Class.Business
                 ItemDesc = SLJob.GetCurrentPropertyValueOfString("ItemDescription");
                 ItemUM = SLJob.GetCurrentPropertyValueOfString("ItemUM");
                 QtyReleased = SLJob.GetCurrentPropertyValueOfString("QtyReleased");
-                LotTracked = SLJob.GetCurrentPropertyValueOfBoolean("LotTracked");
-                SNTracked = SLJob.GetCurrentPropertyValueOfBoolean("SerialTracked");
+                LotTracked = SLJob.GetCurrentPropertyValueOfBoolean("ItemLotTracked");
+                SNTracked = SLJob.GetCurrentPropertyValueOfBoolean("ItemSerialTracked");
                 SLJob = null;
                 return true;
             }catch (Exception Ex)

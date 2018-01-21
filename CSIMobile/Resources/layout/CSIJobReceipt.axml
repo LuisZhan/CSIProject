@@ -82,11 +82,11 @@
             <TextView xmlns:tools="http://schemas.android.com/tools"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/textview1"
-                tools:text="-"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:width="20dp" />
+                android:width="30dp"
+                android:text="-" />
             <EditText
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/SuffixEdit"
@@ -193,27 +193,72 @@
                 android:id="@+id/textView3" />
             <LinearLayout
                 android:orientation="horizontal"
-                android:id="@+id/linearLayout8"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/OperNumEdit"
-                    android:hint="@string/Operation"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout12">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout8"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="42dp"
-                    android:singleLine="true"
-                    android:inputType="text"
-                    android:maxLength="15" />
-                <ImageButton
-                    android:src="@drawable/scanner"
-                    android:id="@+id/OperNumScanButton"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:scaleType="fitCenter"
-                    android:padding="0dp"
-                    android:layout_marginLeft="-40dp" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+                    <EditText
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/OperNumEdit"
+                        android:hint="@string/Operation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="42dp"
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:maxLength="15" />
+                    <ImageButton
+                        android:src="@drawable/scanner"
+                        android:id="@+id/OperNumScanButton"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:scaleType="fitCenter"
+                        android:padding="0dp"
+                        android:layout_marginLeft="-40dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/QtyLinearLayout"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:minWidth="25px"
+                        android:minHeight="25px"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/linearLayout5"
+                        android:layout_weight="2">
+                        <EditText xmlns:p2="http://schemas.android.com/tools"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/QtyEdit"
+                            android:gravity="right"
+                            android:singleLine="true"
+                            android:layout_marginRight="42dp"
+                            android:hint="@string/Quantity"
+                            android:inputType="numberDecimal"
+                            android:maxLength="18"
+                            android:numeric="decimal" />
+                        <ImageButton
+                            android:src="@drawable/scanner"
+                            android:id="@+id/QtyScanButton"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:scaleType="fitCenter"
+                            android:padding="0dp"
+                            android:layout_marginLeft="-40dp" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
             <TextView xmlns:tools="http://schemas.android.com/tools"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -227,43 +272,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/imageView1" />
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/QtyLinearLayout"
-            android:minWidth="25px"
-            android:minHeight="25px">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/linearLayout5"
-                android:layout_weight="2">
-                <EditText xmlns:p2="http://schemas.android.com/tools"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/QtyEdit"
-                    android:gravity="right"
-                    android:singleLine="true"
-                    android:layout_marginRight="42dp"
-                    android:hint="@string/Quantity"
-                    android:inputType="numberDecimal"
-                    android:maxLength="18"
-                    android:numeric="decimal" />
-                <ImageButton
-                    android:src="@drawable/scanner"
-                    android:id="@+id/QtyScanButton"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:scaleType="fitCenter"
-                    android:padding="0dp"
-                    android:layout_marginLeft="-40dp" />
-            </LinearLayout>
-        </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
             android:minWidth="25px"
@@ -350,13 +358,11 @@
             android:text="@string/SNPicked"
             android:id="@+id/SNButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_height="wrap_content" />
         <Button
             android:text="@string/Process"
             android:id="@+id/ProcessButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>

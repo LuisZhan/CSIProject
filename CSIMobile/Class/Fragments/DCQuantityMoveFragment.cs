@@ -20,7 +20,7 @@ using CSIMobile.Class.Business.IO;
 
 namespace CSIMobile.Class.Fragments
 {
-    public class DCQuantityMoveFragment : CSIBaseFullScreenDialogFragment
+    public class DCQuantityMoveFragment : CSIBaseDialogFragment
     {
         CSIDcmoves SLDcmoves;
 
