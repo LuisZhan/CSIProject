@@ -16,6 +16,7 @@ using CSIMobile.Class.Business;
 using System.Data;
 using System.IO;
 using Android.Util;
+using CSIMobile.Class.Business.IO;
 
 namespace CSIMobile.Class.Fragments
 {
@@ -932,7 +933,7 @@ namespace CSIMobile.Class.Fragments
         private bool AnalysisScanResult(string Result)
         {
             //this is designed for future scan enhancement, such as scan one code to fill in all stuff...
-            bool rtn = CSIJsonObjects.ReadQtyMoveJson(Result, out string Item, out string UM, out string Qty, out string Loc1, out string Lot1, out string Loc2, out string Lot2);
+            bool rtn = CSIDcJsonObjects.ReadQtyMoveJson(Result, out string Item, out string UM, out string Qty, out string Loc1, out string Lot1, out string Loc2, out string Lot2);
             if (rtn)
             {
                 if (!string.IsNullOrEmpty(Item))

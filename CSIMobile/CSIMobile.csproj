@@ -62,6 +62,9 @@
     <Reference Include="FastAndroidCamera, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FastAndroidCamera.2.0.0\lib\MonoAndroid403\FastAndroidCamera.dll</HintPath>
     </Reference>
+    <Reference Include="PrinterUtility, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PrinterUtility.1.1.2\lib\PrinterUtility.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.EnterpriseServices" />
@@ -120,22 +123,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Business\CSIDcitems.cs" />
+    <Compile Include="Class\Business\CSIDcBase.cs" />
     <Compile Include="Class\Business\CSIDcjms.cs" />
     <Compile Include="Class\Business\CSIDcmoves.cs" />
     <Compile Include="Class\Business\CSIEmployees.cs" />
     <Compile Include="Class\Business\CSIJobRoutes.cs" />
     <Compile Include="Class\Business\CSIJobs.cs" />
-    <Compile Include="Class\Business\CSIJsonObjects.cs" />
+    <Compile Include="Class\Business\IO\CSIDcJsonObjects.cs" />
     <Compile Include="Class\Business\CSIItemLocs.cs" />
     <Compile Include="Class\Business\CSIUserLocals.cs" />
     <Compile Include="Class\Business\CSILocations.cs" />
     <Compile Include="Class\Business\CSILotLocs.cs" />
     <Compile Include="Class\Business\CSIUserNames.cs" />
+    <Compile Include="Class\Common\CSIBlueTooth.cs" />
     <Compile Include="Class\Common\CSIBaseAdapter.cs" />
     <Compile Include="Class\Common\CSIBaseFullScreenDialogFragment.cs" />
     <Compile Include="Class\Common\CSIBaseGridViewerAdapter.cs" />
-    <Compile Include="Class\Common\CSIBluetooth.cs" />
-    <Compile Include="Class\Common\CSIPrinter.cs" />
+    <Compile Include="Class\Common\Print\CSILablePrinter.cs" />
+    <Compile Include="Class\Common\Print\CSIPrinter.cs" />
     <Compile Include="Class\Common\CSISanner.cs" />
     <Compile Include="Class\Common\CSIWebServiceEventInterface.cs" />
     <Compile Include="Class\Fragments\DCMiscIssueFragment.cs" />
@@ -222,7 +227,9 @@
     <Folder Include="Resources\mipmap-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values-zh-rCN\Strings.xml" />
+    <AndroidResource Include="Resources\values-zh-rCN\Strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Logo.png" />

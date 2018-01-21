@@ -59,6 +59,10 @@ namespace CSIMobile.Class.Business
                 SLJob.AddProperty("QtyReleased");
                 SLJob.AddProperty("LotTracked");
                 SLJob.AddProperty("SerialTracked");
+                if (string.IsNullOrEmpty(Suffix))
+                {
+                    Suffix = "0000";
+                }
                 SLJob.SetFilter(string.Format("Job = N'{0}' And Suffix = N'{1}'", Job, Suffix));
                 SLJob.LoadIDO();
                 if (SLJob.CurrentTable.Rows.Count <= 0)

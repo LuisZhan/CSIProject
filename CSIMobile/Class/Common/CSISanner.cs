@@ -12,6 +12,9 @@ using Android.Widget;
 using ZXing;
 using ZXing.Mobile;
 using System.Threading.Tasks;
+using Android.Graphics;
+using ZXing.Common;
+using System.IO;
 
 namespace CSIMobile.Class.Common
 {
@@ -43,6 +46,48 @@ namespace CSIMobile.Class.Common
             {
                 WriteErrorLog(Ex);
                 return "";
+            }
+        }
+
+        public static Bitmap GenerateQRCode(string text, int width = 300, int height = 300)
+        {
+            try
+            {
+                BarcodeWriter barcodeWriter = new BarcodeWriter
+            {
+                Format = BarcodeFormat.QR_CODE,
+                Options = new EncodingOptions
+                {
+                    Width = width,
+                    Height = height,
+                    Margin = 10
+                }
+             };
+
+            barcodeWriter.Renderer = new BitmapRenderer();
+            Bitmap bitmap = barcodeWriter.Write(text);
+            return bitmap;
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                return null;
+            }
+        }
+
+        public static MemoryStream ConvertImageStream(string text, int width = 300, int height = 300)
+        {
+            try
+            {
+                Bitmap bitmap = GenerateQRCode(text, width, height);
+                MemoryStream stream = new MemoryStream();
+                bitmap.Compress(Bitmap.CompressFormat.Png, 100, stream);  // this is the diff between iOS and Android
+                stream.Position = 0;
+                return stream;
+        }catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                return null;
             }
         }
     }

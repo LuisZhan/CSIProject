@@ -16,13 +16,29 @@
         android:gravity="start"
         android:editable="false"
         android:minWidth="300dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="50dp"
         android:minHeight="300dp" />
-    <Button
-        android:text="@string/DeleteLogFile"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_height="match_parent"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:id="@+id/DeleteLogFileButton"
-        android:layout_marginTop="-40dp" />
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:layout_marginTop="-50dp">
+        <Button
+            android:text="@string/Print"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/PrintLogFileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <Button
+            android:text="@string/Delete"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/DeleteLogFileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
 </LinearLayout>

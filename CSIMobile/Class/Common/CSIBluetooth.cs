@@ -9,71 +9,144 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using ZXing;
-using ZXing.Mobile;
-using System.Threading.Tasks;
-using Android.Support.V4.Print;
-using Android.Print;
-using Android.Webkit;
-using System.IO;
-using Android.Graphics;
 using Android.Bluetooth;
-using Java.IO;
+using System.IO;
 using Java.Util;
-using System.Collections.ObjectModel;
+using Java.Lang;
 
 namespace CSIMobile.Class.Common
 {
-    public interface IBluetooth
+    class CSIBlueTooth : CSIBaseObject
     {
-        ObservableCollection<string> PairedDevices();
+        // android built in classes for bluetooth operations
+        BluetoothAdapter BTAdapter;
+        BluetoothSocket BTSocket;
+        BluetoothDevice BTDevice;
 
-        void Imprimir(string pStrNomBluetooth, int intSleepTime, string pStrTextoImprimir);
-    }
+        // needed for communication to bluetooth device / network
+        StreamWriter BTOutputStream;
+        StreamReader BTInputStream;
+        Thread workerThread;
 
-    public class CSIBluetooth : IBluetooth
-    {
-        private BluetoothAdapter adapter = BluetoothAdapter.DefaultAdapter;
-        private BluetoothSocket socket = null;
-        private BufferedWriter outReader = null;
-        private BluetoothDevice device = null;
+        public bool BlueToothDeviceFound = false;
+        public bool BlueToothOpen = false;
+        public bool DataSent = false;
+        public bool Working = false;
 
-        public void Imprimir(string pStrNomBluetooth, int intSleepTime, string pStrTextoImprimir)
+        // this will find a bluetooth printer device
+        public void FindBluetooth(string DeviceName)
         {
+
             try
             {
-                string bt_printer = (from d in adapter.BondedDevices
-                                     where d.Name == pStrNomBluetooth
-                                     select d).FirstOrDefault().ToString();
+                BTAdapter = BluetoothAdapter.DefaultAdapter;
 
-                device = adapter.GetRemoteDevice(bt_printer);
-                UUID applicationUUID = UUID.FromString("00001101-0000-1000-8000-00805f9b34fb");
+                if (BTAdapter == null)
+                {
+                    BlueToothDeviceFound = false;
+                }
 
-                socket = device.CreateRfcommSocketToServiceRecord(applicationUUID);
-                socket.Connect();
+                if (!BTAdapter.IsEnabled)
+                {
+                    Intent enableBluetooth = new Intent(BluetoothAdapter.ActionRequestEnable);
+                    Application.Context.StartActivity(enableBluetooth);
+                    //BTAdapter.Enable();
+                }
 
-                outReader = new BufferedWriter(new OutputStreamWriter(socket.InputStream));
-                outReader.Write(pStrTextoImprimir);
-                
+                ICollection<BluetoothDevice> pairedDevices = BTAdapter.BondedDevices;
+
+                if (pairedDevices.Count > 0)
+                {
+                    foreach (BluetoothDevice device in pairedDevices)
+                    {
+                        // RPP300 is the name of the bluetooth printer device
+                        // we got this name from the list of paired devices
+                        if (device.Name == DeviceName)//"RPP300"
+                        {
+                            BTDevice = device;
+                            break;
+                        }
+                    }
+                }
+
+                BlueToothDeviceFound = true;
+                BlueToothOpen = false;
             }
-            catch (Exception)
+            catch (System.Exception Ex)
             {
-
-                throw;
-            }
-            finally
-            {
+                WriteErrorLog(Ex);
             }
         }
 
-        public ObservableCollection<string> PairedDevices()
+        // tries to open a connection to the bluetooth printer device
+        public void OpenBT()
         {
-            ObservableCollection<string> devices = new ObservableCollection<string>();
+            try
+            {
+                if (BlueToothOpen)
+                {
+                    return;
+                }
+               // Standard SerialPortService ID
+                UUID uuid = UUID.FromString("00001101-0000-1000-8000-00805f9b34fb");
+                BTSocket = BTDevice.CreateRfcommSocketToServiceRecord(uuid);
+                BTSocket.Connect();
+                BTOutputStream = new StreamWriter(BTSocket.OutputStream);
+                BTInputStream = new StreamReader(BTSocket.InputStream);
+                
+                //                BluetoothServerSocket serverSock = mBluetoothAdapter.ListenUsingRfcommWithServiceRecord("Bluetooth", Java.Util.UUID.FromString(uuid));
+                //                mmSocket = serverSock.Accept();
+                //                mmSocket.InputStream.ReadTimeout = 1000;
+                //                serverSock.Close();//服务器获得连接后腰及时关闭ServerSocket
+                //                启动新的线程，开始数据传输
 
-            foreach (var bd in adapter.BondedDevices)
-                devices.Add(bd.Name);
+                BlueToothOpen = true;
+            }
+            catch (System.Exception Ex)
+            {
+                BlueToothOpen = false;
+                BTSocket.Dispose();
+                WriteErrorLog(Ex);
+            }
+        }
 
-            return devices;
+        // close the connection to bluetooth printer.
+        public void CloseBT()
+        {
+            try
+            {
+                Working = false;
+                BTOutputStream.Close();
+                BTInputStream.Close();
+                BTSocket.Close();
+                BlueToothOpen = false;
+            }
+            catch (System.Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                BlueToothOpen = false;
+            }
+        }
+
+        // this will send text data to be printed by the bluetooth printer
+        public void SendData(string msg)
+        {
+            try
+            {
+                DataSent = false;
+                // the text typed by the user
+                msg += "\n";
+
+                //mmOutputStream.Write(Encoding.Default.GetBytes(msg),0,msg.Length);
+                BTOutputStream.Write(msg);
+
+                // tell the user data were sent
+                DataSent = true;
+            }
+            catch (System.Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
         }
     }
 }

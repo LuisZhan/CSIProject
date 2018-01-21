@@ -19,6 +19,7 @@ namespace CSIMobile.Class.Fragments
     {
         private EditText LogEdit;
         private Button DeleteLogFileButton;
+        private Button PrintLogFileButton;
 
         public LogDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {
@@ -35,10 +36,12 @@ namespace CSIMobile.Class.Fragments
 
                 LogEdit = view.FindViewById<EditText>(Resource.Id.LogEdit);
                 DeleteLogFileButton = view.FindViewById<Button>(Resource.Id.DeleteLogFileButton);
+                PrintLogFileButton = view.FindViewById<Button>(Resource.Id.PrintLogFileButton);
 
                 LogEdit.Text = CSIErrorLog.ReadLog();
 
                 DeleteLogFileButton.Click += DeleteLogFileButton_Click;
+                PrintLogFileButton.Click += PrintLogFileButton_Click; ;
 
                 return view;
             }catch (Exception Ex)
@@ -48,9 +51,13 @@ namespace CSIMobile.Class.Fragments
             }
         }
 
-        private void DeleteLogFileButton_Click(object sender, EventArgs args)
+        private void PrintLogFileButton_Click(object sender, EventArgs e)
         {
             CSIErrorLog.PrintLog(this.BaseActivity);
+        }
+
+        private void DeleteLogFileButton_Click(object sender, EventArgs args)
+        {
             FragmentTransaction ft = FragmentManager.BeginTransaction();
 
             CSIMessageDialog DeleteLogFileDialog = (CSIMessageDialog)FragmentManager.FindFragmentByTag("DeleteLogFileDialog");

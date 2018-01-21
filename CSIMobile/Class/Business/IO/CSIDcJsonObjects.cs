@@ -13,9 +13,9 @@ using CSIMobile.Class.Common;
 using System.IO;
 using Android.Util;
 
-namespace CSIMobile.Class.Business
+namespace CSIMobile.Class.Business.IO
 {
-    public class CSIJsonObjects : CSIBaseObject
+    public class CSIDcJsonObjects : CSIBaseObject
     {
         public static string BuildQtyMoveJson(string Item,string UM, string Qty,string Loc1, string Lot1, string Loc2, string Lot2)
         {

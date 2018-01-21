@@ -45,7 +45,15 @@ namespace CSIMobile.Class.Business
                 SLJobRoute.AddProperty("OperNum");
                 SLJobRoute.AddProperty("Wc");
                 SLJobRoute.AddProperty("QtyReceived");
-                SLJobRoute.SetFilter(string.Format("Job = N'{0}' And Suffix = N'{1}'", Job, Suffix));
+                if (string.IsNullOrEmpty(OperNum))
+                {
+                    SLJobRoute.SetFilter(string.Format("Job = N'{0}' And Suffix = N'{1}'", Job, Suffix));
+                }
+                else
+                {
+                    SLJobRoute.SetFilter(string.Format("Job = N'{0}' And Suffix = N'{1} And OperNum = N'{2}''", Job, Suffix, OperNum));
+                }
+                SLJobRoute.SetOrderBy("OperNum Desc");
                 SLJobRoute.LoadIDO();
                 if (SLJobRoute.CurrentTable.Rows.Count <= 0)
                 {

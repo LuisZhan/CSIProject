@@ -75,5 +75,25 @@ namespace CSIMobile.Class.Business
                 return false;
             }
         }
+
+        public static bool GetNextLotSp(CSIContext SrcContext, string Item, string Prefix, ref string Message, string Key, string Site = "")
+        {
+            try
+            {
+                CSIItems item = new CSIItems(SrcContext);
+                string strParmeters = "";
+                strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, Item);
+                strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, Prefix);
+                strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, Message, true);
+                strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, Key, true);
+                item.InvokeMethod("FetchNextLotSp", strParmeters);
+                return true;
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                return false;
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ using CSIMobile.Class.Common;
 
 namespace CSIMobile.Class.Business 
 {
-    public class CSIDcmoves : CSIBaseDataObject
+    public class CSIDcmoves : CSIDcBase
     {
         public CSIDcmoves(CSIContext SrcContext = null) : base(SrcContext)
         {

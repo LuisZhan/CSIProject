@@ -16,6 +16,7 @@ using CSIMobile.Class.Business;
 using System.Data;
 using System.IO;
 using Android.Util;
+using CSIMobile.Class.Business.IO;
 
 namespace CSIMobile.Class.Fragments
 {
@@ -563,7 +564,38 @@ namespace CSIMobile.Class.Fragments
                 }
                 else
                 {
-                    SuffixValidated = true;
+                    try
+                    {
+                        string Job = JobEdit.Text, Suffix = SuffixEdit.Text, Desc = JobDescText.Text, Item = ItemText.Text
+                            , ItemDesc = ItemDescText.Text, ItemUM = ItemUMText.Text, QtyReleased = QtyReleasedText.Text;
+                        SuffixValidated = CSIJobs.GetJobInfor(CSISystemContext, ref Job, ref Suffix, ref Desc, ref Item
+                            , ref ItemDesc, ref QtyReleased, ref ItemUM, ref LotTracked, ref SNTracked);
+                        if (SuffixValidated == true)
+                        {
+                            JobEdit.Text = Job;
+                            SuffixEdit.Text = Suffix;
+                            JobDescText.Text = Desc;
+                            ItemText.Text = Item;
+                            ItemDescText.Text = ItemDesc;
+                            ItemUMText.Text = ItemUM;
+                            QtyReleasedText.Text = QtyReleased;
+                        }
+
+                        string Operation = OperNumEdit.Text, Wc = WorkCenterText.Text, QtyReceived = "";
+                        bool RtnSLJobRoutes = CSIJobRoutes.GetOperationInfor(CSISystemContext, JobEdit.Text, SuffixEdit.Text, ref Operation, ref Wc, ref QtyReceived);
+                        if (RtnSLJobRoutes == true)
+                        {
+                            OperNumEdit.Text = Operation;
+                            OperNumValidated = false;
+                            ValidateOperNum();
+                            WorkCenterText.Text = Wc;
+                        }
+                    }
+                    catch (Exception Ex)
+                    {
+                        WriteErrorLog(Ex);
+                        SuffixValidated = false;
+                    }
                 }
             }
             EnableDisableComponents();
@@ -647,7 +679,16 @@ namespace CSIMobile.Class.Fragments
             {
                 if (string.IsNullOrEmpty(LotEdit.Text))
                 {
-                    LotValidated = false;
+                    if (LotTracked)
+                    {
+                        string Message = "", Key = "";
+                        CSIItems.GetNextLotSp(CSISystemContext, ItemText.Text, "", ref Message, Key);
+                        LotValidated = false;
+                    }
+                    else
+                    {
+                        LotValidated = true;
+                    }
                 }
                 else
                 {
@@ -828,7 +869,7 @@ namespace CSIMobile.Class.Fragments
         private bool AnalysisScanResult(string Result)
         {
             //this is designed for future scan enhancement, such as scan one code to fill in all stuff...
-            bool rtn = CSIJsonObjects.ReadJobReceiptJson(Result, out string Job, out string Suffix, out string OperNum, out string Qty, out string Loc, out string Lot);
+            bool rtn = CSIDcJsonObjects.ReadJobReceiptJson(Result, out string Job, out string Suffix, out string OperNum, out string Qty, out string Loc, out string Lot);
             if (rtn)
             {
                 if (!string.IsNullOrEmpty(Job))
