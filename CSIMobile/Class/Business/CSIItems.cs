@@ -76,18 +76,28 @@ namespace CSIMobile.Class.Business
             }
         }
 
-        public static bool GetNextLotSp(CSIContext SrcContext, string Item, string Prefix, ref string Message, string Key, string Site = "")
+        public static bool GetNextLotSp(CSIContext SrcContext, string Item, string Prefix, ref string Message, ref string Key, string Site = "")
         {
             try
             {
                 CSIItems item = new CSIItems(SrcContext);
+                item.UseSync(false);
                 string strParmeters = "";
                 strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, Item);
                 strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, Prefix);
                 strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, Message, true);
                 strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, Key, true);
-                item.InvokeMethod("FetchNextLotSp", strParmeters);
-                return true;
+                bool rtn = item.InvokeMethod("FetchNextLotSp", ref strParmeters);
+                if (rtn)
+                {
+                    Message = CSIBaseInvoker.GetXMLParameters(strParmeters, 2);
+                    Key = CSIBaseInvoker.GetXMLParameters(strParmeters, 3);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception Ex)
             {

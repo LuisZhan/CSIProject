@@ -204,10 +204,46 @@ namespace CSIMobile.Class.Common
             return rtn;
         }
 
-        public virtual bool InvokeMethod(string strMethodName, string strMethodParameters)
+        public virtual object InvokeMethod(string strMethodName, string strMethodParameters)
         {
-            bool rtn = Invoker.InvokeMethod(IDOName, strMethodName, strMethodParameters);
-            return rtn;
+            try
+            {
+                if (UseSync())
+                {
+                    return (bool)Invoker.InvokeMethod(IDOName, strMethodName, strMethodParameters);
+                }
+                else
+                {
+                    return (string)Invoker.InvokeMethod(IDOName, strMethodName, strMethodParameters);
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                return false;
+            }
+        }
+
+        public virtual bool InvokeMethod(string strMethodName, ref string strMethodParameters)
+        {
+            //UseSync = false;
+            try
+            {
+                if (UseSync())
+                {
+                    return (bool)Invoker.InvokeMethod(IDOName, strMethodName, strMethodParameters);
+                }
+                else
+                {
+                    strMethodParameters = (string)Invoker.InvokeMethod(IDOName, strMethodName, strMethodParameters);
+                }
+                return true;
+            }
+            catch(Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                return false;
+            }
         }
 
         public virtual bool DeleteIDO()
@@ -319,6 +355,11 @@ namespace CSIMobile.Class.Common
         public void UseSync(bool use)
         {
             Invoker.UseAsync = use;
+        }
+
+        public bool UseSync()
+        {
+            return Invoker.UseAsync;
         }
     }
 }

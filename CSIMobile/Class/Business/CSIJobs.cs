@@ -74,7 +74,7 @@ namespace CSIMobile.Class.Business
                     return false;
                 }
                 Job = SLJob.GetCurrentPropertyValueOfString("Job");
-                Suffix = SLJob.GetCurrentPropertyValueOfString("Suffix");
+                Suffix = SLJob.GetCurrentPropertyValueOfInteger("Suffix").ToString("0000");
                 Desc = SLJob.GetCurrentPropertyValueOfString("Description");
                 Item = SLJob.GetCurrentPropertyValueOfString("Item");
                 ItemDesc = SLJob.GetCurrentPropertyValueOfString("ItemDescription");

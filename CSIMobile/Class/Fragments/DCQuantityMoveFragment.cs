@@ -59,7 +59,7 @@ namespace CSIMobile.Class.Fragments
 
         bool LotTracked = false, SNTracked = false;
 
-        bool ItemValidated = true, UMValidated = true, QtyValidated = true, FromLocValidated = true, FromLotValidated = true, ToLocValidated = true, ToLotValidated = true;
+        bool ItemValidated = false, UMValidated = false, QtyValidated = false, FromLocValidated = false, FromLotValidated = false, ToLocValidated = false, ToLotValidated = false;
         List<string> SNs = new List<string>();
         bool SNPicked = true;
 
@@ -560,6 +560,12 @@ namespace CSIMobile.Class.Fragments
                             }
                             OnHandQuantityText.Text = Qty;
                         }
+                        else
+                        {
+                            ItemDescText.Text = string.Empty;
+                            ItemUMText.Text = string.Empty;
+                            OnHandQuantityText.Text = "0";
+                        }
 
                         string Loc = FromLocEdit.Text, LocType = "";
                         bool RtnCSIItemLocs = CSIItemLocs.GetItemLocInfor(CSISystemContext, ItemEdit.Text, WhseEdit.Text, ref Loc, ref LocType, ref Qty);
@@ -641,6 +647,10 @@ namespace CSIMobile.Class.Fragments
                             //OnHandQuantityText.Text = Qty; //used for validate Qty
                         }
                     }
+                    else
+                    {
+                        FromLocDescText.Text = string.Empty;
+                    }
                 }
             }
             EnableDisableComponents();
@@ -692,6 +702,10 @@ namespace CSIMobile.Class.Fragments
                             ValidateToLot();
                             //OnHandQuantityText.Text = Qty; //used for validate Qty
                         }
+                    }
+                    else
+                    {
+                        ToLocDescText.Text = string.Empty;
                     }
                 }
             }

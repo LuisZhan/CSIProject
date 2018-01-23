@@ -266,7 +266,7 @@ namespace CSIMobile.Class.Common
             return true;
         }
 
-        public bool InvokeMethod(string strIDOName, string strMethodName,string strMethodParameters)
+        public object InvokeMethod(string strIDOName, string strMethodName,string strMethodParameters)
         {
             if (string.IsNullOrEmpty(URL) || string.IsNullOrEmpty(Token))
             {
@@ -285,7 +285,8 @@ namespace CSIMobile.Class.Common
                 }
                 else
                 {
-                    var o = WebService.CallMethod(Token, strIDOName, strMethodName, ref strMethodParameters);
+                    WebService.CallMethod(Token, strIDOName, strMethodName, ref strMethodParameters);
+                    return strMethodParameters;
                 }
             }
             return true;
