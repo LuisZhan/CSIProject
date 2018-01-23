@@ -519,19 +519,24 @@ namespace CSIMobile.Class.Fragments
                 {
                     try
                     {
+                        SuffixEdit.Text = string.Format("{0000}", SuffixEdit.Text);
                         string Job = JobEdit.Text, Suffix = SuffixEdit.Text, Desc = JobDescText.Text, Item = ItemText.Text
-                            , ItemDesc = ItemDescText.Text, ItemUM = ItemUMText.Text, QtyReleased = QtyReleasedText.Text;
+                            , ItemDesc = ItemDescText.Text, ItemUM = ItemUMText.Text, QtyReleased = QtyReleasedText.Text
+                            , QtyComplete = "", QtyRequired = "";
+
                         JobValidated = CSIJobs.GetJobInfor(CSISystemContext, ref Job, ref Suffix, ref Desc, ref Item
-                            , ref ItemDesc, ref QtyReleased, ref ItemUM, ref LotTracked, ref SNTracked);
+                            , ref ItemDesc, ref ItemUM, ref QtyReleased, ref QtyComplete, ref QtyRequired, ref LotTracked, ref SNTracked);
                         if (JobValidated == true)
                         {
                             JobEdit.Text = Job;
-                            SuffixEdit.Text = Suffix;
+                            SuffixEdit.Text =  string.Format("{0000}", Suffix);
                             JobDescText.Text = Desc;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
                             ItemUMText.Text = ItemUM;
                             QtyReleasedText.Text = QtyReleased;
+                            if (string.IsNullOrEmpty(QtyEdit.Text) || decimal.Parse(QtyEdit.Text) == 0)
+                                QtyEdit.Text = QtyRequired;
                         }
 
                         string Operation = OperNumEdit.Text, Wc = WorkCenterText.Text, QtyReceived = "";
@@ -569,18 +574,22 @@ namespace CSIMobile.Class.Fragments
                     try
                     {
                         string Job = JobEdit.Text, Suffix = SuffixEdit.Text, Desc = JobDescText.Text, Item = ItemText.Text
-                            , ItemDesc = ItemDescText.Text, ItemUM = ItemUMText.Text, QtyReleased = QtyReleasedText.Text;
+                            , ItemDesc = ItemDescText.Text, ItemUM = ItemUMText.Text, QtyReleased = QtyReleasedText.Text
+                            , QtyComplete = "", QtyRequired = "";
+
                         SuffixValidated = CSIJobs.GetJobInfor(CSISystemContext, ref Job, ref Suffix, ref Desc, ref Item
-                            , ref ItemDesc, ref QtyReleased, ref ItemUM, ref LotTracked, ref SNTracked);
+                            , ref ItemDesc, ref ItemUM, ref QtyReleased, ref QtyComplete, ref QtyRequired, ref LotTracked, ref SNTracked);
                         if (SuffixValidated == true)
                         {
                             JobEdit.Text = Job;
-                            SuffixEdit.Text = Suffix;
+                            SuffixEdit.Text = string.Format("{0000}", Suffix);
                             JobDescText.Text = Desc;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
                             ItemUMText.Text = ItemUM;
                             QtyReleasedText.Text = QtyReleased;
+                            if (string.IsNullOrEmpty(QtyEdit.Text) || decimal.Parse(QtyEdit.Text) == 0)
+                                QtyEdit.Text = QtyRequired;
                         }
 
                         string Operation = OperNumEdit.Text, Wc = WorkCenterText.Text, QtyReceived = "";

@@ -28,6 +28,7 @@ namespace CSIMobile.Class.Business
             PreSetPropertyList.Add("Description");
             PreSetPropertyList.Add("Item");
             PreSetPropertyList.Add("ItemDescription");
+            PreSetPropertyList.Add("ItemUM");
             PreSetPropertyList.Add("QtyReleased");
             PreSetPropertyList.Add("QtyComplete");
             PreSetPropertyList.Add("QtyScrapped");
@@ -46,7 +47,7 @@ namespace CSIMobile.Class.Business
         }
 
         public static bool GetJobInfor(CSIContext SrcContext, ref string Job, ref string Suffix, ref string Desc, ref string Item, ref string ItemDesc, ref string ItemUM
-            , ref string QtyReleased, ref bool LotTracked, ref bool SNTracked)
+            , ref string QtyReleased, ref string QtyComplete, ref string QtyRequired, ref bool LotTracked, ref bool SNTracked)
         {
             try
             {
@@ -59,6 +60,7 @@ namespace CSIMobile.Class.Business
                 SLJob.AddProperty("ItemUM");
                 SLJob.AddProperty("ItemDescription");
                 SLJob.AddProperty("QtyReleased");
+                SLJob.AddProperty("QtyComplete");
                 SLJob.AddProperty("ItemLotTracked");
                 SLJob.AddProperty("ItemSerialTracked");
                 if (string.IsNullOrEmpty(Suffix))
@@ -78,6 +80,8 @@ namespace CSIMobile.Class.Business
                 ItemDesc = SLJob.GetCurrentPropertyValueOfString("ItemDescription");
                 ItemUM = SLJob.GetCurrentPropertyValueOfString("ItemUM");
                 QtyReleased = SLJob.GetCurrentPropertyValueOfString("QtyReleased");
+                QtyComplete = SLJob.GetCurrentPropertyValueOfString("QtyComplete");
+                QtyRequired = (SLJob.GetCurrentPropertyValueOfDecimal("QtyReleased") - SLJob.GetCurrentPropertyValueOfDecimal("QtyComplete")).ToString();
                 LotTracked = SLJob.GetCurrentPropertyValueOfBoolean("ItemLotTracked");
                 SNTracked = SLJob.GetCurrentPropertyValueOfBoolean("ItemSerialTracked");
                 SLJob = null;
