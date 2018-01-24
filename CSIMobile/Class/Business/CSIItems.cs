@@ -49,7 +49,7 @@ namespace CSIMobile.Class.Business
             {
                 CSIItems SLItem = new CSIItems(SrcContext);
                 SLItem.UseSync(false);
-                SLItem.AddProperty("Items");
+                SLItem.AddProperty("Item");
                 SLItem.AddProperty("Description");
                 SLItem.AddProperty("UM");
                 SLItem.AddProperty("LotTracked");

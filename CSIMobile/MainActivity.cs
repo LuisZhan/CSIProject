@@ -237,6 +237,18 @@ namespace CSIMobile
             bool Success = false;
             switch (Command)
             {
+                case "ShowSettings":
+                    ShowSettingsDialog();
+                    Success = true;
+                    break;
+                case "ShowAbout":
+                    ShowAbout();
+                    Success = true;
+                    break;
+                case "ShowLog":
+                    ShowLog();
+                    Success = true;
+                    break;
                 case "GetToken":
                     if (string.IsNullOrEmpty(CSISystemContext.Token))
                     {
@@ -265,18 +277,6 @@ namespace CSIMobile
                     }
                     Success = true;
                     break;
-                case "ShowSettings":
-                    ShowSettingsDialog();
-                    Success = true;
-                    break;
-                case "ShowAbout":
-                    ShowAbout();
-                    Success = true;
-                    break;
-                case "ShowLog":
-                    ShowLog();
-                    Success = true;
-                    break;
                 case "QtyMove":
                     if (string.IsNullOrEmpty(CSISystemContext.Token))
                     {
@@ -285,7 +285,7 @@ namespace CSIMobile
                     }
                     else
                     {
-                        ShowQtyMove();
+                        DCQuantityMoveFragment.RunFragment(this);
                         Success = true;
                     }
                     break;
@@ -321,7 +321,7 @@ namespace CSIMobile
                     }
                     else
                     {
-                        ShowJobReceipt();
+                        DCJobReceiptFragment.RunFragment(this);
                         Success = true;
                     }
                     break; 
@@ -331,57 +331,7 @@ namespace CSIMobile
             return Success;
         }
 
-        private void ShowQtyMove()
-        {
-            try
-            {
-                FragmentTransaction ft = FragmentManager.BeginTransaction();
 
-                DCQuantityMoveFragment QtyMoveDialog = (DCQuantityMoveFragment)FragmentManager.FindFragmentByTag("QtyMove");
-                if (QtyMoveDialog != null)
-                {
-                    ft.Show(QtyMoveDialog);
-                    //ft.AddToBackStack(null);
-                }
-                else
-                {
-                    // Create and show the dialog.
-                    QtyMoveDialog = new DCQuantityMoveFragment(this);
-                    //Add fragment
-                    QtyMoveDialog.Show(ft, "QtyMove");
-                }
-            }
-            catch (Exception Ex)
-            {
-                WriteErrorLog(Ex);
-            }
-        }
-
-        private void ShowJobReceipt()
-        {
-            try
-            {
-                FragmentTransaction ft = FragmentManager.BeginTransaction();
-
-                DCJobReceiptFragment JobReceiptDialog = (DCJobReceiptFragment)FragmentManager.FindFragmentByTag("JobReceipt");
-                if (JobReceiptDialog != null)
-                {
-                    ft.Show(JobReceiptDialog);
-                    //ft.AddToBackStack(null);
-                }
-                else
-                {
-                    // Create and show the dialog.
-                    JobReceiptDialog = new DCJobReceiptFragment(this);
-                    //Add fragment
-                    JobReceiptDialog.Show(ft, "JobReceipt");
-                }
-            }
-            catch (Exception Ex)
-            {
-                WriteErrorLog(Ex);
-            }
-        }
 
         private void ShowMiscIssue()
         {

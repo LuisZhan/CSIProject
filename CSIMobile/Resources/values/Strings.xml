@@ -167,4 +167,5 @@
   <string name="ReleasedQuantity">Released Quantity</string>
   <string name="JobReceipt">Job Receipt</string>
   <string name="NoBluetoothAdapter">No Bluetooth Adapter available</string>
+  <string name="Generate">Generate</string>
 </resources>

@@ -300,8 +300,8 @@ namespace CSIMobile.Class.Fragments
         {
             if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
             {
-                //
-                e.Handled = false;
+                ProcessButton.RequestFocus();
+                e.Handled = true;
             }
             else
             {
@@ -314,7 +314,14 @@ namespace CSIMobile.Class.Fragments
         {
             if (e.KeyCode == Keycode.Enter && LotTracked && e.Event.Action == KeyEventActions.Up)
             {
-                LotEdit.RequestFocus();
+                if (LotTracked)
+                {
+                    LotEdit.RequestFocus();
+                }
+                else
+                {
+                    ProcessButton.RequestFocus();
+                }
                 e.Handled = true;
             }
             else
@@ -404,7 +411,7 @@ namespace CSIMobile.Class.Fragments
         private void ProcessButton_Click(object sender, EventArgs e)
         {
             PerformValidation();
-            if (JobValidated && SuffixValidated && QtyValidated && OperNumValidated && LocValidated && LotValidated && SNPicked)
+            if (JobValidated && SuffixValidated && QtyValidated && OperNumValidated && LocValidated && (LotValidated || !LotTracked) && SNPicked)
             {
                 SLDcjms.CurrentTable.Rows.Clear();
                 DataRow Row = SLDcjms.CurrentTable.NewRow();
@@ -1062,6 +1069,32 @@ namespace CSIMobile.Class.Fragments
 
                     EnableDisableComponents();
                 }
+            }
+        }
+
+        public static void RunFragment(CSIBaseActivity activity)
+        {
+            try
+            {
+                FragmentTransaction ft = activity.FragmentManager.BeginTransaction();
+
+                DCJobReceiptFragment JobReceiptDialog = (DCJobReceiptFragment)activity.FragmentManager.FindFragmentByTag("JobReceipt");
+                if (JobReceiptDialog != null)
+                {
+                    ft.Show(JobReceiptDialog);
+                    //ft.AddToBackStack(null);
+                }
+                else
+                {
+                    // Create and show the dialog.
+                    JobReceiptDialog = new DCJobReceiptFragment(activity);
+                    //Add fragment
+                    JobReceiptDialog.Show(ft, "JobReceipt");
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
             }
         }
     }

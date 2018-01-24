@@ -302,8 +302,8 @@ namespace CSIMobile.Class.Fragments
         {
             if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
             {
-                //
-                e.Handled = false;
+                ProcessButton.RequestFocus();
+                e.Handled = true;
             }
             else
             {
@@ -316,7 +316,14 @@ namespace CSIMobile.Class.Fragments
         {
             if (e.KeyCode == Keycode.Enter && LotTracked && e.Event.Action == KeyEventActions.Up)
             {
-                ToLotEdit.RequestFocus();
+                if (LotTracked)
+                {
+                    ToLotEdit.RequestFocus();
+                }
+                else
+                {
+                    ProcessButton.RequestFocus();
+                }
                 e.Handled = true;
             }
             else
@@ -345,7 +352,14 @@ namespace CSIMobile.Class.Fragments
         {
             if (e.KeyCode == Keycode.Enter && LotTracked && e.Event.Action == KeyEventActions.Up)
             {
-                FromLotEdit.RequestFocus();
+                if (LotTracked)
+                {
+                    FromLotEdit.RequestFocus();
+                }
+                else
+                {
+                    ToLocEdit.RequestFocus();
+                }
                 e.Handled = true;
             }
             else
@@ -419,7 +433,7 @@ namespace CSIMobile.Class.Fragments
         private void ProcessButton_Click(object sender, EventArgs e)
         {
             PerformValidation();
-            if (ItemValidated && UMValidated && QtyValidated && FromLocValidated && FromLotValidated && ToLocValidated && ToLotValidated && SNPicked)
+            if (ItemValidated && UMValidated && QtyValidated && FromLocValidated && (FromLotValidated || !LotTracked) && ToLocValidated && (ToLotValidated || !LotTracked) && SNPicked)
             {
                 SLDcmoves.CurrentTable.Rows.Clear();
                 DataRow Row = SLDcmoves.CurrentTable.NewRow();
@@ -705,7 +719,32 @@ namespace CSIMobile.Class.Fragments
                     }
                     else
                     {
-                        ToLocDescText.Text = string.Empty;
+                        try
+                        {
+                            CSILocations SLLoc = new CSILocations(CSISystemContext);
+                            SLLoc.UseSync(false);
+                            SLLoc.AddProperty("Loc");
+                            SLLoc.AddProperty("Description");
+                            SLLoc.SetFilter(string.Format("Loc = N'{0}'", Loc));
+                            SLLoc.LoadIDO();
+                            if (SLLoc.CurrentTable.Rows.Count <= 0)
+                            {
+                                ToLocDescText.Text = string.Empty;
+                                ToLocValidated = false;
+                            }
+                            else
+                            {
+                                ToLocEdit.Text = SLLoc.GetCurrentPropertyValueOfString("Loc"); ;
+                                ToLocDescText.Text = SLLoc.GetCurrentPropertyValueOfString("Description"); ;
+                                ToLocValidated = true;
+                            }
+                        }
+                        catch (Exception Ex)
+                        {
+                            WriteErrorLog(Ex);
+                            ToLocValidated = false;
+                        }
+                        
                     }
                 }
             }
@@ -1035,10 +1074,37 @@ namespace CSIMobile.Class.Fragments
                 {
                     ProgressBar.Visibility = ViewStates.Gone;
                     CSIBaseObject.DisableEnableControls(true, Layout);
+                    EnableDisableComponents();
                 }
             }
 
-            EnableDisableComponents();
         }
+
+        public static void RunFragment(CSIBaseActivity activity)
+        {
+            try
+            {
+                FragmentTransaction ft = activity.FragmentManager.BeginTransaction();
+
+                DCQuantityMoveFragment QtyMoveDialog = (DCQuantityMoveFragment)activity.FragmentManager.FindFragmentByTag("QtyMove");
+                if (QtyMoveDialog != null)
+                {
+                    ft.Show(QtyMoveDialog);
+                    //ft.AddToBackStack(null);
+                }
+                else
+                {
+                    // Create and show the dialog.
+                    QtyMoveDialog = new DCQuantityMoveFragment(activity);
+                    //Add fragment
+                    QtyMoveDialog.Show(ft, "QtyMove");
+                }
+            }
+            catch (Exception Ex)
+            {
+                CSIErrorLog.WriteErrorLog(Ex);
+            }
+        }
+        
     }
 }

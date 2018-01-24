@@ -167,4 +167,5 @@
   <string name="ReleasedQuantity">下达数量</string>
   <string name="JobReceipt">作业入库</string>
   <string name="NoBluetoothAdapter">没有蓝牙适配器可用</string>
+  <string name="Generate">生成</string>
 </resources>

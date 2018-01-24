@@ -129,6 +129,8 @@
     <Compile Include="Class\Business\CSIEmployees.cs" />
     <Compile Include="Class\Business\CSIJobRoutes.cs" />
     <Compile Include="Class\Business\CSIJobs.cs" />
+    <Compile Include="Class\Business\CSISerials.cs" />
+    <Compile Include="Class\Business\CSILots.cs" />
     <Compile Include="Class\Business\IO\CSIDcJsonObjects.cs" />
     <Compile Include="Class\Business\CSIItemLocs.cs" />
     <Compile Include="Class\Business\CSIUserLocals.cs" />
@@ -158,6 +160,7 @@
     <Compile Include="Class\Fragments\Adapter\ModuleGridViewerAdapter.cs" />
     <Compile Include="Class\Fragments\ModuleDeckFragment.cs" />
     <Compile Include="Class\Fragments\AboutDialogFragment.cs" />
+    <Compile Include="Class\Fragments\SerialGenerator.cs" />
     <Compile Include="Class\Fragments\SettingsDialogFragment.cs" />
     <Compile Include="Class\Fragments\ProgressFragment.cs" />
     <Compile Include="Class\Fragments\SignInDialogFragment.cs" />
@@ -209,6 +212,15 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\CSIJobReceipt.axml" />
+    <AndroidResource Include="Resources\layout\CSISerialGenerator.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CSILocationList.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CSILotList.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\CSIMain.axml">
