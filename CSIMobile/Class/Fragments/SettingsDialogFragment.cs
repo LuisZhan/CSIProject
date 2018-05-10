@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace CSIMobile.Class.Fragments
 {
-    public class SettingsDialogFragment : CSIBaseDialogFragment
+    public class SettingsDialogFragment : CSIBaseFullScreenDialogFragment
     {
         private EditText CSIWebServerEdit;
         private Switch EnableHTTPS;

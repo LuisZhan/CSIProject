@@ -439,7 +439,7 @@ namespace CSIMobile.Class.Fragments
 
         private void SNButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SerialGenerator.RunFragment(this);
         }
 
         private void LotEdit_FocusChange(object sender, View.FocusChangeEventArgs e)
@@ -1094,7 +1094,7 @@ namespace CSIMobile.Class.Fragments
             }
             catch (Exception Ex)
             {
-                WriteErrorLog(Ex);
+                CSIErrorLog.WriteErrorLog(Ex);
             }
         }
     }

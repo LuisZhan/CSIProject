@@ -462,7 +462,7 @@ namespace CSIMobile.Class.Fragments
 
         private void SNButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SerialGenerator.RunFragment(this);
         }
 
         private void ToLotEdit_FocusChange(object sender, View.FocusChangeEventArgs e)

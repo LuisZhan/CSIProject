@@ -15,7 +15,7 @@ using CSIMobile.Class.Business;
 
 namespace CSIMobile.Class.Fragments
 {
-    public class SignInDialogFragment : CSIBaseDialogFragment
+    public class SignInDialogFragment : CSIBaseFullScreenDialogFragment
     {
         private EditText UserEdit;
         private EditText PasswordEdit;

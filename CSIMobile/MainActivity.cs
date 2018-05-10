@@ -16,7 +16,7 @@ using Android.Content.PM;
 
 namespace CSIMobile
 {
-    [Activity(Label = "@string/app_name", ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "@string/app_name"/*, ScreenOrientation = ScreenOrientation.Portrait*/)]
     public class MainActivity : CSIBaseActivity
     {
         public TextView[] MoudleButton = { null, null, null, null };
@@ -199,7 +199,7 @@ namespace CSIMobile
                 }
                 else
                 {
-                    SignOutDialog = new CSIMessageDialog(GetString(Resource.String.app_name), string.Format(GetString(Resource.String.AskForExit), CSISystemContext.UserDesc), DialogTypes.OKCancel, this);
+                    SignOutDialog = new CSIMessageDialog(GetString(Resource.String.app_name), string.Format(GetString(Resource.String.AskForExit), CSISystemContext.UserDesc ?? CSISystemContext.User), DialogTypes.OKCancel, this);
                     SignOutDialog.OkHandler += (sender, args) =>
                     {
                         Finish();
@@ -267,7 +267,7 @@ namespace CSIMobile
                     else
                     {
                         FragmentTransaction ft = FragmentManager.BeginTransaction();
-                        CSIMessageDialog AlertDialog = new CSIMessageDialog(GetString(Resource.String.app_name), string.Format(GetString(Resource.String.AlreadySignIn), CSISystemContext.UserDesc), DialogTypes.OKCancel, this);
+                        CSIMessageDialog AlertDialog = new CSIMessageDialog(GetString(Resource.String.app_name), string.Format(GetString(Resource.String.AlreadySignIn), CSISystemContext.UserDesc ?? CSISystemContext.User), DialogTypes.OKCancel, this);
                         AlertDialog.OkHandler += (sender, args) =>
                         {
                             CSISystemContext.Token = "";

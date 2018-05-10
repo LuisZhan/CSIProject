@@ -43,7 +43,7 @@ namespace CSIMobile.Class.Fragments
                 ListView = view.FindViewById<ListView>(Resource.Id.ListView);
 
                 UserText.Text = CSISystemContext.User ?? CSISystemContext.UserDesc;
-                UserNameText.Text = CSISystemContext.UserDesc;
+                UserNameText.Text = CSISystemContext.UserDesc ?? CSISystemContext.User;
                 EmployeeText.Text = CSISystemContext.EmpNum ?? CSISystemContext.EmpName;
                 EmployeeNameText.Text = CSISystemContext.EmpName;
 

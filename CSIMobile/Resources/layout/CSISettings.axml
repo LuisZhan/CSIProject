@@ -10,7 +10,7 @@
         android:id="@+id/LinearLayout"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-            android:gravity="right|top">
+        android:gravity="right|top">
         <LinearLayout
             android:orientation="horizontal"
             android:minWidth="300dp"

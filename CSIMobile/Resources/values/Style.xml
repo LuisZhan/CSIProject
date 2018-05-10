@@ -5,10 +5,10 @@
   <style name="MyTheme" parent="Theme.AppCompat.NoActionBar">
   </style>
 
-  <style name="MyTheme.Dialog" parent="Theme.AppCompat.Dialog">
+  <style name="MyTheme.Dialog" parent="Theme.AppCompat">
   </style>
   
-  <style name="MyTheme.Dialog.FullScreen" parent="Theme.AppCompat.DialogWhenLarge">
+  <style name="MyTheme.Dialog.FullScreen" parent="Theme.AppCompat">
   </style>
 
   <style name="MyTheme.Splash" parent ="MyTheme.Base">

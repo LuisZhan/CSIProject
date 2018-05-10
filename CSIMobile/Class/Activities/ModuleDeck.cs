@@ -29,6 +29,7 @@ namespace CSIMobile.Class.Activities
         public Type ActivityType;
         public string[] InvokeCommands = { "GetToken" };
         public int DrawableId;
+        public bool Disabled = false;
         public ModuleAction(CSIContext SrcContext = null) : base(SrcContext)
         {
         }
@@ -46,22 +47,26 @@ namespace CSIMobile.Class.Activities
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.Items),
                         DrawableId = Resource.Drawable.Logo,
-                        //ActivityType = typeof(object)
+                        //ActivityType = typeof(object),
+                        Disabled = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.PurchaseOrders),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
+                        Disabled = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.SalesOrders),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
+                        Disabled = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.JobOrders),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
+                        Disabled = true
                     }
                 }
             },
@@ -89,21 +94,25 @@ namespace CSIMobile.Class.Activities
                         ActionName = Application.Context.GetString(Resource.String.PurchaseReceive),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
+                        Disabled = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.SalesShip),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
+                        Disabled = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.TransferShip),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
+                        Disabled = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.TransferReceive),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
+                        Disabled = true
                     }
                 }
             },
@@ -116,11 +125,13 @@ namespace CSIMobile.Class.Activities
                         ActionName = Application.Context.GetString(Resource.String.JobMaterial),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
+                        Disabled = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.JobTransaction),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
+                        Disabled = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.JobReceipt),
@@ -131,16 +142,19 @@ namespace CSIMobile.Class.Activities
                         ActionName = Application.Context.GetString(Resource.String.WorkCenterTransaction),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
+                        Disabled = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.ProductionSchedule),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
+                        Disabled = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.JustInTime),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
+                        Disabled = true
                     }
                 }
             },

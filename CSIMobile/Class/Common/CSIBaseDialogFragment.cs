@@ -77,6 +77,11 @@ namespace CSIMobile.Class.Common
             }
         }
 
+        public CSIBaseActivity GetBaseActivity()
+        {
+            return BaseActivity;
+        }
+
         protected virtual void WriteErrorLog(Exception Ex)
         {
             if (CSISystemContext.DisplayWhenError)
