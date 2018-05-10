@@ -61,7 +61,8 @@ namespace CSIMobile.Class.Fragments.Adapter
                 imageView.SetPadding(28, 28, 28, 28);
                 imageView.SetImageResource(Action.DrawableId);
                 textView.Text = Action.ActionName;
-                view.Enabled = !Action.Disabled;
+                view.Enabled = Action.Enabled;
+                view.Visibility = Action.Visible ? ViewStates.Visible : ViewStates.Gone;
                 return view;
             }
             catch (Exception Ex)
