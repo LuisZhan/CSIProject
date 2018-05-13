@@ -16,7 +16,7 @@ using Android.Content.PM;
 
 namespace CSIMobile
 {
-    [Activity(Label = "@string/app_name"/*, ScreenOrientation = ScreenOrientation.Portrait*/)]
+    [Activity(Label = "@string/app_name", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : CSIBaseActivity
     {
         public TextView[] MoudleButton = { null, null, null, null };

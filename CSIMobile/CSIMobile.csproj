@@ -129,6 +129,7 @@
     <Compile Include="Class\Business\CSIEmployees.cs" />
     <Compile Include="Class\Business\CSIJobRoutes.cs" />
     <Compile Include="Class\Business\CSIJobs.cs" />
+    <Compile Include="Class\Business\CSIReasons.cs" />
     <Compile Include="Class\Business\CSISerials.cs" />
     <Compile Include="Class\Business\CSILots.cs" />
     <Compile Include="Class\Business\IO\CSIDcJsonObjects.cs" />
@@ -188,7 +189,7 @@
     <AndroidResource Include="Resources\drawable\SplashScreen.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\CSIMiscIssueReceipt.axml" />
+    <AndroidResource Include="Resources\layout\CSIMiscIssueReceiptAndQtyAdjus.axml" />
     <AndroidResource Include="Resources\layout\CSIQuantityMove.axml" />
     <AndroidResource Include="Resources\layout\CSISignIn.axml">
       <SubType>Designer</SubType>

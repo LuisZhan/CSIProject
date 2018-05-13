@@ -427,6 +427,13 @@ namespace CSIMobile.Class.Fragments
             OnHandQuantityText.Text = string.Empty;
             FromLocDescText.Text = string.Empty;
             ToLocDescText.Text = string.Empty;
+            ItemValidated = false;
+            UMValidated = false;
+            QtyValidated = false;
+            FromLocValidated = false;
+            FromLotValidated = false;
+            ToLocValidated = false;
+            ToLotValidated = false;
             SetSNLabel();
         }
 

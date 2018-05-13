@@ -158,8 +158,7 @@ namespace CSIMobile.Class.Business.IO
             }
             return rtn;
         }
-
-
+        
         public static bool ReadJobReceiptJson(string JsonString, out string Job, out string Suffix, out string OperNum, out string Qty, out string Loc, out string Lot)
         {
             bool rtn = true;
@@ -261,5 +260,108 @@ namespace CSIMobile.Class.Business.IO
             }
             return rtn;
         }
+
+        public static bool ReadMiscIssueReceiptAndQtyAdjustJson(string JsonString, out string Item, out string UM, out string Qty, out string Loc, out string Lot, out string Reason)
+        {
+            bool rtn = true;
+            Item = string.Empty;
+            UM = string.Empty;
+            Qty = string.Empty;
+            Loc = string.Empty;
+            Lot = string.Empty;
+            Reason = string.Empty;
+            if (string.IsNullOrEmpty(JsonString)) return false;
+            try
+            {
+                byte[] data = Encoding.Default.GetBytes(JsonString.ToString());
+                MemoryStream QtyMoveStream = new MemoryStream(data);
+                JsonReader jReader = new JsonReader(new Java.IO.InputStreamReader(QtyMoveStream));
+                jReader.BeginObject();
+                while (jReader.HasNext)
+                {
+                    string name = jReader.NextName();
+                    if (name.Equals("Item"))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Item = jReader.NextString();
+                        }
+                    }
+                    else if (name.Equals("UM"))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            UM = jReader.NextString();
+                        }
+                    }
+                    else if (name.Equals("Qty") || name.Equals("Quantity"))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Qty = jReader.NextString();
+                        }
+                    }
+                    else if (name.Equals("Loc") || name.Equals("Loc"))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Loc = jReader.NextString();
+                        }
+                    }
+                    else if (name.Equals("Lot") || name.Equals("Lot"))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Lot = jReader.NextString();
+                        }
+                    }
+                    else if (name.Equals("Reason") || name.Equals("ReasonCode"))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Reason = jReader.NextString();
+                        }
+                    }
+                    else
+                    {
+                        jReader.SkipValue();
+                    }
+                }
+                jReader.EndObject();
+                jReader.Close();
+                QtyMoveStream.Close();
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                rtn = false;
+            }
+            return rtn;
+        }
+
     }
 }

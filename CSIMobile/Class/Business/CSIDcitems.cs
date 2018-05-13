@@ -35,11 +35,6 @@ namespace CSIMobile.Class.Business
             PreSetPropertyList.Add("Whse");
             PreSetPropertyList.Add("Loc");
             PreSetPropertyList.Add("Lot");
-            PreSetPropertyList.Add("Loc1");
-            PreSetPropertyList.Add("Lot1");
-            PreSetPropertyList.Add("Loc2");
-            PreSetPropertyList.Add("Lot2");
-            PreSetPropertyList.Add("QtyMoved");
             PreSetPropertyList.Add("CountQty");
             PreSetPropertyList.Add("UM");
             PreSetPropertyList.Add("ReasonCode");

@@ -113,8 +113,9 @@ namespace CSIMobile.Class.Common
                 Android.Hardware.Camera.Parameters mParameters = mCamera.GetParameters();
                 mCamera.SetParameters(mParameters);
             }
-            catch (Exception e)
+            catch (Exception Ex)
             {
+                WriteErrorLog(Ex);
                 canUse = false;
             }
 

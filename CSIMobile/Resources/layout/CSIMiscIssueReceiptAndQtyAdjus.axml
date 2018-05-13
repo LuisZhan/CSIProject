@@ -5,7 +5,28 @@
     android:layout_height="match_parent"
     android:minWidth="1000dp"
     android:minHeight="1000dp"
-    android:padding="10dp">
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:id="@+id/LinearLayout">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TitleLinearLayout"
+        android:gravity="right|top">
+        <ProgressBar
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/ProgressBar" />
+        <ImageView
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/CloseImage" />
+    </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -41,7 +62,7 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/linearLayout2">
         <LinearLayout
             android:orientation="horizontal"
@@ -93,7 +114,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/UMText"
+                    android:id="@+id/ItemUMText"
                     tools:text="@string/UM"
                     android:gravity="center"
                     android:singleLine="true" />
@@ -169,7 +190,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/QuantityEdit"
+                    android:id="@+id/QtyEdit"
                     android:gravity="right"
                     android:singleLine="true"
                     android:layout_marginRight="42dp"
@@ -195,7 +216,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/linearLayout8">
+                android:id="@+id/LocLinearLayout">
                 <EditText
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/LocEdit"
@@ -223,7 +244,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/linearLayout8">
+                android:id="@+id/LotLinearLayout">
                 <EditText
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/LotEdit"
@@ -248,12 +269,12 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ToLinearLayout">
+            android:id="@+id/ReasonLinearLayout">
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/linearLayout8">
+                android:id="@+id/ReasonCodeLinearLayout">
                 <EditText
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/ReasonEdit"
@@ -264,7 +285,7 @@
                     android:singleLine="true" />
                 <ImageButton
                     android:src="@drawable/scanner"
-                    android:id="@+id/LocScanButton"
+                    android:id="@+id/ReasonScanButton"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:scaleType="fitCenter"
