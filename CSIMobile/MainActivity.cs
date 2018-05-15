@@ -324,7 +324,55 @@ namespace CSIMobile
                         DCJobReceiptFragment.RunFragment(this);
                         Success = true;
                     }
-                    break; 
+                    break;
+                case "OrderShipping":
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else
+                    {
+                        DCOrderShippingFragment.RunFragment(this);
+                        Success = true;
+                    }
+                    break;
+                case "OrderReturn":
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else
+                    {
+                        DCOrderReturnFragment.RunFragment(this);
+                        Success = true;
+                    }
+                    break;
+                case "PurchaseReceive":
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else
+                    {
+                        //DCPurchaseReceiveFragment.RunFragment(this);
+                        Success = true;
+                    }
+                    break;
+                case "PurchaseReturn":
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else
+                    {
+                        //DCPurchaseReturnFragment.RunFragment(this);
+                        Success = true;
+                    }
+                    break;
                 default:
                     break;
             }

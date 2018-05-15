@@ -122,11 +122,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Business\CSIDcpos.cs" />
+    <Compile Include="Class\Business\CSIDccos.cs" />
     <Compile Include="Class\Business\CSIDcitems.cs" />
     <Compile Include="Class\Business\CSIDcBase.cs" />
     <Compile Include="Class\Business\CSIDcjms.cs" />
     <Compile Include="Class\Business\CSIDcmoves.cs" />
     <Compile Include="Class\Business\CSIEmployees.cs" />
+    <Compile Include="Class\Business\CSICoItems.cs" />
     <Compile Include="Class\Business\CSIJobRoutes.cs" />
     <Compile Include="Class\Business\CSIJobs.cs" />
     <Compile Include="Class\Business\CSIReasons.cs" />
@@ -146,6 +149,8 @@
     <Compile Include="Class\Common\Print\CSIPrinter.cs" />
     <Compile Include="Class\Common\CSISanner.cs" />
     <Compile Include="Class\Common\CSIWebServiceEventInterface.cs" />
+    <Compile Include="Class\Fragments\DCOrderReturnFragment.cs" />
+    <Compile Include="Class\Fragments\DCOrderShippingtFragment.cs" />
     <Compile Include="Class\Fragments\DCMiscIssueFragment.cs" />
     <Compile Include="Class\Fragments\DCMiscReceiveFragment.cs" />
     <Compile Include="Class\Fragments\DCJobReceiptFragment.cs" />
@@ -222,6 +227,8 @@
     <AndroidResource Include="Resources\layout\CSILotList.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\CSIOrderShipping.axml" />
+    <AndroidResource Include="Resources\layout\CSIOrderReturn.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\CSIMain.axml">

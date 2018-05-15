@@ -65,8 +65,10 @@
   <string name="TransferReceive">Transfer Receive</string>
   <string name="PurchaseOrders">Purchase Orders</string>
   <string name="PurchaseReceive">Purchase Receive</string>
+  <string name="PurchaseReturn">Purchase Return</string>
   <string name="SalesOrders">Sales Orders</string>
   <string name="SalesShip">Sales Ship</string>
+  <string name="SalesReturn">Sales Return</string>
   <string name="JobOrders">Job Orders</string>
   <string name="GetMoreRows">Get More Rows</string>
   <string name="Loading">Loading...</string>
@@ -134,7 +136,7 @@
   <string name="LotTrack">Lot Track</string>
   <string name="SNTrack">S/N Track</string>
   <string name="OrderNumber">Order Number</string>
-  <string name="OrderRelease">Release Release</string>
+  <string name="OrderRelease">Release</string>
   <string name="Reason">Reason</string>
   <string name="VendorItem">Vendor Item</string>
   <string name="BlanketLine">Blanket Line</string>
@@ -168,4 +170,5 @@
   <string name="JobReceipt">Job Receipt</string>
   <string name="NoBluetoothAdapter">No Bluetooth Adapter available</string>
   <string name="Generate">Generate</string>
+  <string name="QuantityOrdered">Qty Ordered</string>
 </resources>

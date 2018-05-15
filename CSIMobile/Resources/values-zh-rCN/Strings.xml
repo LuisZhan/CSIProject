@@ -65,8 +65,10 @@
   <string name="TransferReceive">移库单接收</string>
   <string name="PurchaseOrders">采购单查询</string>
   <string name="PurchaseReceive">采购单接收</string>
+  <string name="PurchaseReturn">采购单退货</string>
   <string name="SalesOrders">销售单查询</string>
   <string name="SalesShip">销售单发货</string>
+  <string name="SalesReturn">销售单退货</string>
   <string name="JobOrders">作业单查询</string>
   <string name="GetMoreRows">加载更多记录</string>
   <string name="Loading">加载中...</string>
@@ -168,4 +170,5 @@
   <string name="JobReceipt">作业入库</string>
   <string name="NoBluetoothAdapter">没有蓝牙适配器可用</string>
   <string name="Generate">生成</string>
+  <string name="QuantityOrdered">订单数量</string>
 </resources>

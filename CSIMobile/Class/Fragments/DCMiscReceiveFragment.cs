@@ -286,9 +286,13 @@ namespace CSIMobile.Class.Fragments
 
         private void LotEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            if (e.KeyCode == Keycode.Enter)
             {
-                ReasonEdit.RequestFocus();
+                if (e.Event.Action == KeyEventActions.Up)
+                {
+                    ValidateLot();
+                    ReasonEdit.RequestFocus();
+                }
                 e.Handled = true;
             }
             else
@@ -300,15 +304,19 @@ namespace CSIMobile.Class.Fragments
 
         private void LocEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter && LotTracked && e.Event.Action == KeyEventActions.Up)
+            if (e.KeyCode == Keycode.Enter)
             {
-                if (LotTracked)
+                if (e.Event.Action == KeyEventActions.Up)
                 {
-                    LotEdit.RequestFocus();
-                }
-                else
-                {
-                    ReasonEdit.RequestFocus();
+                    ValidateLoc();
+                    if (LotTracked)
+                    {
+                        LotEdit.RequestFocus();
+                    }
+                    else
+                    {
+                        ReasonEdit.RequestFocus();
+                    }
                 }
                 e.Handled = true;
             }
@@ -322,9 +330,13 @@ namespace CSIMobile.Class.Fragments
 
         private void ReasonEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            if (e.KeyCode == Keycode.Enter)
             {
-                ProcessButton.RequestFocus();
+                if (e.Event.Action == KeyEventActions.Up)
+                {
+                    ValidateReason();
+                    ProcessButton.RequestFocus();
+                }
                 e.Handled = true;
             }
             else
@@ -336,9 +348,13 @@ namespace CSIMobile.Class.Fragments
 
         private void QtyEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            if (e.KeyCode == Keycode.Enter)
             {
-                LocEdit.RequestFocus();
+                if (e.Event.Action == KeyEventActions.Up)
+                {
+                    ValidateQty();
+                    LocEdit.RequestFocus();
+                }
                 e.Handled = true;
             }
             else
@@ -350,9 +366,13 @@ namespace CSIMobile.Class.Fragments
 
         private void UMEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            if (e.KeyCode == Keycode.Enter)
             {
-                QtyEdit.RequestFocus();
+                if (e.Event.Action == KeyEventActions.Up)
+                {
+                    ValidateUM();
+                    QtyEdit.RequestFocus();
+                }
                 e.Handled = true;
             }
             else
@@ -364,10 +384,15 @@ namespace CSIMobile.Class.Fragments
 
         private void ItemEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            if (e.KeyCode == Keycode.Enter)
             {
-                //
-                e.Handled = false;
+                if (e.Event.Action == KeyEventActions.Up)
+                {
+                    ValidateItem();
+                    UMEdit.RequestFocus();
+                    //
+                }
+                e.Handled = true;
             }
             else
             {
@@ -656,10 +681,15 @@ namespace CSIMobile.Class.Fragments
                 else
                 {
                     string ReasonCode = ReasonEdit.Text, ReasonDescription = "";
-                    ReasonValidated = CSIReasons.GetReason(CSISystemContext, ReasonCode, "MISC RCPT", ref ReasonDescription);
+                    ReasonValidated = CSIReasons.GetReason(CSISystemContext, ref ReasonCode, "MISC RCPT", ref ReasonDescription);
                     if (ReasonValidated)
                     {
+                        ReasonEdit.Text = ReasonCode;
                         ReasonDescText.Text = ReasonDescription;
+                    }
+                    else
+                    {
+                        ReasonDescText.Text = string.Empty;
                     }
                 }
             }

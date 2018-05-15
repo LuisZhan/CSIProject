@@ -28,7 +28,7 @@ namespace CSIMobile.Class.Business
             PreSetPropertyList.Add("Description");
         }
 
-        public static bool GetReason(CSIContext SrcContext, string ReasonCode, string ReasonClass, ref string ReasonDescription)
+        public static bool GetReason(CSIContext SrcContext, ref string ReasonCode, string ReasonClass, ref string ReasonDescription)
         {
             try
             {
@@ -45,6 +45,7 @@ namespace CSIMobile.Class.Business
                 {
                     return false;
                 }
+                ReasonCode = SLReason.GetCurrentPropertyValueOfString("ReasonCode");
                 ReasonDescription = SLReason.GetCurrentPropertyValueOfString("Description");
                 SLReason = null;
                 return true;

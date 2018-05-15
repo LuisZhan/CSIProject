@@ -300,9 +300,13 @@ namespace CSIMobile.Class.Fragments
 
         private void ToLotEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            if (e.KeyCode == Keycode.Enter)
             {
-                ProcessButton.RequestFocus();
+                if (e.Event.Action == KeyEventActions.Up)
+                {
+                    ValidateToLot();
+                    ProcessButton.RequestFocus();
+                }
                 e.Handled = true;
             }
             else
@@ -314,15 +318,19 @@ namespace CSIMobile.Class.Fragments
 
         private void ToLocEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter && LotTracked && e.Event.Action == KeyEventActions.Up)
+            if (e.KeyCode == Keycode.Enter)
             {
-                if (LotTracked)
+                if (e.Event.Action == KeyEventActions.Up)
                 {
-                    ToLotEdit.RequestFocus();
-                }
-                else
-                {
-                    ProcessButton.RequestFocus();
+                    ValidateToLoc();
+                    if (LotTracked)
+                    {
+                        ToLotEdit.RequestFocus();
+                    }
+                    else
+                    {
+                        ProcessButton.RequestFocus();
+                    }
                 }
                 e.Handled = true;
             }
@@ -336,9 +344,13 @@ namespace CSIMobile.Class.Fragments
 
         private void FromLotEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            if (e.KeyCode == Keycode.Enter)
             {
-                ToLocEdit.RequestFocus();
+                if (e.Event.Action == KeyEventActions.Up)
+                {
+                    ValidateFromLot();
+                    ToLocEdit.RequestFocus();
+                }
                 e.Handled = true;
             }
             else
@@ -350,15 +362,19 @@ namespace CSIMobile.Class.Fragments
 
         private void FromLocEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter && LotTracked && e.Event.Action == KeyEventActions.Up)
+            if (e.KeyCode == Keycode.Enter)
             {
-                if (LotTracked)
+                if (e.Event.Action == KeyEventActions.Up)
                 {
-                    FromLotEdit.RequestFocus();
-                }
-                else
-                {
-                    ToLocEdit.RequestFocus();
+                    ValidateFromLoc();
+                    if (LotTracked)
+                    {
+                        FromLotEdit.RequestFocus();
+                    }
+                    else
+                    {
+                        ToLocEdit.RequestFocus();
+                    }
                 }
                 e.Handled = true;
             }
@@ -371,9 +387,13 @@ namespace CSIMobile.Class.Fragments
 
         private void QtyEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            if (e.KeyCode == Keycode.Enter)
             {
-                FromLocEdit.RequestFocus();
+                if (e.Event.Action == KeyEventActions.Up)
+                {
+                    ValidateQty();
+                    FromLocEdit.RequestFocus();
+                }
                 e.Handled = true;
             }
             else
@@ -385,9 +405,13 @@ namespace CSIMobile.Class.Fragments
 
         private void UMEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            if (e.KeyCode == Keycode.Enter)
             {
-                QtyEdit.RequestFocus();
+                if (e.Event.Action == KeyEventActions.Up)
+                {
+                    ValidateUM();
+                    QtyEdit.RequestFocus();
+                }
                 e.Handled = true;
             }
             else
@@ -399,10 +423,14 @@ namespace CSIMobile.Class.Fragments
 
         private void ItemEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter && e.Event.Action == KeyEventActions.Up)
+            if (e.KeyCode == Keycode.Enter)
             {
-                //
-                e.Handled = false;
+                if (e.Event.Action == KeyEventActions.Up)
+                {
+                    ValidateItem();
+                    UMEdit.RequestFocus();
+                }
+                e.Handled = true;
             }
             else
             {

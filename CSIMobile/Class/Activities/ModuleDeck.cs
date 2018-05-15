@@ -50,7 +50,7 @@ namespace CSIMobile.Class.Activities
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object),
                         Enabled = false,
-                        Visible = true
+                        Visible = false
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.PurchaseOrders),
@@ -81,13 +81,6 @@ namespace CSIMobile.Class.Activities
                 ModuleActions = new ModuleAction[]
                 {
                     new ModuleAction {
-                        ActionName = Application.Context.GetString(Resource.String.QuantityMove),
-                        DrawableId = Resource.Drawable.Logo,
-                        InvokeCommands = new string[] { "QtyMove" },
-                        Enabled = true,
-                        Visible = true
-                    },
-                    new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.MiscIssue),
                         DrawableId = Resource.Drawable.Logo,
                         InvokeCommands = new string[] { "MiscIssue" },
@@ -102,31 +95,52 @@ namespace CSIMobile.Class.Activities
                         Visible = true
                     },
                     new ModuleAction {
+                        ActionName = Application.Context.GetString(Resource.String.SalesShip),
+                        DrawableId = Resource.Drawable.Logo,
+                        InvokeCommands = new string[] { "OrderShipping" },
+                        Enabled = true,
+                        Visible = true
+                    },
+                    new ModuleAction {
+                        ActionName = Application.Context.GetString(Resource.String.SalesReturn),
+                        DrawableId = Resource.Drawable.Logo,
+                        InvokeCommands = new string[] { "OrderReturn" },
+                        Enabled = true,
+                        Visible = true
+                    },
+                    new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.PurchaseReceive),
                         DrawableId = Resource.Drawable.Logo,
-                        //ActivityType = typeof(object),
+                        InvokeCommands = new string[] { "PurchaseReceive" },
                         Enabled = false,
                         Visible = true
                     },
                     new ModuleAction {
-                        ActionName = Application.Context.GetString(Resource.String.SalesShip),
+                        ActionName = Application.Context.GetString(Resource.String.PurchaseReturn),
                         DrawableId = Resource.Drawable.Logo,
-                        //ActivityType = typeof(object),
+                        InvokeCommands = new string[] { "PurchaseReturn" },
                         Enabled = false,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.TransferShip),
                         DrawableId = Resource.Drawable.Logo,
-                        //ActivityType = typeof(object),
+                        InvokeCommands = new string[] { "TransferShip" },
                         Enabled = false,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.TransferReceive),
                         DrawableId = Resource.Drawable.Logo,
-                        //ActivityType = typeof(object),
+                        InvokeCommands = new string[] { "TransferReceive" },
                         Enabled = false,
+                        Visible = true
+                    },
+                    new ModuleAction {
+                        ActionName = Application.Context.GetString(Resource.String.QuantityMove),
+                        DrawableId = Resource.Drawable.Logo,
+                        InvokeCommands = new string[] { "QtyMove" },
+                        Enabled = true,
                         Visible = true
                     }
                 }
