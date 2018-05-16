@@ -296,7 +296,7 @@ namespace CSIMobile.Class.Fragments
 
         private void LotEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter)
+            if (e.KeyCode == Keycode.Enter || e.KeyCode == Keycode.Tab || e.KeyCode == Keycode.Tab)
             {
                 if (e.Event.Action == KeyEventActions.Up)
                 {
@@ -314,7 +314,7 @@ namespace CSIMobile.Class.Fragments
 
         private void LocEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter)
+            if (e.KeyCode == Keycode.Enter || e.KeyCode == Keycode.Tab)
             {
                 if (e.Event.Action == KeyEventActions.Up)
                 {
@@ -340,7 +340,7 @@ namespace CSIMobile.Class.Fragments
 
         private void QtyEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter)
+            if (e.KeyCode == Keycode.Enter || e.KeyCode == Keycode.Tab)
             {
                 if (e.Event.Action == KeyEventActions.Up)
                 {
@@ -357,7 +357,7 @@ namespace CSIMobile.Class.Fragments
         }
         private void UMEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter)
+            if (e.KeyCode == Keycode.Enter || e.KeyCode == Keycode.Tab)
             {
                 if (e.Event.Action == KeyEventActions.Up)
                 {
@@ -375,7 +375,7 @@ namespace CSIMobile.Class.Fragments
 
         private void ReleaseEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter)
+            if (e.KeyCode == Keycode.Enter || e.KeyCode == Keycode.Tab)
             {
                 if (e.Event.Action == KeyEventActions.Up)
                 {
@@ -393,7 +393,7 @@ namespace CSIMobile.Class.Fragments
 
         private void LineEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter)
+            if (e.KeyCode == Keycode.Enter || e.KeyCode == Keycode.Tab)
                 {
                 if (e.Event.Action == KeyEventActions.Up)
                 {
@@ -418,7 +418,7 @@ namespace CSIMobile.Class.Fragments
 
         private void PoNumEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter)
+            if (e.KeyCode == Keycode.Enter || e.KeyCode == Keycode.Tab)
             {
                 if (e.Event.Action == KeyEventActions.Up)
                 {
