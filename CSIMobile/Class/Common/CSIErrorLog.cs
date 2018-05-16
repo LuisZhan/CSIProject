@@ -37,7 +37,7 @@ namespace CSIMobile.Class.Common
             string Message = string.Format("\r\n{0} {1} [Error] {2}.\r\n", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), Ex.Message);
             Log.Debug(ErrorTAG, Message);
             File.AppendAllText(FileName, Message);
-            Message = string.Format("\r\n==========StackTrace Begin==========\r\n{0} {1} [Error] {2}\r\n==========StackTrace End==========\r\n"
+            Message = string.Format("\r\n======Stack Trace Begin======\r\n{0} {1} [Error] {2}\r\n======Stack Trace End======\r\n"
                 , DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), Ex.StackTrace);
             Log.Debug(ErrorTAG, Message);
             File.AppendAllText(FileName, Message);

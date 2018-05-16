@@ -79,7 +79,7 @@ namespace CSIMobile.Class.Fragments
                 UserEdit.Enabled = SaveUserSwitch.Checked;
                 PasswordEdit.Enabled = SavePasswordSwitch.Checked;
 
-                ForceAutoPostSwitch.Enabled = (CSISystemContext.User == "sa");//only can be changed by SA
+                ForceAutoPostSwitch.Enabled = (CSISystemContext.Token != string.Empty && CSISystemContext.User == "sa");//only can be changed by SA
 
                 ShowProgressBar(false);
 
