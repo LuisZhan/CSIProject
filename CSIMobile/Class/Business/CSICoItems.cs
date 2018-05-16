@@ -30,6 +30,7 @@ namespace CSIMobile.Class.Business
             PreSetPropertyList.Add("CoOrderDate");
             PreSetPropertyList.Add("CoStat");
             PreSetPropertyList.Add("CoWhse");
+            PreSetPropertyList.Add("Item");
             PreSetPropertyList.Add("DerItem");
             PreSetPropertyList.Add("UM");
             PreSetPropertyList.Add("Whse");
@@ -46,7 +47,7 @@ namespace CSIMobile.Class.Business
         }
 
         public static bool GetCoNumInfor(CSIContext SrcContext, ref string CoNum, ref string Line, ref string Release, ref string Type, ref string Customer
-            , ref string Item, ref string ItemDesc, ref string UM, ref string QtyOrdered, ref bool LotTracked, ref bool SNTracked)
+            , ref string Item, ref string ItemDesc, ref string UM, ref string QtyOrdered, ref string QtyShipped, ref string QtyToBeShipped, ref bool LotTracked, ref bool SNTracked)
         {
             try
             {
@@ -58,7 +59,7 @@ namespace CSIMobile.Class.Business
                 SLCoItem.AddProperty("CoType");
                 SLCoItem.AddProperty("QtyOrdered");
                 SLCoItem.AddProperty("DerCustNum");
-                SLCoItem.AddProperty("DerItem");
+                SLCoItem.AddProperty("Item");
                 SLCoItem.AddProperty("Description");
                 SLCoItem.AddProperty("UM");
                 SLCoItem.AddProperty("ItLotTracked");
@@ -83,10 +84,12 @@ namespace CSIMobile.Class.Business
                 Line = SLCoItem.GetCurrentPropertyValueOfString("CoLine");
                 Release = SLCoItem.GetCurrentPropertyValueOfString("CoRelease");
                 Customer = SLCoItem.GetCurrentPropertyValueOfString("DerCustNum");
-                Item = SLCoItem.GetCurrentPropertyValueOfString("DerItem");
+                Item = SLCoItem.GetCurrentPropertyValueOfString("Item");
                 ItemDesc = SLCoItem.GetCurrentPropertyValueOfString("Description");
                 UM = SLCoItem.GetCurrentPropertyValueOfString("UM");
                 QtyOrdered = string.Format("{0:n}", SLCoItem.GetCurrentPropertyValueOfDecimal("QtyOrdered"));
+                QtyShipped = string.Format("{0:n}", SLCoItem.GetCurrentPropertyValueOfDecimal("QtyShipped"));
+                QtyToBeShipped = string.Format("{0:n}", SLCoItem.GetCurrentPropertyValueOfDecimal("QtyOrdered") - SLCoItem.GetCurrentPropertyValueOfDecimal("QtyShipped"));
                 LotTracked = SLCoItem.GetCurrentPropertyValueOfBoolean("ItLotTracked");
                 SNTracked = SLCoItem.GetCurrentPropertyValueOfBoolean("ItSerialTracked");
                 SLCoItem = null;

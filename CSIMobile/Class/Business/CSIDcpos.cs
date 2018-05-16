@@ -33,7 +33,8 @@ namespace CSIMobile.Class.Business
             PreSetPropertyList.Add("PoLine");
             PreSetPropertyList.Add("PoRelease");
             PreSetPropertyList.Add("PoitemStat");
-            PreSetPropertyList.Add("Item"); 
+            PreSetPropertyList.Add("Item");
+            PreSetPropertyList.Add("UM");
             PreSetPropertyList.Add("ItemDescription"); 
             PreSetPropertyList.Add("ItemLotTracked");
             PreSetPropertyList.Add("ItemSerialTracked");

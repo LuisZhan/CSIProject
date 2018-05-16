@@ -357,7 +357,7 @@ namespace CSIMobile
                     }
                     else
                     {
-                        //DCPurchaseReceiveFragment.RunFragment(this);
+                        DCPurchaseReceiveFragment.RunFragment(this);
                         Success = true;
                     }
                     break;
@@ -369,7 +369,7 @@ namespace CSIMobile
                     }
                     else
                     {
-                        //DCPurchaseReturnFragment.RunFragment(this);
+                        DCPurchaseReturnFragment.RunFragment(this);
                         Success = true;
                     }
                     break;

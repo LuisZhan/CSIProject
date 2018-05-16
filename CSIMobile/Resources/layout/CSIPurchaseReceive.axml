@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="1000dp"
+    android:minHeight="1000dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:id="@+id/LinearLayout">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TitleLinearLayout"
+        android:gravity="right|top">
+        <ProgressBar
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/ProgressBar" />
+        <ImageView
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/CloseImage" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1">
+        <TextView
+            android:text="@string/Warehouse"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/WhseText"
+            android:singleLine="true" />
+        <EditText xmlns:tools="http://schemas.android.com/tools"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/WhseEdit"
+            tools:text="@string/Warehouse"
+            android:singleLine="true"
+            android:editable="false"
+            android:enabled="false" />
+        <TextView xmlns:tools="http://schemas.android.com/tools"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/TransDateText"
+            tools:text="@string/Date"
+            android:singleLine="true"
+            android:gravity="right" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout8">
+            <EditText
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/PoNumEdit"
+                android:hint="@string/OrderNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="text"
+                android:maxLength="10"
+                android:layout_weight="1"
+                android:layout_marginRight="0.0dp" />
+            <TextView xmlns:tools="http://schemas.android.com/tools"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/textview1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:width="20dp"
+                android:text="-" />
+            <EditText
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/LineEdit"
+                android:hint="@string/Line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="number"
+                android:maxLength="4"
+                android:layout_weight="1.3"
+                android:numeric="integer" />
+            <TextView xmlns:tools="http://schemas.android.com/tools"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/textview1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:width="20dp"
+                android:text="-" />
+            <EditText
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/ReleaseEdit"
+                android:hint="@string/OrderRelease"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="number"
+                android:maxLength="4"
+                android:layout_weight="1.2"
+                android:layout_marginRight="42dp"
+                android:numeric="integer" />
+            <ImageButton
+                android:src="@drawable/scanner"
+                android:id="@+id/PoScanButton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:scaleType="fitCenter"
+                android:padding="0dp"
+                android:layout_marginLeft="-40dp" />
+        </LinearLayout>
+        <TextView xmlns:tools="http://schemas.android.com/tools"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/VendorText"
+            tools:text="@string/Vendor" />
+        <TextView xmlns:tools="http://schemas.android.com/tools"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ItemText"
+            tools:text="@string/Item" />
+        <TextView xmlns:tools="http://schemas.android.com/tools"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ItemDescText"
+            tools:text="@string/Description" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout3">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayout4"
+                android:layout_weight="3">
+                <TextView
+                    android:text="@string/UM"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView1"
+                    android:singleLine="true" />
+                <TextView xmlns:tools="http://schemas.android.com/tools"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/ItemUMText"
+                    tools:text="@string/UM"
+                    android:gravity="center"
+                    android:singleLine="true" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayout5"
+                android:layout_weight="2">
+                <TextView
+                    android:text="@string/QuantityOrdered"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView1"
+                    android:singleLine="true" />
+                <TextView xmlns:p2="http://schemas.android.com/tools"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/QuantityOrderedText"
+                    p2:text="@string/QuantityOrdered"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="@string/QuantityOrdered" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/QtyLinearLayout"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+                <ImageButton
+                    android:src="@drawable/scanner"
+                    android:id="@+id/OperNumScanButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:scaleType="fitCenter"
+                    android:padding="0dp"
+                    android:layout_marginLeft="-40dp" />
+                <EditText xmlns:tools="http://schemas.android.com/tools"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/UMEdit"
+                    android:singleLine="true"
+                    android:layout_marginRight="42dp"
+                    android:hint="@string/UM"
+                    android:textAllCaps="true"
+                    android:inputType="text"
+                    android:maxLength="3" />
+                <ImageButton
+                    android:src="@drawable/scanner"
+                    android:id="@+id/UMScanButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:scaleType="fitCenter"
+                    android:padding="0dp"
+                    android:layout_marginLeft="-40dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout5"
+                android:layout_weight="1">
+                <EditText xmlns:p2="http://schemas.android.com/tools"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/QtyEdit"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:layout_marginRight="42dp"
+                    android:hint="@string/Quantity"
+                    android:inputType="numberDecimal"
+                    android:maxLength="18"
+                    android:numeric="decimal" />
+                <ImageButton
+                    android:src="@drawable/scanner"
+                    android:id="@+id/QtyScanButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:scaleType="fitCenter"
+                    android:padding="0dp"
+                    android:layout_marginLeft="-40dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <ImageView
+            android:src="@android:drawable/divider_horizontal_textfield"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView1" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/LocationLinearLayout">
+            <TextView
+                android:text="@string/Location"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout11">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+                    <EditText
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/LocEdit"
+                        android:hint="@string/Location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="42dp"
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:maxLength="15" />
+                    <ImageButton
+                        android:src="@drawable/scanner"
+                        android:id="@+id/LocScanButton"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:scaleType="fitCenter"
+                        android:padding="0dp"
+                        android:layout_marginLeft="-40dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/LotLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+                    <EditText
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/LotEdit"
+                        android:hint="@string/Lot"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="42dp"
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:maxLength="15" />
+                    <ImageButton
+                        android:src="@drawable/scanner"
+                        android:id="@+id/LotScanButton"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:scaleType="fitCenter"
+                        android:padding="0dp"
+                        android:layout_marginLeft="-40dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <TextView xmlns:tools="http://schemas.android.com/tools"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/LocDescText"
+                tools:text="@string/Description" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout9">
+        <Button
+            android:text="@string/SNPicked"
+            android:id="@+id/SNButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:text="@string/Process"
+            android:id="@+id/ProcessButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

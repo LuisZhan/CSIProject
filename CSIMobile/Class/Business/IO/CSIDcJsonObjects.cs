@@ -489,5 +489,131 @@ namespace CSIMobile.Class.Business.IO
             return rtn;
         }
 
+        public static bool ReadPurchaseReceiveJson(string JsonString, out string PoNum, out string Line, out string Release, out string UM, out string Qty, out string Loc, out string Lot, out string ReasonCode)
+        {
+            bool rtn = true;
+            PoNum = string.Empty;
+            Line = string.Empty;
+            Release = string.Empty;
+            UM = string.Empty;
+            Qty = string.Empty;
+            Loc = string.Empty;
+            Lot = string.Empty;
+            ReasonCode = string.Empty;
+            if (string.IsNullOrEmpty(JsonString)) return false;
+            try
+            {
+                byte[] data = Encoding.Default.GetBytes(JsonString.ToString());
+                MemoryStream OrderShippingStream = new MemoryStream(data);
+                JsonReader jReader = new JsonReader(new Java.IO.InputStreamReader(OrderShippingStream));
+                jReader.BeginObject();
+                while (jReader.HasNext)
+                {
+                    string name = jReader.NextName();
+                    if (name.ToUpper().Equals("PoNum".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            PoNum = jReader.NextString();
+                        }
+                    }
+                    else if (name.ToUpper().Equals("Line".ToUpper()) || name.ToUpper().Equals("CoLine".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Line = jReader.NextString();
+                        }
+                    }
+                    else if (name.ToUpper().Equals("Release".ToUpper()) || name.ToUpper().Equals("CoRelease".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Release = jReader.NextString();
+                        }
+                    }
+                    else if (name.ToUpper().Equals("UM".ToUpper()) || name.ToUpper().Equals("UoM".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            UM = jReader.NextString();
+                        }
+                    }
+                    else if (name.ToUpper().Equals("Qty".ToUpper()) || name.ToUpper().Equals("Quantity".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Qty = jReader.NextString();
+                        }
+                    }
+                    else if (name.ToUpper().Equals("Loc".ToUpper()) || name.ToUpper().Equals("Location".ToUpper()) || name.ToUpper().Equals("ToLoc".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Loc = jReader.NextString();
+                        }
+                    }
+                    else if (name.ToUpper().Equals("Lot".ToUpper()) || name.ToUpper().Equals("ToLot".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Lot = jReader.NextString();
+                        }
+                    }
+                    else if (name.ToUpper().Equals("Reason".ToUpper()) || name.ToUpper().Equals("ReasonCode".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            ReasonCode = jReader.NextString();
+                        }
+                    }
+                    else
+                    {
+                        jReader.SkipValue();
+                    }
+                }
+                jReader.EndObject();
+                jReader.Close();
+                OrderShippingStream.Close();
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                rtn = false;
+            }
+            return rtn;
+        }
+
     }
 }

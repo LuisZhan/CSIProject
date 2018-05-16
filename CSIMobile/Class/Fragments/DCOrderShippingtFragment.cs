@@ -298,7 +298,8 @@ namespace CSIMobile.Class.Fragments
 
         private void LotEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter){
+            if (e.KeyCode == Keycode.Enter)
+            {
                 if (e.Event.Action == KeyEventActions.Up)
                 {
                     ValidateLot();
@@ -591,11 +592,11 @@ namespace CSIMobile.Class.Fragments
                     {
                         string CoNum = CoNumEdit.Text, Line = LineEdit.Text, Release = ReleaseEdit.Text, Customer = CustomerText.Text
                             , Item = ItemText.Text, ItemDesc = ItemDescText.Text, UM = ItemUMText.Text
-                            , QuantityOrdered = QuantityOrderedText.Text;
+                            , QuantityOrdered = QuantityOrderedText.Text, QtyShipped = "", QtyToBeShipped = "";
 
                         //validate CoNum and Line, Release
                         CoNumValidated = CSICoItems.GetCoNumInfor(CSISystemContext, ref CoNum, ref Line, ref Release, ref CoType, ref Customer, ref Item
-                            , ref ItemDesc, ref UM, ref QuantityOrdered, ref LotTracked, ref SNTracked);
+                            , ref ItemDesc, ref UM, ref QuantityOrdered, ref QtyShipped, ref QtyToBeShipped, ref LotTracked, ref SNTracked);
                         if (CoNumValidated == true)
                         {
                             CoNumEdit.Text = CoNum;
@@ -608,6 +609,10 @@ namespace CSIMobile.Class.Fragments
                             if (string.IsNullOrEmpty(UMEdit.Text))
                             {
                                 UMEdit.Text = UM;
+                            }
+                            if (string.IsNullOrEmpty(QtyEdit.Text) || QtyEdit.Text.Equals("0")/* || Convert.ToDecimal(QtyEdit.Text) > Convert.ToDecimal(QtyToBeShipped)*/)
+                            {
+                                QtyEdit.Text = QtyToBeShipped;
                             }
                             QuantityOrderedText.Text = QuantityOrdered;
 
@@ -676,11 +681,11 @@ namespace CSIMobile.Class.Fragments
                     {
                         string CoNum = CoNumEdit.Text, Line = LineEdit.Text, Release = ReleaseEdit.Text, Customer = CustomerText.Text
                             , Item = ItemText.Text, ItemDesc = ItemDescText.Text, UM = ItemUMText.Text
-                            , QuantityOrdered = QuantityOrderedText.Text;
+                            , QuantityOrdered = QuantityOrderedText.Text, QtyShipped = "", QtyToBeShipped = "";
 
                         //validate CoNum and Line, Release
                         CoNumValidated = CSICoItems.GetCoNumInfor(CSISystemContext, ref CoNum, ref Line, ref Release, ref CoType, ref Customer, ref Item
-                            , ref ItemDesc, ref UM, ref QuantityOrdered, ref LotTracked, ref SNTracked);
+                            , ref ItemDesc, ref UM, ref QuantityOrdered, ref QtyShipped, ref QtyToBeShipped, ref LotTracked, ref SNTracked);
                         if (CoNumValidated == true)
                         {
                             CoNumEdit.Text = CoNum;
@@ -693,6 +698,10 @@ namespace CSIMobile.Class.Fragments
                             if (string.IsNullOrEmpty(UMEdit.Text))
                             {
                                 UMEdit.Text = UM;
+                            }
+                            if (string.IsNullOrEmpty(QtyEdit.Text) || QtyEdit.Text.Equals("0")/* || Convert.ToDecimal(QtyEdit.Text) > Convert.ToDecimal(QtyToBeShipped)*/)
+                            {
+                                QtyEdit.Text = QtyToBeShipped;
                             }
                             QuantityOrderedText.Text = QuantityOrdered;
 
@@ -795,11 +804,11 @@ namespace CSIMobile.Class.Fragments
                     {
                         string CoNum = CoNumEdit.Text, Line = LineEdit.Text, Release = ReleaseEdit.Text, Customer = CustomerText.Text
                             , Item = ItemText.Text, ItemDesc = ItemDescText.Text, UM = ItemUMText.Text
-                            , QuantityOrdered = QuantityOrderedText.Text;
+                            , QuantityOrdered = QuantityOrderedText.Text, QtyShipped = "", QtyToBeShipped = "";
 
                         //validate CoNum and Line, Release
                         CoNumValidated = CSICoItems.GetCoNumInfor(CSISystemContext, ref CoNum, ref Line, ref Release, ref CoType, ref Customer, ref Item
-                            , ref ItemDesc, ref UM, ref QuantityOrdered, ref LotTracked, ref SNTracked);
+                            , ref ItemDesc, ref UM, ref QuantityOrdered, ref QtyShipped, ref QtyToBeShipped, ref LotTracked, ref SNTracked);
                         if (CoNumValidated == true)
                         {
                             CoNumEdit.Text = CoNum;
@@ -812,6 +821,10 @@ namespace CSIMobile.Class.Fragments
                             if (string.IsNullOrEmpty(UMEdit.Text))
                             {
                                 UMEdit.Text = UM;
+                            }
+                            if (string.IsNullOrEmpty(QtyEdit.Text) || QtyEdit.Text.Equals("0")/* || Convert.ToDecimal(QtyEdit.Text) > Convert.ToDecimal(QtyToBeShipped)*/)
+                            {
+                                QtyEdit.Text = QtyToBeShipped;
                             }
                             QuantityOrderedText.Text = QuantityOrdered;
 

@@ -20,28 +20,25 @@ using CSIMobile.Class.Business.IO;
 
 namespace CSIMobile.Class.Fragments
 {
-    public class DCOrderReturnFragment : CSIBaseDialogFragment
+    public class DCPurchaseReceiveFragment : CSIBaseDialogFragment
     {
-        CSIDccos SLDccos;
+        CSIDcpos SLDcpos;
 
-        ImageButton CoScanButton;
+        ImageButton PoScanButton;
         ImageButton UMScanButton;
         ImageButton QtyScanButton;
         ImageButton LocScanButton;
         ImageButton LotScanButton;
-        ImageButton ReasonCodeScanButton;
         EditText WhseEdit;
         TextView TransDateText;
-        EditText CoNumEdit;
+        EditText PoNumEdit;
         EditText LineEdit;
         EditText ReleaseEdit;
-        TextView CustomerText;
+        TextView VendorText;
         EditText QtyEdit;
         EditText UMEdit;
         EditText LocEdit;
         EditText LotEdit;
-        EditText ReasonCodeEdit;
-        TextView ReasonDescText;
         TextView ItemText;
         TextView ItemDescText;
         TextView ItemUMText;
@@ -58,79 +55,77 @@ namespace CSIMobile.Class.Fragments
         LinearLayout Layout;
 
         bool LotTracked = false, SNTracked = false;
-        string CoType = "R";
+        string PoType = "R";
 
-        bool CoNumValidated = false, LineValidated = false, UMValidated = false, QtyValidated = false, ReleaseValidated = false, LocValidated = false, LotValidated = false, ReasonCodeValidated = false;
+        bool PoNumValidated = false, LineValidated = false, UMValidated = false, QtyValidated = false, ReleaseValidated = false, LocValidated = false, LotValidated = false;
         List<string> SNs = new List<string>();
         bool SNPicked = true;
 
         private int ProcessCount = 0;
 
-        public DCOrderReturnFragment(CSIBaseActivity activity = null) : base(activity)
+        public DCPurchaseReceiveFragment(CSIBaseActivity activity = null) : base(activity)
         {
             CSISystemContext.ReadConfigurations();
-            SLDccos = new CSIDccos(CSISystemContext);
-            SLDccos.AddProperty("TransNum");
-            SLDccos.AddProperty("TransType");
-            SLDccos.AddProperty("Stat");
-            SLDccos.AddProperty("Termid");
-            SLDccos.AddProperty("TransDate");
-            SLDccos.AddProperty("EmpNum");
-            SLDccos.AddProperty("CoNum");
-            SLDccos.AddProperty("CoLine");
-            SLDccos.AddProperty("CoRelease");
-            SLDccos.AddProperty("Item");
-            SLDccos.AddProperty("UM");
-            SLDccos.AddProperty("Whse");
-            SLDccos.AddProperty("Loc");
-            SLDccos.AddProperty("Lot");
-            SLDccos.AddProperty("QtyShipped");
-            SLDccos.AddProperty("QtyReturned");
-            SLDccos.AddProperty("ReasonCode");
-            SLDccos.AddProperty("DocumentNum");
-            SLDccos.AddProperty("ErrorMessage");
+            SLDcpos = new CSIDcpos(CSISystemContext);
+            SLDcpos.AddProperty("TransNum");
+            SLDcpos.AddProperty("TransType");
+            SLDcpos.AddProperty("Stat");
+            SLDcpos.AddProperty("Termid");
+            SLDcpos.AddProperty("TransDate");
+            SLDcpos.AddProperty("EmpNum");
+            SLDcpos.AddProperty("PoNum");
+            SLDcpos.AddProperty("PoLine");
+            SLDcpos.AddProperty("PoRelease");
+            SLDcpos.AddProperty("Item");
+            SLDcpos.AddProperty("UM");
+            SLDcpos.AddProperty("Whse");
+            SLDcpos.AddProperty("Loc");
+            SLDcpos.AddProperty("Lot");
+            SLDcpos.AddProperty("QtyReceived");
+            SLDcpos.AddProperty("QtyReturned");
+            SLDcpos.AddProperty("ReasonCode");
+            SLDcpos.AddProperty("DocumentNum");
+            SLDcpos.AddProperty("ErrorMessage");
 
-            SLDccos.SetFilter("1=0");
-            SLDccos.LoadIDO();
-            SLDccos.SaveDataSetCompleted += SLDccos_SaveDataSetCompleted;
-            SLDccos.LoadDataSetCompleted += SLDccos_LoadDataSetCompleted;
-            SLDccos.CallMethodCompleted += SLDccos_CallMethodCompleted;
+            SLDcpos.SetFilter("1=0");
+            SLDcpos.LoadIDO();
+            SLDcpos.SaveDataSetCompleted += SLDcpos_SaveDataSetCompleted;
+            SLDcpos.LoadDataSetCompleted += SLDcpos_LoadDataSetCompleted;
+            SLDcpos.CallMethodCompleted += SLDcpos_CallMethodCompleted;
         }
 
-        private void SLDccos_SaveDataSetCompleted(object sender, SaveDataSetCompletedEventArgs e)
+        private void SLDcpos_SaveDataSetCompleted(object sender, SaveDataSetCompletedEventArgs e)
         {
             try
             {
                 if (e.Error == null)
                 {
                     //check result status
-                    if (SLDccos.CurrentTable.Rows.Count <= 0)
+                    if (SLDcpos.CurrentTable.Rows.Count <= 0)
                     {
                         //nothing happen or just delete rows
                     }
                     else
                     {
-                        string RowStatus = SLDccos.GetCurrentPropertyValueOfString("Stat");
-                        string ErrorMessage = SLDccos.GetCurrentPropertyValueOfString("ErrorMessage");
+                        string RowStatus = SLDcpos.GetCurrentPropertyValueOfString("Stat");
+                        string ErrorMessage = SLDcpos.GetCurrentPropertyValueOfString("ErrorMessage");
 
                         if ((RowStatus != "E") || string.IsNullOrEmpty(ErrorMessage))
                         {
                             //Ready to Post -- calling DcmovePSp
                             ShowProgressBar(true);
                             string strParmeters = "";
-                            strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "0");//From EDI
-                            strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "");
-                            strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "");
+                            strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, SLDcpos.GetCurrentPropertyValueOfString("TransNum"));
                             strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "", true);
                             //strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "");//DocumentNum 
-                            SLDccos.InvokeMethod("DccoPSp", strParmeters);
+                            SLDcpos.InvokeMethod("DcpoPSp", strParmeters);
                         }
                         else
                         {
                             //delete first before prompt message.
-                            SLDccos.CurrentTable.Rows[0].Delete();
+                            SLDcpos.CurrentTable.Rows[0].Delete();
                             ShowProgressBar(true);
-                            SLDccos.DeleteIDO();
+                            SLDcpos.DeleteIDO();
 
                             //Populate Error
                             FragmentTransaction ft = FragmentManager.BeginTransaction();
@@ -159,7 +154,7 @@ namespace CSIMobile.Class.Fragments
             ShowProgressBar(false);
         }
 
-        private void SLDccos_CallMethodCompleted(object sender, CallMethodCompletedEventArgs e)
+        private void SLDcpos_CallMethodCompleted(object sender, CallMethodCompletedEventArgs e)
         {
             try
             {
@@ -173,18 +168,18 @@ namespace CSIMobile.Class.Fragments
                     else
                     {
                         //get error - delete first.
-                        SLDccos.CurrentTable.Rows[0].Delete();
+                        SLDcpos.CurrentTable.Rows[0].Delete();
                         ShowProgressBar(true);
-                        SLDccos.DeleteIDO();
+                        SLDcpos.DeleteIDO();
                         WriteErrorLog(new Exception(CSIBaseInvoker.GetXMLParameters(e.strMethodParameters,1)));
                     }
                 }
                 else
                 {
                     //try to delete post
-                    SLDccos.CurrentTable.Rows[0].Delete();
+                    SLDcpos.CurrentTable.Rows[0].Delete();
                     ShowProgressBar(true);
-                    SLDccos.DeleteIDO();
+                    SLDcpos.DeleteIDO();
                     WriteErrorLog(e.Error);
                 }
             }
@@ -195,7 +190,7 @@ namespace CSIMobile.Class.Fragments
             ShowProgressBar(false);
         }
 
-        private void SLDccos_LoadDataSetCompleted(object sender, LoadDataSetCompletedEventArgs e)
+        private void SLDcpos_LoadDataSetCompleted(object sender, LoadDataSetCompletedEventArgs e)
         {
             try
             {
@@ -220,13 +215,13 @@ namespace CSIMobile.Class.Fragments
             {
                 base.OnCreate(savedInstanceState);
 
-                var view = inflater.Inflate(Resource.Layout.CSIOrderReturn, container, false);
+                var view = inflater.Inflate(Resource.Layout.CSIPurchaseReceive, container, false);
                 Cancelable = false;
                 
                 WhseEdit = view.FindViewById<EditText>(Resource.Id.WhseEdit);
                 TransDateText = view.FindViewById<TextView>(Resource.Id.TransDateText);
-                CoScanButton = view.FindViewById<ImageButton>(Resource.Id.CoScanButton);
-                CoNumEdit = view.FindViewById<EditText>(Resource.Id.CoNumEdit);
+                PoScanButton = view.FindViewById<ImageButton>(Resource.Id.PoScanButton);
+                PoNumEdit = view.FindViewById<EditText>(Resource.Id.PoNumEdit);
                 LineEdit = view.FindViewById<EditText>(Resource.Id.LineEdit);
                 QtyScanButton = view.FindViewById<ImageButton>(Resource.Id.QtyScanButton);
                 QtyEdit = view.FindViewById<EditText>(Resource.Id.QtyEdit);
@@ -237,9 +232,6 @@ namespace CSIMobile.Class.Fragments
                 LocEdit = view.FindViewById<EditText>(Resource.Id.LocEdit);
                 LotScanButton = view.FindViewById<ImageButton>(Resource.Id.LotScanButton);
                 LotEdit = view.FindViewById<EditText>(Resource.Id.LotEdit);
-                ReasonCodeEdit = view.FindViewById<EditText>(Resource.Id.ReasonCodeEdit);
-                ReasonCodeScanButton = view.FindViewById<ImageButton>(Resource.Id.ReasonCodeScanButton);
-                ReasonDescText = view.FindViewById<TextView>(Resource.Id.ReasonDescText);
 
                 QtyLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.QtyLinearLayout);
                 LocationLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.LocationLinearLayout);
@@ -249,7 +241,7 @@ namespace CSIMobile.Class.Fragments
                 ProcessButton = view.FindViewById<Button>(Resource.Id.ProcessButton);
                 Layout = view.FindViewById<LinearLayout>(Resource.Id.LinearLayout);
 
-                CustomerText = view.FindViewById<TextView>(Resource.Id.CustomerText);
+                VendorText = view.FindViewById<TextView>(Resource.Id.VendorText);
                 ItemText = view.FindViewById<TextView>(Resource.Id.ItemText);
                 ItemDescText = view.FindViewById<TextView>(Resource.Id.ItemDescText);
                 ItemUMText = view.FindViewById<TextView>(Resource.Id.ItemUMText);
@@ -259,30 +251,27 @@ namespace CSIMobile.Class.Fragments
                 CloseImage = view.FindViewById<ImageView>(Resource.Id.CloseImage);
                 ProgressBar = view.FindViewById<ProgressBar>(Resource.Id.ProgressBar);
 
-                CoScanButton.Click += CoScanButton_Click;
+                PoScanButton.Click += PoScanButton_Click;
                 QtyScanButton.Click += QtyScanButton_Click;
                 UMScanButton.Click += UMScanButton_Click;
                 LocScanButton.Click += LocScanButton_Click;
                 LotScanButton.Click += LotScanButton_Click;
-                ReasonCodeScanButton.Click += ReasonCodeScanButton_Click;
 
-                CoNumEdit.FocusChange += CoNumEdit_FocusChange;
+                PoNumEdit.FocusChange += PoNumEdit_FocusChange;
                 LineEdit.FocusChange += LineEdit_FocusChange;
                 ReleaseEdit.FocusChange += ReleaseEdit_FocusChange;
                 QtyEdit.FocusChange += QtyEdit_FocusChange;
                 UMEdit.FocusChange += UMEdit_FocusChange;
                 LocEdit.FocusChange += LocEdit_FocusChange;
                 LotEdit.FocusChange += LotEdit_FocusChange;
-                ReasonCodeEdit.FocusChange += ReasonCodeEdit_FocusChange;
 
-                CoNumEdit.KeyPress += CoNumEdit_KeyPress;
+                PoNumEdit.KeyPress += PoNumEdit_KeyPress;
                 LineEdit.KeyPress += LineEdit_KeyPress;
                 ReleaseEdit.KeyPress += ReleaseEdit_KeyPress;
                 QtyEdit.KeyPress += QtyEdit_KeyPress;
                 UMEdit.KeyPress += UMEdit_KeyPress;
                 LocEdit.KeyPress += LocEdit_KeyPress;
                 LotEdit.KeyPress += LotEdit_KeyPress;
-                ReasonCodeEdit.KeyPress += ReasonCodeEdit_KeyPress;
 
                 SNButton.Click += SNButton_Click;
                 ProcessButton.Click += ProcessButton_Click;
@@ -305,32 +294,14 @@ namespace CSIMobile.Class.Fragments
             }
         }
 
-        private void ReasonCodeEdit_KeyPress(object sender, View.KeyEventArgs e)
-        {
-            if (e.KeyCode == Keycode.Enter)
-            {
-                if (e.Event.Action == KeyEventActions.Up)
-                {
-                    ValidateReasonCode();
-                    ProcessButton.RequestFocus();
-                }
-                e.Handled = true;
-            }
-            else
-            {
-                e.Handled = false;
-                ReasonCodeValidated = false;
-            }
-        }
-
         private void LotEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
             if (e.KeyCode == Keycode.Enter)
             {
                 if (e.Event.Action == KeyEventActions.Up)
                 {
-                    ValidateLine();
-                    ReasonCodeEdit.RequestFocus();
+                    ValidateLot();
+                    ProcessButton.RequestFocus();
                 }
                 e.Handled = true;
             }
@@ -423,11 +394,11 @@ namespace CSIMobile.Class.Fragments
         private void LineEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
             if (e.KeyCode == Keycode.Enter)
-            {
+                {
                 if (e.Event.Action == KeyEventActions.Up)
                 {
                     ValidateLine();
-                    if (CoType == "R")
+                    if (PoType == "R")
                     {
                         UMEdit.RequestFocus();
                     }
@@ -445,13 +416,13 @@ namespace CSIMobile.Class.Fragments
             }
         }
 
-        private void CoNumEdit_KeyPress(object sender, View.KeyEventArgs e)
+        private void PoNumEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
             if (e.KeyCode == Keycode.Enter)
             {
                 if (e.Event.Action == KeyEventActions.Up)
                 {
-                    ValidateCoNum();
+                    ValidatePoNum();
                     LineEdit.RequestFocus();
                 }
                 e.Handled = true;
@@ -459,7 +430,7 @@ namespace CSIMobile.Class.Fragments
             else
             {
                 e.Handled = false;
-                CoNumValidated = false;
+                PoNumValidated = false;
             }
         }
 
@@ -467,17 +438,15 @@ namespace CSIMobile.Class.Fragments
         {
             WhseEdit.Text = CSISystemContext.DefaultWarehouse;
             TransDateText.Text = string.Format("{0} {1}",DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
-            CoNumEdit.Text = string.Empty;
+            PoNumEdit.Text = string.Empty;
             LineEdit.Text = string.Empty;
             ReleaseEdit.Text = string.Empty;            
             QtyEdit.Text = "0";
             UMEdit.Text = string.Empty;
             LocEdit.Text = string.Empty;
             LotEdit.Text = string.Empty;
-            ReasonCodeEdit.Text = string.Empty;
-            ReasonDescText.Text = string.Empty;
 
-            CustomerText.Text = string.Empty;
+            VendorText.Text = string.Empty;
             ItemText.Text = string.Empty;
             ItemDescText.Text = string.Empty;
             ItemUMText.Text = string.Empty;
@@ -489,31 +458,31 @@ namespace CSIMobile.Class.Fragments
         private void ProcessButton_Click(object sender, EventArgs e)
         {
             PerformValidation();
-            if (CoNumValidated && LineValidated && ReleaseValidated && UMValidated && QtyValidated && LocValidated && ReasonCodeValidated && (LotValidated || !LotTracked) && SNPicked)
+            if (PoNumValidated && LineValidated && ReleaseValidated && UMValidated && QtyValidated && LocValidated && (LotValidated || !LotTracked) && SNPicked)
             {
-                SLDccos.CurrentTable.Rows.Clear();
-                DataRow Row = SLDccos.CurrentTable.NewRow();
+                SLDcpos.CurrentTable.Rows.Clear();
+                DataRow Row = SLDcpos.CurrentTable.NewRow();
                 Row["TransNum"] = 0;//TransNum
-                Row["TransType"] = "1";//TransType 1:Ship 2:CR Return
+                Row["TransType"] = "1";//TransType 1:Ship 2:Return
                 Row["Stat"] = "U";//Stat
                 Row["Termid"] = CSISystemContext.AndroidId.Substring(CSISystemContext.AndroidId.Length - 4, 4);//Termid
                 Row["TransDate"] = DateTime.Now;//TransDate
                 Row["Whse"] = CSISystemContext.DefaultWarehouse;//Whse
                 Row["EmpNum"] = CSISystemContext.EmpNum;//EmpNum
-                Row["CoNum"] = CoNumEdit.Text;//CoNum
-                Row["CoLine"] = LineEdit.Text;//CoLine
-                Row["CoRelease"] = ReleaseEdit.Text;//Release
+                Row["PoNum"] = PoNumEdit.Text;//PoNum
+                Row["PoLine"] = LineEdit.Text;//PoLine
+                Row["PoRelease"] = ReleaseEdit.Text;//Release
                 Row["Item"] = ItemText.Text;//Item
-                Row["QtyShipped"] = "-" + QtyEdit.Text;//QtyShipped
+                Row["QtyReceived"] = QtyEdit.Text;//QtyShipped
                 Row["UM"] = UMEdit.Text;//UM
                 Row["Loc"] = LocEdit.Text;//Loc
                 Row["Lot"] = LotEdit.Text;//Lot
-                Row["ReasonCode"] = ReasonCodeEdit.Text;//ReasonCode
-                SLDccos.CurrentTable.Rows.Add(Row);
+                //Row["ReasonCode"] = ReasonCodeEdit.Text;//ReasonCode
+                SLDcpos.CurrentTable.Rows.Add(Row);
                 //Row.BeginEdit();
                 //Row.EndEdit();
                 //Row.AcceptChanges();
-                SLDccos.InsertIDO();
+                SLDcpos.InsertIDO();
                 ShowProgressBar(true);
             }
         }
@@ -521,18 +490,6 @@ namespace CSIMobile.Class.Fragments
         private void SNButton_Click(object sender, EventArgs e)
         {
             SerialGenerator.RunFragment(this);
-        }
-
-        private void ReasonCodeEdit_FocusChange(object sender, View.FocusChangeEventArgs e)
-        {
-            if (e.HasFocus)
-            {//gain focus
-                ReasonCodeEdit.SelectAll();
-            }
-            else
-            {//lose focus
-                ValidateReasonCode();
-            }
         }
 
         private void LotEdit_FocusChange(object sender, View.FocusChangeEventArgs e)
@@ -607,43 +564,43 @@ namespace CSIMobile.Class.Fragments
             }
         }
 
-        private void CoNumEdit_FocusChange(object sender, View.FocusChangeEventArgs e)
+        private void PoNumEdit_FocusChange(object sender, View.FocusChangeEventArgs e)
         {
             if (e.HasFocus)
             {//gain focus
-                CoNumEdit.SelectAll();
+                PoNumEdit.SelectAll();
             }
             else
             {//lose focus
-                ValidateCoNum();
+                ValidatePoNum();
             }
         }
 
-        private bool ValidateCoNum()
+        private bool ValidatePoNum()
         {
-            if (!CoNumValidated)
+            if (!PoNumValidated)
             {
-                if (string.IsNullOrEmpty(CoNumEdit.Text))
+                if (string.IsNullOrEmpty(PoNumEdit.Text))
                 {
-                    CoNumValidated = false;
+                    PoNumValidated = false;
                 }
                 else
                 {
                     try
                     {
-                        string CoNum = CoNumEdit.Text, Line = LineEdit.Text, Release = ReleaseEdit.Text, Customer = CustomerText.Text
+                        string PoNum = PoNumEdit.Text, Line = LineEdit.Text, Release = ReleaseEdit.Text, Vendor = VendorText.Text
                             , Item = ItemText.Text, ItemDesc = ItemDescText.Text, UM = ItemUMText.Text
-                            , QuantityOrdered = QuantityOrderedText.Text, QtyShipped = "", QtyToBeShipped = "";
+                            , QuantityOrdered = QuantityOrderedText.Text, QtyReceived = "", QtyToBeReceived = "";
 
-                        //validate CoNum and Line, Release
-                        CoNumValidated = CSICoItems.GetCoNumInfor(CSISystemContext, ref CoNum, ref Line, ref Release, ref CoType, ref Customer, ref Item
-                            , ref ItemDesc, ref UM, ref QuantityOrdered, ref QtyShipped, ref QtyToBeShipped, ref LotTracked, ref SNTracked);
-                        if (CoNumValidated == true)
+                        //validate PoNum and Line, Release
+                        PoNumValidated = CSIPoItems.GetPoNumInfor(CSISystemContext, ref PoNum, ref Line, ref Release, ref PoType, ref Vendor, ref Item
+                            , ref ItemDesc, ref UM, ref QuantityOrdered, ref QtyReceived, ref QtyToBeReceived, ref LotTracked, ref SNTracked);
+                        if (PoNumValidated == true)
                         {
-                            CoNumEdit.Text = CoNum;
+                            PoNumEdit.Text = PoNum;
                             LineEdit.Text =  Line;
                             ReleaseEdit.Text = Release;
-                            CustomerText.Text = Customer;
+                            VendorText.Text = Vendor;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
                             ItemUMText.Text = UM;
@@ -651,9 +608,13 @@ namespace CSIMobile.Class.Fragments
                             {
                                 UMEdit.Text = UM;
                             }
+                            if (string.IsNullOrEmpty(QtyEdit.Text) || QtyEdit.Text.Equals("0")/* || Convert.ToDecimal(QtyEdit.Text) > Convert.ToDecimal(QtyToBeReceived)*/)
+                            {
+                                QtyEdit.Text = QtyToBeReceived;
+                            }
                             QuantityOrderedText.Text = QuantityOrdered;
 
-                            if (CoType == "R")
+                            if (PoType == "R")
                             {
                                 ReleaseEdit.Enabled = false;
                             }
@@ -678,7 +639,7 @@ namespace CSIMobile.Class.Fragments
                         }
                         else
                         {
-                            CustomerText.Text = string.Empty;
+                            VendorText.Text = string.Empty;
                             ItemText.Text = string.Empty;
                             ItemDescText.Text = string.Empty;
                             ItemUMText.Text = string.Empty;
@@ -694,14 +655,14 @@ namespace CSIMobile.Class.Fragments
                     catch (Exception Ex)
                     {
                         WriteErrorLog(Ex);
-                        CoNumValidated = false;
+                        PoNumValidated = false;
                         LineValidated = false;
                         ReleaseValidated = false;
                     }
                 }
             }
             EnableDisableComponents();
-            return CoNumValidated;
+            return PoNumValidated;
         }
 
         private bool ValidateLine()
@@ -716,19 +677,19 @@ namespace CSIMobile.Class.Fragments
                 {
                     try
                     {
-                        string CoNum = CoNumEdit.Text, Line = LineEdit.Text, Release = ReleaseEdit.Text, Customer = CustomerText.Text
+                        string PoNum = PoNumEdit.Text, Line = LineEdit.Text, Release = ReleaseEdit.Text, Vendor = VendorText.Text
                             , Item = ItemText.Text, ItemDesc = ItemDescText.Text, UM = ItemUMText.Text
-                            , QuantityOrdered = QuantityOrderedText.Text, QtyShipped = "", QtyToBeShipped = "";
+                            , QuantityOrdered = QuantityOrderedText.Text, QtyReceived = "", QtyToBeReceived = "";
 
-                        //validate CoNum and Line, Release
-                        CoNumValidated = CSICoItems.GetCoNumInfor(CSISystemContext, ref CoNum, ref Line, ref Release, ref CoType, ref Customer, ref Item
-                            , ref ItemDesc, ref UM, ref QuantityOrdered, ref QtyShipped, ref QtyToBeShipped, ref LotTracked, ref SNTracked);
-                        if (CoNumValidated == true)
+                        //validate PoNum and Line, Release
+                        PoNumValidated = CSIPoItems.GetPoNumInfor(CSISystemContext, ref PoNum, ref Line, ref Release, ref PoType, ref Vendor, ref Item
+                            , ref ItemDesc, ref UM, ref QuantityOrdered, ref QtyReceived, ref QtyToBeReceived, ref LotTracked, ref SNTracked);
+                        if (PoNumValidated == true)
                         {
-                            CoNumEdit.Text = CoNum;
+                            PoNumEdit.Text = PoNum;
                             LineEdit.Text = Line;
                             ReleaseEdit.Text = Release;
-                            CustomerText.Text = Customer;
+                            VendorText.Text = Vendor;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
                             ItemUMText.Text = UM;
@@ -736,9 +697,13 @@ namespace CSIMobile.Class.Fragments
                             {
                                 UMEdit.Text = UM;
                             }
+                            if (string.IsNullOrEmpty(QtyEdit.Text) || QtyEdit.Text.Equals("0")/* || Convert.ToDecimal(QtyEdit.Text) > Convert.ToDecimal(QtyToBeReceived)*/)
+                            {
+                                QtyEdit.Text = QtyToBeReceived;
+                            }
                             QuantityOrderedText.Text = QuantityOrdered;
 
-                            if (CoType == "R")
+                            if (PoType == "R")
                             {
                                 ReleaseEdit.Enabled = false;
                             }
@@ -763,7 +728,7 @@ namespace CSIMobile.Class.Fragments
                         }
                         else
                         {
-                            CustomerText.Text = string.Empty;
+                            VendorText.Text = string.Empty;
                             ItemText.Text = string.Empty;
                             ItemDescText.Text = string.Empty;
                             ItemUMText.Text = string.Empty;
@@ -779,7 +744,7 @@ namespace CSIMobile.Class.Fragments
                     catch (Exception Ex)
                     {
                         WriteErrorLog(Ex);
-                        CoNumValidated = false;
+                        PoNumValidated = false;
                         LineValidated = false;
                         ReleaseValidated = false;
                     }
@@ -835,19 +800,19 @@ namespace CSIMobile.Class.Fragments
                 {
                     try
                     {
-                        string CoNum = CoNumEdit.Text, Line = LineEdit.Text, Release = ReleaseEdit.Text, Customer = CustomerText.Text
+                        string PoNum = PoNumEdit.Text, Line = LineEdit.Text, Release = ReleaseEdit.Text, Vendor = VendorText.Text
                             , Item = ItemText.Text, ItemDesc = ItemDescText.Text, UM = ItemUMText.Text
-                            , QuantityOrdered = QuantityOrderedText.Text, QtyShipped = "", QtyToBeShipped = "";
+                            , QuantityOrdered = QuantityOrderedText.Text, QtyReceived = "", QtyToBeReceived = "";
 
-                        //validate CoNum and Line, Release
-                        CoNumValidated = CSICoItems.GetCoNumInfor(CSISystemContext, ref CoNum, ref Line, ref Release, ref CoType, ref Customer, ref Item
-                            , ref ItemDesc, ref UM, ref QuantityOrdered, ref QtyShipped, ref QtyToBeShipped, ref LotTracked, ref SNTracked);
-                        if (CoNumValidated == true)
+                        //validate PoNum and Line, Release
+                        PoNumValidated = CSIPoItems.GetPoNumInfor(CSISystemContext, ref PoNum, ref Line, ref Release, ref PoType, ref Vendor, ref Item
+                            , ref ItemDesc, ref UM, ref QuantityOrdered, ref QtyReceived, ref QtyToBeReceived, ref LotTracked, ref SNTracked);
+                        if (PoNumValidated == true)
                         {
-                            CoNumEdit.Text = CoNum;
+                            PoNumEdit.Text = PoNum;
                             LineEdit.Text = Line;
                             ReleaseEdit.Text = Release;
-                            CustomerText.Text = Customer;
+                            VendorText.Text = Vendor;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
                             ItemUMText.Text = UM;
@@ -855,9 +820,13 @@ namespace CSIMobile.Class.Fragments
                             {
                                 UMEdit.Text = UM;
                             }
+                            if (string.IsNullOrEmpty(QtyEdit.Text) || QtyEdit.Text.Equals("0")/* || Convert.ToDecimal(QtyEdit.Text) > Convert.ToDecimal(QtyToBeReceived)*/)
+                            {
+                                QtyEdit.Text = QtyToBeReceived;
+                            }
                             QuantityOrderedText.Text = QuantityOrdered;
 
-                            if (CoType == "R")
+                            if (PoType == "R")
                             {
                                 ReleaseEdit.Enabled = false;
                             }
@@ -882,7 +851,7 @@ namespace CSIMobile.Class.Fragments
                         }
                         else
                         {
-                            CustomerText.Text = string.Empty;
+                            VendorText.Text = string.Empty;
                             ItemText.Text = string.Empty;
                             ItemDescText.Text = string.Empty;
                             ItemUMText.Text = string.Empty;
@@ -898,7 +867,7 @@ namespace CSIMobile.Class.Fragments
                     catch (Exception Ex)
                     {
                         WriteErrorLog(Ex);
-                        CoNumValidated = false;
+                        PoNumValidated = false;
                         LineValidated = false;
                         ReleaseValidated = false;
                     }
@@ -919,7 +888,7 @@ namespace CSIMobile.Class.Fragments
                 else
                 {
                     string Loc = LocEdit.Text, LocDescription = "", Lot = LotEdit.Text, Qty = "";
-                    LocValidated = CSIItemLocs.GetItemLocInfor(CSISystemContext, CoNumEdit.Text, WhseEdit.Text, ref Loc, ref LocDescription, ref Qty);
+                    LocValidated = CSIItemLocs.GetItemLocInfor(CSISystemContext, PoNumEdit.Text, WhseEdit.Text, ref Loc, ref LocDescription, ref Qty);
                     if (LocValidated)
                     {
                         LocDescText.Text = LocDescription;
@@ -970,7 +939,7 @@ namespace CSIMobile.Class.Fragments
                     {
                         /* Get Current Lot */
                         string Loc = LocEdit.Text, Lot = LotEdit.Text, Qty = "";
-                        bool RtnCSILotLocs = CSILotLocs.GetItemLotLocInfor(CSISystemContext, CoNumEdit.Text, WhseEdit.Text, Loc, ref Lot, ref Qty);
+                        bool RtnCSILotLocs = CSILotLocs.GetItemLotLocInfor(CSISystemContext, PoNumEdit.Text, WhseEdit.Text, Loc, ref Lot, ref Qty);
                         if (RtnCSILotLocs)
                         {
                             LotEdit.Text = Lot;
@@ -1015,38 +984,11 @@ namespace CSIMobile.Class.Fragments
             return SNPicked;
         }
 
-        private bool ValidateReasonCode()
-        {
-            if (!ReasonCodeValidated)
-            {
-                if (string.IsNullOrEmpty(ReasonCodeEdit.Text))
-                {
-                    ReasonCodeValidated = false;
-                }
-                else
-                {
-                    string ReasonCode = ReasonCodeEdit.Text, ReasonDescription = "";
-                    ReasonCodeValidated = CSIReasons.GetReason(CSISystemContext, ref ReasonCode, "CO RETURN", ref ReasonDescription);
-                    if (ReasonCodeValidated)
-                    {
-                        ReasonCodeEdit.Text = ReasonCode;
-                        ReasonDescText.Text = ReasonDescription;
-                    }
-                    else
-                    {
-                        ReasonDescText.Text = string.Empty;
-                    }
-                }
-            }
-            EnableDisableComponents();
-            return ReasonCodeValidated;
-        }
-
         private void EnableDisableComponents()
         {
             try
             {
-                if (string.IsNullOrEmpty(CoNumEdit.Text))
+                if (string.IsNullOrEmpty(PoNumEdit.Text))
                 {
                     //QtyLinearLayout.Visibility = ViewStates.Gone;
                     //FromLinearLayout.Visibility = ViewStates.Gone;
@@ -1062,8 +1004,8 @@ namespace CSIMobile.Class.Fragments
                 LotScanButton.Enabled = LotTracked;
                 SNButton.Visibility = SNTracked ? ViewStates.Visible : ViewStates.Gone;
                 SNButton.Enabled = SNTracked;
-                ProcessButton.Enabled = CoNumValidated && LineValidated && ReleaseValidated && UMValidated && QtyValidated
-                    && LocValidated && ReasonCodeValidated && ((LotTracked && LotValidated) || !LotTracked) && ((SNTracked && SNPicked) || !SNTracked);
+                ProcessButton.Enabled = PoNumValidated && LineValidated && ReleaseValidated && UMValidated && QtyValidated
+                    && LocValidated && ((LotTracked && LotValidated) || !LotTracked) && ((SNTracked && SNPicked) || !SNTracked);
             }catch (Exception Ex)
             {
                 WriteErrorLog(Ex);
@@ -1094,27 +1036,6 @@ namespace CSIMobile.Class.Fragments
                     {
                         ProcessButton.RequestFocus();
                     }
-                }
-            }
-        }
-
-        private async void ReasonCodeScanButton_Click(object sender, EventArgs e)
-        {
-            string ScanResult = await CSISanner.ScanAsync();
-            if (string.IsNullOrEmpty(ScanResult))
-            {
-                return;
-            }
-            if (!AnalysisScanResult(ScanResult))
-            {
-                ReasonCodeEdit.Text = ScanResult;
-                if (!ValidateUM())
-                {
-                    ReasonCodeEdit.RequestFocus();
-                }
-                else
-                {
-                    ProcessButton.RequestFocus();
                 }
             }
         }
@@ -1196,7 +1117,7 @@ namespace CSIMobile.Class.Fragments
             }
         }
 
-        private async void CoScanButton_Click(object sender, EventArgs e)
+        private async void PoScanButton_Click(object sender, EventArgs e)
         {
             string ScanResult = await CSISanner.ScanAsync();
             if (string.IsNullOrEmpty(ScanResult))
@@ -1205,10 +1126,10 @@ namespace CSIMobile.Class.Fragments
             }
             if (!AnalysisScanResult(ScanResult))
             {
-                CoNumEdit.Text = ScanResult;
-                if (!ValidateCoNum())
+                PoNumEdit.Text = ScanResult;
+                if (!ValidatePoNum())
                 {
-                    CoNumEdit.RequestFocus();
+                    PoNumEdit.RequestFocus();
                 }
                 else
                 {
@@ -1220,14 +1141,14 @@ namespace CSIMobile.Class.Fragments
         private bool AnalysisScanResult(string Result)
         {
             //this is designed for future scan enhancement, such as scan one code to fill in all stuff...
-            bool rtn = CSIDcJsonObjects.ReadOrderShippingJson(Result, out string CoNum, out string Line, out string Release, out string UM, out string Qty, out string Loc, out string Lot,out string ReasonCode);
+            bool rtn = CSIDcJsonObjects.ReadPurchaseReceiveJson(Result, out string PoNum, out string Line, out string Release, out string UM, out string Qty, out string Loc, out string Lot,out string Reason);
             if (rtn)
             {
-                if (!string.IsNullOrEmpty(CoNum))
+                if (!string.IsNullOrEmpty(PoNum))
                 {
-                    CoNumEdit.Text = CoNum;
-                    CoNumValidated = false;
-                    ValidateCoNum();
+                    PoNumEdit.Text = PoNum;
+                    PoNumValidated = false;
+                    ValidatePoNum();
                 }
                 if (!string.IsNullOrEmpty(Line))
                 {
@@ -1265,12 +1186,12 @@ namespace CSIMobile.Class.Fragments
                     LotValidated = false;
                     ValidateLot();
                 }
-                if (!string.IsNullOrEmpty(ReasonCode))
-                {
-                    ReasonCodeEdit.Text = ReasonCode;
-                    ReasonCodeValidated = false;
-                    ValidateReasonCode();
-                }
+                //if (!string.IsNullOrEmpty(Reason))
+                //{
+                //    ReasonEdit.Text = Reason;
+                //    ReasonValidated = false;
+                //    ValidateReason();
+                //}
                 if (SNTracked)
                 {
                     SNPicked = false;
@@ -1291,7 +1212,7 @@ namespace CSIMobile.Class.Fragments
         private bool PerformValidation()
         {
             TransDateText.Text = string.Format("{0} {1}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
-            return ValidateCoNum() && ValidateLine() && ValidateQty() && ValidateRelease() && ValidateLoc() && ValidateLot() && ValidateReasonCode();
+            return ValidatePoNum() && ValidateLine() && ValidateQty() && ValidateRelease() && ValidateLoc() && ValidateLot();
         }
 
         private void SetSNLabel()
@@ -1326,18 +1247,18 @@ namespace CSIMobile.Class.Fragments
             {
                 FragmentTransaction ft = activity.FragmentManager.BeginTransaction();
 
-                DCOrderReturnFragment OrderReturnDialog = (DCOrderReturnFragment)activity.FragmentManager.FindFragmentByTag("OrderShipping");
-                if (OrderReturnDialog != null)
+                DCPurchaseReceiveFragment PurchaseReceiveDialog = (DCPurchaseReceiveFragment)activity.FragmentManager.FindFragmentByTag("PurchaseReceive");
+                if (PurchaseReceiveDialog != null)
                 {
-                    ft.Show(OrderReturnDialog);
+                    ft.Show(PurchaseReceiveDialog);
                     //ft.AddToBackStack(null);
                 }
                 else
                 {
                     // Create and show the dialog.
-                    OrderReturnDialog = new DCOrderReturnFragment(activity);
+                    PurchaseReceiveDialog = new DCPurchaseReceiveFragment(activity);
                     //Add fragment
-                    OrderReturnDialog.Show(ft, "OrderShipping");
+                    PurchaseReceiveDialog.Show(ft, "PurchaseReceive");
                 }
             }
             catch (Exception Ex)
