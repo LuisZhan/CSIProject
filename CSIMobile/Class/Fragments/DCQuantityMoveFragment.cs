@@ -606,6 +606,7 @@ namespace CSIMobile.Class.Fragments
                             if (string.IsNullOrEmpty(UMEdit.Text))
                             {
                                 UMEdit.Text = UM;
+                                UMValidated = true;
                             }
                             OnHandQuantityText.Text = Qty;
                         }

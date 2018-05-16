@@ -639,8 +639,10 @@ namespace CSIMobile.Class.Fragments
                         if (PoNumValidated == true)
                         {
                             PoNumEdit.Text = PoNum;
-                            LineEdit.Text =  Line;
+                            LineEdit.Text = Line;
+                            LineValidated = true;
                             ReleaseEdit.Text = Release;
+                            ReleaseValidated = true;
                             VendorText.Text = Vendor;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
@@ -648,6 +650,7 @@ namespace CSIMobile.Class.Fragments
                             if (string.IsNullOrEmpty(UMEdit.Text))
                             {
                                 UMEdit.Text = UM;
+                                UMValidated = true;
                             }
                             QuantityOrderedText.Text = QuantityOrdered;
 
@@ -659,9 +662,6 @@ namespace CSIMobile.Class.Fragments
                             {
                                 ReleaseEdit.Enabled = true;
                             }
-
-                            LineValidated = true;
-                            ReleaseValidated = true;
 
                             //Validate ItemLoc
                             string Loc = LocEdit.Text, LocDescription = "", Qty = "";
@@ -725,7 +725,9 @@ namespace CSIMobile.Class.Fragments
                         {
                             PoNumEdit.Text = PoNum;
                             LineEdit.Text = Line;
+                            LineValidated = true;
                             ReleaseEdit.Text = Release;
+                            ReleaseValidated = true;
                             VendorText.Text = Vendor;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
@@ -733,6 +735,7 @@ namespace CSIMobile.Class.Fragments
                             if (string.IsNullOrEmpty(UMEdit.Text))
                             {
                                 UMEdit.Text = UM;
+                                UMValidated = true;
                             }
                             QuantityOrderedText.Text = QuantityOrdered;
 
@@ -744,9 +747,6 @@ namespace CSIMobile.Class.Fragments
                             {
                                 ReleaseEdit.Enabled = true;
                             }
-
-                            LineValidated = true;
-                            ReleaseValidated = true;
 
                             //Validate ItemLoc
                             string Loc = LocEdit.Text, LocDescription = "", Qty = "";
@@ -844,7 +844,9 @@ namespace CSIMobile.Class.Fragments
                         {
                             PoNumEdit.Text = PoNum;
                             LineEdit.Text = Line;
+                            LineValidated = true;
                             ReleaseEdit.Text = Release;
+                            ReleaseValidated = true;
                             VendorText.Text = Vendor;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
@@ -852,6 +854,7 @@ namespace CSIMobile.Class.Fragments
                             if (string.IsNullOrEmpty(UMEdit.Text))
                             {
                                 UMEdit.Text = UM;
+                                UMValidated = true;
                             }
                             QuantityOrderedText.Text = QuantityOrdered;
 
@@ -863,9 +866,6 @@ namespace CSIMobile.Class.Fragments
                             {
                                 ReleaseEdit.Enabled = true;
                             }
-
-                            LineValidated = true;
-                            ReleaseValidated = true;
 
                             //Validate ItemLoc
                             string Loc = LocEdit.Text, LocDescription = "", Qty = "";

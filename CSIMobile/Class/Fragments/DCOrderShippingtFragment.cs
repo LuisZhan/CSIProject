@@ -601,7 +601,9 @@ namespace CSIMobile.Class.Fragments
                         {
                             CoNumEdit.Text = CoNum;
                             LineEdit.Text =  Line;
+                            LineValidated = true;
                             ReleaseEdit.Text = Release;
+                            ReleaseValidated = true;
                             CustomerText.Text = Customer;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
@@ -609,10 +611,12 @@ namespace CSIMobile.Class.Fragments
                             if (string.IsNullOrEmpty(UMEdit.Text))
                             {
                                 UMEdit.Text = UM;
+                                UMValidated = true;
                             }
                             if (string.IsNullOrEmpty(QtyEdit.Text) || QtyEdit.Text.Equals("0")/* || Convert.ToDecimal(QtyEdit.Text) > Convert.ToDecimal(QtyToBeShipped)*/)
                             {
                                 QtyEdit.Text = QtyToBeShipped;
+                                QtyValidated = true;
                             }
                             QuantityOrderedText.Text = QuantityOrdered;
 
@@ -624,9 +628,6 @@ namespace CSIMobile.Class.Fragments
                             {
                                 ReleaseEdit.Enabled = true;
                             }
-
-                            LineValidated = true;
-                            ReleaseValidated = true;
 
                             //Validate ItemLoc
                             string Loc = LocEdit.Text, LocDescription = "", Qty = "";
@@ -690,7 +691,9 @@ namespace CSIMobile.Class.Fragments
                         {
                             CoNumEdit.Text = CoNum;
                             LineEdit.Text = Line;
+                            LineValidated = true;
                             ReleaseEdit.Text = Release;
+                            ReleaseValidated = true;
                             CustomerText.Text = Customer;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
@@ -698,10 +701,12 @@ namespace CSIMobile.Class.Fragments
                             if (string.IsNullOrEmpty(UMEdit.Text))
                             {
                                 UMEdit.Text = UM;
+                                UMValidated = true;
                             }
                             if (string.IsNullOrEmpty(QtyEdit.Text) || QtyEdit.Text.Equals("0")/* || Convert.ToDecimal(QtyEdit.Text) > Convert.ToDecimal(QtyToBeShipped)*/)
                             {
                                 QtyEdit.Text = QtyToBeShipped;
+                                QtyValidated = true;
                             }
                             QuantityOrderedText.Text = QuantityOrdered;
 
@@ -713,9 +718,6 @@ namespace CSIMobile.Class.Fragments
                             {
                                 ReleaseEdit.Enabled = true;
                             }
-
-                            LineValidated = true;
-                            ReleaseValidated = true;
 
                             //Validate ItemLoc
                             string Loc = LocEdit.Text, LocDescription = "", Qty = "";
@@ -813,7 +815,9 @@ namespace CSIMobile.Class.Fragments
                         {
                             CoNumEdit.Text = CoNum;
                             LineEdit.Text = Line;
+                            LineValidated = true;
                             ReleaseEdit.Text = Release;
+                            ReleaseValidated = true;
                             CustomerText.Text = Customer;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
@@ -821,10 +825,12 @@ namespace CSIMobile.Class.Fragments
                             if (string.IsNullOrEmpty(UMEdit.Text))
                             {
                                 UMEdit.Text = UM;
+                                UMValidated = true;
                             }
                             if (string.IsNullOrEmpty(QtyEdit.Text) || QtyEdit.Text.Equals("0")/* || Convert.ToDecimal(QtyEdit.Text) > Convert.ToDecimal(QtyToBeShipped)*/)
                             {
                                 QtyEdit.Text = QtyToBeShipped;
+                                QtyValidated = true;
                             }
                             QuantityOrderedText.Text = QuantityOrdered;
 
@@ -836,9 +842,6 @@ namespace CSIMobile.Class.Fragments
                             {
                                 ReleaseEdit.Enabled = true;
                             }
-
-                            LineValidated = true;
-                            ReleaseValidated = true;
 
                             //Validate ItemLoc
                             string Loc = LocEdit.Text, LocDescription = "", Qty = "";

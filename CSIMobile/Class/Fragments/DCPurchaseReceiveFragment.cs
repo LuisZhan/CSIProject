@@ -296,7 +296,7 @@ namespace CSIMobile.Class.Fragments
 
         private void LotEdit_KeyPress(object sender, View.KeyEventArgs e)
         {
-            if (e.KeyCode == Keycode.Enter || e.KeyCode == Keycode.Tab || e.KeyCode == Keycode.Tab)
+            if (e.KeyCode == Keycode.Enter || e.KeyCode == Keycode.Tab)
             {
                 if (e.Event.Action == KeyEventActions.Up)
                 {
@@ -598,8 +598,10 @@ namespace CSIMobile.Class.Fragments
                         if (PoNumValidated == true)
                         {
                             PoNumEdit.Text = PoNum;
-                            LineEdit.Text =  Line;
+                            LineEdit.Text = Line;
+                            LineValidated = true;
                             ReleaseEdit.Text = Release;
+                            ReleaseValidated = true;
                             VendorText.Text = Vendor;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
@@ -607,10 +609,12 @@ namespace CSIMobile.Class.Fragments
                             if (string.IsNullOrEmpty(UMEdit.Text))
                             {
                                 UMEdit.Text = UM;
+                                UMValidated = true;
                             }
                             if (string.IsNullOrEmpty(QtyEdit.Text) || QtyEdit.Text.Equals("0")/* || Convert.ToDecimal(QtyEdit.Text) > Convert.ToDecimal(QtyToBeReceived)*/)
                             {
                                 QtyEdit.Text = QtyToBeReceived;
+                                QtyValidated = true;
                             }
                             QuantityOrderedText.Text = QuantityOrdered;
 
@@ -623,8 +627,6 @@ namespace CSIMobile.Class.Fragments
                                 ReleaseEdit.Enabled = true;
                             }
 
-                            LineValidated = true;
-                            ReleaseValidated = true;
 
                             //Validate ItemLoc
                             string Loc = LocEdit.Text, LocDescription = "", Qty = "";
@@ -688,7 +690,9 @@ namespace CSIMobile.Class.Fragments
                         {
                             PoNumEdit.Text = PoNum;
                             LineEdit.Text = Line;
+                            LineValidated = true;
                             ReleaseEdit.Text = Release;
+                            ReleaseValidated = true;
                             VendorText.Text = Vendor;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
@@ -696,10 +700,12 @@ namespace CSIMobile.Class.Fragments
                             if (string.IsNullOrEmpty(UMEdit.Text))
                             {
                                 UMEdit.Text = UM;
+                                UMValidated = true;
                             }
                             if (string.IsNullOrEmpty(QtyEdit.Text) || QtyEdit.Text.Equals("0")/* || Convert.ToDecimal(QtyEdit.Text) > Convert.ToDecimal(QtyToBeReceived)*/)
                             {
                                 QtyEdit.Text = QtyToBeReceived;
+                                QtyValidated = true;
                             }
                             QuantityOrderedText.Text = QuantityOrdered;
 
@@ -712,8 +718,6 @@ namespace CSIMobile.Class.Fragments
                                 ReleaseEdit.Enabled = true;
                             }
 
-                            LineValidated = true;
-                            ReleaseValidated = true;
 
                             //Validate ItemLoc
                             string Loc = LocEdit.Text, LocDescription = "", Qty = "";
@@ -811,7 +815,9 @@ namespace CSIMobile.Class.Fragments
                         {
                             PoNumEdit.Text = PoNum;
                             LineEdit.Text = Line;
+                            LineValidated = true;
                             ReleaseEdit.Text = Release;
+                            ReleaseValidated = true;
                             VendorText.Text = Vendor;
                             ItemText.Text = Item;
                             ItemDescText.Text = ItemDesc;
@@ -819,10 +825,12 @@ namespace CSIMobile.Class.Fragments
                             if (string.IsNullOrEmpty(UMEdit.Text))
                             {
                                 UMEdit.Text = UM;
+                                UMValidated = true;
                             }
                             if (string.IsNullOrEmpty(QtyEdit.Text) || QtyEdit.Text.Equals("0")/* || Convert.ToDecimal(QtyEdit.Text) > Convert.ToDecimal(QtyToBeReceived)*/)
                             {
                                 QtyEdit.Text = QtyToBeReceived;
+                                QtyValidated = true;
                             }
                             QuantityOrderedText.Text = QuantityOrdered;
 
@@ -835,8 +843,6 @@ namespace CSIMobile.Class.Fragments
                                 ReleaseEdit.Enabled = true;
                             }
 
-                            LineValidated = true;
-                            ReleaseValidated = true;
 
                             //Validate ItemLoc
                             string Loc = LocEdit.Text, LocDescription = "", Qty = "";
