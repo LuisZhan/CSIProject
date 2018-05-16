@@ -55,6 +55,10 @@ namespace CSIMobile.Class.Common
         public string LineSuffix2 { get; set; }
         public string Release2 { get; set; }
 
+        //License String
+        public string LicenseString = "";
+        public string ExpDate = "";
+
         //
         public string AndroidId { get; set; }
 
@@ -124,7 +128,11 @@ namespace CSIMobile.Class.Common
             bundle.PutString("Release", Release);
             bundle.PutString("Key2", Key2);
             bundle.PutString("LineSuffix2", LineSuffix2);
-            bundle.PutString("Release2", Release);
+            bundle.PutString("Release2", Release2);
+
+            //License
+            bundle.PutString("LicenseString", LicenseString);
+            bundle.PutString("ExpDate", ExpDate);
 
             return bundle;
         }
@@ -169,6 +177,10 @@ namespace CSIMobile.Class.Common
             Key2 = bundle.GetString("Key2");
             LineSuffix2 = bundle.GetString("LineSuffix2");
             Release2 = bundle.GetString("Release2");
+
+            //License
+            LicenseString = bundle.GetString("LicenseString");
+            ExpDate = string.IsNullOrEmpty(bundle.GetString("ExpDate")) ? DateTime.Today.AddDays(30).ToShortDateString() : bundle.GetString("ExpDate");
         }
 
         public static void Copy(CSIContext src, CSIContext tgt)
@@ -208,12 +220,21 @@ namespace CSIMobile.Class.Common
             SavePassword = false;
             SavedPassword = "";
             LoadPicture = false;
-            ForceAutoPost = true;
+            ForceAutoPost = false;
             UseRESTForRequest = false;
             DisplayWhenError = true;
 
+            //License Infor
+            LicenseString = "";
+            ExpDate = DateTime.Today.AddDays(30).ToShortDateString();
+
             //others
             AndroidId = Secure.GetString(Application.Context.ContentResolver, Secure.AndroidId);
+        }
+
+        private void LicenseModule()
+        {
+            //
         }
     }
 }

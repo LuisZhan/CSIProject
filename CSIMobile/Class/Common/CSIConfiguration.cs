@@ -49,6 +49,9 @@ namespace CSIMobile.Class.Common
                 jWriter.Name("SavedPassword").Value(c.SaveUser && c.SavePassword ? c.SavedPassword : string.Empty);
                 jWriter.Name("LoadPicture").Value(c.LoadPicture);
                 jWriter.Name("RecordCap").Value(c.RecordCap ?? "10");
+                jWriter.Name("ForceAutoPost").Value(c.ForceAutoPost);
+                jWriter.Name("LicenseString").Value(c.LicenseString);
+                jWriter.Name("ExpDate").Value(c.ExpDate);
                 jWriter.EndObject();
                 jWriter.Close();
                 ConfigureStream.Close();
@@ -240,7 +243,7 @@ namespace CSIMobile.Class.Common
                     }
                     else if (name.Equals("LoadPicture"))
                     {
-                        //WriteLog("Read LoadPicture");
+                        //WriteLog("Read Load Picture");
                         if (jReader.Peek() == JsonToken.Null)
                         {
                             jReader.SkipValue();
@@ -248,6 +251,42 @@ namespace CSIMobile.Class.Common
                         else
                         {
                             c.LoadPicture = jReader.NextBoolean();
+                        }
+                    }
+                    else if (name.Equals("ForceAutoPost"))
+                    {
+                        //WriteLog("Force Auto Post");
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            c.ForceAutoPost = jReader.NextBoolean();
+                        }
+                    }
+                    else if (name.Equals("ExpDate"))
+                    {
+                        //WriteLog("ExpDate");
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            c.ExpDate = jReader.NextString() ?? string.Empty;
+                        }
+                    }
+                    else if (name.Equals("LicenseString"))
+                    {
+                        //WriteLog("Force Auto Post");
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            c.LicenseString = jReader.NextString() ?? string.Empty;
                         }
                     }
                     else if (name.Equals("RecordCap"))
