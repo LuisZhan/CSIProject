@@ -29,6 +29,7 @@ namespace CSIMobile.Class.Fragments
         ImageButton QtyScanButton;
         ImageButton LocScanButton;
         ImageButton LotScanButton;
+        ImageButton ReasonCodeScanButton;
         EditText WhseEdit;
         TextView TransDateText;
         EditText CoNumEdit;
@@ -237,6 +238,7 @@ namespace CSIMobile.Class.Fragments
                 LotScanButton = view.FindViewById<ImageButton>(Resource.Id.LotScanButton);
                 LotEdit = view.FindViewById<EditText>(Resource.Id.LotEdit);
                 ReasonCodeEdit = view.FindViewById<EditText>(Resource.Id.ReasonCodeEdit);
+                ReasonCodeScanButton = view.FindViewById<ImageButton>(Resource.Id.ReasonCodeScanButton);
                 ReasonDescText = view.FindViewById<TextView>(Resource.Id.ReasonDescText);
 
                 QtyLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.QtyLinearLayout);
@@ -262,6 +264,7 @@ namespace CSIMobile.Class.Fragments
                 UMScanButton.Click += UMScanButton_Click;
                 LocScanButton.Click += LocScanButton_Click;
                 LotScanButton.Click += LotScanButton_Click;
+                ReasonCodeScanButton.Click += ReasonCodeScanButton_Click;
 
                 CoNumEdit.FocusChange += CoNumEdit_FocusChange;
                 LineEdit.FocusChange += LineEdit_FocusChange;
@@ -503,7 +506,7 @@ namespace CSIMobile.Class.Fragments
                 Row["CoRelease"] = ReleaseEdit.Text;//Release
                 Row["Item"] = ItemText.Text;//Item
                 Row["QtyShipped"] = "-" + QtyEdit.Text;//QtyShipped
-                Row["UM"] =UMEdit.Text;//UM
+                Row["UM"] = UMEdit.Text;//UM
                 Row["Loc"] = LocEdit.Text;//Loc
                 Row["Lot"] = LotEdit.Text;//Lot
                 Row["ReasonCode"] = ReasonCodeEdit.Text;//ReasonCode
@@ -1096,6 +1099,27 @@ namespace CSIMobile.Class.Fragments
             }
         }
 
+        private async void ReasonCodeScanButton_Click(object sender, EventArgs e)
+        {
+            string ScanResult = await CSISanner.ScanAsync();
+            if (string.IsNullOrEmpty(ScanResult))
+            {
+                return;
+            }
+            if (!AnalysisScanResult(ScanResult))
+            {
+                ReasonCodeEdit.Text = ScanResult;
+                if (!ValidateUM())
+                {
+                    ReasonCodeEdit.RequestFocus();
+                }
+                else
+                {
+                    ProcessButton.RequestFocus();
+                }
+            }
+        }
+
         private async void UMScanButton_Click(object sender, EventArgs e)
         {
             string ScanResult = await CSISanner.ScanAsync();
@@ -1220,7 +1244,7 @@ namespace CSIMobile.Class.Fragments
                 }
                 if (!string.IsNullOrEmpty(UM))
                 {
-                    UMEdit.Text = Qty;
+                    UMEdit.Text = UM;
                     UMValidated = false;
                     ValidateUM();
                 }

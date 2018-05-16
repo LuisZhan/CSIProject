@@ -475,7 +475,7 @@ namespace CSIMobile.Class.Fragments
                 Row["CoRelease"] = ReleaseEdit.Text;//Release
                 Row["Item"] = ItemText.Text;//Item
                 Row["QtyShipped"] = QtyEdit.Text;//QtyShipped
-                Row["UM"] =UMEdit.Text;//UM
+                Row["UM"] = UMEdit.Text;//UM
                 Row["Loc"] = LocEdit.Text;//Loc
                 Row["Lot"] = LotEdit.Text;//Lot
                 //Row["ReasonCode"] = ReasonCodeEdit.Text;//ReasonCode
@@ -1153,7 +1153,7 @@ namespace CSIMobile.Class.Fragments
                 }
                 if (!string.IsNullOrEmpty(UM))
                 {
-                    UMEdit.Text = Qty;
+                    UMEdit.Text = UM;
                     UMValidated = false;
                     ValidateUM();
                 }

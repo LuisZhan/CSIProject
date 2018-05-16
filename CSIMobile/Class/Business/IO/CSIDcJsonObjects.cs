@@ -66,7 +66,7 @@ namespace CSIMobile.Class.Business.IO
                 while (jReader.HasNext)
                 {
                     string name = jReader.NextName();
-                    if (name.Equals("Item"))
+                    if (name.ToUpper().Equals("Item".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -77,7 +77,7 @@ namespace CSIMobile.Class.Business.IO
                             Item = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("UM"))
+                    else if (name.ToUpper().Equals("UM".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -88,7 +88,7 @@ namespace CSIMobile.Class.Business.IO
                             UM = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Qty") || name.Equals("Quantity"))
+                    else if (name.ToUpper().Equals("Qty".ToUpper()) || name.ToUpper().Equals("Quantity".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -99,7 +99,7 @@ namespace CSIMobile.Class.Business.IO
                             Qty = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Loc1") || name.Equals("FromLoc"))
+                    else if (name.ToUpper().Equals("Loc1".ToUpper()) || name.ToUpper().Equals("FromLoc".ToUpper()) || name.ToUpper().Equals("FromLocation".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -110,7 +110,7 @@ namespace CSIMobile.Class.Business.IO
                             Loc1 = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Lot1") || name.Equals("FromLot"))
+                    else if (name.ToUpper().Equals("Lot1".ToUpper()) || name.ToUpper().Equals("FromLot".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -121,7 +121,7 @@ namespace CSIMobile.Class.Business.IO
                             Lot1 = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Loc2") || name.Equals("ToLoc"))
+                    else if (name.ToUpper().Equals("Loc2".ToUpper()) || name.ToUpper().Equals("ToLoc".ToUpper()) || name.ToUpper().Equals("ToLocation".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -132,7 +132,7 @@ namespace CSIMobile.Class.Business.IO
                             Loc2 = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Lot2") || name.Equals("ToLot"))
+                    else if (name.ToUpper().Equals("Lot2".ToUpper()) || name.ToUpper().Equals("ToLot".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -172,13 +172,13 @@ namespace CSIMobile.Class.Business.IO
             try
             {
                 byte[] data = Encoding.Default.GetBytes(JsonString.ToString());
-                MemoryStream QtyMoveStream = new MemoryStream(data);
-                JsonReader jReader = new JsonReader(new Java.IO.InputStreamReader(QtyMoveStream));
+                MemoryStream JobReceiptStream = new MemoryStream(data);
+                JsonReader jReader = new JsonReader(new Java.IO.InputStreamReader(JobReceiptStream));
                 jReader.BeginObject();
                 while (jReader.HasNext)
                 {
                     string name = jReader.NextName();
-                    if (name.Equals("Job"))
+                    if (name.ToUpper().Equals("Job".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -189,7 +189,7 @@ namespace CSIMobile.Class.Business.IO
                             Job = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Suffix"))
+                    else if (name.ToUpper().Equals("Suffix".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -200,7 +200,7 @@ namespace CSIMobile.Class.Business.IO
                             Suffix = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Qty") || name.Equals("Quantity"))
+                    else if (name.ToUpper().Equals("Qty".ToUpper()) || name.ToUpper().Equals("Quantity".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -211,7 +211,7 @@ namespace CSIMobile.Class.Business.IO
                             Qty = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("OperNum") || name.Equals("Oper") || name.Equals("Operation"))
+                    else if (name.ToUpper().Equals("OperNum".ToUpper()) || name.ToUpper().Equals("Oper".ToUpper()) || name.ToUpper().Equals("Operation".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -222,7 +222,7 @@ namespace CSIMobile.Class.Business.IO
                             OperNum = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Loc") || name.Equals("ToLoc"))
+                    else if (name.ToUpper().Equals("Loc".ToUpper()) || name.ToUpper().Equals("Location".ToUpper()) || name.ToUpper().Equals("ToLoc".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -233,7 +233,7 @@ namespace CSIMobile.Class.Business.IO
                             Loc = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Lot") || name.Equals("ToLot"))
+                    else if (name.ToUpper().Equals("Lot".ToUpper()) || name.ToUpper().Equals("ToLot".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -251,7 +251,7 @@ namespace CSIMobile.Class.Business.IO
                 }
                 jReader.EndObject();
                 jReader.Close();
-                QtyMoveStream.Close();
+                JobReceiptStream.Close();
             }
             catch (Exception Ex)
             {
@@ -280,7 +280,7 @@ namespace CSIMobile.Class.Business.IO
                 while (jReader.HasNext)
                 {
                     string name = jReader.NextName();
-                    if (name.Equals("Item"))
+                    if (name.ToUpper().Equals("Item".ToUpper()) || name.ToUpper().Equals("Itm".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -291,7 +291,7 @@ namespace CSIMobile.Class.Business.IO
                             Item = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("UM"))
+                    else if (name.ToUpper().Equals("UM".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -302,7 +302,7 @@ namespace CSIMobile.Class.Business.IO
                             UM = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Qty") || name.Equals("Quantity"))
+                    else if (name.ToUpper().Equals("Qty".ToUpper()) || name.ToUpper().Equals("Quantity".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -313,7 +313,7 @@ namespace CSIMobile.Class.Business.IO
                             Qty = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Loc") || name.Equals("Loc"))
+                    else if (name.ToUpper().Equals("Loc".ToUpper()) || name.ToUpper().Equals("Location".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -324,7 +324,7 @@ namespace CSIMobile.Class.Business.IO
                             Loc = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Lot") || name.Equals("Lot"))
+                    else if (name.ToUpper().Equals("Lot".ToUpper()) || name.ToUpper().Equals("Lot".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -335,7 +335,7 @@ namespace CSIMobile.Class.Business.IO
                             Lot = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Reason") || name.Equals("ReasonCode"))
+                    else if (name.ToUpper().Equals("Reason".ToUpper()) || name.ToUpper().Equals("ReasonCode".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -378,13 +378,13 @@ namespace CSIMobile.Class.Business.IO
             try
             {
                 byte[] data = Encoding.Default.GetBytes(JsonString.ToString());
-                MemoryStream QtyMoveStream = new MemoryStream(data);
-                JsonReader jReader = new JsonReader(new Java.IO.InputStreamReader(QtyMoveStream));
+                MemoryStream OrderShippingStream = new MemoryStream(data);
+                JsonReader jReader = new JsonReader(new Java.IO.InputStreamReader(OrderShippingStream));
                 jReader.BeginObject();
                 while (jReader.HasNext)
                 {
                     string name = jReader.NextName();
-                    if (name.Equals("CoNum"))
+                    if (name.ToUpper().Equals("CoNum".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -395,7 +395,7 @@ namespace CSIMobile.Class.Business.IO
                             CoNum = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Line") || name.Equals("CoLine"))
+                    else if (name.ToUpper().Equals("Line".ToUpper()) || name.ToUpper().Equals("CoLine".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -406,7 +406,7 @@ namespace CSIMobile.Class.Business.IO
                             Line = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Release") || name.Equals("CoRelease"))
+                    else if (name.ToUpper().Equals("Release".ToUpper()) || name.ToUpper().Equals("CoRelease".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -417,7 +417,7 @@ namespace CSIMobile.Class.Business.IO
                             Release = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("UM") || name.Equals("UoM"))
+                    else if (name.ToUpper().Equals("UM".ToUpper()) || name.ToUpper().Equals("UoM".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -428,7 +428,7 @@ namespace CSIMobile.Class.Business.IO
                             UM = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Qty") || name.Equals("Quantity"))
+                    else if (name.ToUpper().Equals("Qty".ToUpper()) || name.ToUpper().Equals("Quantity".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -439,7 +439,7 @@ namespace CSIMobile.Class.Business.IO
                             Qty = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Loc") || name.Equals("ToLoc"))
+                    else if (name.ToUpper().Equals("Loc".ToUpper()) || name.ToUpper().Equals("Location".ToUpper()) || name.ToUpper().Equals("ToLoc".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -450,7 +450,7 @@ namespace CSIMobile.Class.Business.IO
                             Loc = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Lot") || name.Equals("ToLot"))
+                    else if (name.ToUpper().Equals("Lot".ToUpper()) || name.ToUpper().Equals("ToLot".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -461,7 +461,7 @@ namespace CSIMobile.Class.Business.IO
                             Lot = jReader.NextString();
                         }
                     }
-                    else if (name.Equals("Reason") || name.Equals("ReasonCode"))
+                    else if (name.ToUpper().Equals("Reason".ToUpper()) || name.ToUpper().Equals("ReasonCode".ToUpper()))
                     {
                         if (jReader.Peek() == JsonToken.Null)
                         {
@@ -479,7 +479,7 @@ namespace CSIMobile.Class.Business.IO
                 }
                 jReader.EndObject();
                 jReader.Close();
-                QtyMoveStream.Close();
+                OrderShippingStream.Close();
             }
             catch (Exception Ex)
             {

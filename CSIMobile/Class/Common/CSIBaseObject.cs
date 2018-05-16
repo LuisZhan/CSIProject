@@ -51,6 +51,7 @@ namespace CSIMobile.Class.Common
 
         protected static void WriteErrorLog(Exception Ex)
         {
+            Toast.MakeText(Application.Context, Ex.Message, ToastLength.Short).Show();
             CSIErrorLog.WriteErrorLog(Ex);
         }
 

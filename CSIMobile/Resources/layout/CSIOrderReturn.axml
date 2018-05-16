@@ -374,7 +374,7 @@
                     android:singleLine="true" />
                 <ImageButton
                     android:src="@drawable/scanner"
-                    android:id="@+id/ReasonScanButton"
+                    android:id="@+id/ReasonCodeScanButton"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:scaleType="fitCenter"
