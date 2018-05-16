@@ -171,4 +171,5 @@
   <string name="NoBluetoothAdapter">No Bluetooth Adapter available</string>
   <string name="Generate">Generate</string>
   <string name="QuantityOrdered">Qty Ordered</string>
+  <string name="ForceAutoPost">Force Auto Post</string>
 </resources>

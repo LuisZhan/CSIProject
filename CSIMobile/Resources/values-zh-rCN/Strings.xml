@@ -171,4 +171,5 @@
   <string name="NoBluetoothAdapter">没有蓝牙适配器可用</string>
   <string name="Generate">生成</string>
   <string name="QuantityOrdered">订单数量</string>
+  <string name="ForceAutoPost">强制自动过账</string>
 </resources>

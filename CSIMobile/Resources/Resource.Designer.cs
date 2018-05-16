@@ -1888,11 +1888,14 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a00db
 			public const int EnableHTTPSEdit = 2131362011;
 			
-			// aapt resource value: 0x7f0a00e7
-			public const int ErrorText = 2131362023;
+			// aapt resource value: 0x7f0a00e8
+			public const int ErrorText = 2131362024;
 			
 			// aapt resource value: 0x7f0a0025
 			public const int FUNCTION = 2131361829;
+			
+			// aapt resource value: 0x7f0a00de
+			public const int ForceAutoPostEdit = 2131362014;
 			
 			// aapt resource value: 0x7f0a00c2
 			public const int FromLinearLayout = 2131361986;
@@ -2032,11 +2035,11 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a008d
 			public const int OperNumScanButton = 2131361933;
 			
-			// aapt resource value: 0x7f0a00e3
-			public const int PasswordEdit = 2131362019;
+			// aapt resource value: 0x7f0a00e4
+			public const int PasswordEdit = 2131362020;
 			
-			// aapt resource value: 0x7f0a00e1
-			public const int PasswordLinearLayout = 2131362017;
+			// aapt resource value: 0x7f0a00e2
+			public const int PasswordLinearLayout = 2131362018;
 			
 			// aapt resource value: 0x7f0a00bf
 			public const int PoNumEdit = 2131361983;
@@ -2113,23 +2116,23 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a0028
 			public const int SYM = 2131361832;
 			
-			// aapt resource value: 0x7f0a00e5
-			public const int SaveButton = 2131362021;
-			
-			// aapt resource value: 0x7f0a00e2
-			public const int SavePasswordSwitch = 2131362018;
-			
-			// aapt resource value: 0x7f0a00df
-			public const int SaveUserSwitch = 2131362015;
-			
 			// aapt resource value: 0x7f0a00e6
-			public const int SignInButton = 2131362022;
+			public const int SaveButton = 2131362022;
+			
+			// aapt resource value: 0x7f0a00e3
+			public const int SavePasswordSwitch = 2131362019;
+			
+			// aapt resource value: 0x7f0a00e0
+			public const int SaveUserSwitch = 2131362016;
+			
+			// aapt resource value: 0x7f0a00e7
+			public const int SignInButton = 2131362023;
 			
 			// aapt resource value: 0x7f0a0082
 			public const int SuffixEdit = 2131361922;
 			
-			// aapt resource value: 0x7f0a00e4
-			public const int TestButton = 2131362020;
+			// aapt resource value: 0x7f0a00e5
+			public const int TestButton = 2131362021;
 			
 			// aapt resource value: 0x7f0a0079
 			public const int TitleLinearLayout = 2131361913;
@@ -2167,11 +2170,11 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a00dc
 			public const int UseRESTForRequestEdit = 2131362012;
 			
-			// aapt resource value: 0x7f0a00e0
-			public const int UserEdit = 2131362016;
+			// aapt resource value: 0x7f0a00e1
+			public const int UserEdit = 2131362017;
 			
-			// aapt resource value: 0x7f0a00de
-			public const int UserLinearLayout = 2131362014;
+			// aapt resource value: 0x7f0a00df
+			public const int UserLinearLayout = 2131362015;
 			
 			// aapt resource value: 0x7f0a006c
 			public const int UserNameText = 2131361900;
@@ -2191,8 +2194,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a0091
 			public const int WorkCenterText = 2131361937;
 			
-			// aapt resource value: 0x7f0a00eb
-			public const int action0 = 2131362027;
+			// aapt resource value: 0x7f0a00ec
+			public const int action0 = 2131362028;
 			
 			// aapt resource value: 0x7f0a0056
 			public const int action_bar = 2131361878;
@@ -2215,17 +2218,17 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a0034
 			public const int action_bar_title = 2131361844;
 			
-			// aapt resource value: 0x7f0a00e8
-			public const int action_container = 2131362024;
+			// aapt resource value: 0x7f0a00e9
+			public const int action_container = 2131362025;
 			
 			// aapt resource value: 0x7f0a0057
 			public const int action_context_bar = 2131361879;
 			
-			// aapt resource value: 0x7f0a00ef
-			public const int action_divider = 2131362031;
+			// aapt resource value: 0x7f0a00f0
+			public const int action_divider = 2131362032;
 			
-			// aapt resource value: 0x7f0a00e9
-			public const int action_image = 2131362025;
+			// aapt resource value: 0x7f0a00ea
+			public const int action_image = 2131362026;
 			
 			// aapt resource value: 0x7f0a0002
 			public const int action_menu_divider = 2131361794;
@@ -2242,11 +2245,11 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a0036
 			public const int action_mode_close_button = 2131361846;
 			
-			// aapt resource value: 0x7f0a00ea
-			public const int action_text = 2131362026;
+			// aapt resource value: 0x7f0a00eb
+			public const int action_text = 2131362027;
 			
-			// aapt resource value: 0x7f0a00f8
-			public const int actions = 2131362040;
+			// aapt resource value: 0x7f0a00f9
+			public const int actions = 2131362041;
 			
 			// aapt resource value: 0x7f0a0037
 			public const int activity_chooser_view_content = 2131361847;
@@ -2275,20 +2278,20 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a003d
 			public const int buttonPanel = 2131361853;
 			
-			// aapt resource value: 0x7f0a00ec
-			public const int cancel_action = 2131362028;
+			// aapt resource value: 0x7f0a00ed
+			public const int cancel_action = 2131362029;
 			
 			// aapt resource value: 0x7f0a004d
 			public const int checkbox = 2131361869;
 			
-			// aapt resource value: 0x7f0a00f4
-			public const int chronometer = 2131362036;
+			// aapt resource value: 0x7f0a00f5
+			public const int chronometer = 2131362037;
 			
 			// aapt resource value: 0x7f0a002a
 			public const int collapseActionView = 2131361834;
 			
-			// aapt resource value: 0x7f0a00fc
-			public const int contentFrame = 2131362044;
+			// aapt resource value: 0x7f0a00fd
+			public const int contentFrame = 2131362045;
 			
 			// aapt resource value: 0x7f0a0040
 			public const int contentPanel = 2131361856;
@@ -2314,8 +2317,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a0021
 			public const int end = 2131361825;
 			
-			// aapt resource value: 0x7f0a00fa
-			public const int end_padder = 2131362042;
+			// aapt resource value: 0x7f0a00fb
+			public const int end_padder = 2131362043;
 			
 			// aapt resource value: 0x7f0a0038
 			public const int expand_activities_button = 2131361848;
@@ -2335,8 +2338,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a003c
 			public const int icon = 2131361852;
 			
-			// aapt resource value: 0x7f0a00f9
-			public const int icon_group = 2131362041;
+			// aapt resource value: 0x7f0a00fa
+			public const int icon_group = 2131362042;
 			
 			// aapt resource value: 0x7f0a002b
 			public const int ifRoom = 2131361835;
@@ -2347,8 +2350,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a0092
 			public const int imageView1 = 2131361938;
 			
-			// aapt resource value: 0x7f0a00f5
-			public const int info = 2131362037;
+			// aapt resource value: 0x7f0a00f6
+			public const int info = 2131362038;
 			
 			// aapt resource value: 0x7f0a0033
 			public const int italic = 2131361843;
@@ -2401,11 +2404,11 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a003b
 			public const int list_item = 2131361851;
 			
-			// aapt resource value: 0x7f0a00ee
-			public const int media_actions = 2131362030;
+			// aapt resource value: 0x7f0a00ef
+			public const int media_actions = 2131362031;
 			
-			// aapt resource value: 0x7f0a00fb
-			public const int message = 2131362043;
+			// aapt resource value: 0x7f0a00fc
+			public const int message = 2131362044;
 			
 			// aapt resource value: 0x7f0a0022
 			public const int middle = 2131361826;
@@ -2422,14 +2425,14 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a000f
 			public const int normal = 2131361807;
 			
-			// aapt resource value: 0x7f0a00f7
-			public const int notification_background = 2131362039;
+			// aapt resource value: 0x7f0a00f8
+			public const int notification_background = 2131362040;
+			
+			// aapt resource value: 0x7f0a00f2
+			public const int notification_main_column = 2131362034;
 			
 			// aapt resource value: 0x7f0a00f1
-			public const int notification_main_column = 2131362033;
-			
-			// aapt resource value: 0x7f0a00f0
-			public const int notification_main_column_container = 2131362032;
+			public const int notification_main_column_container = 2131362033;
 			
 			// aapt resource value: 0x7f0a003f
 			public const int parentPanel = 2131361855;
@@ -2443,11 +2446,11 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a004f
 			public const int radio = 2131361871;
 			
-			// aapt resource value: 0x7f0a00f6
-			public const int right_icon = 2131362038;
+			// aapt resource value: 0x7f0a00f7
+			public const int right_icon = 2131362039;
 			
-			// aapt resource value: 0x7f0a00f2
-			public const int right_side = 2131362034;
+			// aapt resource value: 0x7f0a00f3
+			public const int right_side = 2131362035;
 			
 			// aapt resource value: 0x7f0a0019
 			public const int screen = 2131361817;
@@ -2521,8 +2524,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a001c
 			public const int src_over = 2131361820;
 			
-			// aapt resource value: 0x7f0a00ed
-			public const int status_bar_latest_event_content = 2131362029;
+			// aapt resource value: 0x7f0a00ee
+			public const int status_bar_latest_event_content = 2131362030;
 			
 			// aapt resource value: 0x7f0a0050
 			public const int submenuarrow = 2131361872;
@@ -2563,8 +2566,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a0081
 			public const int textview1 = 2131361921;
 			
-			// aapt resource value: 0x7f0a00f3
-			public const int time = 2131362035;
+			// aapt resource value: 0x7f0a00f4
+			public const int time = 2131362036;
 			
 			// aapt resource value: 0x7f0a000d
 			public const int title = 2131361805;
@@ -2949,6 +2952,9 @@ namespace CSIMobile
 			
 			// aapt resource value: 0x7f050053
 			public const int Fixture = 2131034195;
+			
+			// aapt resource value: 0x7f0500cc
+			public const int ForceAutoPost = 2131034316;
 			
 			// aapt resource value: 0x7f0500be
 			public const int FromLocation = 2131034302;

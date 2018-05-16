@@ -20,6 +20,7 @@ namespace CSIMobile.Class.Fragments
         private Switch EnableHTTPS;
         private Switch UseRESTForRequestSwitch;
         private Switch LoadPictureSwitch;
+        private Switch ForceAutoPostSwitch;
         private EditText UserEdit;
         private EditText PasswordEdit;
         private Spinner ConfigurationSpinner;
@@ -55,6 +56,7 @@ namespace CSIMobile.Class.Fragments
                 PasswordEdit = view.FindViewById<EditText>(Resource.Id.PasswordEdit);
                 ConfigurationSpinner = view.FindViewById<Spinner>(Resource.Id.ConfigurationEdit);
                 LoadPictureSwitch = view.FindViewById<Switch>(Resource.Id.LoadPictureEdit);
+                ForceAutoPostSwitch = view.FindViewById<Switch>(Resource.Id.ForceAutoPostEdit);
                 RecordCapEdit = view.FindViewById<EditText>(Resource.Id.RecordCapEdit);
                 SaveButton = view.FindViewById<Button>(Resource.Id.SaveButton);
                 TestButton = view.FindViewById<Button>(Resource.Id.TestButton);
@@ -69,6 +71,7 @@ namespace CSIMobile.Class.Fragments
                 EnableHTTPS.Checked = CSISystemContext.EnableHTTPS;
                 UseRESTForRequestSwitch.Checked = CSISystemContext.UseRESTForRequest;
                 LoadPictureSwitch.Checked = CSISystemContext.LoadPicture;
+                ForceAutoPostSwitch.Checked = CSISystemContext.ForceAutoPost; 
                 RecordCapEdit.Text = CSISystemContext.RecordCap;
                 SaveUserSwitch.Checked = CSISystemContext.SaveUser;
                 SavePasswordSwitch.Checked = CSISystemContext.SavePassword;
@@ -115,7 +118,8 @@ namespace CSIMobile.Class.Fragments
                     CSISystemContext.SavedPassword = PasswordEdit.Text;
                     CSISystemContext.EnableHTTPS = EnableHTTPS.Checked;
                     CSISystemContext.UseRESTForRequest = UseRESTForRequestSwitch.Checked;
-                    CSISystemContext.LoadPicture = LoadPictureSwitch.Checked;
+                    CSISystemContext.LoadPicture = LoadPictureSwitch.Checked; 
+                    CSISystemContext.ForceAutoPost = ForceAutoPostSwitch.Checked; 
                     CSISystemContext.RecordCap = RecordCapEdit.Text;
                     CSISystemContext.SaveUser = SaveUserSwitch.Checked;
                     CSISystemContext.SavePassword = SavePasswordSwitch.Checked;
@@ -193,6 +197,7 @@ namespace CSIMobile.Class.Fragments
             CSISystemContext.EnableHTTPS = EnableHTTPS.Checked;
             CSISystemContext.UseRESTForRequest = UseRESTForRequestSwitch.Checked;
             CSISystemContext.LoadPicture = LoadPictureSwitch.Checked;
+            CSISystemContext.ForceAutoPost = ForceAutoPostSwitch.Checked;
             CSISystemContext.RecordCap = RecordCapEdit.Text;
             CSISystemContext.SaveUser = SaveUserSwitch.Checked;
             CSISystemContext.SavePassword = SavePasswordSwitch.Checked;

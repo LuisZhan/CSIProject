@@ -112,13 +112,16 @@ namespace CSIMobile.Class.Fragments
 
                         if ((RowStatus != "E") || string.IsNullOrEmpty(ErrorMessage))
                         {
-                            //Ready to Post -- calling DcmovePSp
-                            ShowProgressBar(true);
-                            string strParmeters = "";
-                            strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, SLDcpos.GetCurrentPropertyValueOfString("TransNum"));
-                            strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "", true);
-                            //strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "");//DocumentNum 
-                            SLDcpos.InvokeMethod("DcpoPSp", strParmeters);
+                            if (CSISystemContext.ForceAutoPost)
+                            {
+                                //Ready to Post -- calling DcpoPSp
+                                ShowProgressBar(true);
+                                string strParmeters = "";
+                                strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, SLDcpos.GetCurrentPropertyValueOfString("TransNum"));
+                                strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "", true);
+                                //strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "");//DocumentNum 
+                                SLDcpos.InvokeMethod("DcpoPSp", strParmeters);
+                            }
                         }
                         else
                         {

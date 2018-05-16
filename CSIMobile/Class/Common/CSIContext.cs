@@ -41,9 +41,11 @@ namespace CSIMobile.Class.Common
         public bool SavePassword { get; set; }
         public string SavedPassword { get; set; }
         public bool LoadPicture { get; set; }
+        public bool ForceAutoPost { get; set; }
         public bool UseRESTForRequest { get; set; }
         public bool DisplayWhenError { get; set; }
-        
+        public bool ShowSuccessMessage { get; set; }
+
 
         //Passed Key Information
         public string Key { get; set; }
@@ -112,7 +114,8 @@ namespace CSIMobile.Class.Common
             bundle.PutBoolean("SavePassword", SavePassword);
             bundle.PutString("SavedPassword", SavedPassword);
             bundle.PutBoolean("UseRESTForRequest", UseRESTForRequest);
-            bundle.PutBoolean("LoadPicture", LoadPicture);
+            bundle.PutBoolean("LoadPicture", LoadPicture); 
+            bundle.PutBoolean("ForceAutoPost", ForceAutoPost); 
             bundle.PutBoolean("DisplayWhenError", DisplayWhenError);
 
             //Passed Key Information
@@ -156,6 +159,7 @@ namespace CSIMobile.Class.Common
             SavedPassword = bundle.GetString("SavedPassword");
             UseRESTForRequest = bundle.GetBoolean("UseRESTForRequest");
             LoadPicture = bundle.GetBoolean("LoadPicture");
+            ForceAutoPost = bundle.GetBoolean("ForceAutoPost");
             DisplayWhenError = bundle.GetBoolean("DisplayWhenError");
 
             //Passed Key Information
@@ -199,13 +203,14 @@ namespace CSIMobile.Class.Common
             Configuration = "";
             ConfigurationList = new List<string>();
             RecordCap = "";
-            SaveUser = false;
-            SavedUser = "";
+            SaveUser = true;
+            SavedUser = "sa";
             SavePassword = false;
             SavedPassword = "";
             LoadPicture = false;
+            ForceAutoPost = true;
             UseRESTForRequest = false;
-            DisplayWhenError = false;
+            DisplayWhenError = true;
 
             //others
             AndroidId = Secure.GetString(Application.Context.ContentResolver, Secure.AndroidId);
