@@ -49,29 +49,29 @@ namespace CSIMobile.Class.Activities
                         ActionName = Application.Context.GetString(Resource.String.Items),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object),
-                        Enabled = false,
-                        Visible = false
+                        Enabled = true,
+                        Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.PurchaseOrders),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
-                        Enabled = false,
-                        Visible = false
+                        Enabled = true,
+                        Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.SalesOrders),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
-                        Enabled = false,
-                        Visible = false
+                        Enabled = true,
+                        Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.JobOrders),
                         DrawableId = Resource.Drawable.Logo,
                         //ActivityType = typeof(object)
-                        Enabled = false,
-                        Visible = false
+                        Enabled = true,
+                        Visible = true
                     }
                 }
             },
@@ -82,63 +82,63 @@ namespace CSIMobile.Class.Activities
                 {
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.MiscIssue),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.stockout,
                         InvokeCommands = new string[] { "MiscIssue" },
                         Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.MiscReceive),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.stockin,
                         InvokeCommands = new string[] { "MiscReceive" },
                         Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.SalesShip),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.shipping,
                         InvokeCommands = new string[] { "OrderShipping" },
                         Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.SalesReturn),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.shipping,
                         InvokeCommands = new string[] { "OrderReturn" },
                         Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.PurchaseReceive),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.movein,
                         InvokeCommands = new string[] { "PurchaseReceive" },
-                        Enabled = false,
+                        Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.PurchaseReturn),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.moveout,
                         InvokeCommands = new string[] { "PurchaseReturn" },
-                        Enabled = false,
+                        Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.TransferShip),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.transferout,
                         InvokeCommands = new string[] { "TransferShip" },
-                        Enabled = false,
+                        Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.TransferReceive),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.transferin,
                         InvokeCommands = new string[] { "TransferReceive" },
-                        Enabled = false,
+                        Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.QuantityMove),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.move,
                         InvokeCommands = new string[] { "QtyMove" },
                         Enabled = true,
                         Visible = true
@@ -152,45 +152,45 @@ namespace CSIMobile.Class.Activities
                 {
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.JobMaterial),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.jobmaterial,
                         //ActivityType = typeof(object)
-                        Enabled = false,
+                        Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.JobTransaction),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.shopfloor,
                         //ActivityType = typeof(object)
-                        Enabled = false,
+                        Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.JobReceipt),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.manufacturers,
                         InvokeCommands = new string[] { "JobReceipt" },
                         Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.WorkCenterTransaction),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.shopfloor,
                         //ActivityType = typeof(object)
-                        Enabled = false,
+                        Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.ProductionSchedule),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.plan,
                         //ActivityType = typeof(object)
-                        Enabled = false,
-                        Visible = false
+                        Enabled = true,
+                        Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.JustInTime),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.task,
                         //ActivityType = typeof(object)
-                        Enabled = false,
-                        Visible = false
+                        Enabled = true,
+                        Visible = true
                     }
                 }
             },
@@ -201,22 +201,22 @@ namespace CSIMobile.Class.Activities
                 {
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.Login),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.user,
                         InvokeCommands = new string[] { "ShowSignIn" }
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.Settings),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.settings,
                         InvokeCommands = new string[] { "ShowSettings" }
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.About),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.cash,
                         InvokeCommands = new string[] { "ShowAbout" }
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.Log),
-                        DrawableId = Resource.Drawable.Logo,
+                        DrawableId = Resource.Drawable.report,
                         InvokeCommands = new string[] { "ShowLog" }
                     }
                 }
