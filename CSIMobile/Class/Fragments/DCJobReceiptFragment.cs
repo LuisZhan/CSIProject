@@ -432,6 +432,14 @@ namespace CSIMobile.Class.Fragments
             QtyReleasedText.Text = string.Empty;
             WorkCenterText.Text = string.Empty;
             LocDescText.Text = string.Empty;
+
+            JobValidated = false;
+            SuffixValidated = false;
+            QtyValidated = false;
+            OperNumValidated = false;
+            LocValidated = false;
+            LotValidated = false;
+
             SetSNLabel();
         }
 
@@ -759,7 +767,7 @@ namespace CSIMobile.Class.Fragments
                 else
                 {
                     string Loc = LocEdit.Text, LocDescription = "", Lot = LotEdit.Text, Qty = "";
-                    LocValidated = CSIItemLocs.GetItemLocInfor(CSISystemContext, JobEdit.Text, WhseEdit.Text, ref Loc, ref LocDescription, ref Qty);
+                    LocValidated = CSIItemLocs.GetItemLocInfor(CSISystemContext, ItemText.Text, WhseEdit.Text, ref Loc, ref LocDescription, ref Qty);
                     if (LocValidated)
                     {
                         LocDescText.Text = LocDescription;

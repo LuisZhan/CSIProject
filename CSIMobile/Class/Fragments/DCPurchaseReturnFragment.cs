@@ -484,6 +484,15 @@ namespace CSIMobile.Class.Fragments
             ItemUMText.Text = string.Empty;
             QuantityOrderedText.Text = string.Empty;
             LocDescText.Text = string.Empty;
+
+            PoNumValidated = false;
+            LineValidated = false;
+            UMValidated = false;
+            QtyValidated = false;
+            ReleaseValidated = false;
+            LocValidated = false;
+            LotValidated = false;
+
             SetSNLabel();
         }
 

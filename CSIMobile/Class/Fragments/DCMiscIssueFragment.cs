@@ -419,12 +419,14 @@ namespace CSIMobile.Class.Fragments
             LocDescText.Text = string.Empty;
             ReasonEdit.Text = string.Empty;
             ReasonDescText.Text = string.Empty;
+
             ItemValidated = false;
             UMValidated = false;
             QtyValidated = false;
             LocValidated = false;
             LotValidated = false;
             ReasonValidated = false;
+
             SetSNLabel();
         }
 

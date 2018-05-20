@@ -78,14 +78,7 @@
                 android:singleLine="true"
                 android:inputType="text"
                 android:maxLength="10"
-                android:layout_weight="2" />
-            <ImageButton
-                android:src="@drawable/scanner"
-                android:id="@+id/JobScanButton"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:scaleType="fitCenter"
-                android:padding="0dp" />
+                android:layout_weight="1" />
             <TextView xmlns:tools="http://schemas.android.com/tools"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/textview1"
@@ -103,12 +96,12 @@
                 android:singleLine="true"
                 android:inputType="number"
                 android:maxLength="4"
-                android:layout_weight="3"
+                android:layout_weight="1"
                 android:numeric="integer"
                 android:layout_marginRight="42dp" />
             <ImageButton
                 android:src="@drawable/scanner"
-                android:id="@+id/LocScanButton"
+                android:id="@+id/JobScanButton"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:scaleType="fitCenter"
@@ -197,8 +190,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView3"
-                android:visibility="gone" />
+                android:id="@+id/textView3" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -209,7 +201,7 @@
                     android:id="@+id/linearLayout8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="3">
+                    android:layout_weight="2">
                     <EditText
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/OperNumEdit"
@@ -236,7 +228,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="2">
+                    android:layout_weight="1">
                     <LinearLayout
                         android:orientation="horizontal"
                         android:minWidth="25px"
@@ -292,8 +284,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView3"
-                android:visibility="gone" />
+                android:id="@+id/textView3" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

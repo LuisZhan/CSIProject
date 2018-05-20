@@ -68,7 +68,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout8">
+            android:id="@+id/JobLinearLayout">
             <EditText
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/JobEdit"
@@ -92,8 +92,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:width="20dp"
-                android:text="-" />
+                android:text="-"
+                android:width="20dp" />
             <EditText
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/SuffixEdit"
@@ -108,7 +108,7 @@
                 android:layout_marginRight="42dp" />
             <ImageButton
                 android:src="@drawable/scanner"
-                android:id="@+id/LocScanButton"
+                android:id="@+id/SuffixScanButton"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:scaleType="fitCenter"
@@ -121,18 +121,42 @@
             android:layout_height="wrap_content"
             android:id="@+id/JobDescText"
             tools:text="@string/Description" />
-        <TextView xmlns:tools="http://schemas.android.com/tools"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ItemText"
-            tools:text="@string/Item" />
-        <TextView xmlns:tools="http://schemas.android.com/tools"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ItemDescText"
-            tools:text="@string/Description" />
+            android:id="@+id/JobItemLinearLayout">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayout4"
+                android:layout_weight="3"
+                android:minWidth="25px"
+                android:minHeight="25px">
+                <TextView xmlns:tools="http://schemas.android.com/tools"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/JobItemText"
+                    tools:text="@string/Item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayout5"
+                android:layout_weight="2">
+                <TextView xmlns:tools="http://schemas.android.com/tools"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/JobItemDescText"
+                    tools:text="@string/Description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -155,7 +179,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/ItemUMText"
+                    android:id="@+id/JobItemUMText"
                     tools:text="@string/UM"
                     android:gravity="center"
                     android:singleLine="true" />
@@ -192,13 +216,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/OperNumLinearLayout">
-            <TextView
-                android:text="@string/Operation"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView3"
-                android:visibility="gone" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -231,49 +248,88 @@
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:id="@+id/QtyLinearLayout"
                     android:minWidth="25px"
                     android:minHeight="25px"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout5"
                     android:layout_weight="2">
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:minWidth="25px"
-                        android:minHeight="25px"
+                    <EditText xmlns:p2="http://schemas.android.com/tools"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/linearLayout5"
-                        android:layout_weight="2">
-                        <EditText xmlns:p2="http://schemas.android.com/tools"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/QtyEdit"
-                            android:gravity="right"
-                            android:singleLine="true"
-                            android:layout_marginRight="42dp"
-                            android:hint="@string/Quantity"
-                            android:inputType="numberDecimal"
-                            android:maxLength="18"
-                            android:numeric="decimal" />
-                        <ImageButton
-                            android:src="@drawable/scanner"
-                            android:id="@+id/QtyScanButton"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:scaleType="fitCenter"
-                            android:padding="0dp"
-                            android:layout_marginLeft="-40dp" />
-                    </LinearLayout>
+                        android:id="@+id/ItemEdit"
+                        android:singleLine="true"
+                        android:layout_marginRight="42dp"
+                        android:hint="@string/Item" />
+                    <ImageButton
+                        android:src="@drawable/scanner"
+                        android:id="@+id/ItemScanButton"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:scaleType="fitCenter"
+                        android:padding="0dp"
+                        android:layout_marginLeft="-40dp" />
                 </LinearLayout>
             </LinearLayout>
             <TextView xmlns:tools="http://schemas.android.com/tools"
                 android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/ItemDescText"
+                tools:text="@string/Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/WorkCenterText"
-                tools:text="@string/WorkCenter" />
+                android:id="@+id/linearLayout3">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/linearLayout4"
+                    android:layout_weight="3">
+                    <TextView
+                        android:text="@string/UM"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView1"
+                        android:singleLine="true" />
+                    <TextView xmlns:tools="http://schemas.android.com/tools"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/ItemUMText"
+                        tools:text="@string/UM"
+                        android:gravity="center"
+                        android:singleLine="true" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/linearLayout5"
+                    android:layout_weight="2">
+                    <TextView
+                        android:text="@string/OnHandQuantity"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView1"
+                        android:singleLine="true" />
+                    <TextView xmlns:p2="http://schemas.android.com/tools"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/OnHandQuantityText"
+                        p2:text="@string/OnHandQuantity"
+                        android:gravity="right"
+                        android:singleLine="true" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
         <ImageView
             android:src="@android:drawable/divider_horizontal_textfield"
@@ -281,19 +337,70 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageView1" />
         <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/QtyLinearLayout">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout4"
+                android:layout_weight="3">
+                <EditText xmlns:tools="http://schemas.android.com/tools"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/UMEdit"
+                    android:singleLine="true"
+                    android:layout_marginRight="42dp"
+                    android:hint="@string/UM" />
+                <ImageButton
+                    android:src="@drawable/scanner"
+                    android:id="@+id/UMScanButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:scaleType="fitCenter"
+                    android:padding="0dp"
+                    android:layout_marginLeft="-40dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout5"
+                android:layout_weight="2">
+                <EditText xmlns:p2="http://schemas.android.com/tools"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/QtyEdit"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:layout_marginRight="42dp"
+                    android:hint="@string/Quantity"
+                    android:inputType="numberDecimal"
+                    android:maxLength="18"
+                    android:numeric="decimal" />
+                <ImageButton
+                    android:src="@drawable/scanner"
+                    android:id="@+id/QtyScanButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:scaleType="fitCenter"
+                    android:padding="0dp"
+                    android:layout_marginLeft="-40dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
             android:orientation="vertical"
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/LocationLinearLayout">
-            <TextView
-                android:text="@string/Location"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView3"
-                android:visibility="gone" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

@@ -122,6 +122,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Business\CSIDCpss.cs" />
+    <Compile Include="Class\Business\CSIDcjits.cs" />
+    <Compile Include="Class\Business\CSIDcsfcs.cs" />
+    <Compile Include="Class\Business\CSIJobmatls.cs" />
     <Compile Include="Class\Business\CSIPoItems.cs" />
     <Compile Include="Class\Business\CSIDcpos.cs" />
     <Compile Include="Class\Business\CSIDccos.cs" />
@@ -150,6 +154,11 @@
     <Compile Include="Class\Common\Print\CSIPrinter.cs" />
     <Compile Include="Class\Common\CSISanner.cs" />
     <Compile Include="Class\Common\CSIWebServiceEventInterface.cs" />
+    <Compile Include="Class\Fragments\DCJobMaterialTransactionsFragment.cs" />
+    <Compile Include="Class\Fragments\DCProductionScheduleComplete.cs" />
+    <Compile Include="Class\Fragments\DCProductionScheduleScrap.cs" />
+    <Compile Include="Class\Fragments\DCJustInTimeFragment.cs" />
+    <Compile Include="Class\Fragments\DCJobRunFragment.cs" />
     <Compile Include="Class\Fragments\DCOrderReturnFragment.cs" />
     <Compile Include="Class\Fragments\DCPurchaseReturnFragment.cs" />
     <Compile Include="Class\Fragments\DCPurchaseReceiveFragment.cs" />
@@ -234,6 +243,11 @@
     <AndroidResource Include="Resources\layout\CSIOrderReturn.axml" />
     <AndroidResource Include="Resources\layout\CSIPurchaseReceive.axml" />
     <AndroidResource Include="Resources\layout\CSIPurchaseReturn.axml" />
+    <AndroidResource Include="Resources\layout\CSIJobMaterialTransactions.axml" />
+    <AndroidResource Include="Resources\layout\CSIJobRun.axml" />
+    <AndroidResource Include="Resources\layout\CSIJustInTime.axml" />
+    <AndroidResource Include="Resources\layout\CSIProductionScheduleComplete.axml" />
+    <AndroidResource Include="Resources\layout\CSIProductionScheduleScrap.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\CSIMain.axml">

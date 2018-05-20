@@ -65,9 +65,9 @@ namespace CSIMobile.Class.Business
                 SLJob.AddProperty("ItemSerialTracked");
                 if (string.IsNullOrEmpty(Suffix))
                 {
-                    Suffix = "0000";
+                    Suffix = "0";
                 }
-                SLJob.SetFilter(string.Format("Job = N'{0}' And Suffix = N'{1}'", Job, Suffix));
+                SLJob.SetFilter(string.Format("Job = N'{0}' And Suffix = {1}", Job, Suffix));
                 SLJob.LoadIDO();
                 if (SLJob.CurrentTable.Rows.Count <= 0)
                 {
@@ -79,9 +79,9 @@ namespace CSIMobile.Class.Business
                 Item = SLJob.GetCurrentPropertyValueOfString("Item");
                 ItemDesc = SLJob.GetCurrentPropertyValueOfString("ItemDescription");
                 ItemUM = SLJob.GetCurrentPropertyValueOfString("ItemUM");
-                QtyReleased = SLJob.GetCurrentPropertyValueOfString("QtyReleased");
-                QtyComplete = SLJob.GetCurrentPropertyValueOfString("QtyComplete");
-                QtyRequired = (SLJob.GetCurrentPropertyValueOfDecimal("QtyReleased") - SLJob.GetCurrentPropertyValueOfDecimal("QtyComplete")).ToString();
+                QtyReleased = string.Format("{0:n}", SLJob.GetCurrentPropertyValueOfString("QtyReleased"));
+                QtyComplete = string.Format("{0:n}", SLJob.GetCurrentPropertyValueOfString("QtyComplete"));
+                QtyRequired = string.Format("{0:n}", (SLJob.GetCurrentPropertyValueOfDecimal("QtyReleased") - SLJob.GetCurrentPropertyValueOfDecimal("QtyComplete")).ToString());
                 LotTracked = SLJob.GetCurrentPropertyValueOfBoolean("ItemLotTracked");
                 SNTracked = SLJob.GetCurrentPropertyValueOfBoolean("ItemSerialTracked");
                 SLJob = null;

@@ -161,14 +161,14 @@ namespace CSIMobile.Class.Activities
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.JobMaterial),
                         DrawableId = Resource.Drawable.jobmaterial,
-                        //ActivityType = typeof(object)
+                        InvokeCommands = new string[] { "JobMaterial" },
                         Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.JobTransaction),
                         DrawableId = Resource.Drawable.shopfloor,
-                        //ActivityType = typeof(object)
+                        InvokeCommands = new string[] { "JobTransaction" },
                         Enabled = true,
                         Visible = true
                     },
@@ -182,21 +182,21 @@ namespace CSIMobile.Class.Activities
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.WorkCenterTransaction),
                         DrawableId = Resource.Drawable.shopfloor,
-                        //ActivityType = typeof(object)
+                        InvokeCommands = new string[] { "WorkCenterTransaction" },
                         Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.ProductionSchedule),
                         DrawableId = Resource.Drawable.plan,
-                        //ActivityType = typeof(object)
+                        InvokeCommands = new string[] { "ProductionSchedule" },
                         Enabled = true,
                         Visible = true
                     },
                     new ModuleAction {
                         ActionName = Application.Context.GetString(Resource.String.JustInTime),
                         DrawableId = Resource.Drawable.task,
-                        //ActivityType = typeof(object)
+                        InvokeCommands = new string[] { "JustInTime" },
                         Enabled = true,
                         Visible = true
                     }

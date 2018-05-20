@@ -47,11 +47,11 @@ namespace CSIMobile.Class.Business
                 SLItemLoc.AddProperty("Rank");
                 if (string.IsNullOrEmpty(Loc))
                 {
-                    SLItemLoc.SetFilter(string.Format("Item = N'{0}'", Item));
+                    SLItemLoc.SetFilter(string.Format("Item = N'{0}' AND Whse =  N'{1}'", Item, Whse));
                 }
                 else
                 {
-                    SLItemLoc.SetFilter(string.Format("Item = N'{0}' And Loc = N'{1}'", Item, Loc));
+                    SLItemLoc.SetFilter(string.Format("Item = N'{0}' AND Whse =  N'{1}' And Loc = N'{2}'", Item, Whse, Loc));
                 }
                 SLItemLoc.SetOrderBy("Rank");
                 SLItemLoc.SetRecordCap(1);

@@ -341,6 +341,30 @@ namespace CSIMobile
                         Success = true;
                     }
                     break;
+                case "JobMaterial":
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else
+                    {
+                        DCJobMaterialTransactionsFragment.RunFragment(this);
+                        Success = true;
+                    }
+                    break;
+                case "JobTransaction":
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else
+                    {
+                        DCJobRunFragment.RunFragment(this);
+                        Success = true;
+                    }
+                    break;
                 case "OrderShipping":
                     if (string.IsNullOrEmpty(CSISystemContext.Token))
                     {

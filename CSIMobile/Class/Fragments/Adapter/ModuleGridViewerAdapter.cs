@@ -58,7 +58,7 @@ namespace CSIMobile.Class.Fragments.Adapter
 
                 //imageView.LayoutParameters = new AbsListView.LayoutParams(300, 300);
                 imageView.SetScaleType(ImageView.ScaleType.FitCenter);
-                imageView.SetPadding(28, 28, 28, 28);
+                imageView.SetPadding(24, 24, 24, 24);
                 imageView.SetImageResource(Action.DrawableId);
                 textView.Text = Action.ActionName;
                 view.Enabled = Action.Enabled;

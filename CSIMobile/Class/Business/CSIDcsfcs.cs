@@ -13,11 +13,11 @@ using CSIMobile.Class.Common;
 
 namespace CSIMobile.Class.Business 
 {
-    public class CSIDcjms : CSIDcBase
+    public class CSIDcsfcs : CSIDcBase
     {
-        public CSIDcjms(CSIContext SrcContext = null) : base(SrcContext)
+        public CSIDcsfcs(CSIContext SrcContext = null) : base(SrcContext)
         {
-            IDOName = "SLDcjms";
+            IDOName = "SLDcsfcs";
         }
 
         protected override void InitialPreopertyList()
@@ -42,11 +42,6 @@ namespace CSIMobile.Class.Business
             PreSetPropertyList.Add("Whse");
             PreSetPropertyList.Add("Loc");
             PreSetPropertyList.Add("Lot");
-            PreSetPropertyList.Add("Item");
-            PreSetPropertyList.Add("ItemLotTracked");
-            PreSetPropertyList.Add("ItemSerialTracked");
-            PreSetPropertyList.Add("JobmatlUM");
-            PreSetPropertyList.Add("UM");
             PreSetPropertyList.Add("Qty");
             PreSetPropertyList.Add("DocumentNum");
             PreSetPropertyList.Add("ErrorMessage");
