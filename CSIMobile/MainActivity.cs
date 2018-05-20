@@ -64,11 +64,16 @@ namespace CSIMobile
                     if (Modules[index].Visible)
                     {
                         MoudleButton[usedPosition].Visibility = ViewStates.Visible;
+                        MoudleButton[usedPosition].Text = Modules[index].ModuleName;
                         Modules[index].DisplayPosition = usedPosition;
-                        MoudleButton[usedPosition].Click += (o, e) => { SetModuleDeck(index); };
+                        MoudleButton[usedPosition].Tag = usedPosition;
                         usedPosition++;
                     }
                 }
+                MoudleButton[0].Click += (o, e) => { SetModuleDeck(int.Parse(MoudleButton[0].Tag.ToString())); };
+                MoudleButton[1].Click += (o, e) => { SetModuleDeck(int.Parse(MoudleButton[1].Tag.ToString())); };
+                MoudleButton[2].Click += (o, e) => { SetModuleDeck(int.Parse(MoudleButton[2].Tag.ToString())); };
+                MoudleButton[3].Click += (o, e) => { SetModuleDeck(int.Parse(MoudleButton[3].Tag.ToString())); };
                 GetModuleDeck();
 
                 //Show SignIn
