@@ -18,6 +18,8 @@ namespace CSIMobile.Class.Activities
     {
         public string ModuleName;
         public ModuleAction[] ModuleActions;
+        public bool Visible = true;
+        public int DisplayPosition;
         public Module(CSIContext SrcContext = null) : base(SrcContext)
         {
         }
@@ -43,6 +45,8 @@ namespace CSIMobile.Class.Activities
             new Module
             {
                 ModuleName = Application.Context.GetString(Resource.String.MasterData),
+                Visible = false,
+                DisplayPosition = 0,
                 ModuleActions = new ModuleAction[]
                 {
                     new ModuleAction {
@@ -78,6 +82,8 @@ namespace CSIMobile.Class.Activities
             new Module
             {
                 ModuleName = Application.Context.GetString(Resource.String.InventoryActivities),
+                Visible = true,
+                DisplayPosition = 1,
                 ModuleActions = new ModuleAction[]
                 {
                     new ModuleAction {
@@ -148,6 +154,8 @@ namespace CSIMobile.Class.Activities
             new Module
             {
                 ModuleName = Application.Context.GetString(Resource.String.Shopfloor),
+                Visible = true,
+                DisplayPosition = 2,
                 ModuleActions = new ModuleAction[]
                 {
                     new ModuleAction {
@@ -197,6 +205,8 @@ namespace CSIMobile.Class.Activities
             new Module
             {
                 ModuleName = Application.Context.GetString(Resource.String.Settings),
+                Visible = true,
+                DisplayPosition = 3,
                 ModuleActions = new ModuleAction[]
                 {
                     new ModuleAction {
@@ -227,7 +237,7 @@ namespace CSIMobile.Class.Activities
 
         public ModuleDeck(CSIContext SrcContext = null) : base(SrcContext)
         {
-            Modules = builtInModules;
+            Modules = BuildModulesByLicens();
         }
 
         public Module this[int i]
@@ -238,6 +248,25 @@ namespace CSIMobile.Class.Activities
         public int NumModules
         {
             get { return Modules.Length; }
+        }
+        
+        public int NumVisibleModules()
+        {
+            int Count = 0;
+            foreach (Module M in Modules)
+            {
+                if (M.Visible)
+                {
+                    Count++;
+                }
+            }
+            return Count;
+        }
+
+        public Module[] BuildModulesByLicens()
+        {
+            Module[] LicensedModules = null;
+            return LicensedModules ?? builtInModules;
         }
     }
 }

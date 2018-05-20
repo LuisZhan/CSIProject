@@ -54,10 +54,21 @@ namespace CSIMobile
                 MoudleButton[1] = FindViewById<TextView>(Resource.Id.MoudleButton2);
                 MoudleButton[2] = FindViewById<TextView>(Resource.Id.MoudleButton3);
                 MoudleButton[3] = FindViewById<TextView>(Resource.Id.MoudleButton4);
-                MoudleButton[0].Click += (o, e) => { SetModuleDeck(0); };
-                MoudleButton[1].Click += (o, e) => { SetModuleDeck(1); };
-                MoudleButton[2].Click += (o, e) => { SetModuleDeck(2); };
-                MoudleButton[3].Click += (o, e) => { SetModuleDeck(3); };
+                MoudleButton[0].Visibility = ViewStates.Gone;
+                MoudleButton[1].Visibility = ViewStates.Gone;
+                MoudleButton[2].Visibility = ViewStates.Gone;
+                MoudleButton[3].Visibility = ViewStates.Gone;
+                int usedPosition = 0;
+                for (int index = 0; index < Modules.NumModules; index++)
+                {
+                    if (Modules[index].Visible)
+                    {
+                        MoudleButton[usedPosition].Visibility = ViewStates.Visible;
+                        Modules[index].DisplayPosition = usedPosition;
+                        MoudleButton[usedPosition].Click += (o, e) => { SetModuleDeck(index); };
+                        usedPosition++;
+                    }
+                }
                 GetModuleDeck();
 
                 //Show SignIn
