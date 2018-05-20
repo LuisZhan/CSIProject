@@ -39,7 +39,7 @@ namespace CSIMobile.Class.Business
             try
             {
                 CSIJobRoutes SLJobRoute = new CSIJobRoutes(SrcContext);
-                SLJobRoute.UseSync(false);
+                SLJobRoute.UseAsync(false);
                 SLJobRoute.AddProperty("Job");
                 SLJobRoute.AddProperty("Suffix");
                 SLJobRoute.AddProperty("OperNum");

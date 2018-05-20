@@ -43,7 +43,7 @@ namespace CSIMobile.Class.Business
             try
             {
                 CSIJobmatls SLJobmatl = new CSIJobmatls(SrcContext);
-                SLJobmatl.UseSync(false);
+                SLJobmatl.UseAsync(false);
                 SLJobmatl.AddProperty("Job");
                 SLJobmatl.AddProperty("Suffix");
                 SLJobmatl.AddProperty("OperNum");

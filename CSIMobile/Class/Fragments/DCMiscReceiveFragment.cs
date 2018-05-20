@@ -115,6 +115,11 @@ namespace CSIMobile.Class.Fragments
                                 strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "", true);
                                 SLDcitems.InvokeMethod("DcmatlPSp", strParmeters);
                             }
+                            else
+                            {
+                                //Clear Result if no error.
+                                Initialize();
+                            }
                         }
                         else
                         {

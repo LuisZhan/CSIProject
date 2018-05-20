@@ -122,6 +122,11 @@ namespace CSIMobile.Class.Fragments
                                 //strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, "");//DocumentNum 
                                 SLDcpos.InvokeMethod("DcpoPSp", strParmeters);
                             }
+                            else
+                            {
+                                //Clear Result if no error.
+                                Initialize();
+                            }
                         }
                         else
                         {
@@ -916,7 +921,7 @@ namespace CSIMobile.Class.Fragments
                         try
                         {
                             CSILocations SLLoc = new CSILocations(CSISystemContext);
-                            SLLoc.UseSync(false);
+                            SLLoc.UseAsync(false);
                             SLLoc.AddProperty("Loc");
                             SLLoc.AddProperty("Description");
                             SLLoc.SetFilter(string.Format("Loc = N'{0}'", Loc));

@@ -52,7 +52,7 @@ namespace CSIMobile.Class.Business
             try
             {
                 CSICoItems SLCoItem = new CSICoItems(SrcContext);
-                SLCoItem.UseSync(false);
+                SLCoItem.UseAsync(false);
                 SLCoItem.AddProperty("CoNum");
                 SLCoItem.AddProperty("CoLine");
                 SLCoItem.AddProperty("CoRelease");

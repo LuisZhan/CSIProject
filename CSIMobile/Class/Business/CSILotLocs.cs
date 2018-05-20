@@ -39,7 +39,7 @@ namespace CSIMobile.Class.Business
             try
             {
                 CSILotLocs SLLotLocs = new CSILotLocs(SrcContext);
-                SLLotLocs.UseSync(false);
+                SLLotLocs.UseAsync(false);
                 SLLotLocs.AddProperty("Item");
                 SLLotLocs.AddProperty("Loc");
                 SLLotLocs.AddProperty("Lot");

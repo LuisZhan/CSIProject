@@ -52,7 +52,7 @@ namespace CSIMobile.Class.Business
             try
             {
                 CSIJobs SLJob = new CSIJobs(SrcContext);
-                SLJob.UseSync(false);
+                SLJob.UseAsync(false);
                 SLJob.AddProperty("Job");
                 SLJob.AddProperty("Suffix");
                 SLJob.AddProperty("Description");

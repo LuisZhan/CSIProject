@@ -38,7 +38,7 @@ namespace CSIMobile.Class.Business
             try
             {
                 CSIItemLocs SLItemLoc = new CSIItemLocs(SrcContext);
-                SLItemLoc.UseSync(false);
+                SLItemLoc.UseAsync(false);
                 SLItemLoc.AddProperty("Items");
                 SLItemLoc.AddProperty("Loc");
                 SLItemLoc.AddProperty("LocDescription");

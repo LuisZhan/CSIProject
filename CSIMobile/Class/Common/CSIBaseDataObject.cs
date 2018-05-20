@@ -352,7 +352,7 @@ namespace CSIMobile.Class.Common
             }
         }
 
-        public void UseSync(bool use)
+        public void UseAsync(bool use)
         {
             Invoker.UseAsync = use;
         }

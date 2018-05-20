@@ -126,6 +126,7 @@
     <Compile Include="Class\Business\CSIDcjits.cs" />
     <Compile Include="Class\Business\CSIDcsfcs.cs" />
     <Compile Include="Class\Business\CSIJobmatls.cs" />
+    <Compile Include="Class\Business\CSIWhses.cs" />
     <Compile Include="Class\Business\CSIPoItems.cs" />
     <Compile Include="Class\Business\CSIDcpos.cs" />
     <Compile Include="Class\Business\CSIDccos.cs" />

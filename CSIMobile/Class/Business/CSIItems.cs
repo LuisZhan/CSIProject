@@ -48,7 +48,7 @@ namespace CSIMobile.Class.Business
             try
             {
                 CSIItems SLItem = new CSIItems(SrcContext);
-                SLItem.UseSync(false);
+                SLItem.UseAsync(false);
                 SLItem.AddProperty("Item");
                 SLItem.AddProperty("Description");
                 SLItem.AddProperty("UM");
@@ -81,7 +81,7 @@ namespace CSIMobile.Class.Business
             try
             {
                 CSIItems item = new CSIItems(SrcContext);
-                item.UseSync(false);
+                item.UseAsync(false);
                 string strParmeters = "";
                 strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, Item);
                 strParmeters = CSIBaseInvoker.BuildXMLParameters(strParmeters, Prefix);

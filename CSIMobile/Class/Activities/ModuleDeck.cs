@@ -180,7 +180,7 @@ namespace CSIMobile.Class.Activities
                         Visible = true
                     },
                     new ModuleAction {
-                        ActionName = Application.Context.GetString(Resource.String.WorkCenterTransaction),
+                        ActionName = Application.Context.GetString(Resource.String.WorkCenter),
                         DrawableId = Resource.Drawable.shopfloor,
                         InvokeCommands = new string[] { "WorkCenterTransaction" },
                         Enabled = true,

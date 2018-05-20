@@ -33,7 +33,7 @@ namespace CSIMobile.Class.Business
             try
             {
                 CSIReasons SLReason = new CSIReasons(SrcContext);
-                SLReason.UseSync(false);
+                SLReason.UseAsync(false);
                 SLReason.AddProperty("ReasonCode");
                 SLReason.AddProperty("ReasonClass");
                 SLReason.AddProperty("Description");

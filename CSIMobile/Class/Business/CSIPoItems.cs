@@ -50,7 +50,7 @@ namespace CSIMobile.Class.Business
             try
             {
                 CSIPoItems SLPoItem = new CSIPoItems(SrcContext);
-                SLPoItem.UseSync(false);
+                SLPoItem.UseAsync(false);
                 SLPoItem.AddProperty("PoNum");
                 SLPoItem.AddProperty("PoLine");
                 SLPoItem.AddProperty("PoRelease");
