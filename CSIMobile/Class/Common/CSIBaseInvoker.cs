@@ -22,7 +22,7 @@ namespace CSIMobile.Class.Common
         private static string RESTBaseURL = "/IDORequestService/MGRestService.svc";
         private static string SOAPBaseURL = "/IDORequestService/IDOWebService.asmx";
 
-        private static int TimeOutInterval = 1000;
+        private static int TimeOutInterval = 10000;
         private CSIWebService WebService;
 
         private string URL;
