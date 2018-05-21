@@ -309,6 +309,8 @@ namespace CSIMobile.Class.Fragments
             }catch (Exception Ex)
             {
                 WriteErrorLog(Ex);
+                Dismiss();
+                Dispose();
                 return null;
             }
         }
