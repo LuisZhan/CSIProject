@@ -2866,70 +2866,73 @@ namespace CSIMobile
 			public const int CSISignIn = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int notification_action = 2130903090;
+			public const int CSITransferOrderShip = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int notification_action_tombstone = 2130903091;
+			public const int notification_action = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int notification_media_action = 2130903092;
+			public const int notification_action_tombstone = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int notification_media_cancel_action = 2130903093;
+			public const int notification_media_action = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int notification_template_big_media = 2130903094;
+			public const int notification_media_cancel_action = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int notification_template_big_media_custom = 2130903095;
+			public const int notification_template_big_media = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int notification_template_big_media_narrow = 2130903096;
+			public const int notification_template_big_media_custom = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int notification_template_big_media_narrow_custom = 2130903097;
+			public const int notification_template_big_media_narrow = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int notification_template_custom_big = 2130903098;
+			public const int notification_template_big_media_narrow_custom = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int notification_template_icon_group = 2130903099;
+			public const int notification_template_custom_big = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int notification_template_lines_media = 2130903100;
+			public const int notification_template_icon_group = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int notification_template_media = 2130903101;
+			public const int notification_template_lines_media = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int notification_template_media_custom = 2130903102;
+			public const int notification_template_media = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int notification_template_part_chronometer = 2130903103;
+			public const int notification_template_media_custom = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int notification_template_part_time = 2130903104;
+			public const int notification_template_part_chronometer = 2130903104;
 			
 			// aapt resource value: 0x7f030041
-			public const int select_dialog_item_material = 2130903105;
+			public const int notification_template_part_time = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public const int select_dialog_multichoice_material = 2130903106;
+			public const int select_dialog_item_material = 2130903106;
 			
 			// aapt resource value: 0x7f030043
-			public const int select_dialog_singlechoice_material = 2130903107;
+			public const int select_dialog_multichoice_material = 2130903107;
 			
 			// aapt resource value: 0x7f030044
-			public const int support_simple_spinner_dropdown_item = 2130903108;
+			public const int select_dialog_singlechoice_material = 2130903108;
 			
 			// aapt resource value: 0x7f030045
-			public const int tooltip = 2130903109;
+			public const int support_simple_spinner_dropdown_item = 2130903109;
 			
 			// aapt resource value: 0x7f030046
-			public const int zxingscanneractivitylayout = 2130903110;
+			public const int tooltip = 2130903110;
 			
 			// aapt resource value: 0x7f030047
-			public const int zxingscannerfragmentlayout = 2130903111;
+			public const int zxingscanneractivitylayout = 2130903111;
+			
+			// aapt resource value: 0x7f030048
+			public const int zxingscannerfragmentlayout = 2130903112;
 			
 			static Layout()
 			{
@@ -3007,11 +3010,11 @@ namespace CSIMobile
 			// aapt resource value: 0x7f05008a
 			public const int Date = 2131034250;
 			
-			// aapt resource value: 0x7f0500bc
-			public const int Delete = 2131034300;
+			// aapt resource value: 0x7f0500c0
+			public const int Delete = 2131034304;
 			
-			// aapt resource value: 0x7f0500bb
-			public const int DeleteLogFile = 2131034299;
+			// aapt resource value: 0x7f0500bf
+			public const int DeleteLogFile = 2131034303;
 			
 			// aapt resource value: 0x7f050099
 			public const int Description = 2131034265;
@@ -3025,8 +3028,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f050078
 			public const int EffectiveDate = 2131034232;
 			
-			// aapt resource value: 0x7f0500ba
-			public const int Employee = 2131034298;
+			// aapt resource value: 0x7f0500be
+			public const int Employee = 2131034302;
 			
 			// aapt resource value: 0x7f05002e
 			public const int EnableHTTPS = 2131034158;
@@ -3043,20 +3046,20 @@ namespace CSIMobile
 			// aapt resource value: 0x7f050053
 			public const int Fixture = 2131034195;
 			
-			// aapt resource value: 0x7f0500cc
-			public const int ForceAutoPost = 2131034316;
+			// aapt resource value: 0x7f0500d0
+			public const int ForceAutoPost = 2131034320;
 			
-			// aapt resource value: 0x7f0500be
-			public const int FromLocation = 2131034302;
+			// aapt resource value: 0x7f0500c2
+			public const int FromLocation = 2131034306;
 			
-			// aapt resource value: 0x7f0500bf
-			public const int FromLot = 2131034303;
+			// aapt resource value: 0x7f0500c3
+			public const int FromLot = 2131034307;
 			
 			// aapt resource value: 0x7f05006e
 			public const int General = 2131034222;
 			
-			// aapt resource value: 0x7f0500ca
-			public const int Generate = 2131034314;
+			// aapt resource value: 0x7f0500ce
+			public const int Generate = 2131034318;
 			
 			// aapt resource value: 0x7f050067
 			public const int GetMoreRows = 2131034215;
@@ -3094,23 +3097,65 @@ namespace CSIMobile
 			// aapt resource value: 0x7f050080
 			public const int ItmwhseQtyOnHand = 2131034240;
 			
-			// aapt resource value: 0x7f0500c3
-			public const int Job = 2131034307;
+			// aapt resource value: 0x7f0500c7
+			public const int Job = 2131034311;
+			
+			// aapt resource value: 0x7f0500da
+			public const int JobEndDirect = 2131034330;
+			
+			// aapt resource value: 0x7f0500dc
+			public const int JobEndIndirect = 2131034332;
+			
+			// aapt resource value: 0x7f0500d8
+			public const int JobEndMachine = 2131034328;
+			
+			// aapt resource value: 0x7f0500d6
+			public const int JobEndMachineSetup = 2131034326;
+			
+			// aapt resource value: 0x7f0500d4
+			public const int JobEndRun = 2131034324;
+			
+			// aapt resource value: 0x7f0500d2
+			public const int JobEndSetup = 2131034322;
 			
 			// aapt resource value: 0x7f0500b5
 			public const int JobMaterial = 2131034293;
 			
+			// aapt resource value: 0x7f0500b6
+			public const int JobMaterialReturn = 2131034294;
+			
+			// aapt resource value: 0x7f0500dd
+			public const int JobMove = 2131034333;
+			
 			// aapt resource value: 0x7f050066
 			public const int JobOrders = 2131034214;
 			
-			// aapt resource value: 0x7f0500c8
-			public const int JobReceipt = 2131034312;
+			// aapt resource value: 0x7f0500cc
+			public const int JobReceipt = 2131034316;
 			
-			// aapt resource value: 0x7f0500b6
-			public const int JobTransaction = 2131034294;
+			// aapt resource value: 0x7f0500d9
+			public const int JobStartDirect = 2131034329;
 			
-			// aapt resource value: 0x7f0500b9
-			public const int JustInTime = 2131034297;
+			// aapt resource value: 0x7f0500db
+			public const int JobStartIndirect = 2131034331;
+			
+			// aapt resource value: 0x7f0500d7
+			public const int JobStartMachine = 2131034327;
+			
+			// aapt resource value: 0x7f0500d5
+			public const int JobStartMachineSetup = 2131034325;
+			
+			// aapt resource value: 0x7f0500d3
+			public const int JobStartRun = 2131034323;
+			
+			// aapt resource value: 0x7f0500d1
+			public const int JobStartSetup = 2131034321;
+			
+			// aapt resource value: 0x7f0500b7
+			public const int JobTransaction = 2131034295;
+			
+			// aapt resource value: 0x7f0500bd
+			public const int JustInTime = 2131034301;
 			
 			// aapt resource value: 0x7f050097
 			public const int Line = 2131034263;
@@ -3175,8 +3220,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f050057
 			public const int MiscReceive = 2131034199;
 			
-			// aapt resource value: 0x7f0500c9
-			public const int NoBluetoothAdapter = 2131034313;
+			// aapt resource value: 0x7f0500cd
+			public const int NoBluetoothAdapter = 2131034317;
 			
 			// aapt resource value: 0x7f05006d
 			public const int OffLine = 2131034221;
@@ -3184,8 +3229,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f050047
 			public const int OnHandQuantity = 2131034183;
 			
-			// aapt resource value: 0x7f0500c5
-			public const int Operation = 2131034309;
+			// aapt resource value: 0x7f0500c9
+			public const int Operation = 2131034313;
 			
 			// aapt resource value: 0x7f050096
 			public const int OrderDate = 2131034262;
@@ -3223,8 +3268,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f05003d
 			public const int PleaseGoToSettings = 2131034173;
 			
-			// aapt resource value: 0x7f0500bd
-			public const int Print = 2131034301;
+			// aapt resource value: 0x7f0500c1
+			public const int Print = 2131034305;
 			
 			// aapt resource value: 0x7f0500b3
 			public const int Process = 2131034291;
@@ -3232,8 +3277,11 @@ namespace CSIMobile
 			// aapt resource value: 0x7f05004c
 			public const int ProductCode = 2131034188;
 			
-			// aapt resource value: 0x7f0500b8
-			public const int ProductionSchedule = 2131034296;
+			// aapt resource value: 0x7f0500bb
+			public const int ProductionSchedule = 2131034299;
+			
+			// aapt resource value: 0x7f0500bc
+			public const int ProductionScheduleScrap = 2131034300;
 			
 			// aapt resource value: 0x7f0500ae
 			public const int PromiseDate = 2131034286;
@@ -3274,8 +3322,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f05005a
 			public const int QuantityMove = 2131034202;
 			
-			// aapt resource value: 0x7f0500cb
-			public const int QuantityOrdered = 2131034315;
+			// aapt resource value: 0x7f0500cf
+			public const int QuantityOrdered = 2131034319;
 			
 			// aapt resource value: 0x7f0500ad
 			public const int QuantityReceived = 2131034285;
@@ -3307,8 +3355,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f050081
 			public const int Regular = 2131034241;
 			
-			// aapt resource value: 0x7f0500c7
-			public const int ReleasedQuantity = 2131034311;
+			// aapt resource value: 0x7f0500cb
+			public const int ReleasedQuantity = 2131034315;
 			
 			// aapt resource value: 0x7f0500b1
 			public const int Reset = 2131034289;
@@ -3316,8 +3364,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f05006a
 			public const int SN = 2131034218;
 			
-			// aapt resource value: 0x7f0500c2
-			public const int SNPicked = 2131034306;
+			// aapt resource value: 0x7f0500c6
+			public const int SNPicked = 2131034310;
 			
 			// aapt resource value: 0x7f0500a7
 			public const int SNTrack = 2131034279;
@@ -3376,8 +3424,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f050072
 			public const int Stockrooms = 2131034226;
 			
-			// aapt resource value: 0x7f0500c4
-			public const int Suffix = 2131034308;
+			// aapt resource value: 0x7f0500c8
+			public const int Suffix = 2131034312;
 			
 			// aapt resource value: 0x7f05002f
 			public const int Test = 2131034159;
@@ -3385,11 +3433,11 @@ namespace CSIMobile
 			// aapt resource value: 0x7f050045
 			public const int TestConnection = 2131034181;
 			
-			// aapt resource value: 0x7f0500c0
-			public const int ToLocation = 2131034304;
+			// aapt resource value: 0x7f0500c4
+			public const int ToLocation = 2131034308;
 			
-			// aapt resource value: 0x7f0500c1
-			public const int ToLot = 2131034305;
+			// aapt resource value: 0x7f0500c5
+			public const int ToLot = 2131034309;
 			
 			// aapt resource value: 0x7f050052
 			public const int Tool = 2131034194;
@@ -3448,11 +3496,17 @@ namespace CSIMobile
 			// aapt resource value: 0x7f05003a
 			public const int Welcome1 = 2131034170;
 			
-			// aapt resource value: 0x7f0500c6
-			public const int WorkCenter = 2131034310;
+			// aapt resource value: 0x7f0500ca
+			public const int WorkCenter = 2131034314;
 			
-			// aapt resource value: 0x7f0500b7
-			public const int WorkCenterTransaction = 2131034295;
+			// aapt resource value: 0x7f0500b9
+			public const int WorkCenterLabor = 2131034297;
+			
+			// aapt resource value: 0x7f0500ba
+			public const int WorkCenterMachine = 2131034298;
+			
+			// aapt resource value: 0x7f0500b8
+			public const int WorkCenterMaterial = 2131034296;
 			
 			// aapt resource value: 0x7f050038
 			public const int WrongUserOrPassword = 2131034168;

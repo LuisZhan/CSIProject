@@ -57,11 +57,11 @@ namespace CSIMobile.Class.Fragments.Adapter
                 TextView textView = view.FindViewById<TextView>(Resource.Id.ActionText);
 
                 //imageView.LayoutParameters = new AbsListView.LayoutParams(300, 300);
-                imageView.SetScaleType(ImageView.ScaleType.FitCenter);
-                imageView.SetPadding(24, 24, 24, 24);
+                //imageView.SetScaleType(ImageView.ScaleType.FitCenter);
+                //imageView.SetPadding(24, 24, 24, 24);
                 imageView.SetImageResource(Action.DrawableId);
                 textView.Text = Action.ActionName;
-                view.Enabled = Action.Enabled;
+                //view.Clickable = Action.Enabled;
                 view.Visibility = Action.Visible ? ViewStates.Visible : ViewStates.Gone;
                 return view;
             }

@@ -149,9 +149,13 @@
   <string name="Process">Process</string>
   <string name="Log">Log</string>
   <string name="JobMaterial">Job Material</string>
+  <string name="JobMaterialReturn">Job Material Return</string>
   <string name="JobTransaction">Job Transaction</string>
-  <string name="WorkCenterTransaction">Work Center Transaction</string>
+  <string name="WorkCenterMaterial">Work Center Material</string>
+  <string name="WorkCenterLabor">Work Center Labor</string>
+  <string name="WorkCenterMachine">Work Center Machine</string>
   <string name="ProductionSchedule">Production Schedule</string>
+  <string name="ProductionScheduleScrap">Production Schedule Scrap</string>
   <string name="JustInTime">Just In Time</string>
   <string name="Employee">Employee</string>
   <string name="DeleteLogFile">Delete Log File</string>
@@ -172,4 +176,17 @@
   <string name="Generate">Generate</string>
   <string name="QuantityOrdered">Qty Ordered</string>
   <string name="ForceAutoPost">Force Auto Post</string>
+  <string name="JobStartSetup">Start Setup</string>
+  <string name="JobEndSetup">End Setup</string>
+  <string name="JobStartRun">Start Run</string>
+  <string name="JobEndRun">End Run</string>
+  <string name="JobStartMachineSetup">Start Machine Setup</string>
+  <string name="JobEndMachineSetup">End Machine Setup</string>
+  <string name="JobStartMachine">Start Machine</string>
+  <string name="JobEndMachine">End Machine</string>
+  <string name="JobStartDirect">Start Direct</string>
+  <string name="JobEndDirect">End Direct</string>
+  <string name="JobStartIndirect">Start Indirect</string>
+  <string name="JobEndIndirect">End Indirect</string>
+  <string name="JobMove">Job Move</string>
 </resources>

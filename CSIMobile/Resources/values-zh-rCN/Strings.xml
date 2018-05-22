@@ -148,10 +148,14 @@
   <string name="Add">添加</string>
   <string name="Process">处理</string>
   <string name="Log">日志</string>
-  <string name="JobMaterial">作业领料</string>
+  <string name="JobMaterial">作业发料</string>
+  <string name="JobMaterialReturn">作业退料</string>
   <string name="JobTransaction">作业报工</string>
-  <string name="WorkCenterTransaction">车间报工</string>
-  <string name="ProductionSchedule">生产计划</string>
+  <string name="WorkCenterMaterial">车间报料</string>
+  <string name="WorkCenterLabor">车间报工</string>
+  <string name="WorkCenterMachine">车间报机时</string>
+  <string name="ProductionSchedule">生产计划完工</string>
+  <string name="ProductionScheduleScrap">生产计划损耗</string>
   <string name="JustInTime">准时生产</string>
   <string name="Employee">员工</string>
   <string name="DeleteLogFile">删除日志文件</string>

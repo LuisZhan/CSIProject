@@ -50,7 +50,10 @@ namespace CSIMobile.Class.Fragments
 
             foreach (ModuleAction Action in Module.ModuleActions)
             {
-                GridAdapter.ActionItems.Add(Action);
+                if (Action.Visible)
+                {
+                    GridAdapter.ActionItems.Add(Action);
+                }
             }
             ModuleGrid.Adapter = GridAdapter;
 
@@ -63,9 +66,12 @@ namespace CSIMobile.Class.Fragments
                 {
                     foreach (string command in Action.InvokeCommands)
                     {
-                        if (!BaseActivity.InvokeCommand(command))
+                        if (Action.Enabled)
                         {
-                            return;
+                            if (!BaseActivity.InvokeCommand(command))
+                            {
+                                return;
+                            }
                         }
                     }
                 }

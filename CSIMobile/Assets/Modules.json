@@ -1,0 +1,374 @@
+﻿{
+    "Modules": [
+        {
+            "Name": "MasterData",
+            "Visible": true,
+            "Position": 0,
+            "ModuleActions": [
+                {
+                    "Name": "Items",
+                    "Img": "Logo",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        ""
+                    ]
+                },
+                {
+                    "Name": "PurchaseOrders",
+                    "Img": "Logo",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        ""
+                    ]
+                },
+                {
+                    "Name": "SalesOrders",
+                    "Img": "Logo",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        ""
+                    ]
+                },
+                {
+                    "Name": "JobOrders",
+                    "Img": "Logo",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Inventory",
+            "Visible": true,
+            "Position": 1,
+            "ModuleActions": [
+                {
+                    "Name": "SalesShip",
+                    "Img": "shipping",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "OrderShipping"
+                    ]
+                },
+                {
+                    "Name": "SalesReturn",
+                    "Img": "shipping",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "OrderReturn"
+                    ]
+                },
+                {
+                    "Name": "PurchaseReceive",
+                    "Img": "movein",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "PurchaseReceive"
+                    ]
+                },
+                {
+                    "Name": "PurchaseReturn",
+                    "Img": "moveout",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "PurchaseReturn"
+                    ]
+                },
+                {
+                    "Name": "TransferShip",
+                    "Img": "transferout",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "TransferShip"
+                    ]
+                },
+                {
+                    "Name": "TransferReceive",
+                    "Img": "transferin",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "TransferReceive"
+                    ]
+                },
+                {
+                    "Name": "JobMaterial",
+                    "Img": "jobmaterial",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobMaterial"
+                    ]
+                },
+                {
+                    "Name": "JobMaterialReturn",
+                    "Img": "jobmaterial",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobMaterialReturn"
+                    ]
+                },
+                {
+                    "Name": "JobReceipt",
+                    "Img": "manufacturers",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobReceipt"
+                    ]
+                },
+                {
+                    "Name": "QuantityMove",
+                    "Img": "move",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "QtyMove"
+                    ]
+                },
+                {
+                    "Name": "MiscIssue",
+                    "Img": "stockout",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "MiscIssue"
+                    ]
+                },
+                {
+                    "Name": "MiscReceive",
+                    "Img": "stockin",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "MiscReceive"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Shopfloor",
+            "Visible": true,
+            "Position": 2,
+            "ModuleActions": [
+                {
+                    "Name": "JobStartSetup",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobStartSetup"
+                    ]
+                },
+                {
+                    "Name": "JobEndSetup",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobEndSetup"
+                    ]
+                },
+                {
+                    "Name": "JobStartRun",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobStartRun"
+                    ]
+                },
+                {
+                    "Name": "JobEndRun",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobEndRun"
+                    ]
+                },
+                {
+                    "Name": "JobStartMachineSetup",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobStartMachineSetup"
+                    ]
+                },
+                {
+                    "Name": "JobEndMachineSetup",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobEndMachineSetup"
+                    ]
+                },
+                {
+                    "Name": "JobStartMachine",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobStartMachine"
+                    ]
+                },
+                {
+                    "Name": "JobEndMachine",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobEndMachine"
+                    ]
+                },
+                {
+                    "Name": "JobStartDirect",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobStartDirect"
+                    ]
+                },
+                {
+                    "Name": "JobEndDirect",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobEndDirect"
+                    ]
+                },
+                {
+                    "Name": "JobStartIndirect",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobStartIndirect"
+                    ]
+                },
+                {
+                    "Name": "JobEndIndirect",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JobEndIndirect"
+                    ]
+                },
+                {
+                    "Name": "WorkCenterMaterial",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "WorkCenterMaterial"
+                    ]
+                },
+                {
+                    "Name": "WorkCenterLabor",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        ""
+                    ]
+                },
+                {
+                    "Name": "WorkCenterMachine",
+                    "Img": "shopfloor",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "WorkCenterMachine"
+                    ]
+                },
+                {
+                    "Name": "ProductionSchedule",
+                    "Img": "plan",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "ProductionSchedule"
+                    ]
+                },
+                {
+                    "Name": "ProductionScheduleScrap",
+                    "Img": "plan",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "ProductionScheduleScrap"
+                    ]
+                },
+                {
+                    "Name": "JustInTime",
+                    "Img": "task",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "JustInTime"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Settings",
+            "Visible": true,
+            "Position": 3,
+            "ModuleActions": [
+                {
+                    "Name": "Login",
+                    "Img": "user",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "ShowSignIn"
+                    ]
+                },
+                {
+                    "Name": "Settings",
+                    "Img": "settings",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "ShowSettings"
+                    ]
+                },
+                {
+                    "Name": "About",
+                    "Img": "cash",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "ShowAbout"
+                    ]
+                },
+                {
+                    "Name": "Log",
+                    "Img": "report",
+                    "Enabled": true,
+                    "Visible": true,
+                    "InvokeCommands": [
+                        "ShowLog"
+                    ]
+                }
+            ]
+        }
+    ]
+}

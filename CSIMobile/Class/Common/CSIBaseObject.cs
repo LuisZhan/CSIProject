@@ -16,6 +16,10 @@ namespace CSIMobile.Class.Common
     public class CSIBaseObject : Object
     {
         protected CSIContext CSISystemContext;
+        public static string DrawableType = "Drawable";
+        public static string StringType = "String";
+        public static string LayoutType = "Layout";
+        public static string ColorType = "Color";
 
         public CSIBaseObject(CSIContext SrcContext = null)
         {
@@ -80,6 +84,60 @@ namespace CSIMobile.Class.Common
                     continue;
                 }
             }
+        }
+
+        public static string GetResourceStringByName(string type, string name)
+        {
+            string r_str = string.Empty;
+            try
+            {
+                r_str = Application.Context.Resources.GetString(GetResourceIdByName(type, name));
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                r_str = string.Empty;
+            }
+            return r_str;
+        }
+
+        public static int GetResourceIdByName(string type, string name)
+        {
+            int r_id = 0;
+            var r_Drawable = typeof(Resource.Drawable);
+            var r_String = typeof(Resource.String);
+            var r_Layout = typeof(Resource.Layout);
+            var r_Color = typeof(Resource.Color);
+
+            try
+            {
+                switch (type)
+                {
+                    case "Drawable":
+                        var field_Drawable = r_Drawable.GetField(name);
+                        r_id = (int)field_Drawable.GetValue(field_Drawable.Name);
+                        break;
+                    case "String":
+                        var field_String = r_String.GetField(name);
+                        r_id = (int)field_String.GetValue(field_String.Name);
+                        break;
+                    case "Layout":
+                        var field_Layout = r_Layout.GetField(name);
+                        r_id = (int)field_Layout.GetValue(field_Layout.Name);
+                        break;
+                    case "Color":
+                        var field_Color = r_Color.GetField(name);
+                        r_id = (int)field_Color.GetValue(field_Color.Name);
+                        break;
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                return 0;
+            }
+
+            return r_id;            
         }
     }
 }
