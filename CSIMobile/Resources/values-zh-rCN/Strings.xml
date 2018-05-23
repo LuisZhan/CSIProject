@@ -176,4 +176,8 @@
   <string name="Generate">生成</string>
   <string name="QuantityOrdered">订单数量</string>
   <string name="ForceAutoPost">强制自动过账</string>
+  <string name="TransferOrder">转移单</string>
+  <string name="TransferLine">行</string>
+  <string name="From">从</string>
+  <string name="To">到</string>
 </resources>

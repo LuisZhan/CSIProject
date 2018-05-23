@@ -71,8 +71,8 @@
             android:id="@+id/linearLayout8">
             <EditText
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/JobEdit"
-                android:hint="@string/Job"
+                android:id="@+id/TransferOrderEdit"
+                android:hint="@string/TransferOrder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -81,7 +81,7 @@
                 android:layout_weight="2" />
             <ImageButton
                 android:src="@drawable/scanner"
-                android:id="@+id/JobScanButton"
+                android:id="@+id/TransferOrderScanButton"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:scaleType="fitCenter"
@@ -96,8 +96,8 @@
                 android:text="-" />
             <EditText
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/SuffixEdit"
-                android:hint="@string/Suffix"
+                android:id="@+id/TransferLineEdit"
+                android:hint="@string/TransferLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -108,19 +108,13 @@
                 android:layout_marginRight="42dp" />
             <ImageButton
                 android:src="@drawable/scanner"
-                android:id="@+id/LocScanButton"
+                android:id="@+id/TransferLineScanButton"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:scaleType="fitCenter"
                 android:padding="0dp"
                 android:layout_marginLeft="-40dp" />
         </LinearLayout>
-        <TextView xmlns:tools="http://schemas.android.com/tools"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/JobDescText"
-            tools:text="@string/Description" />
         <TextView xmlns:tools="http://schemas.android.com/tools"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
@@ -169,7 +163,7 @@
                 android:id="@+id/linearLayout5"
                 android:layout_weight="2">
                 <TextView
-                    android:text="@string/ReleasedQuantity"
+                    android:text="@string/Quantity"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -179,8 +173,8 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/QtyReleasedText"
-                    p2:text="@string/ReleasedQuantity"
+                    android:id="@+id/QtyText"
+                    p2:text="@string/Quantity"
                     android:gravity="right"
                     android:singleLine="true" />
             </LinearLayout>
@@ -191,7 +185,7 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/OperNumLinearLayout">
+            android:id="@+id/UMLinearLayout">
             <TextView
                 android:text="@string/Operation"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -212,8 +206,8 @@
                     android:layout_weight="3">
                     <EditText
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:id="@+id/OperNumEdit"
-                        android:hint="@string/Operation"
+                        android:id="@+id/UMEdit"
+                        android:hint="@string/UM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="42dp"
@@ -222,7 +216,7 @@
                         android:maxLength="15" />
                     <ImageButton
                         android:src="@drawable/scanner"
-                        android:id="@+id/OperNumScanButton"
+                        android:id="@+id/UMScanButton"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:scaleType="fitCenter"
@@ -268,12 +262,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-            <TextView xmlns:tools="http://schemas.android.com/tools"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/WorkCenterText"
-                tools:text="@string/WorkCenter" />
         </LinearLayout>
         <ImageView
             android:src="@android:drawable/divider_horizontal_textfield"
@@ -286,7 +274,7 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/LocationLinearLayout">
+            android:id="@+id/FromLocLinearLayout">
             <TextView
                 android:text="@string/Location"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -294,6 +282,12 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
                 android:visibility="gone" />
+            <TextView xmlns:tools="http://schemas.android.com/tools"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/FromText"
+                tools:text="@string/From" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -317,7 +311,7 @@
                         android:maxLength="15" />
                     <ImageButton
                         android:src="@drawable/scanner"
-                        android:id="@+id/LocScanButton"
+                        android:id="@+id/FromLocScanButton"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:scaleType="fitCenter"
@@ -326,13 +320,13 @@
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:id="@+id/LotLinearLayout"
+                    android:id="@+id/FromLotLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2">
                     <EditText
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:id="@+id/LotEdit"
+                        android:id="@+id/FromLotEdit"
                         android:hint="@string/Lot"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -342,7 +336,7 @@
                         android:maxLength="15" />
                     <ImageButton
                         android:src="@drawable/scanner"
-                        android:id="@+id/LotScanButton"
+                        android:id="@+id/FromLotScanButton"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:scaleType="fitCenter"
@@ -354,7 +348,94 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/LocDescText"
+                android:id="@+id/FromLocDescText"
+                tools:text="@string/Description" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ToLocLinearLayout">
+            <TextView
+                android:text="@string/Location"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3"
+                android:visibility="gone" />
+            <TextView xmlns:tools="http://schemas.android.com/tools"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ToText"
+                tools:text="@string/To" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout11">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+                    <EditText
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/ToLocEdit"
+                        android:hint="@string/Location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="42dp"
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:maxLength="15"
+                        android:editable="false"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false" />
+                    <ImageButton
+                        android:src="@drawable/scanner"
+                        android:id="@+id/ToLocScanButton"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:scaleType="fitCenter"
+                        android:padding="0dp"
+                        android:layout_marginLeft="-40dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/ToLotLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+                    <EditText
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/ToLotEdit"
+                        android:hint="@string/Lot"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="42dp"
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:maxLength="15" />
+                    <ImageButton
+                        android:src="@drawable/scanner"
+                        android:id="@+id/ToLotScanButton"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:scaleType="fitCenter"
+                        android:padding="0dp"
+                        android:layout_marginLeft="-40dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <TextView xmlns:tools="http://schemas.android.com/tools"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ToLocDescText"
                 tools:text="@string/Description" />
         </LinearLayout>
     </LinearLayout>

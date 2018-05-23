@@ -413,6 +413,31 @@ namespace CSIMobile
                         Success = true;
                     }
                     break;
+                case "TransferShip":
+                    
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else
+                    {
+                        DCTransferOrderShipFragment.RunFragment(this);
+                        Success = true;
+                    }
+                    break;
+                case "TransferReceive":
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else
+                    {
+                        DCTransferOrderShipFragment.RunFragment(this);
+                        Success = true;
+                    }
+                    break; 
                 default:
                     break;
             }

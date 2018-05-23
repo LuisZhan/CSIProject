@@ -127,6 +127,8 @@
     <Compile Include="Class\Business\CSIDcjits.cs" />
     <Compile Include="Class\Business\CSIDcsfcs.cs" />
     <Compile Include="Class\Business\CSIJobmatls.cs" />
+    <Compile Include="Class\Business\CSITrnitems.cs" />
+    <Compile Include="Class\Business\CSITransfers.cs" />
     <Compile Include="Class\Business\CSIWhses.cs" />
     <Compile Include="Class\Business\CSIPoItems.cs" />
     <Compile Include="Class\Business\CSIDcpos.cs" />
@@ -157,6 +159,7 @@
     <Compile Include="Class\Common\CSISanner.cs" />
     <Compile Include="Class\Common\CSIWebServiceEventInterface.cs" />
     <Compile Include="Class\Fragments\DCJobMaterialTransactionsFragment.cs" />
+    <Compile Include="Class\Fragments\DCJobReceiptFragment.cs" />
     <Compile Include="Class\Fragments\DCProductionScheduleComplete.cs" />
     <Compile Include="Class\Fragments\DCProductionScheduleScrap.cs" />
     <Compile Include="Class\Fragments\DCJustInTimeFragment.cs" />
@@ -167,7 +170,7 @@
     <Compile Include="Class\Fragments\DCOrderShippingtFragment.cs" />
     <Compile Include="Class\Fragments\DCMiscIssueFragment.cs" />
     <Compile Include="Class\Fragments\DCMiscReceiveFragment.cs" />
-    <Compile Include="Class\Fragments\DCJobReceiptFragment.cs" />
+    <Compile Include="Class\Fragments\DCTransferOrderShipFragment.cs" />
     <Compile Include="Class\Fragments\DCQuantityMoveFragment.cs" />
     <Compile Include="Class\Fragments\LogDialogFragment.cs" />
     <Compile Include="Class\Fragments\Adapter\ModuleDeckAdapter.cs" />

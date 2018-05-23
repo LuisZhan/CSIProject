@@ -25,6 +25,7 @@ namespace CSIMobile.Class.Fragments
         CSIDcjms SLDcjms;
 
         ImageButton JobScanButton;
+        ImageButton SuffixScanButton;
         ImageButton OperNumScanButton;
         ImageButton QtyScanButton;
         ImageButton LocScanButton;
@@ -41,7 +42,7 @@ namespace CSIMobile.Class.Fragments
         TextView ItemText;
         TextView ItemDescText;
         TextView ItemUMText;
-        TextView QtyReleasedText; 
+        TextView QtyReleasedText;
         TextView WorkCenterText;
         TextView LocDescText;
         LinearLayout QtyLinearLayout;
@@ -228,10 +229,11 @@ namespace CSIMobile.Class.Fragments
 
                 var view = inflater.Inflate(Resource.Layout.CSIJobReceipt, container, false);
                 Cancelable = false;
-                
+
                 WhseEdit = view.FindViewById<EditText>(Resource.Id.WhseEdit);
                 TransDateText = view.FindViewById<TextView>(Resource.Id.TransDateText);
                 JobScanButton = view.FindViewById<ImageButton>(Resource.Id.JobScanButton);
+                SuffixScanButton = view.FindViewById<ImageButton>(Resource.Id.SuffixScanButton);
                 JobEdit = view.FindViewById<EditText>(Resource.Id.JobEdit);
                 SuffixEdit = view.FindViewById<EditText>(Resource.Id.SuffixEdit);
                 QtyScanButton = view.FindViewById<ImageButton>(Resource.Id.QtyScanButton);
@@ -264,6 +266,7 @@ namespace CSIMobile.Class.Fragments
                 ProgressBar = view.FindViewById<ProgressBar>(Resource.Id.ProgressBar);
 
                 JobScanButton.Click += JobScanButton_Click;
+                SuffixScanButton.Click += SuffixScanButton_Click;
                 QtyScanButton.Click += QtyScanButton_Click;
                 OperNumScanButton.Click += OperNumScanButton_Click;
                 LocScanButton.Click += LocScanButton_Click;
@@ -568,7 +571,6 @@ namespace CSIMobile.Class.Fragments
                 {
                     try
                     {
-                        SuffixEdit.Text = SuffixEdit.Text;
                         string Job = JobEdit.Text, Suffix = SuffixEdit.Text, Desc = JobDescText.Text, Item = ItemText.Text
                             , ItemDesc = ItemDescText.Text, ItemUM = ItemUMText.Text, QtyReleased = QtyReleasedText.Text
                             , QtyComplete = "", QtyRequired = "";
@@ -588,12 +590,11 @@ namespace CSIMobile.Class.Fragments
 
                             SuffixValidated = true;
 
-                            //validate OperNum
+                            //validate Qty
                             if (string.IsNullOrEmpty(QtyEdit.Text) || decimal.Parse(QtyEdit.Text) == 0)
                             {
                                 QtyEdit.Text = QtyRequired;
-                                OperNumValidated = false;
-                                ValidateQty();
+                                QtyValidated = true;
                             }
 
                             //Validate OperNum
@@ -649,7 +650,6 @@ namespace CSIMobile.Class.Fragments
                 }
                 else
                 {
-                    SuffixEdit.Text = SuffixEdit.Text;
                     try
                     {
                         string Job = JobEdit.Text, Suffix = SuffixEdit.Text, Desc = JobDescText.Text, Item = ItemText.Text
@@ -924,27 +924,6 @@ namespace CSIMobile.Class.Fragments
             }
         }
 
-        private async void OperNumScanButton_Click(object sender, EventArgs e)
-        {
-            string ScanResult = await CSISanner.ScanAsync();
-            if (string.IsNullOrEmpty(ScanResult))
-            {
-                return;
-            }
-            if (!AnalysisScanResult(ScanResult))
-            {
-                OperNumEdit.Text = ScanResult;
-                if (!ValidateOperNum())
-                {
-                    OperNumEdit.RequestFocus();
-                }
-                else
-                {
-                    QtyEdit.RequestFocus();
-                }
-            }
-        }
-
         private async void LocScanButton_Click(object sender, EventArgs e)
         {
             string ScanResult = await CSISanner.ScanAsync();
@@ -993,6 +972,48 @@ namespace CSIMobile.Class.Fragments
                 if (!ValidateQty())
                 {
                     QtyEdit.RequestFocus();
+                }
+                else
+                {
+                    LocEdit.RequestFocus();
+                }
+            }
+        }
+
+        private async void OperNumScanButton_Click(object sender, EventArgs e)
+        {
+            string ScanResult = await CSISanner.ScanAsync();
+            if (string.IsNullOrEmpty(ScanResult))
+            {
+                return;
+            }
+            if (!AnalysisScanResult(ScanResult))
+            {
+                OperNumEdit.Text = ScanResult;
+                if (!ValidateOperNum())
+                {
+                    OperNumEdit.RequestFocus();
+                }
+                else
+                {
+                    QtyEdit.RequestFocus();
+                }
+            }
+        }
+
+        private async void SuffixScanButton_Click(object sender, EventArgs e)
+        {
+            string ScanResult = await CSISanner.ScanAsync();
+            if (string.IsNullOrEmpty(ScanResult))
+            {
+                return;
+            }
+            if (!AnalysisScanResult(ScanResult))
+            {
+                SuffixEdit.Text = ScanResult;
+                if (!ValidateSuffix())
+                {
+                    SuffixEdit.RequestFocus();
                 }
                 else
                 {

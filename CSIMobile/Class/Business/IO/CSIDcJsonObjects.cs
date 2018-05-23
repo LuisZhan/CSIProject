@@ -741,5 +741,119 @@ namespace CSIMobile.Class.Business.IO
             return rtn;
         }
 
+        public static bool ReadTransferOrderShipJson(string JsonString, out string TransferOrder, out string TransferLine, out string UM, out string Qty, out string FromLoc, out string FromLot, out string ToLot)
+        {
+            bool rtn = true;
+            TransferOrder = string.Empty;
+            TransferLine = string.Empty;
+            UM = string.Empty;
+            Qty = string.Empty;
+            FromLoc = string.Empty;
+            FromLot = string.Empty;
+            ToLot = string.Empty;
+            if (string.IsNullOrEmpty(JsonString)) return false;
+            try
+            {
+                byte[] data = Encoding.Default.GetBytes(JsonString.ToString());
+                MemoryStream JobReceiptStream = new MemoryStream(data);
+                JsonReader jReader = new JsonReader(new Java.IO.InputStreamReader(JobReceiptStream));
+                jReader.BeginObject();
+                while (jReader.HasNext)
+                {
+                    string name = jReader.NextName();
+                    if (name.ToUpper().Equals("TrnNum".ToUpper()) || name.ToUpper().Equals("TransferOrder".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            TransferOrder = jReader.NextString();
+                        }
+                    }
+                    else if (name.ToUpper().Equals("TrnLine".ToUpper()) || name.ToUpper().Equals("TransferLine".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            TransferLine = jReader.NextString();
+                        }
+                    }
+                    else if (name.ToUpper().Equals("UM".ToUpper()) || name.ToUpper().Equals("UoM".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            UM = jReader.NextString();
+                        }
+                    }
+                    else if (name.ToUpper().Equals("Qty".ToUpper()) || name.ToUpper().Equals("Quantity".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            Qty = jReader.NextString();
+                        }
+                    }
+                    else if (name.ToUpper().Equals("Loc".ToUpper()) || name.ToUpper().Equals("Loc1".ToUpper()) || name.ToUpper().Equals("Location".ToUpper()) || name.ToUpper().Equals("FromLoc".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            FromLoc = jReader.NextString();
+                        }
+                    }
+                    else if (name.ToUpper().Equals("Lot".ToUpper()) || name.ToUpper().Equals("Lot1".ToUpper()) || name.ToUpper().Equals("FromLot".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            FromLot = jReader.NextString();
+                        }
+                    }
+                    else if (name.ToUpper().Equals("Lot".ToUpper()) || name.ToUpper().Equals("Lot2".ToUpper()) || name.ToUpper().Equals("ToLot".ToUpper()))
+                    {
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            ToLot = jReader.NextString();
+                        }
+                    }
+                    else
+                    {
+                        jReader.SkipValue();
+                    }
+                }
+                jReader.EndObject();
+                jReader.Close();
+                JobReceiptStream.Close();
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                rtn = false;
+            }
+            return rtn;
+        }
+
     }
 }
