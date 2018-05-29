@@ -91,7 +91,9 @@ namespace CSIMobile.Class.Fragments
             SLDccos.AddProperty("ErrorMessage");
 
             SLDccos.SetFilter("1=0");
+            SLDccos.UseAsync(false);
             SLDccos.LoadIDO();
+            SLDccos.UseAsync(true);
             SLDccos.SaveDataSetCompleted += SLDccos_SaveDataSetCompleted;
             SLDccos.LoadDataSetCompleted += SLDccos_LoadDataSetCompleted;
             SLDccos.CallMethodCompleted += SLDccos_CallMethodCompleted;
@@ -513,7 +515,7 @@ namespace CSIMobile.Class.Fragments
             {
                 SLDccos.CurrentTable.Rows.Clear();
                 DataRow Row = SLDccos.CurrentTable.NewRow();
-                Row["TransNum"] = 0;//TransNum
+                Row["TransNum"] = SLDccos.NextTransNum();//TransNum
                 Row["TransType"] = "1";//TransType 1:Ship 2:CR Return
                 Row["Stat"] = "U";//Stat
                 Row["Termid"] = CSISystemContext.AndroidId.Substring(CSISystemContext.AndroidId.Length - 4, 4);//Termid

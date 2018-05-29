@@ -87,13 +87,13 @@ namespace CSIMobile.Class.Fragments
             SLDctrans.AddProperty("Lot");
             SLDctrans.AddProperty("TrnLot");
             SLDctrans.AddProperty("UseExistingSerials");
-            SLDctrans.AddProperty("ReasonCode");
-            SLDctrans.AddProperty("Whse");
             SLDctrans.AddProperty("DocumentNum");
             SLDctrans.AddProperty("ErrorMessage");
 
             SLDctrans.SetFilter("1=0");
+            SLDctrans.UseAsync(false);
             SLDctrans.LoadIDO();
+            SLDctrans.UseAsync(true);
             SLDctrans.SaveDataSetCompleted += SLDctrans_SaveDataSetCompleted;
             SLDctrans.LoadDataSetCompleted += SLDctrans_LoadDataSetCompleted;
             SLDctrans.CallMethodCompleted += SLDctrans_CallMethodCompleted;
@@ -517,12 +517,11 @@ namespace CSIMobile.Class.Fragments
             {
                 SLDctrans.CurrentTable.Rows.Clear();
                 DataRow Row = SLDctrans.CurrentTable.NewRow();
-                Row["TransNum"] = 0;//TransNum
+                Row["TransNum"] = SLDctrans.NextTransNum();//TransNum
                 Row["TransType"] = "1";//TransType 1: Ship, 2:Receive
                 Row["Stat"] = "U";//Stat
                 Row["Termid"] = CSISystemContext.AndroidId.Substring(CSISystemContext.AndroidId.Length - 4, 4);//Termid
                 Row["TransDate"] = DateTime.Now;//TransDate
-                Row["Whse"] = CSISystemContext.DefaultWarehouse;//Whse
                 Row["EmpNum"] = CSISystemContext.EmpNum;//EmpNum
                 Row["TrnNum"] = TransferOrderEdit.Text;//Item
                 Row["TrnLine"] = TransferLineEdit.Text;//UM

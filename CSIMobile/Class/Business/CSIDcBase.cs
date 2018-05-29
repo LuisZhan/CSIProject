@@ -38,5 +38,10 @@ namespace CSIMobile.Class.Business
         {
             return "";
         }
+
+        public virtual int NextTransNum(CSIContext SrcContext = null)
+        {
+            return 1;
+        }
     }
 }

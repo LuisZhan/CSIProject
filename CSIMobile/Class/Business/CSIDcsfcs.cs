@@ -48,5 +48,25 @@ namespace CSIMobile.Class.Business
             PreSetPropertyList.Add("Override");
             PreSetPropertyList.Add("CanOverride");
         }
+
+        public override int NextTransNum(CSIContext SrcContext = null)
+        {
+            if (SrcContext is null)
+            {
+                SrcContext = this.CSISystemContext;
+            }
+            int TransNum = base.NextTransNum();
+            CSIDcsfcs dcsfcs = new CSIDcsfcs(SrcContext);
+            dcsfcs.AddProperty("TransNum");
+            dcsfcs.SetOrderBy("TransNum Desc");
+            dcsfcs.RecordCap = 1;
+            dcsfcs.UseAsync(false);
+            dcsfcs.LoadIDO();
+            if (dcsfcs.CurrentTable.Rows.Count > 0)
+            {
+                TransNum = dcsfcs.GetCurrentPropertyValueOfInteger("TransNum") + 1;
+            }
+            return TransNum;
+        }
     }
 }

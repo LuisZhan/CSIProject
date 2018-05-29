@@ -88,7 +88,9 @@ namespace CSIMobile.Class.Fragments
             SLDccos.AddProperty("ErrorMessage");
 
             SLDccos.SetFilter("1=0");
+            SLDccos.UseAsync(false);
             SLDccos.LoadIDO();
+            SLDccos.UseAsync(true);
             SLDccos.SaveDataSetCompleted += SLDccos_SaveDataSetCompleted;
             SLDccos.LoadDataSetCompleted += SLDccos_LoadDataSetCompleted;
             SLDccos.CallMethodCompleted += SLDccos_CallMethodCompleted;

@@ -92,7 +92,9 @@ namespace CSIMobile.Class.Fragments
             SLDcjms.AddProperty("ErrorMessage");
 
             SLDcjms.SetFilter("1=0");
+            SLDcjms.UseAsync(false);
             SLDcjms.LoadIDO();
+            SLDcjms.UseAsync(true);
             SLDcjms.SaveDataSetCompleted += SLDcjms_SaveDataSetCompleted;
             SLDcjms.LoadDataSetCompleted += SLDcjms_LoadDataSetCompleted;
             SLDcjms.CallMethodCompleted += SLDcjms_CallMethodCompleted;
@@ -460,7 +462,7 @@ namespace CSIMobile.Class.Fragments
             {
                 SLDcjms.CurrentTable.Rows.Clear();
                 DataRow Row = SLDcjms.CurrentTable.NewRow();
-                Row["TransNum"] = 0;//TransNum
+                Row["TransNum"] = SLDcjms.NextTransNum();//TransNum
                 Row["TransType"] = "3";//TransType
                 Row["Stat"] = "U";//Stat
                 Row["Termid"] = CSISystemContext.AndroidId.Substring(CSISystemContext.AndroidId.Length - 4, 4);//Termid

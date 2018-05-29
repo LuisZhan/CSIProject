@@ -301,7 +301,7 @@
                     android:layout_weight="3">
                     <EditText
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:id="@+id/LocEdit"
+                        android:id="@+id/FromLocEdit"
                         android:hint="@string/Location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

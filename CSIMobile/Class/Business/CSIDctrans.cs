@@ -35,15 +35,33 @@ namespace CSIMobile.Class.Business
             PreSetPropertyList.Add("Lot");
             PreSetPropertyList.Add("TrnLot");
             PreSetPropertyList.Add("UseExistingSerials");
-            PreSetPropertyList.Add("Whse");
             PreSetPropertyList.Add("Qty");
             PreSetPropertyList.Add("UM");
-            PreSetPropertyList.Add("ReasonCode");
             PreSetPropertyList.Add("DocumentNum");
             PreSetPropertyList.Add("ErrorMessage");
             PreSetPropertyList.Add("Override");
             PreSetPropertyList.Add("CanOverride");
             PreSetPropertyList.Add("ItemSerialPrefix"); 
+        }
+
+        public override int NextTransNum(CSIContext SrcContext = null)
+        {
+            if (SrcContext is null)
+            {
+                SrcContext = this.CSISystemContext;
+            }
+            int TransNum = base.NextTransNum();
+            CSIDctrans dctrans = new CSIDctrans(SrcContext);
+            dctrans.AddProperty("TransNum");
+            dctrans.SetOrderBy("TransNum Desc");
+            dctrans.RecordCap = 1;
+            dctrans.UseAsync(false);
+            dctrans.LoadIDO();
+            if (dctrans.CurrentTable.Rows.Count > 0)
+            {
+                TransNum = dctrans.GetCurrentPropertyValueOfInteger("TransNum") + 1;
+            }
+            return TransNum;
         }
     }
 }
