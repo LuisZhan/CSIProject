@@ -18,8 +18,8 @@ namespace CSIMobile.Class.Common
     {
         protected CSIBaseActivity BaseActivity;
         protected CSIContext CSISystemContext;
-        protected bool HasTitle = false;
-        protected int ThemeId = Android.Resource.Style.ThemeMaterialDialogNoActionBar;//0;//Resource.Style.MyTheme_Dialog;
+        protected bool HasTitle = true;
+        protected int ThemeId = Resource.Style.MyTheme_Dialog;
 
 
         public CSIBaseDialogFragment(CSIBaseActivity activity = null)
@@ -106,6 +106,8 @@ namespace CSIMobile.Class.Common
         {
             if (!HasTitle)
                 SetStyleNoTitle();
+            else
+                SetStyleNormal();
         }
 
         protected void SetStyleNoTitle()

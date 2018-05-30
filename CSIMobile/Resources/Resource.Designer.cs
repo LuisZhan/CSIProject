@@ -4157,9 +4157,6 @@ namespace CSIMobile
 			// aapt resource value: 0x7f07007e
 			public const int Base_Widget_AppCompat_Toolbar_Button_Navigation = 2131165310;
 			
-			// aapt resource value: 0x7f07016d
-			public const int MyTheme = 2131165549;
-			
 			// aapt resource value: 0x7f07016c
 			public const int MyTheme_Base = 2131165548;
 			
@@ -4169,8 +4166,14 @@ namespace CSIMobile
 			// aapt resource value: 0x7f07016f
 			public const int MyTheme_Dialog_FullScreen = 2131165551;
 			
+			// aapt resource value: 0x7f07016d
+			public const int MyTheme_NoActionBar = 2131165549;
+			
 			// aapt resource value: 0x7f070170
-			public const int MyTheme_Splash = 2131165552;
+			public const int MyTheme_SimpleSpinnerDropDownItem = 2131165552;
+			
+			// aapt resource value: 0x7f070171
+			public const int MyTheme_Splash = 2131165553;
 			
 			// aapt resource value: 0x7f07001e
 			public const int Platform_AppCompat = 2131165214;

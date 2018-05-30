@@ -15,7 +15,7 @@ using CSIMobile.Class.Business;
 
 namespace CSIMobile.Class.Fragments
 {
-    public class SignInDialogFragment : CSIBaseFullScreenDialogFragment
+    public class SignInDialogFragment : CSIBaseDialogFragment
     {
         private EditText UserEdit;
         private EditText PasswordEdit;
@@ -242,7 +242,7 @@ namespace CSIMobile.Class.Fragments
                     }   
                     i += 1;
                 }
-                adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+                adapter.SetDropDownViewResource(Resource.Style.MyTheme_SimpleSpinnerDropDownItem);
                 ConfigurationEdit.Adapter = adapter;
                 ConfigurationEdit.SetSelection(index);
             }

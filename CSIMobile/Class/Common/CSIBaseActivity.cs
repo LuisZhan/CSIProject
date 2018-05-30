@@ -13,7 +13,7 @@ using Android.Support.V7.App;
 
 namespace CSIMobile.Class.Common
 {
-    [Activity(Theme = "@style/MyTheme", Label = "@string/app_name")]
+    [Activity(Label = "@string/app_name")]
     public class CSIBaseActivity : AppCompatActivity
     {
         protected CSIContext CSISystemContext;
