@@ -18,9 +18,52 @@ namespace CSIMobile.Class.Common
     {
         protected CSIBaseActivity BaseActivity;
         protected CSIContext CSISystemContext;
-        protected bool HasTitle = true;
-        protected int ThemeId = Resource.Style.MyTheme_Dialog;
+        protected string Title = Application.Context.GetString(Resource.String.app_name);
+        private bool hasTitle = true;
+        private int processCount = 0;
 
+        protected int ThemeId = Resource.Style.MyTheme_Dialog;
+        protected int ThemeIdNoTitle = Resource.Style.MyTheme_Dialog_NoTitle;
+
+        protected bool HasTitle
+        {
+            set
+            {
+                hasTitle = value;
+                if (hasTitle)
+                {
+                    Cancelable = (processCount == 0);
+                }
+                else
+                {
+                    Cancelable = false;
+                }
+            }
+            get
+            {
+                return hasTitle;
+            }
+        }
+
+        protected int ProcessCount
+        {
+            set
+            {
+                processCount = value;
+                if (HasTitle)
+                {
+                    Cancelable = (value == 0);
+                }
+                else
+                {
+                    Cancelable = false;
+                }
+            }
+            get
+            {
+                return processCount;
+            }
+        }
 
         public CSIBaseDialogFragment(CSIBaseActivity activity = null)
         {
@@ -42,10 +85,16 @@ namespace CSIMobile.Class.Common
             }
         }
 
+        public override Dialog OnCreateDialog(Bundle savedInstanceState)
+        {
+            Dialog dialog = base.OnCreateDialog(savedInstanceState);
+            return dialog;
+        }
+
         public override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
             SetDialogStyle();
+            base.OnCreate(savedInstanceState);
             // Create your fragment here
         }
 
@@ -53,7 +102,8 @@ namespace CSIMobile.Class.Common
         {
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
+            Dialog.SetTitle(Title);
+            SetDialogStyle();
             return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
@@ -112,7 +162,7 @@ namespace CSIMobile.Class.Common
 
         protected void SetStyleNoTitle()
         {
-            SetStyle(DialogFragmentStyle.NoTitle, ThemeId);
+            SetStyle(DialogFragmentStyle.NoTitle, ThemeIdNoTitle);
         }
 
         protected void SetStyleNormal()

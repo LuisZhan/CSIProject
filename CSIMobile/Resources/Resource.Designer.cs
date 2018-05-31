@@ -2065,6 +2065,12 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a0026
 			public const int META = 2131361830;
 			
+			// aapt resource value: 0x7f0a0113
+			public const int Menu_Save = 2131362067;
+			
+			// aapt resource value: 0x7f0a0112
+			public const int Menu_Test = 2131362066;
+			
 			// aapt resource value: 0x7f0a00c0
 			public const int ModuleGrid = 2131361984;
 			
@@ -2970,6 +2976,22 @@ namespace CSIMobile
 			}
 			
 			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f0c0000
+			public const int Settings_Menus = 2131492864;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
 			{
 			}
 		}
@@ -4163,14 +4185,14 @@ namespace CSIMobile
 			// aapt resource value: 0x7f07016e
 			public const int MyTheme_Dialog = 2131165550;
 			
+			// aapt resource value: 0x7f070170
+			public const int MyTheme_Dialog_FullScreen = 2131165552;
+			
 			// aapt resource value: 0x7f07016f
-			public const int MyTheme_Dialog_FullScreen = 2131165551;
+			public const int MyTheme_Dialog_NoTitle = 2131165551;
 			
 			// aapt resource value: 0x7f07016d
 			public const int MyTheme_NoActionBar = 2131165549;
-			
-			// aapt resource value: 0x7f070170
-			public const int MyTheme_SimpleSpinnerDropDownItem = 2131165552;
 			
 			// aapt resource value: 0x7f070171
 			public const int MyTheme_Splash = 2131165553;

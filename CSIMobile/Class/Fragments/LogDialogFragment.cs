@@ -30,7 +30,7 @@ namespace CSIMobile.Class.Fragments
         {
             try
             {
-                base.OnCreate(savedInstanceState);
+                base.OnCreateView(inflater, container, savedInstanceState);
 
                 var view = inflater.Inflate(Resource.Layout.CSILog, container, false);
 

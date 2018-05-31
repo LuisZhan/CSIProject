@@ -58,8 +58,6 @@ namespace CSIMobile.Class.Fragments
         List<string> SNs = new List<string>();
         bool SNPicked = true;
 
-        private int ProcessCount = 0;
-
         public DCMiscIssueFragment(CSIBaseActivity activity = null) : base(activity)
         {
             CSISystemContext.ReadConfigurations();
@@ -216,7 +214,7 @@ namespace CSIMobile.Class.Fragments
         {
             try
             {
-                base.OnCreate(savedInstanceState);
+                base.OnCreateView(inflater, container, savedInstanceState);
 
                 var view = inflater.Inflate(Resource.Layout.CSIMiscIssueReceiptAndQtyAdjus, container, false);
                 Cancelable = false;

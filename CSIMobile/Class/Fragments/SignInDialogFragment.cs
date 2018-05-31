@@ -31,7 +31,6 @@ namespace CSIMobile.Class.Fragments
         private CSIUserNames Users;
         private CSIUserLocals UsersLocal;
         private CSIEmployees Employee;
-        private int ProcessCount = 0;
 
         //public event CreateSessionTokenCompletedEventHandler CreateSessionTokenCompleted;
 
@@ -129,12 +128,17 @@ namespace CSIMobile.Class.Fragments
             ShowProgressBar(false);
         }
 
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            // Create your fragment here
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             try
             {
-                base.OnCreate(savedInstanceState);
-                Cancelable = false;
+                base.OnCreateView(inflater, container,savedInstanceState);
 
                 var view = inflater.Inflate(Resource.Layout.CSISignIn, container, false);
 
@@ -242,7 +246,7 @@ namespace CSIMobile.Class.Fragments
                     }   
                     i += 1;
                 }
-                adapter.SetDropDownViewResource(Resource.Style.MyTheme_SimpleSpinnerDropDownItem);
+                adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
                 ConfigurationEdit.Adapter = adapter;
                 ConfigurationEdit.SetSelection(index);
             }

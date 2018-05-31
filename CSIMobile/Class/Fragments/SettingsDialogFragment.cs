@@ -33,21 +33,24 @@ namespace CSIMobile.Class.Fragments
         private ProgressBar ProgressBar;
         private LinearLayout Layout;
 
-        private int ProcessCount = 0;
-
         public SettingsDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {
             CSISystemContext.ReadConfigurations();
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Cancelable = false;
-            var view = inflater.Inflate(Resource.Layout.CSISettings, container, false);
+            // Create your fragment here
+        }
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
             try
             {
-                
+                base.OnCreateView(inflater, container, savedInstanceState);
+                var view = inflater.Inflate(Resource.Layout.CSISettings, container, false);
+
                 Layout = view.FindViewById<LinearLayout>(Resource.Id.LinearLayout);
                 CSIWebServerEdit = view.FindViewById<EditText>(Resource.Id.CSIWebServerEdit);
                 EnableHTTPS = view.FindViewById<Switch>(Resource.Id.EnableHTTPSEdit);
@@ -137,7 +140,7 @@ namespace CSIMobile.Class.Fragments
             }catch (Exception Ex)
             {
                 WriteErrorLog(Ex);
-                return view;
+                return null;
             }
         }
 

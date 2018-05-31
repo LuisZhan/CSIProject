@@ -67,9 +67,7 @@ namespace CSIMobile.Class.Fragments
         bool JobValidated = false, SuffixValidated = false, OperNumValidated = false, ItemValidated = false, UMValidated = false, QtyValidated = false, LocValidated = false, LotValidated = false;
         List<string> SNs = new List<string>();
         bool SNPicked = true;
-
-        private int ProcessCount = 0;
-
+        
         public DCJobMaterialTransactionsFragment(CSIBaseActivity activity = null) : base(activity)
         {
             CSISystemContext.ReadConfigurations();
@@ -237,7 +235,7 @@ namespace CSIMobile.Class.Fragments
         {
             try
             {
-                base.OnCreate(savedInstanceState);
+                base.OnCreateView(inflater, container, savedInstanceState);
 
                 var view = inflater.Inflate(Resource.Layout.CSIJobMaterialTransactions, container, false);
                 Cancelable = false;

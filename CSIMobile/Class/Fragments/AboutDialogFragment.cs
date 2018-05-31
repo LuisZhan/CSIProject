@@ -35,7 +35,7 @@ namespace CSIMobile.Class.Fragments
         {
             try
             {
-                base.OnCreate(savedInstanceState);
+                base.OnCreateView(inflater, container, savedInstanceState);
 
                 var view = inflater.Inflate(Resource.Layout.CSIAbout, container, false);
 
@@ -60,7 +60,10 @@ namespace CSIMobile.Class.Fragments
                     WhseNameText.Text = Whses.GetValueOrDefault(whse);
                 };
 
-                SetWhseSpin();
+                if (!string.IsNullOrEmpty(CSISystemContext.Token))
+                {
+                    SetWhseSpin();
+                }
                 return view;
             }catch (Exception Ex)
             {

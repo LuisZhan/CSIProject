@@ -5,15 +5,16 @@
   <style name="MyTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
   </style>
 
-  <style name="MyTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
+  <style name="MyTheme.Dialog" parent="android:Theme.Holo.Light.Dialog"><!--Theme.AppCompat.Light.Dialog-->
+  </style>
+
+  <style name="MyTheme.Dialog.NoTitle" parent="MyTheme.Dialog">
+    <item name="android:windowNoTitle">true</item>
   </style>
   
-  <style name="MyTheme.Dialog.FullScreen" parent="Theme.AppCompat.Light">
+  <style name="MyTheme.Dialog.FullScreen" parent="android:Theme.Holo.Light"><!--Theme.AppCompat.Light-->
   </style>
-  
-  <style name="MyTheme.SimpleSpinnerDropDownItem" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
-  </style>
-  
+   
   <style name="MyTheme.Splash" parent ="MyTheme.Base">
     <item name="android:windowBackground">@drawable/SplashScreen</item>
     <item name="android:windowNoTitle">true</item>

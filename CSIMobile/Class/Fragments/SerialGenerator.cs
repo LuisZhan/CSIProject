@@ -20,8 +20,6 @@ namespace CSIMobile.Class.Fragments
         ProgressBar ProgressBar;
         LinearLayout Layout;
 
-        private int ProcessCount = 0;
-
         public CSIBaseDialogFragment ParentFragment { get; set; }
         List<string> SNs = new List<string>();
 
@@ -33,7 +31,7 @@ namespace CSIMobile.Class.Fragments
         {
             try
             {
-                base.OnCreate(savedInstanceState);
+                base.OnCreateView(inflater, container, savedInstanceState);
 
                 var view = inflater.Inflate(Resource.Layout.CSISerialGenerator, container, false);
                 //Cancelable = false;

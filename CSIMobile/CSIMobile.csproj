@@ -352,6 +352,9 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\Modules.json" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\Settings_Menus.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

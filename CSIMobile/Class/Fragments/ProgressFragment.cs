@@ -24,7 +24,7 @@ namespace CSIMobile.Class.Fragments
         {
             try
             {
-                base.OnCreate(savedInstanceState);
+                base.OnCreateView(inflater, container, savedInstanceState);
                 Cancelable = false;
 
                 var view = inflater.Inflate(Resource.Layout.CSIProgressBar, container, false);

@@ -123,13 +123,12 @@
             android:id="@+id/WhseSpinner"
             android:textAlignment="center"
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
-        <TextView
+            android:layout_height="wrap_content" />
+        <TextView xmlns:tools="http://schemas.android.com/tools"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/WhseNameText"
-            xmlns:tools="http://schemas.android.com/tools"
             tools:text="@string/Warehouse" />
     </LinearLayout>
     <ListView

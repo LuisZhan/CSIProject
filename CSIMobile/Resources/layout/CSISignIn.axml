@@ -48,7 +48,7 @@
         <Spinner
             android:id="@+id/ConfigurationEdit"
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="wrap_content" />
         <Button
             android:text="@string/Login"
             android:layout_width="match_parent"
