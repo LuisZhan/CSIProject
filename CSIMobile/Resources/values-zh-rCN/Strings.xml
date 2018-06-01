@@ -180,4 +180,6 @@
   <string name="TransferLine">行</string>
   <string name="From">从</string>
   <string name="To">到</string>
+  <string name="ChangeWarehouse">切换仓库</string>
+  <string name="RegisterLicense">注册</string>
 </resources>

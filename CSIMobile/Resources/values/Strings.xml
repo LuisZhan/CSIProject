@@ -193,4 +193,6 @@
   <string name="TransferLine">Line</string>
   <string name="From">From</string>
   <string name="To">To</string>
+  <string name="ChangeWarehouse">Change Warehouse</string>
+  <string name="RegisterLicense">Register License</string>
 </resources>

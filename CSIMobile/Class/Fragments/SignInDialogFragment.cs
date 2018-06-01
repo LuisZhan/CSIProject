@@ -78,7 +78,7 @@ namespace CSIMobile.Class.Fragments
 
                     ShowProgressBar(false);
 
-                    if (ProgressBar.Visibility == ViewStates.Gone)
+                    if (ProgressBar.Visibility == ViewStates.Invisible)
                     {
                         ErrorText.Visibility = ViewStates.Invisible;
                         Dismiss();
@@ -271,10 +271,11 @@ namespace CSIMobile.Class.Fragments
                 ProcessCount -= ProcessCount == 0 ? 0 : 1;
                 if(ProcessCount == 0)
                 {
-                    ProgressBar.Visibility = ViewStates.Gone;
+                    ProgressBar.Visibility = ViewStates.Invisible;
                     CSIBaseObject.DisableEnableControls(true, Layout);
                 }
             }
+            CloseImage.Visibility = HasTitle ? ViewStates.Gone : ViewStates.Visible;
         }
     }
 }

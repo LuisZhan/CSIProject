@@ -2065,11 +2065,14 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a0026
 			public const int META = 2131361830;
 			
-			// aapt resource value: 0x7f0a0113
-			public const int Menu_Save = 2131362067;
-			
 			// aapt resource value: 0x7f0a0112
-			public const int Menu_Test = 2131362066;
+			public const int Menu_ChangeWarehouse = 2131362066;
+			
+			// aapt resource value: 0x7f0a0114
+			public const int Menu_Register = 2131362068;
+			
+			// aapt resource value: 0x7f0a0113
+			public const int Menu_Settings = 2131362067;
 			
 			// aapt resource value: 0x7f0a00c0
 			public const int ModuleGrid = 2131361984;
@@ -2984,7 +2987,7 @@ namespace CSIMobile
 		{
 			
 			// aapt resource value: 0x7f0c0000
-			public const int Settings_Menus = 2131492864;
+			public const int Main_Menus = 2131492864;
 			
 			static Menu()
 			{
@@ -3043,6 +3046,9 @@ namespace CSIMobile
 			
 			// aapt resource value: 0x7f05003e
 			public const int CannotGetEmployee = 2131034174;
+			
+			// aapt resource value: 0x7f0500e2
+			public const int ChangeWarehouse = 2131034338;
 			
 			// aapt resource value: 0x7f05003f
 			public const int ClickBackToExit = 2131034175;
@@ -3406,6 +3412,9 @@ namespace CSIMobile
 			
 			// aapt resource value: 0x7f050044
 			public const int RefreshConfiguration = 2131034180;
+			
+			// aapt resource value: 0x7f0500e3
+			public const int RegisterLicense = 2131034339;
 			
 			// aapt resource value: 0x7f050081
 			public const int Regular = 2131034241;

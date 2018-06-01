@@ -455,7 +455,7 @@ namespace CSIMobile.Class.Fragments
             TransDateText.Text = string.Format("{0} {1}",DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
             ItemEdit.Text = string.Empty;
             UMEdit.Text = string.Empty;
-            QtyEdit.Text = "0";
+            QtyEdit.Text = string.Empty;
             FromLocEdit.Text = string.Empty;
             FromLotEdit.Text = string.Empty;
             ToLocEdit.Text = string.Empty;
@@ -626,7 +626,7 @@ namespace CSIMobile.Class.Fragments
                         {
                             ItemDescText.Text = string.Empty;
                             ItemUMText.Text = string.Empty;
-                            OnHandQuantityText.Text = "0";
+                            OnHandQuantityText.Text = string.Empty;
                         }
 
                         string Loc = FromLocEdit.Text, LocType = "";
@@ -1120,12 +1120,12 @@ namespace CSIMobile.Class.Fragments
                 ProcessCount -= ProcessCount == 0 ? 0 : 1;
                 if (ProcessCount == 0)
                 {
-                    ProgressBar.Visibility = ViewStates.Gone;
+                    ProgressBar.Visibility = ViewStates.Invisible;
                     CSIBaseObject.DisableEnableControls(true, Layout);
                     EnableDisableComponents();
                 }
             }
-
+            CloseImage.Visibility = HasTitle ? ViewStates.Gone : ViewStates.Visible;
         }
 
         public static void RunFragment(CSIBaseActivity activity)

@@ -81,12 +81,12 @@ namespace CSIMobile.Class.Fragments
                 ProcessCount -= ProcessCount == 0 ? 0 : 1;
                 if (ProcessCount == 0)
                 {
-                    ProgressBar.Visibility = ViewStates.Gone;
+                    ProgressBar.Visibility = ViewStates.Invisible;
                     CSIBaseObject.DisableEnableControls(true, Layout);
                     EnableDisableComponents();
                 }
             }
-
+            CloseImage.Visibility = HasTitle ? ViewStates.Gone : ViewStates.Visible;
         }
 
         public static SerialGenerator RunFragment(CSIBaseDialogFragment BaseDialogFragment)

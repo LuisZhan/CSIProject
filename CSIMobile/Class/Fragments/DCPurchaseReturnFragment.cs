@@ -478,7 +478,7 @@ namespace CSIMobile.Class.Fragments
             PoNumEdit.Text = string.Empty;
             LineEdit.Text = string.Empty;
             ReleaseEdit.Text = string.Empty;            
-            QtyEdit.Text = "0";
+            QtyEdit.Text = string.Empty;
             UMEdit.Text = string.Empty;
             LocEdit.Text = string.Empty;
             LotEdit.Text = string.Empty;
@@ -1329,12 +1329,13 @@ namespace CSIMobile.Class.Fragments
                 ProcessCount -= ProcessCount == 0 ? 0 : 1;
                 if (ProcessCount == 0)
                 {
-                    ProgressBar.Visibility = ViewStates.Gone;
+                    ProgressBar.Visibility = ViewStates.Invisible;
                     CSIBaseObject.DisableEnableControls(true, Layout);
 
                     EnableDisableComponents();
                 }
             }
+            CloseImage.Visibility = HasTitle ? ViewStates.Gone : ViewStates.Visible;
         }
 
         public static void RunFragment(CSIBaseActivity activity)

@@ -20,14 +20,14 @@
             android:id="@+id/TitleLinearLayout"
             android:gravity="right|top">
             <ProgressBar
-                style="?android:attr/progressBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                style="@android:style/Widget.Holo.Light.ProgressBar.Large"
+                android:layout_width="80px"
+                android:layout_height="80px"
                 android:id="@+id/ProgressBar" />
             <ImageView
                 android:src="@android:drawable/ic_menu_close_clear_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="80px"
+                android:layout_height="80px"
                 android:id="@+id/CloseImage" />
         </LinearLayout>
         <EditText

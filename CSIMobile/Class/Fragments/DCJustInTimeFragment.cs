@@ -429,7 +429,7 @@ namespace CSIMobile.Class.Fragments
             JobEdit.Text = string.Empty;
             JobDescText.Text = string.Empty;
             SuffixEdit.Text = string.Empty;
-            QtyEdit.Text = "0";
+            QtyEdit.Text = string.Empty;
             OperNumEdit.Text = string.Empty;
             LocEdit.Text = string.Empty;
             LotEdit.Text = string.Empty;
@@ -1105,12 +1105,13 @@ namespace CSIMobile.Class.Fragments
                 ProcessCount -= ProcessCount == 0 ? 0 : 1;
                 if (ProcessCount == 0)
                 {
-                    ProgressBar.Visibility = ViewStates.Gone;
+                    ProgressBar.Visibility = ViewStates.Invisible;
                     CSIBaseObject.DisableEnableControls(true, Layout);
 
                     EnableDisableComponents();
                 }
             }
+            CloseImage.Visibility = HasTitle ? ViewStates.Gone : ViewStates.Visible;
         }
 
         public static void RunFragment(CSIBaseActivity activity)
