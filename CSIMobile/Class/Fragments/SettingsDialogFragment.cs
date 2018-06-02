@@ -11,16 +11,18 @@ using Android.Views;
 using Android.Widget;
 using CSIMobile.Class.Common;
 using System.Threading.Tasks;
+using static CSIMobile.Class.Common.CSIMessageDialog;
 
 namespace CSIMobile.Class.Fragments
 {
     public class SettingsDialogFragment : CSIBaseDialogFragment
     {
         private EditText CSIWebServerEdit;
-        private Switch EnableHTTPS;
+        private Switch EnableHTTPSSwitch;
         private Switch UseRESTForRequestSwitch;
         private Switch LoadPictureSwitch;
         private Switch ForceAutoPostSwitch;
+        private Switch ShowSuccessMessageSwitch;
         private EditText UserEdit;
         private EditText PasswordEdit;
         private Spinner ConfigurationSpinner;
@@ -32,6 +34,18 @@ namespace CSIMobile.Class.Fragments
         private ImageView CloseImage;
         private ProgressBar ProgressBar;
         private LinearLayout Layout;
+        private string CSIWebServerName;
+        private string Configuration;
+        private string SavedUser;
+        private string SavedPassword;
+        private bool EnableHTTPS;
+        private bool UseRESTForRequest;
+        private bool LoadPicture;
+        private bool ForceAutoPost;
+        private bool ShowSuccessMessage;
+        private string RecordCap;
+        private bool SaveUser;
+        private bool SavePassword;
 
         public SettingsDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {
@@ -53,13 +67,14 @@ namespace CSIMobile.Class.Fragments
 
                 Layout = view.FindViewById<LinearLayout>(Resource.Id.LinearLayout);
                 CSIWebServerEdit = view.FindViewById<EditText>(Resource.Id.CSIWebServerEdit);
-                EnableHTTPS = view.FindViewById<Switch>(Resource.Id.EnableHTTPSEdit);
+                EnableHTTPSSwitch = view.FindViewById<Switch>(Resource.Id.EnableHTTPSEdit);
                 UseRESTForRequestSwitch = view.FindViewById<Switch>(Resource.Id.UseRESTForRequestEdit);
                 UserEdit = view.FindViewById<EditText>(Resource.Id.UserEdit);
                 PasswordEdit = view.FindViewById<EditText>(Resource.Id.PasswordEdit);
                 ConfigurationSpinner = view.FindViewById<Spinner>(Resource.Id.ConfigurationEdit);
                 LoadPictureSwitch = view.FindViewById<Switch>(Resource.Id.LoadPictureEdit);
                 ForceAutoPostSwitch = view.FindViewById<Switch>(Resource.Id.ForceAutoPostEdit);
+                ShowSuccessMessageSwitch = view.FindViewById<Switch>(Resource.Id.ShowSuccessMessageEdit);
                 RecordCapEdit = view.FindViewById<EditText>(Resource.Id.RecordCapEdit);
                 SaveButton = view.FindViewById<Button>(Resource.Id.SaveButton);
                 TestButton = view.FindViewById<Button>(Resource.Id.TestButton);
@@ -71,22 +86,41 @@ namespace CSIMobile.Class.Fragments
                 CSIWebServerEdit.Text = CSISystemContext.CSIWebServerName;
                 UserEdit.Text = CSISystemContext.SavedUser;
                 PasswordEdit.Text = CSISystemContext.SavedPassword;
-                EnableHTTPS.Checked = CSISystemContext.EnableHTTPS;
+                EnableHTTPSSwitch.Checked = CSISystemContext.EnableHTTPS;
                 UseRESTForRequestSwitch.Checked = CSISystemContext.UseRESTForRequest;
                 LoadPictureSwitch.Checked = CSISystemContext.LoadPicture;
-                ForceAutoPostSwitch.Checked = CSISystemContext.ForceAutoPost; 
+                ForceAutoPostSwitch.Checked = CSISystemContext.ForceAutoPost;
+                ShowSuccessMessageSwitch.Checked = CSISystemContext.ShowSuccessMessage; 
                 RecordCapEdit.Text = CSISystemContext.RecordCap;
                 SaveUserSwitch.Checked = CSISystemContext.SaveUser;
                 SavePasswordSwitch.Checked = CSISystemContext.SavePassword;
+
+                CSIWebServerName = CSISystemContext.CSIWebServerName;
+                Configuration = CSISystemContext.Configuration;
+                SavedUser = CSISystemContext.SavedUser;
+                SavedPassword = CSISystemContext.SavedPassword;
+                EnableHTTPS = CSISystemContext.EnableHTTPS;
+                UseRESTForRequest = CSISystemContext.UseRESTForRequest;
+                LoadPicture = CSISystemContext.LoadPicture;
+                ForceAutoPost = CSISystemContext.ForceAutoPost;
+                ShowSuccessMessage = CSISystemContext.ShowSuccessMessage;
+                RecordCap = CSISystemContext.RecordCap;
+                SaveUser = CSISystemContext.SaveUser;
+                SavePassword = CSISystemContext.SavePassword;
 
                 UserEdit.Enabled = SaveUserSwitch.Checked;
                 PasswordEdit.Enabled = SavePasswordSwitch.Checked;
 
                 ForceAutoPostSwitch.Enabled = (CSISystemContext.Token != string.Empty && CSISystemContext.User == "sa");//only can be changed by SA
+                ShowSuccessMessageSwitch.Enabled = (CSISystemContext.Token != string.Empty && CSISystemContext.User == "sa");//only can be changed by SA
+                SavePasswordSwitch.Enabled = (CSISystemContext.Token != string.Empty && CSISystemContext.User == "sa");//only can be changed by SA
 
                 ShowProgressBar(false);
-
+                
                 SetConfigurationSpin();
+
+                ConfigurationSpinner.LongClick += ConfigurationSpinner_LongClick;
+                CSIWebServerEdit.KeyPress += CSIWebServerEdit_KeyPress;
 
                 CloseImage.Click += (sender, args) =>
                 {
@@ -116,31 +150,61 @@ namespace CSIMobile.Class.Fragments
 
                 TestButton.Click += (sender, args) =>
                 {
-                    ShowProgressBar(true);
-                    CSISystemContext.CSIWebServerName = CSIWebServerEdit.Text;
-                    CSISystemContext.Configuration = (string)ConfigurationSpinner.SelectedItem??string.Empty;
-                    CSISystemContext.SavedUser = UserEdit.Text;
-                    CSISystemContext.SavedPassword = PasswordEdit.Text;
-                    CSISystemContext.EnableHTTPS = EnableHTTPS.Checked;
-                    CSISystemContext.UseRESTForRequest = UseRESTForRequestSwitch.Checked;
-                    CSISystemContext.LoadPicture = LoadPictureSwitch.Checked; 
-                    CSISystemContext.ForceAutoPost = ForceAutoPostSwitch.Checked; 
-                    CSISystemContext.RecordCap = RecordCapEdit.Text;
-                    CSISystemContext.SaveUser = SaveUserSwitch.Checked;
-                    CSISystemContext.SavePassword = SavePasswordSwitch.Checked;
-                    CSIBaseInvoker invoker = new CSIBaseInvoker(CSISystemContext)
-                    {
-                        UseAsync = true
-                    };
-                    invoker.GetConfigurationNamesCompleted += OnGetConfigurationNamesCompleted;
-                    CSISystemContext.ConfigurationList = new List<string>(invoker.GetConfigurationList());
+                    GetConfiguration();
                 };
+
+                Dialog.KeyPress += Dialog_KeyPress;
 
                 return view;
             }catch (Exception Ex)
             {
                 WriteErrorLog(Ex);
                 return null;
+            }
+        }
+
+        private void CSIWebServerEdit_KeyPress(object sender, View.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keycode.Enter || e.KeyCode == Keycode.Tab)
+            {
+                if (e.Event.Action == KeyEventActions.Up)
+                {
+                    GetConfiguration();
+                    SetConfigurationSpin();
+                }
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void ConfigurationSpinner_LongClick(object sender, View.LongClickEventArgs e)
+        {
+            GetConfiguration();
+            SetConfigurationSpin();
+        }
+
+        protected override void Dialog_KeyPress(object sender, DialogKeyEventArgs e)
+        {
+            if (e.KeyCode == Keycode.Back)
+            {
+                if (e.Event.Action == KeyEventActions.Up)
+                {
+                    if (ValidateExit(true))
+                    {
+                        e.Handled = true;
+                    }
+                    else
+                    {
+                        e.Handled = false;
+                    }
+                }
+            }
+            else
+            {
+                e.Handled = false;
             }
         }
 
@@ -157,6 +221,29 @@ namespace CSIMobile.Class.Fragments
                 //Toast.MakeText(Application.Context, CSIBaseInvoker.TranslateError(e.Error), ToastLength.Short).Show();
             }
             ShowProgressBar(false);
+        }
+
+        private void GetConfiguration()
+        {
+            ShowProgressBar(true);
+            CSISystemContext.CSIWebServerName = CSIWebServerEdit.Text;
+            CSISystemContext.Configuration = (string)ConfigurationSpinner.SelectedItem ?? string.Empty;
+            CSISystemContext.SavedUser = UserEdit.Text;
+            CSISystemContext.SavedPassword = PasswordEdit.Text;
+            CSISystemContext.EnableHTTPS = EnableHTTPSSwitch.Checked;
+            CSISystemContext.UseRESTForRequest = UseRESTForRequestSwitch.Checked;
+            CSISystemContext.LoadPicture = LoadPictureSwitch.Checked;
+            CSISystemContext.ForceAutoPost = ForceAutoPostSwitch.Checked;
+            CSISystemContext.ShowSuccessMessage = ShowSuccessMessageSwitch.Checked;
+            CSISystemContext.RecordCap = RecordCapEdit.Text;
+            CSISystemContext.SaveUser = SaveUserSwitch.Checked;
+            CSISystemContext.SavePassword = SavePasswordSwitch.Checked;
+            CSIBaseInvoker invoker = new CSIBaseInvoker(CSISystemContext)
+            {
+                UseAsync = true
+            };
+            invoker.GetConfigurationNamesCompleted += OnGetConfigurationNamesCompleted;
+            CSISystemContext.ConfigurationList = new List<string>(invoker.GetConfigurationList());
         }
 
         private void SetConfigurationSpin()
@@ -193,23 +280,95 @@ namespace CSIMobile.Class.Fragments
             }
         }
 
+        private bool ValidateExit(bool Exit = false)
+        {
+            bool IsChanged = false;
+            try
+            {
+                IsChanged = !(
+                            CSIWebServerName == CSIWebServerEdit.Text &&
+                            Configuration == ((string)ConfigurationSpinner.SelectedItem ?? string.Empty) &&
+                            SavedUser == UserEdit.Text &&
+                            SavedPassword == PasswordEdit.Text &&
+                            EnableHTTPS == EnableHTTPSSwitch.Checked &&
+                            UseRESTForRequest == UseRESTForRequestSwitch.Checked &&
+                            LoadPicture == LoadPictureSwitch.Checked &&
+                            ForceAutoPost == ForceAutoPostSwitch.Checked &&
+                            ShowSuccessMessage == ShowSuccessMessageSwitch.Checked &&
+                            RecordCap == RecordCapEdit.Text &&
+                            SaveUser == SaveUserSwitch.Checked &&
+                            SavePassword == SavePasswordSwitch.Checked
+                            );
+                if (IsChanged)
+                {
+                    FragmentTransaction ft = FragmentManager.BeginTransaction();
+                    CSIMessageDialog SignOutDialog = new CSIMessageDialog(GetString(Resource.String.app_name), GetString(Resource.String.SettingChanged), DialogTypes.YesNoCancle, this.BaseActivity);
+                    SignOutDialog.YesHandler += (sender, args) =>
+                    {
+                        SaveConfiguration();
+                        if (Exit)
+                        {
+                            Dismiss();
+                            Dispose();
+                        }
+                    };
+                    SignOutDialog.NoHandler += (sender, args) =>
+                    {
+                        CSISystemContext.CSIWebServerName = CSIWebServerName;
+                        CSISystemContext.SavedUser = SavedUser;
+                        CSISystemContext.SavedPassword = SavedPassword;
+                        CSISystemContext.EnableHTTPS = EnableHTTPS;
+                        CSISystemContext.UseRESTForRequest = UseRESTForRequest;
+                        CSISystemContext.LoadPicture = LoadPicture;
+                        CSISystemContext.ForceAutoPost = ForceAutoPost;
+                        CSISystemContext.ShowSuccessMessage = ShowSuccessMessage;
+                        CSISystemContext.RecordCap = RecordCap;
+                        CSISystemContext.SaveUser = SaveUser;
+                        CSISystemContext.SavePassword = SavePassword;
+                        if (Exit)
+                        {
+                            Dismiss();
+                            Dispose();
+                        }
+                    };
+                    SignOutDialog.CancelHandler += (sender, args) =>
+                    {
+                    };
+                    SignOutDialog.Show(ft, "");
+                }
+                else
+                {
+                    Dismiss();
+                    Dispose();
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                return false;
+            }
+            return true;
+        }
+
         private void SaveConfiguration()
         {
             CSISystemContext.CSIWebServerName = CSIWebServerEdit.Text;
             CSISystemContext.Configuration = (string)ConfigurationSpinner.SelectedItem;
             CSISystemContext.SavedUser = UserEdit.Text;
             CSISystemContext.SavedPassword = PasswordEdit.Text;
-            CSISystemContext.EnableHTTPS = EnableHTTPS.Checked;
+            CSISystemContext.EnableHTTPS = EnableHTTPSSwitch.Checked;
             CSISystemContext.UseRESTForRequest = UseRESTForRequestSwitch.Checked;
             CSISystemContext.LoadPicture = LoadPictureSwitch.Checked;
             CSISystemContext.ForceAutoPost = ForceAutoPostSwitch.Checked;
+            CSISystemContext.ShowSuccessMessage = ShowSuccessMessageSwitch.Checked;
             CSISystemContext.RecordCap = RecordCapEdit.Text;
             CSISystemContext.SaveUser = SaveUserSwitch.Checked;
             CSISystemContext.SavePassword = SavePasswordSwitch.Checked;
 
             CSISystemContext.WriteConfigurations();
         }
-        
+
+
         private void ShowProgressBar(bool show)
         {
             if (show)

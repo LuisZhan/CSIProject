@@ -60,15 +60,19 @@
   <string name="QuantityMove">货位移动</string>
   <string name="Administrator">管理员</string>
   <string name="Administration">系统管理</string>
+  <string name="TransferOrder">移库单</string>
   <string name="TransferOrders">移库单查询</string>
   <string name="TransferShip">移库单发出</string>
   <string name="TransferReceive">移库单接收</string>
+  <string name="PurchaseOrder">采购单</string>
   <string name="PurchaseOrders">采购单查询</string>
   <string name="PurchaseReceive">采购单接收</string>
   <string name="PurchaseReturn">采购单退货</string>
+  <string name="SalesOrder">销售单</string>
   <string name="SalesOrders">销售单查询</string>
   <string name="SalesShip">销售单发货</string>
   <string name="SalesReturn">销售单退货</string>
+  <string name="JobOrder">作业单</string>
   <string name="JobOrders">作业单查询</string>
   <string name="GetMoreRows">加载更多记录</string>
   <string name="Loading">加载中...</string>
@@ -182,4 +186,13 @@
   <string name="To">到</string>
   <string name="ChangeWarehouse">切换仓库</string>
   <string name="RegisterLicense">注册</string>
+  <string name="Processed">已处理</string>
+  <string name="Processed1">{0}已处理</string>
+  <string name="Posted">已过账</string>
+  <string name="Posted1">{0} 已过账</string>
+  <string name="Blank">空</string>
+  <string name="ShowSuccessMessage">显示处理成功消息</string>
+  <string name="SettingChanged">设置已经变更。 是否要保存此次变更？</string>
+  <string name="Yes">是</string>
+  <string name="No">否</string>
 </resources>

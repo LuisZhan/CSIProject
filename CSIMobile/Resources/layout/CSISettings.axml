@@ -50,11 +50,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ConfigurationLabel" />
-        <Spinner
-            android:id="@+id/ConfigurationEdit"
-            android:textAlignment="center"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1"
+            android:gravity="center_vertical">
+            <Spinner
+                android:id="@+id/ConfigurationEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="36dp" />
+            <Button
+                android:id="@+id/TestButton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:tag="@string/Test"
+                android:theme="@android:style/Widget.Holo.Button"
+                android:foreground="@android:drawable/ic_popup_sync"
+                android:background="@android:drawable/ic_popup_sync"
+                android:layout_marginLeft="-36dp" />
+        </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -106,6 +123,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/ForceAutoPost" />
+        <Switch
+            android:id="@+id/ShowSuccessMessageEdit"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ShowSuccessMessage" />
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -151,22 +174,17 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout1"
-            android:gravity="right">
-            <Button
-                android:text="@string/Test"
-                android:id="@+id/TestButton"
-                android:visibility="visible"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:id="@+id/ButtonLayout"
+            android:gravity="right"
+            android:visibility="invisible">
             <Button
                 android:text="@string/Save"
                 android:id="@+id/SaveButton"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:visibility="visible"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@android:drawable/ic_menu_save"
+                style="@android:style/Widget.Holo.ImageButton" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

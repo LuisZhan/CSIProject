@@ -120,6 +120,7 @@ namespace CSIMobile.Class.Common
             bundle.PutBoolean("UseRESTForRequest", UseRESTForRequest);
             bundle.PutBoolean("LoadPicture", LoadPicture); 
             bundle.PutBoolean("ForceAutoPost", ForceAutoPost); 
+            bundle.PutBoolean("ShowSuccessMessage", ShowSuccessMessage); 
             bundle.PutBoolean("DisplayWhenError", DisplayWhenError);
 
             //Passed Key Information
@@ -168,6 +169,7 @@ namespace CSIMobile.Class.Common
             UseRESTForRequest = bundle.GetBoolean("UseRESTForRequest");
             LoadPicture = bundle.GetBoolean("LoadPicture");
             ForceAutoPost = bundle.GetBoolean("ForceAutoPost");
+            ShowSuccessMessage = bundle.GetBoolean("ShowSuccessMessage");
             DisplayWhenError = bundle.GetBoolean("DisplayWhenError");
 
             //Passed Key Information
@@ -221,6 +223,7 @@ namespace CSIMobile.Class.Common
             SavedPassword = "";
             LoadPicture = false;
             ForceAutoPost = false;
+            ShowSuccessMessage = true;
             UseRESTForRequest = false;
             DisplayWhenError = true;
 

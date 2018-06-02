@@ -57,9 +57,9 @@ namespace CSIMobile.Class.Common
                     Builder.SetNegativeButton(GetString(Android.Resource.String.No), NoHandler);
                     break;
                 case DialogTypes.YesNoCancle:
-                    Builder.SetPositiveButton(GetString(Android.Resource.String.Yes), YesHandler);
-                    Builder.SetNeutralButton(GetString(Android.Resource.String.No), NoHandler);
-                    Builder.SetNegativeButton(GetString(Android.Resource.String.Cancel), CancelHandler);
+                    Builder.SetPositiveButton(GetString(Resource.String.Yes), YesHandler);
+                    Builder.SetNegativeButton(GetString(Resource.String.No), NoHandler);
+                    Builder.SetNeutralButton(GetString(Android.Resource.String.Cancel), CancelHandler);
                     break;
                 case DialogTypes.OKCancel:
                     Builder.SetPositiveButton(GetString(Android.Resource.String.Ok), OkHandler);

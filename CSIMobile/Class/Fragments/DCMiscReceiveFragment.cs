@@ -117,6 +117,10 @@ namespace CSIMobile.Class.Fragments
                             }
                             else
                             {
+                                if (CSISystemContext.ShowSuccessMessage)
+                                {
+                                    ShowProcessedMessage();
+                                }
                                 //Clear Result if no error.
                                 Initialize();
                             }
@@ -164,6 +168,10 @@ namespace CSIMobile.Class.Fragments
                 {
                     if (e.Result.ToString() == "0")
                     {
+                        if (CSISystemContext.ShowSuccessMessage)
+                        {
+                            ShowProcessedMessage();
+                        }
                         Initialize();
                     }
                     else
@@ -461,6 +469,9 @@ namespace CSIMobile.Class.Fragments
                 //Row.BeginEdit();
                 //Row.EndEdit();
                 //Row.AcceptChanges();
+
+                SetKeyValues(GetString(Resource.String.Item), ItemEdit.Text);//Item
+
                 SLDcitems.InsertIDO();
                 ShowProgressBar(true);
             }

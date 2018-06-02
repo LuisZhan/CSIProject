@@ -31,6 +31,7 @@ namespace CSIMobile.Class.Fragments
         ImageButton LotScanButton;
         EditText WhseEdit;
         TextView TransDateText;
+        EditText ItemEdit;
         EditText JobEdit;
         EditText SuffixEdit;
         TextView JobDescText;
@@ -127,6 +128,10 @@ namespace CSIMobile.Class.Fragments
                             }
                             else
                             {
+                                if (CSISystemContext.ShowSuccessMessage)
+                                {
+                                    ShowProcessedMessage();
+                                }
                                 //Clear Result if no error.
                                 Initialize();
                             }
@@ -174,6 +179,10 @@ namespace CSIMobile.Class.Fragments
                 {
                     if (e.Result.ToString() == "0")
                     {
+                        if (CSISystemContext.ShowSuccessMessage)
+                        {
+                            ShowProcessedMessage();
+                        }
                         Initialize();
                     }
                     else
@@ -464,6 +473,7 @@ namespace CSIMobile.Class.Fragments
                 Row["TransDate"] = DateTime.Now;//TransDate
                 Row["Whse"] = CSISystemContext.DefaultWarehouse;//Whse
                 Row["EmpNum"] = CSISystemContext.EmpNum;//EmpNum
+                Row["Item"] = ItemEdit.Text;//Item
                 Row["Job"] = JobEdit.Text;//Item
                 Row["Suffix"] = SuffixEdit.Text;//UM
                 Row["Qty"] = QtyEdit.Text;//QtyMoved
@@ -474,6 +484,9 @@ namespace CSIMobile.Class.Fragments
                 //Row.BeginEdit();
                 //Row.EndEdit();
                 //Row.AcceptChanges();
+
+                SetKeyValues(GetString(Resource.String.Item), ItemEdit.Text);//Item
+
                 SLDcjms.InsertIDO();
                 ShowProgressBar(true);
             }

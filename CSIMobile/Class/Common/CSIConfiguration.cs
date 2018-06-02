@@ -49,7 +49,8 @@ namespace CSIMobile.Class.Common
                 jWriter.Name("SavedPassword").Value(c.SaveUser && c.SavePassword ? c.SavedPassword : string.Empty);
                 jWriter.Name("LoadPicture").Value(c.LoadPicture);
                 jWriter.Name("RecordCap").Value(c.RecordCap ?? "10");
-                jWriter.Name("ForceAutoPost").Value(c.ForceAutoPost);
+                jWriter.Name("ForceAutoPost").Value(c.ForceAutoPost); 
+                jWriter.Name("ShowSuccessMessage").Value(c.ShowSuccessMessage); 
                 jWriter.Name("LicenseString").Value(c.LicenseString);
                 jWriter.Name("ExpDate").Value(c.ExpDate);
                 jWriter.EndObject();
@@ -265,6 +266,18 @@ namespace CSIMobile.Class.Common
                             c.ForceAutoPost = jReader.NextBoolean();
                         }
                     }
+                    else if (name.Equals("ShowSuccessMessage"))
+                    {
+                        //WriteLog("Force Auto Post");
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            c.ShowSuccessMessage = jReader.NextBoolean();
+                        }
+                    }                    
                     else if (name.Equals("ExpDate"))
                     {
                         //WriteLog("ExpDate");

@@ -60,15 +60,19 @@
   <string name="QuantityMove">Quantity Move</string>
   <string name="Administrator">Administrator</string>
   <string name="Administration">Administration</string>
+  <string name="TransferOrder">Transfer Order</string>
   <string name="TransferOrders">Transfer Orders</string>
   <string name="TransferShip">Transfer Ship</string>
   <string name="TransferReceive">Transfer Receive</string>
+  <string name="PurchaseOrder">Purchase Order</string>
   <string name="PurchaseOrders">Purchase Orders</string>
   <string name="PurchaseReceive">Purchase Receive</string>
   <string name="PurchaseReturn">Purchase Return</string>
+  <string name="SalesOrder">Sales Order</string>
   <string name="SalesOrders">Sales Orders</string>
   <string name="SalesShip">Sales Ship</string>
   <string name="SalesReturn">Sales Return</string>
+  <string name="JobOrder">Job Order</string>
   <string name="JobOrders">Job Orders</string>
   <string name="GetMoreRows">Get More Rows</string>
   <string name="Loading">Loading...</string>
@@ -195,4 +199,13 @@
   <string name="To">To</string>
   <string name="ChangeWarehouse">Change Warehouse</string>
   <string name="RegisterLicense">Register License</string>
+  <string name="Processed">Processed</string>
+  <string name="Processed1">{0} Processed</string>
+  <string name="Posted">Posted</string>
+  <string name="Posted1">{0} Posted</string>
+  <string name="Blank">Blank</string>
+  <string name="ShowSuccessMessage">Show Process Success Message</string>
+  <string name="SettingChanged">Settings have been changed. Do you want to Save the Change?</string>
+  <string name="Yes">Yes</string>
+  <string name="No">No</string>
 </resources>
