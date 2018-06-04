@@ -473,7 +473,7 @@ namespace CSIMobile.Class.Fragments
                 Row["TransNum"] = SLDcjms.NextTransNum();//TransNum
                 Row["TransType"] = "3";//TransType
                 Row["Stat"] = "U";//Stat
-                Row["Termid"] = CSISystemContext.AndroidId.Substring(CSISystemContext.AndroidId.Length - 4, 4);//Termid
+                Row["Termid"] = CSISystemContext.GetDeviceId();//Termid
                 Row["TransDate"] = DateTime.Now;//TransDate
                 Row["Whse"] = CSISystemContext.DefaultWarehouse;//Whse
                 Row["EmpNum"] = CSISystemContext.EmpNum;//EmpNum

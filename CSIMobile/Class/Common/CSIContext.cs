@@ -240,5 +240,10 @@ namespace CSIMobile.Class.Common
         {
             //
         }
+
+        public string GetDeviceId()
+        {
+            return AndroidId.Substring(AndroidId.Length - 4, 4);//Termid
+        }
     }
 }

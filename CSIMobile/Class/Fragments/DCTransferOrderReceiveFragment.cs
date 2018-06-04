@@ -529,7 +529,7 @@ namespace CSIMobile.Class.Fragments
                 Row["TransNum"] = SLDctrans.NextTransNum();//TransNum
                 Row["TransType"] = "2";//TransType 1: Ship, 2:Receive
                 Row["Stat"] = "U";//Stat
-                Row["Termid"] = CSISystemContext.AndroidId.Substring(CSISystemContext.AndroidId.Length - 4, 4);//Termid
+                Row["Termid"] = CSISystemContext.GetDeviceId();//Termid
                 Row["TransDate"] = DateTime.Now;//TransDate
                 Row["EmpNum"] = CSISystemContext.EmpNum;//EmpNum
                 Row["TrnNum"] = TransferOrderEdit.Text;//Item

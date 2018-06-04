@@ -2026,8 +2026,8 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a007c
 			public const int LinearLayout = 2131361916;
 			
-			// aapt resource value: 0x7f0a0078
-			public const int ListView = 2131361912;
+			// aapt resource value: 0x7f0a0074
+			public const int ListView = 2131361908;
 			
 			// aapt resource value: 0x7f0a00e8
 			public const int LoadPictureEdit = 2131362024;
@@ -2296,17 +2296,17 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0a0081
 			public const int WhseEdit = 2131361921;
 			
-			// aapt resource value: 0x7f0a0075
-			public const int WhseLabel = 2131361909;
+			// aapt resource value: 0x7f0a0076
+			public const int WhseLabel = 2131361910;
 			
-			// aapt resource value: 0x7f0a0074
-			public const int WhseLinearLayout = 2131361908;
+			// aapt resource value: 0x7f0a0075
+			public const int WhseLinearLayout = 2131361909;
+			
+			// aapt resource value: 0x7f0a0078
+			public const int WhseNameText = 2131361912;
 			
 			// aapt resource value: 0x7f0a0077
-			public const int WhseNameText = 2131361911;
-			
-			// aapt resource value: 0x7f0a0076
-			public const int WhseSpinner = 2131361910;
+			public const int WhseSpinner = 2131361911;
 			
 			// aapt resource value: 0x7f0a0080
 			public const int WhseText = 2131361920;
@@ -3092,6 +3092,9 @@ namespace CSIMobile
 			// aapt resource value: 0x7f05009d
 			public const int Description = 2131034269;
 			
+			// aapt resource value: 0x7f0500f2
+			public const int Device = 2131034354;
+			
 			// aapt resource value: 0x7f0500a7
 			public const int DocumentNum = 2131034279;
 			
@@ -3523,6 +3526,9 @@ namespace CSIMobile
 			
 			// aapt resource value: 0x7f05003c
 			public const int SignOut = 2131034172;
+			
+			// aapt resource value: 0x7f0500f1
+			public const int Site = 2131034353;
 			
 			// aapt resource value: 0x7f050090
 			public const int Status = 2131034256;
