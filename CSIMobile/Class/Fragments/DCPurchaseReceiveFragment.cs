@@ -291,6 +291,8 @@ namespace CSIMobile.Class.Fragments
                 LocEdit.KeyPress += LocEdit_KeyPress;
                 LotEdit.KeyPress += LotEdit_KeyPress;
 
+                PoNumEdit.RequestFocus();
+
                 SNButton.Click += SNButton_Click;
                 ProcessButton.Click += ProcessButton_Click;
 

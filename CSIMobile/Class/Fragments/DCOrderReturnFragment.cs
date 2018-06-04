@@ -302,6 +302,8 @@ namespace CSIMobile.Class.Fragments
                 LotEdit.KeyPress += LotEdit_KeyPress;
                 ReasonCodeEdit.KeyPress += ReasonCodeEdit_KeyPress;
 
+                CoNumEdit.RequestFocus();
+
                 SNButton.Click += SNButton_Click;
                 ProcessButton.Click += ProcessButton_Click;
 

@@ -258,6 +258,8 @@ namespace CSIMobile.Class.Fragments
                 LocationLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.LocationLinearLayout);
                 LotLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.LotLinearLayout);
 
+                JobEdit.RequestFocus();
+
                 SNButton = view.FindViewById<Button>(Resource.Id.SNButton);
                 ProcessButton = view.FindViewById<Button>(Resource.Id.ProcessButton);
                 Layout = view.FindViewById<LinearLayout>(Resource.Id.LinearLayout);

@@ -295,6 +295,8 @@ namespace CSIMobile.Class.Fragments
                 ToLocEdit.KeyPress += ToLocEdit_KeyPress;
                 ToLotEdit.KeyPress += ToLotEdit_KeyPress;
 
+                ItemEdit.RequestFocus();
+
                 SNButton.Click += SNButton_Click;
                 ProcessButton.Click += ProcessButton_Click;
 
