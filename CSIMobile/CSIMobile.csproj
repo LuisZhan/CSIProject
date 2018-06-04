@@ -159,6 +159,7 @@
     <Compile Include="Class\Common\Print\CSIPrinter.cs" />
     <Compile Include="Class\Common\CSISanner.cs" />
     <Compile Include="Class\Common\CSIWebServiceEventInterface.cs" />
+    <Compile Include="Class\Fragments\ChangeWarehouseFragment.cs" />
     <Compile Include="Class\Fragments\DCJobMaterialTransactionsFragment.cs" />
     <Compile Include="Class\Fragments\DCJobReceiptFragment.cs" />
     <Compile Include="Class\Fragments\DCProductionScheduleComplete.cs" />
@@ -256,6 +257,10 @@
     <AndroidResource Include="Resources\layout\CSIProductionScheduleComplete.axml" />
     <AndroidResource Include="Resources\layout\CSIProductionScheduleScrap.axml" />
     <AndroidResource Include="Resources\layout\CSITransferOrderShip.axml" />
+    <AndroidResource Include="Resources\layout\CSITransferOrderReceive.axml" />
+    <AndroidResource Include="Resources\layout\CSIChangeWarehouse.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\CSIMain.axml">

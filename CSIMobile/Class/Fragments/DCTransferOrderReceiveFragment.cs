@@ -20,7 +20,7 @@ using CSIMobile.Class.Business.IO;
 
 namespace CSIMobile.Class.Fragments
 {
-    public class DCTransferOrderShipFragment : CSIBaseDialogFragment
+    public class DCTransferOrderReceiveFragment : CSIBaseDialogFragment
     {
         CSIDctrans SLDctrans;
 
@@ -67,7 +67,7 @@ namespace CSIMobile.Class.Fragments
         List<string> SNs = new List<string>();
         bool FromSNPicked = true, ToSNPicked = true;
 
-        public DCTransferOrderShipFragment(CSIBaseActivity activity = null) : base(activity)
+        public DCTransferOrderReceiveFragment(CSIBaseActivity activity = null) : base(activity)
         {
             CSISystemContext.ReadConfigurations();
             SLDctrans = new CSIDctrans(CSISystemContext);
@@ -524,7 +524,7 @@ namespace CSIMobile.Class.Fragments
                 SLDctrans.CurrentTable.Rows.Clear();
                 DataRow Row = SLDctrans.CurrentTable.NewRow();
                 Row["TransNum"] = SLDctrans.NextTransNum();//TransNum
-                Row["TransType"] = "1";//TransType 1: Ship, 2:Receive
+                Row["TransType"] = "2";//TransType 1: Ship, 2:Receive
                 Row["Stat"] = "U";//Stat
                 Row["Termid"] = CSISystemContext.AndroidId.Substring(CSISystemContext.AndroidId.Length - 4, 4);//Termid
                 Row["TransDate"] = DateTime.Now;//TransDate
@@ -663,11 +663,11 @@ namespace CSIMobile.Class.Fragments
                     try
                     {
                         string TransferOrder = TransferOrderEdit.Text, TransferLine = TransferLineEdit.Text, Item = ItemText.Text
-                            , ItemDesc = ItemDescText.Text, ItemUM = ItemUMText.Text, ToLoc = ToLocEdit.Text, QtyReq = QtyText.Text
+                            , ItemDesc = ItemDescText.Text, ItemUM = ItemUMText.Text, FromLoc = FromLocEdit.Text, QtyReq = QtyText.Text
                             , QtyShipped = "", QtyReceived = "", QtyRequired = "";
 
                         //validate TransferOrder and TransferLine
-                        TransferOrderValidated = CSITrnitems.GetTransferLineInfor(CSISystemContext, ref TransferOrder, ref TransferLine, ref Item, ref ItemDesc, ref ItemUM, ref ToLoc, ref InvUseExistingSerials
+                        TransferOrderValidated = CSITrnitems.GetTransferLineInfor(CSISystemContext, ref TransferOrder, ref TransferLine, ref Item, ref ItemDesc, ref ItemUM, ref FromLoc, ref InvUseExistingSerials
                             , ref QtyReq, ref QtyShipped, ref QtyReceived, ref QtyRequired, ref FromLotTracked, ref FromSNTracked, ref ToLotTracked, ref ToSNTracked, ref FobFromSite);
                         if (TransferOrderValidated == true)
                         {
@@ -677,9 +677,9 @@ namespace CSIMobile.Class.Fragments
                             ItemDescText.Text = ItemDesc;
                             ItemUMText.Text = ItemUM;
                             QtyText.Text = QtyReq;
-                            ToLocEdit.Text = ToLoc;
+                            FromLocEdit.Text = FromLoc;
 
-                            ValidateToLoc();
+                            ValidateFromLoc();
 
                             TransferLineValidated = true;
 
@@ -697,15 +697,15 @@ namespace CSIMobile.Class.Fragments
                                 QtyValidated = true;
                             }
 
-                            //Validate ItemFromLoc
-                            string FromLoc = FromLocEdit.Text, FromLocDescription = "", Qty = "";
-                            bool RtnCSIItemFromLocs = CSIItemLocs.GetItemLocInfor(CSISystemContext, ItemText.Text, WhseEdit.Text, ref FromLoc, ref FromLocDescription, ref Qty);
-                            if (RtnCSIItemFromLocs == true)
+                            //Validate ItemToLoc
+                            string ToLoc = ToLocEdit.Text, ToLocDescription = "", Qty = "";
+                            bool RtnCSIItemToLocs = CSIItemLocs.GetItemLocInfor(CSISystemContext, ItemText.Text, WhseEdit.Text, ref ToLoc, ref ToLocDescription, ref Qty);
+                            if (RtnCSIItemToLocs == true)
                             {
-                                FromLocEdit.Text = FromLoc;
-                                FromLocDescText.Text = FromLocDescription;
-                                FromLocValidated = false;
-                                ValidateFromLoc();
+                                ToLocEdit.Text = ToLoc;
+                                ToLocDescText.Text = ToLocDescription;
+                                ToLocValidated = false;
+                                ValidateToLoc();
                                 //OnHandQuantityText.Text = Qty; //used for validate Qty
                             }
                         }
@@ -841,21 +841,21 @@ namespace CSIMobile.Class.Fragments
             return UMValidated;
         }
 
-        private bool ValidateFromLoc()
+        private bool ValidateToLoc()
         {
-            if (!FromLocValidated)
+            if (!ToLocValidated)
             {
                 if (string.IsNullOrEmpty(FromLocEdit.Text))
                 {
-                    FromLocValidated = false;
+                    ToLocValidated = false;
                 }
                 else
                 {
-                    string FromLoc = FromLocEdit.Text, FromLocDescription = "", FromLot = FromLotEdit.Text, Qty = "";
-                    FromLocValidated = CSIItemLocs.GetItemLocInfor(CSISystemContext, ItemText.Text, WhseEdit.Text, ref FromLoc, ref FromLocDescription, ref Qty);
-                    if (FromLocValidated)
+                    string ToLoc = ToLocEdit.Text, ToLocDescription = "", ToLot = ToLotEdit.Text, Qty = "";
+                    ToLocValidated = CSIItemLocs.GetItemLocInfor(CSISystemContext, ItemText.Text, WhseEdit.Text, ref ToLoc, ref ToLocDescription, ref Qty);
+                    if (ToLocValidated)
                     {
-                        FromLocDescText.Text = FromLocDescription;
+                        ToLocDescText.Text = ToLocDescription;
                     }
                     else
                     {
@@ -865,39 +865,30 @@ namespace CSIMobile.Class.Fragments
                             SLLoc.UseAsync(false);
                             SLLoc.AddProperty("Loc");
                             SLLoc.AddProperty("Description");
-                            SLLoc.SetFilter(string.Format("Loc = N'{0}'", FromLoc));
+                            SLLoc.SetFilter(string.Format("Loc = N'{0}'", ToLoc));
                             SLLoc.LoadIDO();
                             if (SLLoc.CurrentTable.Rows.Count <= 0)
                             {
-                                FromLocDescText.Text = string.Empty;
-                                FromLocValidated = false;
+                                ToLocDescText.Text = string.Empty;
+                                ToLocValidated = false;
                             }
                             else
                             {
-                                FromLocEdit.Text = SLLoc.GetCurrentPropertyValueOfString("Loc"); ;
-                                FromLocDescText.Text = SLLoc.GetCurrentPropertyValueOfString("Description"); ;
-                                FromLocValidated = true;
+                                ToLocEdit.Text = SLLoc.GetCurrentPropertyValueOfString("Loc"); ;
+                                ToLocDescText.Text = SLLoc.GetCurrentPropertyValueOfString("Description"); ;
+                                ToLocValidated = true;
                             }
                         }catch (Exception Ex)
                         {
                             WriteErrorLog(Ex);
-                            FromLocValidated = false;
+                            ToLocValidated = false;
                         }
-                        //FromLocEdit.Text = FromLoc;
-                        //FromLocDescText.Text = FromLocDescription;
-                        //bool RtnCSIFromLotFromLocs = CSIFromLotFromLocs.GetItemFromLotFromLocInfor(CSISystemContext, TransferOrderEdit.Text, WhseEdit.Text, FromLoc, ref FromLot, ref Qty);
-                        //if (RtnCSIFromLotFromLocs)
-                        //{
-                        //    FromLotEdit.Text = FromLot;
-                        //    FromLotValidated = false;
-                        ValidateFromLot();
-                        //    //ReleasedQuantityText.Text = Qty; //used for validate Qty
-                        //}
+                        ValidateToLot();
                     }
                 }
             }
             EnableDisableComponents();
-            return FromLocValidated;
+            return ToLocValidated;
         }
 
         private bool ValidateFromLot()
@@ -928,24 +919,24 @@ namespace CSIMobile.Class.Fragments
             return FromLotValidated;
         }
 
-        private bool ValidateToLoc()
+        private bool ValidateFromLoc()
         {
-            if (!ToLocValidated)
+            if (!FromLocValidated)
             {
-                if (string.IsNullOrEmpty(ToLocEdit.Text))
+                if (string.IsNullOrEmpty(FromLocEdit.Text))
                 {
-                    ToLocValidated = false;
+                    FromLocValidated = false;
                 }
                 else
                 {
-                    ToLocValidated = true;
+                    FromLocValidated = true;
                 }
             }
             else
             {
-                ToLocValidated = true;
+                FromLocValidated = true;
             }
-            return ToLocValidated;
+            return FromLocValidated;
         }
 
         private bool ValidateToLot()

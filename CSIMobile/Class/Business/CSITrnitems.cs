@@ -50,6 +50,7 @@ namespace CSIMobile.Class.Business
         public static bool GetTransferLineInfor(CSIContext SrcContext, ref string TrnNum, ref string TrnLine, ref string Item, ref string ItemDesc, ref string UM, ref string TrnLoc, ref bool InvUseExistingSerials
             , ref string QtyReq, ref string QtyShipped, ref string QtyReceived, ref string QtyRequired, ref bool FromLotTracked, ref bool FromSNTracked, ref bool ToLotTracked, ref bool ToSNTracked, ref bool FobFromSite)
         {
+            string FromSite, ToSite;
             try
             {
                 CSITrnitems SLTrnitem = new CSITrnitems(SrcContext);
@@ -67,7 +68,7 @@ namespace CSIMobile.Class.Business
                 SLTrnitem.AddProperty("ToItSerialTracked"); 
                 SLTrnitem.AddProperty("InvUseExistingSerials");
                 SLTrnitem.AddProperty("TraFromSite");
-                SLTrnitem.AddProperty("ToFromSite");
+                SLTrnitem.AddProperty("TraToSite");
                 SLTrnitem.AddProperty("ToFobSite");
                 if (string.IsNullOrEmpty(TrnLine))
                 {
@@ -88,7 +89,18 @@ namespace CSIMobile.Class.Business
                 QtyReq = string.Format("{0:n}", SLTrnitem.GetCurrentPropertyValueOfString("QtyReq"));
                 QtyShipped = string.Format("{0:n}", SLTrnitem.GetCurrentPropertyValueOfString("QtyShipped"));
                 QtyReceived = string.Format("{0:n}", SLTrnitem.GetCurrentPropertyValueOfString("QtyReceived"));
-                QtyRequired = string.Format("{0:n}", (SLTrnitem.GetCurrentPropertyValueOfDecimal("QtyReq") - SLTrnitem.GetCurrentPropertyValueOfDecimal("QtyShipped")).ToString());
+                FromSite = SLTrnitem.GetCurrentPropertyValueOfString("TraFromSite");
+                ToSite = SLTrnitem.GetCurrentPropertyValueOfString("TraToSite");
+                if (SrcContext.Site == FromSite)
+                {
+                    //ship from site
+                    QtyRequired = string.Format("{0:n}", (SLTrnitem.GetCurrentPropertyValueOfDecimal("QtyReq") - SLTrnitem.GetCurrentPropertyValueOfDecimal("QtyShipped")).ToString());
+                }
+                if (SrcContext.Site == FromSite)
+                {
+                    //receive to site
+                    QtyRequired = string.Format("{0:n}", (SLTrnitem.GetCurrentPropertyValueOfDecimal("QtyShipped") - SLTrnitem.GetCurrentPropertyValueOfDecimal("QtyReceived")).ToString());
+                }
                 FromLotTracked = SLTrnitem.GetCurrentPropertyValueOfBoolean("FromItLotTracked");
                 FromSNTracked = SLTrnitem.GetCurrentPropertyValueOfBoolean("FromItSerialTracked");
                 ToLotTracked = SLTrnitem.GetCurrentPropertyValueOfBoolean("ToItLotTracked");
