@@ -3299,6 +3299,9 @@ namespace CSIMobile
 			// aapt resource value: 0x7f0500d1
 			public const int NoBluetoothAdapter = 2131034321;
 			
+			// aapt resource value: 0x7f0500f0
+			public const int NoEmployee = 2131034352;
+			
 			// aapt resource value: 0x7f050071
 			public const int OffLine = 2131034225;
 			

@@ -195,4 +195,5 @@
   <string name="SettingChanged">设置已经变更。 是否要保存此次变更？</string>
   <string name="Yes">是</string>
   <string name="No">否</string>
+  <string name="NoEmployee">您不是有效的员工（员工号未设置），不能操作此功能</string>
 </resources>

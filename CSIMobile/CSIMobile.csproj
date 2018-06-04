@@ -129,6 +129,7 @@
     <Compile Include="Class\Business\CSIJobmatls.cs" />
     <Compile Include="Class\Business\CSITrnitems.cs" />
     <Compile Include="Class\Business\CSITransfers.cs" />
+    <Compile Include="Class\Business\CSIParms.cs" />
     <Compile Include="Class\Business\CSIWhses.cs" />
     <Compile Include="Class\Business\CSIPoItems.cs" />
     <Compile Include="Class\Business\CSIDcpos.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Class\Fragments\DCOrderShippingtFragment.cs" />
     <Compile Include="Class\Fragments\DCMiscIssueFragment.cs" />
     <Compile Include="Class\Fragments\DCMiscReceiveFragment.cs" />
+    <Compile Include="Class\Fragments\DCTransferOrderReceiveFragment.cs" />
     <Compile Include="Class\Fragments\DCTransferOrderShipFragment.cs" />
     <Compile Include="Class\Fragments\DCQuantityMoveFragment.cs" />
     <Compile Include="Class\Fragments\LogDialogFragment.cs" />

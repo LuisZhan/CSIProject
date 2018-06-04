@@ -93,6 +93,23 @@ namespace CSIMobile
             }
         }
 
+        private void ShowNoEmpMessage()
+        {
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+
+            CSIMessageDialog SignOutDialog = (CSIMessageDialog)FragmentManager.FindFragmentByTag("NoEmp");
+
+            if (SignOutDialog != null)
+            {
+                ft.Show(SignOutDialog);
+            }
+            else
+            {
+                SignOutDialog = new CSIMessageDialog(GetString(Resource.String.app_name), GetString(Resource.String.NoEmployee), DialogTypes.OK, this);
+                SignOutDialog.Show(ft, "NoEmp");
+            }
+        }
+
         private void ShowSettingsDialog()
         {
             try
@@ -299,6 +316,11 @@ namespace CSIMobile
                         ShowSignInDialog();
                         Success = false;
                     }
+                    else if(string.IsNullOrEmpty(CSISystemContext.EmpNum))
+                    {
+                        ShowNoEmpMessage();
+                        return false;
+                    }
                     else
                     {
                         DCQuantityMoveFragment.RunFragment(this);
@@ -311,9 +333,14 @@ namespace CSIMobile
                         ShowSignInDialog();
                         Success = false;
                     }
+                    else if (string.IsNullOrEmpty(CSISystemContext.EmpNum))
+                    {
+                        ShowNoEmpMessage();
+                        return false;
+                    }
                     else
                     {
-                        ShowMiscIssue();
+                        DCMiscIssueFragment.RunFragment(this);
                         Success = true;
                     }
                     break;
@@ -323,9 +350,14 @@ namespace CSIMobile
                         ShowSignInDialog();
                         Success = false;
                     }
+                    else if (string.IsNullOrEmpty(CSISystemContext.EmpNum))
+                    {
+                        ShowNoEmpMessage();
+                        return false;
+                    }
                     else
                     {
-                        ShowMiscReceive();
+                        DCMiscReceiveFragment.RunFragment(this);
                         Success = true;
                     }
                     break;
@@ -334,6 +366,11 @@ namespace CSIMobile
                     {
                         ShowSignInDialog();
                         Success = false;
+                    }
+                    else if (string.IsNullOrEmpty(CSISystemContext.EmpNum))
+                    {
+                        ShowNoEmpMessage();
+                        return false;
                     }
                     else
                     {
@@ -347,6 +384,11 @@ namespace CSIMobile
                         ShowSignInDialog();
                         Success = false;
                     }
+                    else if (string.IsNullOrEmpty(CSISystemContext.EmpNum))
+                    {
+                        ShowNoEmpMessage();
+                        return false;
+                    }
                     else
                     {
                         DCJobMaterialTransactionsFragment.RunFragment(this);
@@ -358,6 +400,11 @@ namespace CSIMobile
                     {
                         ShowSignInDialog();
                         Success = false;
+                    }
+                    else if (string.IsNullOrEmpty(CSISystemContext.EmpNum))
+                    {
+                        ShowNoEmpMessage();
+                        return false;
                     }
                     else
                     {
@@ -371,6 +418,11 @@ namespace CSIMobile
                         ShowSignInDialog();
                         Success = false;
                     }
+                    else if (string.IsNullOrEmpty(CSISystemContext.EmpNum))
+                    {
+                        ShowNoEmpMessage();
+                        return false;
+                    }
                     else
                     {
                         DCOrderShippingFragment.RunFragment(this);
@@ -382,6 +434,11 @@ namespace CSIMobile
                     {
                         ShowSignInDialog();
                         Success = false;
+                    }
+                    else if (string.IsNullOrEmpty(CSISystemContext.EmpNum))
+                    {
+                        ShowNoEmpMessage();
+                        return false;
                     }
                     else
                     {
@@ -395,6 +452,11 @@ namespace CSIMobile
                         ShowSignInDialog();
                         Success = false;
                     }
+                    else if (string.IsNullOrEmpty(CSISystemContext.EmpNum))
+                    {
+                        ShowNoEmpMessage();
+                        return false;
+                    }
                     else
                     {
                         DCPurchaseReceiveFragment.RunFragment(this);
@@ -406,6 +468,11 @@ namespace CSIMobile
                     {
                         ShowSignInDialog();
                         Success = false;
+                    }
+                    else if (string.IsNullOrEmpty(CSISystemContext.EmpNum))
+                    {
+                        ShowNoEmpMessage();
+                        return false;
                     }
                     else
                     {
@@ -420,6 +487,11 @@ namespace CSIMobile
                         ShowSignInDialog();
                         Success = false;
                     }
+                    else if (string.IsNullOrEmpty(CSISystemContext.EmpNum))
+                    {
+                        ShowNoEmpMessage();
+                        return false;
+                    }
                     else
                     {
                         DCTransferOrderShipFragment.RunFragment(this);
@@ -432,9 +504,14 @@ namespace CSIMobile
                         ShowSignInDialog();
                         Success = false;
                     }
+                    else if (string.IsNullOrEmpty(CSISystemContext.EmpNum))
+                    {
+                        ShowNoEmpMessage();
+                        return false;
+                    }
                     else
                     {
-                        DCTransferOrderShipFragment.RunFragment(this);
+                        DCTransferOrderReceiveFragment.RunFragment(this);
                         Success = true;
                     }
                     break; 
@@ -443,61 +520,7 @@ namespace CSIMobile
             }
             return Success;
         }
-
-
-
-        private void ShowMiscIssue()
-        {
-            try
-            {
-                FragmentTransaction ft = FragmentManager.BeginTransaction();
-
-                DCMiscIssueFragment MiscIssueDialog = (DCMiscIssueFragment)FragmentManager.FindFragmentByTag("MiscIssue");
-                if (MiscIssueDialog != null)
-                {
-                    ft.Show(MiscIssueDialog);
-                    //ft.AddToBackStack(null);
-                }
-                else
-                {
-                    // Create and show the dialog.
-                    MiscIssueDialog = new DCMiscIssueFragment(this);
-                    //Add fragment
-                    MiscIssueDialog.Show(ft, "MiscIssue");
-                }
-            }
-            catch (Exception Ex)
-            {
-                WriteErrorLog(Ex);
-            }
-        }
-
-        private void ShowMiscReceive()
-        {
-            try
-            {
-                FragmentTransaction ft = FragmentManager.BeginTransaction();
-
-                DCMiscReceiveFragment MiscReceiveDialog = (DCMiscReceiveFragment)FragmentManager.FindFragmentByTag("MiscReceive");
-                if (MiscReceiveDialog != null)
-                {
-                    ft.Show(MiscReceiveDialog);
-                    //ft.AddToBackStack(null);
-                }
-                else
-                {
-                    // Create and show the dialog.
-                    MiscReceiveDialog = new DCMiscReceiveFragment(this);
-                    //Add fragment
-                    MiscReceiveDialog.Show(ft, "MiscReceive");
-                }
-            }
-            catch (Exception Ex)
-            {
-                WriteErrorLog(Ex);
-            }
-        }
-
+        
         private ProgressFragment ShowProcess()
         {
             try
@@ -525,6 +548,24 @@ namespace CSIMobile
             }
             return null;
         }
-        
+            
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.Main_Menus, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Resource.Id.Menu_Settings)
+            {
+                InvokeCommand("ShowSettings");
+            }
+            else if (item.ItemId == Resource.Id.Menu_ChangeWarehouse)
+            {
+                InvokeCommand("ShowChangeWarehouse");
+            }
+            return base.OnOptionsItemSelected(item);
+        }
     }
 }

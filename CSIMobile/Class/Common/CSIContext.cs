@@ -16,6 +16,7 @@ namespace CSIMobile.Class.Common
         public static string Action_Search = "Search";
         public static string Action_Process = "Process";
 
+        public string Site { get; set; }
         //User Information
         public string User { get; set; }
         public string Password { get; set; }
@@ -56,8 +57,8 @@ namespace CSIMobile.Class.Common
         public string Release2 { get; set; }
 
         //License String
-        public string LicenseString = "";
-        public string ExpDate = "";
+        public string LicenseString = string.Empty;
+        public string ExpDate = string.Empty;
 
         //
         public string AndroidId { get; set; }

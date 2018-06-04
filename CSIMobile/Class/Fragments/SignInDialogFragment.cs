@@ -31,6 +31,7 @@ namespace CSIMobile.Class.Fragments
         private CSIUserNames Users;
         private CSIUserLocals UsersLocal;
         private CSIEmployees Employee;
+        private CSIParms Parms;
 
         //public event CreateSessionTokenCompletedEventHandler CreateSessionTokenCompleted;
 
@@ -46,9 +47,29 @@ namespace CSIMobile.Class.Fragments
                 UsersLocal.LoadDataSetCompleted += OnLoadDataSetCompleted;
                 Employee = new CSIEmployees(CSISystemContext);
                 Employee.LoadDataSetCompleted += OnLoadDataSetCompleted;
-            }catch (Exception Ex)
+                Parms = new CSIParms(CSISystemContext);
+                Parms.LoadDataSetCompleted += Parmse_LoadDataSetCompleted; ;
+            }
+            catch (Exception Ex)
             {
                 WriteErrorLog(Ex);
+            }
+        }
+
+        private void Parmse_LoadDataSetCompleted(object sender, LoadDataSetCompletedEventArgs e)
+        {
+            try
+            {
+                CSISystemContext.Site = Users.GetCurrentPropertyValueOfString("Site");
+            }
+            catch (Exception Ex)
+            {
+                ShowProgressBar(false);
+                WriteErrorLog(Ex);
+                WriteErrorLog(e.Error);
+                CSISystemContext.Token = "";
+                ErrorText.Text = CSIBaseInvoker.TranslateError(e.Error);
+                ErrorText.Visibility = ViewStates.Visible;
             }
         }
 
@@ -95,8 +116,8 @@ namespace CSIMobile.Class.Fragments
                 }
             }catch (Exception Ex)
             {
-                WriteErrorLog(Ex);
                 ShowProgressBar(false);
+                WriteErrorLog(Ex);
                 WriteErrorLog(e.Error);
                 CSISystemContext.Token = "";
                 ErrorText.Text = CSIBaseInvoker.TranslateError(e.Error);
@@ -117,7 +138,11 @@ namespace CSIMobile.Class.Fragments
                 CSISystemContext.Configuration = (string)ConfigurationEdit.SelectedItem;
                 CSISystemContext.WriteConfigurations();
 
-                GetUserInfor();
+                if (!string.IsNullOrEmpty(CSISystemContext.Token))
+                {
+                    GetSiteInfor();
+                    GetUserInfor();
+                }
             }
             else
             {
@@ -195,6 +220,13 @@ namespace CSIMobile.Class.Fragments
             CSISystemContext.SavePassword = SavePasswordSwitch.Checked;
             CSISystemContext.Configuration = (string)ConfigurationEdit.SelectedItem;
             CSISystemContext.Token = Users.CreateToken();
+        }
+
+        private void GetSiteInfor()
+        {
+            ShowProgressBar(true);
+            Parms.AddProperty("Site");
+            Parms.LoadIDO();
         }
 
         private void GetUserInfor()
