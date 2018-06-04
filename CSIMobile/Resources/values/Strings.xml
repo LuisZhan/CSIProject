@@ -27,7 +27,7 @@
   <string name="Welcome">Welcome</string>
   <string name="Welcome1">Welcome, {0}</string>
   <string name="Configuration">Configuration</string>
-  <string name="SingOut">Sing Out</string>
+  <string name="SignOut">Sign Out</string>
   <string name="PleaseGoToSettings">Cannot get configuration list. If this is your first time run application, please click Settings button to register.</string>
   <string name="CannotGetEmployee">Cannot get Employee Number associated with the account.Please ask Administrator for help.</string>
   <string name="ClickBackToExit">Click Back again to Exit.</string>

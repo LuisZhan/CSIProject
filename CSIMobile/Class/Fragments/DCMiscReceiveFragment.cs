@@ -60,6 +60,8 @@ namespace CSIMobile.Class.Fragments
         
         public DCMiscReceiveFragment(CSIBaseActivity activity = null) : base(activity)
         {
+            Title = Application.Context.GetString(Resource.String.MiscReceive);
+
             CSISystemContext.ReadConfigurations();
             SLDcitems = new CSIDcitems(CSISystemContext);
             SLDcitems.AddProperty("TransNum");

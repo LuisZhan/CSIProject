@@ -63,6 +63,8 @@ namespace CSIMobile.Class.Fragments
 
         public DCProductionScheduleComplete(CSIBaseActivity activity = null) : base(activity)
         {
+            Title = Application.Context.GetString(Resource.String.ProductionSchedule);
+
             CSISystemContext.ReadConfigurations();
             SLDcjms = new CSIDcjms(CSISystemContext);
             SLDcjms.AddProperty("TransNum");

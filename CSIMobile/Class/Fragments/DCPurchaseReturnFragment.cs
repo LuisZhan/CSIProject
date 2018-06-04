@@ -66,6 +66,8 @@ namespace CSIMobile.Class.Fragments
 
         public DCPurchaseReturnFragment(CSIBaseActivity activity = null) : base(activity)
         {
+            Title = Application.Context.GetString(Resource.String.PurchaseReturn);
+
             CSISystemContext.ReadConfigurations();
             SLDcpos = new CSIDcpos(CSISystemContext);
             SLDcpos.AddProperty("TransNum");

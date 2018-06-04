@@ -23,6 +23,8 @@ namespace CSIMobile.Class.Fragments
 
         public ChangeWarehouseFragment(CSIBaseActivity activity = null) : base(activity)
         {
+            Title = Application.Context.GetString(Resource.String.ChangeWarehouse);
+
             CSISystemContext.ReadConfigurations();
         }
 

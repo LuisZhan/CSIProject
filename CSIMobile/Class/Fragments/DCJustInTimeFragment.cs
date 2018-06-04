@@ -64,6 +64,8 @@ namespace CSIMobile.Class.Fragments
 
         public DCJustInTimeFragment(CSIBaseActivity activity = null) : base(activity)
         {
+            Title = Application.Context.GetString(Resource.String.JustInTime);
+
             CSISystemContext.ReadConfigurations();
             SLDcjms = new CSIDcjms(CSISystemContext);
             SLDcjms.AddProperty("TransNum");

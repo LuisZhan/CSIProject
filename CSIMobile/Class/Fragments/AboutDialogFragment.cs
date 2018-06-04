@@ -28,6 +28,8 @@ namespace CSIMobile.Class.Fragments
 
         public AboutDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {
+            Title = Application.Context.GetString(Resource.String.About);
+
             CSISystemContext.ReadConfigurations();
         }
 

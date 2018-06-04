@@ -37,6 +37,8 @@ namespace CSIMobile.Class.Fragments
 
         public SignInDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {
+            Title = Application.Context.GetString(Resource.String.Login);
+
             try
             {
                 //CreateSessionTokenCompleted += OnCreateSessionTokenCompleted;

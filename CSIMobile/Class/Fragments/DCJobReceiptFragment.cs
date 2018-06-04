@@ -64,6 +64,8 @@ namespace CSIMobile.Class.Fragments
 
         public DCJobReceiptFragment(CSIBaseActivity activity = null) : base(activity)
         {
+            Title = Application.Context.GetString(Resource.String.JobReceipt);
+
             CSISystemContext.ReadConfigurations();
             SLDcjms = new CSIDcjms(CSISystemContext);
             SLDcjms.AddProperty("TransNum");

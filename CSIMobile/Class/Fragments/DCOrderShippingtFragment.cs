@@ -63,6 +63,8 @@ namespace CSIMobile.Class.Fragments
 
         public DCOrderShippingFragment(CSIBaseActivity activity = null) : base(activity)
         {
+            Title = Application.Context.GetString(Resource.String.SalesShip);
+
             CSISystemContext.ReadConfigurations();
             SLDccos = new CSIDccos(CSISystemContext);
             SLDccos.AddProperty("TransNum");

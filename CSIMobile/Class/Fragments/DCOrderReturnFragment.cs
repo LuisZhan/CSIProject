@@ -66,6 +66,8 @@ namespace CSIMobile.Class.Fragments
 
         public DCOrderReturnFragment(CSIBaseActivity activity = null) : base(activity)
         {
+            Title = Application.Context.GetString(Resource.String.SalesReturn);
+
             CSISystemContext.ReadConfigurations();
             SLDccos = new CSIDccos(CSISystemContext);
             SLDccos.AddProperty("TransNum");

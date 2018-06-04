@@ -60,6 +60,8 @@ namespace CSIMobile.Class.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            Title = Application.Context.GetString(Resource.String.Settings);
+
             try
             {
                 base.OnCreateView(inflater, container, savedInstanceState);

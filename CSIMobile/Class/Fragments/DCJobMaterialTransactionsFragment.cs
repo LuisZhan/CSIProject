@@ -70,6 +70,8 @@ namespace CSIMobile.Class.Fragments
         
         public DCJobMaterialTransactionsFragment(CSIBaseActivity activity = null) : base(activity)
         {
+            Title = Application.Context.GetString(Resource.String.JobMaterial);
+
             CSISystemContext.ReadConfigurations();
             SLDcjms = new CSIDcjms(CSISystemContext);
             SLDcjms.AddProperty("TransNum");

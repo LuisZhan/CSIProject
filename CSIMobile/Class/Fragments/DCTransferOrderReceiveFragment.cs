@@ -69,6 +69,8 @@ namespace CSIMobile.Class.Fragments
 
         public DCTransferOrderReceiveFragment(CSIBaseActivity activity = null) : base(activity)
         {
+            Title = Application.Context.GetString(Resource.String.TransferReceive);
+
             CSISystemContext.ReadConfigurations();
             SLDctrans = new CSIDctrans(CSISystemContext);
             SLDctrans.AddProperty("TransNum");
@@ -233,7 +235,7 @@ namespace CSIMobile.Class.Fragments
             {
                 base.OnCreateView(inflater, container, savedInstanceState);
 
-                var view = inflater.Inflate(Resource.Layout.CSITransferOrderShip, container, false);
+                var view = inflater.Inflate(Resource.Layout.CSITransferOrderReceive, container, false);
                 Cancelable = false;
 
                 WhseEdit = view.FindViewById<EditText>(Resource.Id.WhseEdit);

@@ -3522,7 +3522,7 @@ namespace CSIMobile
 			public const int ShowSuccessMessage = 2131034348;
 			
 			// aapt resource value: 0x7f05003c
-			public const int SingOut = 2131034172;
+			public const int SignOut = 2131034172;
 			
 			// aapt resource value: 0x7f050090
 			public const int Status = 2131034256;
