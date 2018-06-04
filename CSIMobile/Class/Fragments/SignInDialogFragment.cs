@@ -60,7 +60,7 @@ namespace CSIMobile.Class.Fragments
         {
             try
             {
-                CSISystemContext.Site = Users.GetCurrentPropertyValueOfString("Site");
+                CSISystemContext.Site = Parms.GetCurrentPropertyValueOfString("Site");
             }
             catch (Exception Ex)
             {
@@ -140,7 +140,7 @@ namespace CSIMobile.Class.Fragments
 
                 if (!string.IsNullOrEmpty(CSISystemContext.Token))
                 {
-                    GetSiteInfor();
+                    GetParmInfor();
                     GetUserInfor();
                 }
             }
@@ -222,7 +222,7 @@ namespace CSIMobile.Class.Fragments
             CSISystemContext.Token = Users.CreateToken();
         }
 
-        private void GetSiteInfor()
+        private void GetParmInfor()
         {
             ShowProgressBar(true);
             Parms.AddProperty("Site");
