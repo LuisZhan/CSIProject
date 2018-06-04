@@ -61,6 +61,8 @@ namespace CSIMobile.Class.Fragments
             try
             {
                 CSISystemContext.Site = Parms.GetCurrentPropertyValueOfString("Site");
+                GetUserInfor();
+                ShowProgressBar(false);
             }
             catch (Exception Ex)
             {
@@ -141,7 +143,6 @@ namespace CSIMobile.Class.Fragments
                 if (!string.IsNullOrEmpty(CSISystemContext.Token))
                 {
                     GetParmInfor();
-                    GetUserInfor();
                 }
             }
             else

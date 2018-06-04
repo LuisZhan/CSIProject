@@ -136,6 +136,31 @@ namespace CSIMobile
             }
         }
 
+        private void ShowChangeWarehouse()
+        {
+            try
+            {
+                FragmentTransaction ft = FragmentManager.BeginTransaction();
+
+                ChangeWarehouseFragment ChangeWhseDialog = (ChangeWarehouseFragment)FragmentManager.FindFragmentByTag("ChangeWarehouse");
+                if (ChangeWhseDialog != null)
+                {
+                    ft.Show(ChangeWhseDialog);
+                }
+                else
+                {
+                    // Create and show the dialog.
+                    ChangeWhseDialog = new ChangeWarehouseFragment(this);
+                    //Add fragment
+                    ChangeWhseDialog.Show(ft, "ChangeWarehouse");
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+            }
+        }
+
         private void ShowAbout()
         {
             try
@@ -308,6 +333,10 @@ namespace CSIMobile
                         };
                         AlertDialog.Show(ft, "Exit");
                     }
+                    Success = true;
+                    break;
+                case "ShowChangeWarehouse":
+                    ShowChangeWarehouse();
                     Success = true;
                     break;
                 case "QtyMove":
