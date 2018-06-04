@@ -1368,18 +1368,18 @@ namespace CSIMobile.Class.Fragments
             {
                 FragmentTransaction ft = activity.FragmentManager.BeginTransaction();
 
-                DCTransferOrderShipFragment TransferOrderShipDialog = (DCTransferOrderShipFragment)activity.FragmentManager.FindFragmentByTag("TransferOrderShip");
-                if (TransferOrderShipDialog != null)
+                DCTransferOrderReceiveFragment TransferOrderReceiveDialog = (DCTransferOrderReceiveFragment)activity.FragmentManager.FindFragmentByTag("TransferOrderShip");
+                if (TransferOrderReceiveDialog != null)
                 {
-                    ft.Show(TransferOrderShipDialog);
+                    ft.Show(TransferOrderReceiveDialog);
                     //ft.AddToBackStack(null);
                 }
                 else
                 {
                     // Create and show the dialog.
-                    TransferOrderShipDialog = new DCTransferOrderShipFragment(activity);
+                    TransferOrderReceiveDialog = new DCTransferOrderReceiveFragment(activity);
                     //Add fragment
-                    TransferOrderShipDialog.Show(ft, "TransferOrderShip");
+                    TransferOrderReceiveDialog.Show(ft, "TransferOrderShip");
                 }
             }
             catch (Exception Ex)

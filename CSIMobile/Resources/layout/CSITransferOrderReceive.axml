@@ -308,7 +308,11 @@
                         android:layout_marginRight="42dp"
                         android:singleLine="true"
                         android:inputType="text"
-                        android:maxLength="15" />
+                        android:maxLength="15"
+                        android:enabled="false"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false" />
                     <ImageButton
                         android:src="@drawable/scanner"
                         android:id="@+id/FromLocScanButton"
@@ -316,7 +320,8 @@
                         android:layout_height="36dp"
                         android:scaleType="fitCenter"
                         android:padding="0dp"
-                        android:layout_marginLeft="-40dp" />
+                        android:layout_marginLeft="-40dp"
+                        android:visibility="invisible" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="horizontal"
@@ -333,7 +338,11 @@
                         android:layout_marginRight="42dp"
                         android:singleLine="true"
                         android:inputType="text"
-                        android:maxLength="15" />
+                        android:maxLength="15"
+                        android:enabled="false"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false" />
                     <ImageButton
                         android:src="@drawable/scanner"
                         android:id="@+id/FromLotScanButton"
@@ -341,7 +350,8 @@
                         android:layout_height="36dp"
                         android:scaleType="fitCenter"
                         android:padding="0dp"
-                        android:layout_marginLeft="-40dp" />
+                        android:layout_marginLeft="-40dp"
+                        android:visibility="invisible" />
                 </LinearLayout>
             </LinearLayout>
             <TextView xmlns:tools="http://schemas.android.com/tools"
