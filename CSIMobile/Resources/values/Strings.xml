@@ -209,4 +209,6 @@
   <string name="Yes">Yes</string>
   <string name="No">No</string>
   <string name="NoEmployee">The Action is not allowed as you are not a valid Employee (Employee has not linked with your account)</string>
+  <string name="Site">Site</string>
+  <string name="Device">Device</string>
 </resources>

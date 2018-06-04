@@ -21,8 +21,6 @@ namespace CSIMobile.Class.Fragments
         private TextView UserNameText;
         private TextView EmployeeText;
         private TextView EmployeeNameText;
-        private TextView WhseNameText;
-        private Spinner WhseSpinner;
         private ListView ListView;
         private Dictionary<string, string> Whses = new Dictionary<string, string>();
 
@@ -45,8 +43,6 @@ namespace CSIMobile.Class.Fragments
                 UserNameText = view.FindViewById<TextView>(Resource.Id.UserNameText);
                 EmployeeText = view.FindViewById<TextView>(Resource.Id.EmployeeText);
                 EmployeeNameText = view.FindViewById<TextView>(Resource.Id.EmployeeNameText);
-                WhseSpinner = view.FindViewById<Spinner>(Resource.Id.WhseSpinner);
-                WhseNameText = view.FindViewById<TextView>(Resource.Id.WhseNameText);
 
                 ListView = view.FindViewById<ListView>(Resource.Id.ListView);
 
@@ -55,17 +51,7 @@ namespace CSIMobile.Class.Fragments
                 EmployeeText.Text = CSISystemContext.EmpNum ?? CSISystemContext.EmpName;
                 EmployeeNameText.Text = CSISystemContext.EmpName;
 
-                WhseSpinner.ItemSelected += (o,e) =>
-                {
-                    string whse = (string)WhseSpinner.SelectedItem ?? string.Empty;
-                    CSISystemContext.DefaultWarehouse = whse;
-                    WhseNameText.Text = Whses.GetValueOrDefault(whse);
-                };
-
-                if (!string.IsNullOrEmpty(CSISystemContext.Token))
-                {
-                    SetWhseSpin();
-                }
+                SetDetailList();
                 return view;
             }catch (Exception Ex)
             {
@@ -74,47 +60,16 @@ namespace CSIMobile.Class.Fragments
             }
         }
 
-        private void SetWhseSpin()
+        private void SetDetailList()
         {
-            string DeftWhse = CSISystemContext.DefaultWarehouse, Whse = "", Name = "";
-            int index = 0, i = 0;
-            ArrayAdapter adapter = new ArrayAdapter(Application.Context, Android.Resource.Layout.SimpleSpinnerItem);
-            try
-            {
-                CSIWhses SLWhses = new CSIWhses(CSISystemContext);
-                SLWhses.SetRecordCap(-1);
-                SLWhses.UseAsync(false);
-                SLWhses.LoadIDO();
-                if (SLWhses.CurrentTable.Rows.Count > 0)
-                {
-                    for (i = 0;i< SLWhses.CurrentTable.Rows.Count; i++)
-                    {
-                        Whse = SLWhses.GetPropertyValue(i,"Whse").ToString();
-                        Name = SLWhses.GetPropertyValue(i,"Name").ToString();
-                        Whses.Add(Whse, Name);
-                        adapter.Add(Whse);
-                        if (Whse == DeftWhse)
-                        {
-                            WhseNameText.Text = Name;
-                            index = i;
-                        }
-                    }
-                    adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-                    WhseSpinner.Adapter = adapter;
-                    WhseSpinner.SetSelection(index);
-                }
-                else
-                {
-                    Whses.Add(DeftWhse, DeftWhse);
-                    adapter.Add(DeftWhse);
-                }
-            }
-            catch (Exception Ex)
-            {
-                WriteErrorLog(Ex);
-                WhseSpinner.Adapter = adapter;
-                WhseSpinner.SetSelection(index);
-            }
+            ArrayAdapter adapter = new ArrayAdapter(Application.Context, Android.Resource.Layout.SimpleGalleryItem);
+            adapter.Add(string.Format("{0}: {1}", Application.Context.GetString(Resource.String.Site), CSISystemContext.Site));
+            adapter.Add(string.Format("{0}: {1}", Application.Context.GetString(Resource.String.Warehouse), CSISystemContext.DefaultWarehouse));
+            adapter.Add(string.Format("{0}: {1}", Application.Context.GetString(Resource.String.Device), CSISystemContext.GetDeviceId()));
+            adapter.Add(string.Format("{0}: {1}", Application.Context.GetString(Resource.String.RegisterLicense), "UnLicensed"));
+            adapter.Add(string.Format("{0}: {1}", Application.Context.GetString(Resource.String.ExpirationDate), CSISystemContext.ExpDate));
+            ListView.Adapter = adapter;
         }
+
     }
 }
