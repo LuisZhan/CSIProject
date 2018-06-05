@@ -171,8 +171,8 @@ namespace CSIMobile.Class.Fragments
             {
                 if (e.Event.Action == KeyEventActions.Up)
                 {
-                    GetConfiguration();
-                    SetConfigurationSpin();
+                    //GetConfiguration();
+                    //SetConfigurationSpin();
                 }
                 e.Handled = true;
             }
@@ -246,6 +246,11 @@ namespace CSIMobile.Class.Fragments
             };
             invoker.GetConfigurationNamesCompleted += OnGetConfigurationNamesCompleted;
             CSISystemContext.ConfigurationList = new List<string>(invoker.GetConfigurationList());
+            if (CSISystemContext.ConfigurationList is null)
+            {
+                CSISystemContext.ConfigurationList = new List<string> { string.Empty };
+                ShowProgressBar(false);
+            }
         }
 
         private void SetConfigurationSpin()

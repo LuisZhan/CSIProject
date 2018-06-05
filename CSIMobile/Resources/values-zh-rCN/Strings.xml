@@ -198,4 +198,5 @@
   <string name="NoEmployee">您不是有效的员工（员工号未设置），不能操作此功能</string>
   <string name="Site">站点</string>
   <string name="Device">设备</string>
+  <string name="Scan">扫一扫</string>
 </resources>

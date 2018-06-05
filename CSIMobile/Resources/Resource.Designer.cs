@@ -3509,6 +3509,9 @@ namespace CSIMobile
 			// aapt resource value: 0x7f050033
 			public const int Saved = 2131034163;
 			
+			// aapt resource value: 0x7f0500f3
+			public const int Scan = 2131034355;
+			
 			// aapt resource value: 0x7f0500b4
 			public const int Search = 2131034292;
 			

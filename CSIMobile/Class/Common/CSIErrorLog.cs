@@ -59,6 +59,7 @@ namespace CSIMobile.Class.Common
 
         public static string ReadLog()
         {
+            CheckLogFile();
             return File.ReadAllText(FileName);
         }
 

@@ -47,6 +47,10 @@ namespace CSIMobile.Class.Common
         {
             URL = GetURL();
             Token = GetToken();
+            if (string.IsNullOrEmpty(URL))
+            {
+                return;
+            }
             WebService = new CSIWebService(URL)
             {
                 Timeout = TimeOutInterval
@@ -135,7 +139,7 @@ namespace CSIMobile.Class.Common
             string[] List = { "" };
             if (string.IsNullOrEmpty(URL))
             {
-                return List;
+                return null;
             }
             try
             {

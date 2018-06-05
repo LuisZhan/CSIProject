@@ -30,10 +30,10 @@ namespace CSIMobile.Class.Common
                 {
                     return string.Empty;
                 }
-                if (!IsCameraCanUse())
-                {
-                    return string.Empty;
-                }
+                //if (!IsCameraCanUse())
+                //{
+                //    return string.Empty;
+                //}
                 Application app = new Application();
                 MobileBarcodeScanner.Initialize(app);
                 MobileBarcodeScanningOptions opts = new MobileBarcodeScanningOptions
@@ -48,7 +48,10 @@ namespace CSIMobile.Class.Common
                         BarcodeFormat.QR_CODE
                     }
                 };
+                opts.DisableAutofocus = false;
                 var scanner = new MobileBarcodeScanner();
+                scanner.TopText = Application.Context.Resources.GetString(Resource.String.Scan);
+                scanner.AutoFocus();
                 var result = await scanner.Scan(opts);
                 return result?.Text ?? string.Empty;
             }
@@ -102,30 +105,30 @@ namespace CSIMobile.Class.Common
             }
         }
 
-        public static bool IsCameraCanUse()
-        {
-            bool canUse = false;
-            Android.Hardware.Camera mCamera = null;
+        //public static bool IsCameraCanUse()
+        //{
+        //    bool canUse = false;
+        //    Android.Hardware.Camera mCamera = null;
 
-            try
-            {
-                mCamera = Android.Hardware.Camera.Open(0);
-                Android.Hardware.Camera.Parameters mParameters = mCamera.GetParameters();
-                mCamera.SetParameters(mParameters);
-            }
-            catch (Exception Ex)
-            {
-                WriteErrorLog(Ex);
-                canUse = false;
-            }
+        //    try
+        //    {
+        //        mCamera = Android.Hardware.Camera.Open(0);
+        //        Android.Hardware.Camera.Parameters mParameters = mCamera.GetParameters();
+        //        mCamera.SetParameters(mParameters);
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        WriteErrorLog(Ex);
+        //        canUse = false;
+        //    }
 
-            if (mCamera != null)
-            {
-                mCamera.Release();
-                canUse = true;
-            }
+        //    if (mCamera != null)
+        //    {
+        //        mCamera.Release();
+        //        canUse = true;
+        //    }
 
-            return canUse;
-        }
+        //    return canUse;
+        //}
     }
 }
