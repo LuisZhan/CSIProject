@@ -20,9 +20,9 @@ namespace CSIMobile
     public class MainActivity : CSIBaseActivity
     {
         public TextView[] MoudleButton = { null, null, null, null };
-        ModuleDeck Modules;
-        ModuleDeckAdapter DeckAdapter;
-        ViewPager ModulePage;
+        public ModuleDeck Modules;
+        public ModuleDeckAdapter DeckAdapter;
+        public ViewPager ModulePage;
 
         protected override void OnCreate(Bundle bundle)
         {

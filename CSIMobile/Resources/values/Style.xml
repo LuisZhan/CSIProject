@@ -1,18 +1,31 @@
 ﻿<resources>
-  <style name="MyTheme.Base" parent="Theme.AppCompat.Light">
+  <style name="MyTheme.Base" parent="Theme.AppCompat">
+  </style>
+  <style name="MyTheme.Light.Base" parent="Theme.AppCompat.Light">
   </style>
 
-  <style name="MyTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+  <style name="MyTheme.NoActionBar" parent="Theme.AppCompat.NoActionBar">
+  </style>
+  <style name="MyTheme.Light.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
   </style>
 
-  <style name="MyTheme.Dialog" parent="android:Theme.Holo.Light.Dialog"><!--Theme.AppCompat.Light.Dialog-->
+  <style name="MyTheme.Dialog" parent="android:Theme.Holo.Dialog"><!--Theme.AppCompat.Light.Dialog-->
+  </style>
+  <style name="MyTheme.Light.Dialog" parent="android:Theme.Holo.Light.Dialog">
+    <!--Theme.AppCompat.Light.Dialog-->
   </style>
 
   <style name="MyTheme.Dialog.NoTitle" parent="MyTheme.Dialog">
     <item name="android:windowNoTitle">true</item>
   </style>
+  <style name="MyTheme.Light.Dialog.NoTitle" parent="MyTheme.Light.Dialog">
+    <item name="android:windowNoTitle">true</item>
+  </style>
   
-  <style name="MyTheme.Dialog.FullScreen" parent="android:Theme.Holo.Light"><!--Theme.AppCompat.Light-->
+  <style name="MyTheme.Dialog.FullScreen" parent="android:Theme.Holo"><!--Theme.AppCompat.Light-->
+  </style>
+  <style name="MyTheme.Light.Dialog.FullScreen" parent="android:Theme.Holo.Light">
+    <!--Theme.AppCompat.Light-->
   </style>
    
   <style name="MyTheme.Splash" parent ="MyTheme.Base">

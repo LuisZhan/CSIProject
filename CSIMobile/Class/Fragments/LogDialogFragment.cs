@@ -21,6 +21,10 @@ namespace CSIMobile.Class.Fragments
         private Button DeleteLogFileButton;
         private Button PrintLogFileButton;
 
+        public LogDialogFragment() : base()
+        {
+        }
+
         public LogDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {
             Title = Application.Context.GetString(Resource.String.Log);

@@ -23,15 +23,45 @@ namespace CSIMobile.Class.Common
 
         }
 
+        public void SetMyTheme()
+        {
+            if (!string.IsNullOrEmpty(CSISystemContext.Theme))
+            {
+                switch (CSISystemContext.Theme)
+                {
+                    case "Light":
+                        Application.SetTheme(Resource.Style.MyTheme_Light_Base);
+                        SetTheme(Resource.Style.MyTheme_Light_Base);
+                        break;
+                    default:
+                        Application.SetTheme(Resource.Style.MyTheme_Base);
+                        SetTheme(Resource.Style.MyTheme_Base);
+                        break;
+                }
+            }
+            else
+            {
+                Application.SetTheme(Resource.Style.MyTheme_Base);
+                SetTheme(Resource.Style.MyTheme_Base);
+            }
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            SetMyTheme();
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             try
             {
+                base.OnCreate(savedInstanceState);
                 if (CSISystemContext == null)
                 {
                     CSISystemContext = new CSIContext();
                 }
-                base.OnCreate(savedInstanceState);
+                SetMyTheme();
                 CSISystemContext.ParseBundle(Intent.GetBundleExtra("CSISystemContext"));
             }
             catch (Exception Ex)

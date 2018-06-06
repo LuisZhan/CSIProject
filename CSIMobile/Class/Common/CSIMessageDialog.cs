@@ -32,11 +32,16 @@ namespace CSIMobile.Class.Common
             DefaultType = DialogType;
         }
 
-        public CSIMessageDialog(int TitleResourceID, int MessageTitleResourceID, DialogTypes DialogType = DialogTypes.OKCancel)
+        public CSIMessageDialog(int TitleResourceID, int MessageTitleResourceID, DialogTypes DialogType = DialogTypes.OKCancel, CSIBaseActivity activity = null) : base(activity)
         {
             Title = GetString(TitleResourceID);
             Message = GetString(MessageTitleResourceID);
             DefaultType = DialogType;
+        }
+
+        public CSIMessageDialog() : base()
+        {
+
         }
 
         public override Dialog OnCreateDialog(Bundle savedInstanceState)

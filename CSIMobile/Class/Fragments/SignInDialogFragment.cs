@@ -34,6 +34,10 @@ namespace CSIMobile.Class.Fragments
         private CSIParms Parms;
 
         //public event CreateSessionTokenCompletedEventHandler CreateSessionTokenCompleted;
+        
+        public SignInDialogFragment() : base()
+        {
+        }
 
         public SignInDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {

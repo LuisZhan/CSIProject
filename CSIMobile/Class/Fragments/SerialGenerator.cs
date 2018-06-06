@@ -23,6 +23,10 @@ namespace CSIMobile.Class.Fragments
         public CSIBaseDialogFragment ParentFragment { get; set; }
         List<string> SNs = new List<string>();
 
+        public SerialGenerator() : base()
+        {
+        }
+
         public SerialGenerator(CSIBaseActivity activity = null) : base(activity)
         {
         }

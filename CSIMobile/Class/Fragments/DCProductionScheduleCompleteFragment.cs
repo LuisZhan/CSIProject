@@ -20,7 +20,7 @@ using CSIMobile.Class.Business.IO;
 
 namespace CSIMobile.Class.Fragments
 {
-    public class DCProductionScheduleComplete : CSIBaseDialogFragment
+    public class DCProductionScheduleCompleteFragment : CSIBaseDialogFragment
     {
         CSIDcjms SLDcjms;
 
@@ -61,7 +61,11 @@ namespace CSIMobile.Class.Fragments
         List<string> SNs = new List<string>();
         bool SNPicked = true;
 
-        public DCProductionScheduleComplete(CSIBaseActivity activity = null) : base(activity)
+        public DCProductionScheduleCompleteFragment() : base()
+        {
+        }
+
+        public DCProductionScheduleCompleteFragment(CSIBaseActivity activity = null) : base(activity)
         {
             Title = Application.Context.GetString(Resource.String.ProductionSchedule);
 
@@ -1135,7 +1139,7 @@ namespace CSIMobile.Class.Fragments
             {
                 FragmentTransaction ft = activity.FragmentManager.BeginTransaction();
 
-                DCProductionScheduleComplete ProductionScheduleCompleteDialog = (DCProductionScheduleComplete)activity.FragmentManager.FindFragmentByTag("JobReceipt");
+                DCProductionScheduleCompleteFragment ProductionScheduleCompleteDialog = (DCProductionScheduleCompleteFragment)activity.FragmentManager.FindFragmentByTag("JobReceipt");
                 if (ProductionScheduleCompleteDialog != null)
                 {
                     ft.Show(ProductionScheduleCompleteDialog);
@@ -1144,7 +1148,7 @@ namespace CSIMobile.Class.Fragments
                 else
                 {
                     // Create and show the dialog.
-                    ProductionScheduleCompleteDialog = new DCProductionScheduleComplete(activity);
+                    ProductionScheduleCompleteDialog = new DCProductionScheduleCompleteFragment(activity);
                     //Add fragment
                     ProductionScheduleCompleteDialog.Show(ft, "JobReceipt");
                 }

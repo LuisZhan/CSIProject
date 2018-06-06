@@ -98,6 +98,25 @@
                 android:layout_marginLeft="-100dp"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/NumberPerPageLinearLayout">
+            <TextView
+                android:text="@string/Theme"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/ThemeLabel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:layout_marginRight="150dp" />
+            <Spinner
+                android:id="@+id/ThemeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="-150dp" />
+        </LinearLayout>
         <Switch
             android:id="@+id/EnableHTTPSEdit"
             android:textAppearance="?android:attr/textAppearanceSmall"

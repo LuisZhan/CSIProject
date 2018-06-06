@@ -67,7 +67,12 @@ namespace CSIMobile.Class.Fragments
         bool JobValidated = false, SuffixValidated = false, OperNumValidated = false, ItemValidated = false, UMValidated = false, QtyValidated = false, LocValidated = false, LotValidated = false;
         List<string> SNs = new List<string>();
         bool SNPicked = true;
-        
+
+        public DCJobMaterialTransactionsFragment() : base()
+        {
+
+        }
+
         public DCJobMaterialTransactionsFragment(CSIBaseActivity activity = null) : base(activity)
         {
             Title = Application.Context.GetString(Resource.String.JobMaterial);

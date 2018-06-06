@@ -26,6 +26,7 @@ namespace CSIMobile.Class.Fragments
         private EditText UserEdit;
         private EditText PasswordEdit;
         private Spinner ConfigurationSpinner;
+        private Spinner ThemeSpinner;
         private Button SaveButton;
         private Button TestButton;
         private EditText RecordCapEdit;
@@ -35,6 +36,7 @@ namespace CSIMobile.Class.Fragments
         private ProgressBar ProgressBar;
         private LinearLayout Layout;
         private string CSIWebServerName;
+        private string Theme;
         private string Configuration;
         private string SavedUser;
         private string SavedPassword;
@@ -46,6 +48,10 @@ namespace CSIMobile.Class.Fragments
         private string RecordCap;
         private bool SaveUser;
         private bool SavePassword;
+
+        public SettingsDialogFragment() : base()
+        {
+        }
 
         public SettingsDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {
@@ -74,6 +80,7 @@ namespace CSIMobile.Class.Fragments
                 UserEdit = view.FindViewById<EditText>(Resource.Id.UserEdit);
                 PasswordEdit = view.FindViewById<EditText>(Resource.Id.PasswordEdit);
                 ConfigurationSpinner = view.FindViewById<Spinner>(Resource.Id.ConfigurationEdit);
+                ThemeSpinner = view.FindViewById<Spinner>(Resource.Id.ThemeSpinner); 
                 LoadPictureSwitch = view.FindViewById<Switch>(Resource.Id.LoadPictureEdit);
                 ForceAutoPostSwitch = view.FindViewById<Switch>(Resource.Id.ForceAutoPostEdit);
                 ShowSuccessMessageSwitch = view.FindViewById<Switch>(Resource.Id.ShowSuccessMessageEdit);
@@ -99,6 +106,7 @@ namespace CSIMobile.Class.Fragments
 
                 CSIWebServerName = CSISystemContext.CSIWebServerName;
                 Configuration = CSISystemContext.Configuration;
+                Theme = CSISystemContext.Theme;
                 SavedUser = CSISystemContext.SavedUser;
                 SavedPassword = CSISystemContext.SavedPassword;
                 EnableHTTPS = CSISystemContext.EnableHTTPS;
@@ -118,10 +126,10 @@ namespace CSIMobile.Class.Fragments
                 SavePasswordSwitch.Enabled = (CSISystemContext.Token != string.Empty && CSISystemContext.User == "sa");//only can be changed by SA
 
                 ShowProgressBar(false);
-                
-                SetConfigurationSpin();
 
-                ConfigurationSpinner.LongClick += ConfigurationSpinner_LongClick;
+                SeThemeSpin();
+                SetConfigurationSpin();
+                
                 CSIWebServerEdit.KeyPress += CSIWebServerEdit_KeyPress;
 
                 CloseImage.Click += (sender, args) =>
@@ -181,13 +189,7 @@ namespace CSIMobile.Class.Fragments
                 e.Handled = false;
             }
         }
-
-        private void ConfigurationSpinner_LongClick(object sender, View.LongClickEventArgs e)
-        {
-            GetConfiguration();
-            SetConfigurationSpin();
-        }
-
+        
         protected override void Dialog_KeyPress(object sender, DialogKeyEventArgs e)
         {
             if (e.KeyCode == Keycode.Back)
@@ -225,10 +227,49 @@ namespace CSIMobile.Class.Fragments
             ShowProgressBar(false);
         }
 
+        private void SeThemeSpin()
+        {
+            ArrayAdapter adapter = new ArrayAdapter(Application.Context, Android.Resource.Layout.SimpleSpinnerItem);
+            try
+            {
+                adapter.Add(GetString(Resource.String.LightTheme));
+                adapter.Add(GetString(Resource.String.DarkTheme));
+                adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerItem);
+                ThemeSpinner.Adapter = adapter;
+                if (CSISystemContext.Theme == InterpretThemeValue(GetString(Resource.String.LightTheme)))
+                {
+                    ThemeSpinner.SetSelection(0);
+                }
+                else
+                {
+                    ThemeSpinner.SetSelection(1);
+                }
+            }
+            catch (Exception Ex)
+            {
+                WriteErrorLog(Ex);
+                ThemeSpinner.Adapter = adapter;
+                ThemeSpinner.SetSelection(0);
+            }
+        }
+
+        private string InterpretThemeValue(string theme)
+        {
+            if (theme == GetString(Resource.String.LightTheme))
+            {
+                return "Light";
+            }
+            else
+            {
+                return "Dark";
+            }
+        }
+
         private void GetConfiguration()
         {
             ShowProgressBar(true);
             CSISystemContext.CSIWebServerName = CSIWebServerEdit.Text;
+            CSISystemContext.Theme = InterpretThemeValue((string)ThemeSpinner.SelectedItem ?? string.Empty);
             CSISystemContext.Configuration = (string)ConfigurationSpinner.SelectedItem ?? string.Empty;
             CSISystemContext.SavedUser = UserEdit.Text;
             CSISystemContext.SavedPassword = PasswordEdit.Text;
@@ -295,6 +336,7 @@ namespace CSIMobile.Class.Fragments
                 IsChanged = !(
                             CSIWebServerName == CSIWebServerEdit.Text &&
                             Configuration == ((string)ConfigurationSpinner.SelectedItem ?? string.Empty) &&
+                            Theme == InterpretThemeValue(((string)ThemeSpinner.SelectedItem ?? string.Empty)) &&
                             SavedUser == UserEdit.Text &&
                             SavedPassword == PasswordEdit.Text &&
                             EnableHTTPS == EnableHTTPSSwitch.Checked &&
@@ -317,6 +359,8 @@ namespace CSIMobile.Class.Fragments
                         {
                             Dismiss();
                             Dispose();
+                            BaseActivity.StartActivity(new Intent(Application.Context, typeof(MainActivity))); ;
+                            BaseActivity.Finish();
                         }
                     };
                     SignOutDialog.NoHandler += (sender, args) =>
@@ -361,6 +405,7 @@ namespace CSIMobile.Class.Fragments
         {
             CSISystemContext.CSIWebServerName = CSIWebServerEdit.Text;
             CSISystemContext.Configuration = (string)ConfigurationSpinner.SelectedItem;
+            CSISystemContext.Theme = InterpretThemeValue((string)ThemeSpinner.SelectedItem);
             CSISystemContext.SavedUser = UserEdit.Text;
             CSISystemContext.SavedPassword = PasswordEdit.Text;
             CSISystemContext.EnableHTTPS = EnableHTTPSSwitch.Checked;

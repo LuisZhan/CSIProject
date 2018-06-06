@@ -199,4 +199,7 @@
   <string name="Site">站点</string>
   <string name="Device">设备</string>
   <string name="Scan">扫一扫</string>
+  <string name="LightTheme">亮色</string>
+  <string name="DarkTheme">暗色</string>
+  <string name="Theme">主题</string>
 </resources>

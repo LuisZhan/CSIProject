@@ -57,7 +57,11 @@ namespace CSIMobile.Class.Fragments
         bool ItemValidated = false, UMValidated = false, QtyValidated = false, LocValidated = false, LotValidated = false, ReasonValidated = false;
         List<string> SNs = new List<string>();
         bool SNPicked = true;
-        
+
+        public DCMiscReceiveFragment() : base()
+        {
+        }
+
         public DCMiscReceiveFragment(CSIBaseActivity activity = null) : base(activity)
         {
             Title = Application.Context.GetString(Resource.String.MiscReceive);

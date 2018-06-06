@@ -212,4 +212,7 @@
   <string name="Site">Site</string>
   <string name="Device">Device</string>
   <string name="Scan">Scan</string>
+  <string name="LightTheme">Light</string>
+  <string name="DarkTheme">Dark</string>
+  <string name="Theme">Theme</string>
 </resources>

@@ -41,6 +41,7 @@ namespace CSIMobile.Class.Common
                     jWriter.Value(config ?? string.Empty);
                 }
                 jWriter.EndArray();
+                jWriter.Name("Theme").Value(c.Theme);
                 jWriter.Name("EnableHTTPS").Value(c.EnableHTTPS);
                 jWriter.Name("UseRESTForRequest").Value(c.UseRESTForRequest);
                 jWriter.Name("SaveUser").Value(c.SaveUser);
@@ -72,6 +73,7 @@ namespace CSIMobile.Class.Common
                 JsonWriter jWriter = new JsonWriter(new Java.IO.OutputStreamWriter(ConfigureStream));
                 jWriter.BeginObject();
                 jWriter.Name("CSIWebServerName").Value(string.Empty);
+                jWriter.Name("Theme").Value(string.Empty);
                 jWriter.Name("Configuration").Value(string.Empty);
                 jWriter.Name("EnableHTTPS").Value(false);
                 jWriter.Name("UseRESTForRequest").Value(false);
@@ -125,6 +127,26 @@ namespace CSIMobile.Class.Common
                             }
                         }
                     }
+                    else if (name.Equals("Theme"))
+                    {
+                        //WriteLog("Read Configuration");
+                        if (jReader.Peek() == JsonToken.Null)
+                        {
+                            jReader.SkipValue();
+                        }
+                        else
+                        {
+                            try
+                            {
+                                c.Theme = jReader.NextString() ?? string.Empty;
+                            }
+                            catch (Exception Ex)
+                            {
+                                WriteErrorLog(Ex);
+                                c.Theme = string.Empty;
+                            }
+                        }
+                    }
                     else if (name.Equals("Configuration"))
                     {
                         //WriteLog("Read Configuration");
@@ -141,7 +163,7 @@ namespace CSIMobile.Class.Common
                             catch (Exception Ex)
                             {
                                 WriteErrorLog(Ex);
-                                c.CSIWebServerName = string.Empty;
+                                c.Configuration = string.Empty;
                             }
                         }
                     }

@@ -21,6 +21,11 @@ namespace CSIMobile.Class.Fragments
         private Spinner WhseSpinner;
         private Dictionary<string, string> Whses = new Dictionary<string, string>();
 
+        public ChangeWarehouseFragment() : base()
+        {
+
+        }
+
         public ChangeWarehouseFragment(CSIBaseActivity activity = null) : base(activity)
         {
             Title = Application.Context.GetString(Resource.String.ChangeWarehouse);

@@ -15,6 +15,11 @@ namespace CSIMobile.Class.Common
 {
     public class CSIBaseFullScreenDialogFragment : CSIBaseDialogFragment
     {
+        public CSIBaseFullScreenDialogFragment() : base()
+        {
+
+        }
+
         public CSIBaseFullScreenDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {
         }
@@ -22,6 +27,7 @@ namespace CSIMobile.Class.Common
         public override void OnCreate(Bundle savedInstanceState)
         {
             ThemeId = Resource.Style.MyTheme_Dialog_FullScreen;
+            ThemeLightId = Resource.Style.MyTheme_Light_Dialog_FullScreen;
             HasTitle = true;
             base.OnCreate(savedInstanceState);
 

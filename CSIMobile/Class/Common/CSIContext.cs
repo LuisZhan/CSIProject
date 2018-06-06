@@ -17,6 +17,7 @@ namespace CSIMobile.Class.Common
         public static string Action_Process = "Process";
 
         public string Site { get; set; }
+
         //User Information
         public string User { get; set; }
         public string Password { get; set; }
@@ -32,6 +33,7 @@ namespace CSIMobile.Class.Common
 
         //Login Configurations
         public string Token { get; set; }
+        public string Theme { get; set; }
         public string CSIWebServerName { get; set; }
         public bool EnableHTTPS { get; set; }
         public string Configuration { get; set; }
@@ -46,7 +48,6 @@ namespace CSIMobile.Class.Common
         public bool UseRESTForRequest { get; set; }
         public bool DisplayWhenError { get; set; }
         public bool ShowSuccessMessage { get; set; }
-
 
         //Passed Key Information
         public string Key { get; set; }
@@ -108,7 +109,8 @@ namespace CSIMobile.Class.Common
             bundle.PutString("AmountFormat", AmountFormat);
 
             //Login Configurations
-            bundle.PutString("Token", Token);
+            bundle.PutString("Token", Token); 
+            bundle.PutString("Theme", Theme);
             bundle.PutString("CSIWebServerName", CSIWebServerName);
             bundle.PutBoolean("EnableHTTPS", EnableHTTPS);
             bundle.PutString("Configuration", Configuration);
@@ -158,7 +160,8 @@ namespace CSIMobile.Class.Common
 
             //Login Configurations
             Token = bundle.GetString("Token");
-            CSIWebServerName = bundle.GetString("CSIWebServerName");
+            Theme = bundle.GetString("Theme"); 
+             CSIWebServerName = bundle.GetString("CSIWebServerName");
             EnableHTTPS = bundle.GetBoolean("EnableHTTPS");
             Configuration = bundle.GetString("Configuration");
             ConfigurationList = new List<String>(bundle.GetStringArray("ConfigurationList"));
@@ -213,6 +216,7 @@ namespace CSIMobile.Class.Common
 
             //Login Configurations
             Token = "";
+            Theme = "";
             CSIWebServerName = "";
             EnableHTTPS = false;
             Configuration = "";

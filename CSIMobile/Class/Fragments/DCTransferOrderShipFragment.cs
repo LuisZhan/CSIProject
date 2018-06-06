@@ -67,6 +67,10 @@ namespace CSIMobile.Class.Fragments
         List<string> SNs = new List<string>();
         bool FromSNPicked = true, ToSNPicked = true;
 
+        public DCTransferOrderShipFragment() : base()
+        {
+        }
+
         public DCTransferOrderShipFragment(CSIBaseActivity activity = null) : base(activity)
         {
             Title = Application.Context.GetString(Resource.String.TransferShip);

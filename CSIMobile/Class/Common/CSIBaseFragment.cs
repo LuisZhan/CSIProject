@@ -18,6 +18,26 @@ namespace CSIMobile.Class.Common
         protected CSIBaseActivity BaseActivity;
         protected CSIContext CSISystemContext;
         
+        public CSIBaseFragment()
+        {
+            if (CSISystemContext == null)
+            {
+                BaseActivity = (CSIBaseActivity)Activity;
+                CSISystemContext = new CSIContext();
+            }
+            else
+            {
+                if (BaseActivity.GetCSISystemContext() == null)
+                {
+                    CSISystemContext = new CSIContext();
+                }
+                else
+                {
+                    CSISystemContext = BaseActivity.GetCSISystemContext();
+                }
+            }
+        }
+
         public CSIBaseFragment(CSIBaseActivity activity = null) : base()
         {
             if (activity == null)
@@ -52,15 +72,24 @@ namespace CSIMobile.Class.Common
 
         public override void OnCreate(Bundle savedInstanceState)
         {
+            if (BaseActivity == null)
+            {
+                BaseActivity = (CSIBaseActivity)Activity;
+                if (BaseActivity.GetCSISystemContext() == null)
+                {
+                    CSISystemContext = new CSIContext();
+                }
+                else
+                {
+                    CSISystemContext = BaseActivity.GetCSISystemContext();
+                }
+            }
             base.OnCreate(savedInstanceState);
             // Create your fragment here
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
             return base.OnCreateView(inflater, container, savedInstanceState);
         }
 

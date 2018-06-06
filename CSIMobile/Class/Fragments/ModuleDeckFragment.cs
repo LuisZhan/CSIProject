@@ -22,6 +22,10 @@ namespace CSIMobile.Class.Fragments
         private static string MODULE_NAME = "module_name";
         private Module Module;
 
+        public ModuleDeckFragment() : base()
+        {
+        }
+
         public ModuleDeckFragment(CSIBaseActivity activity = null) : base(activity)
         {
         }
@@ -41,13 +45,33 @@ namespace CSIMobile.Class.Fragments
         {
             string question = Arguments.GetString(MODULE_NAME, "");
 
+            base.OnCreateView(inflater, container, savedInstanceState);
+
+            Context contextThemeWrapper;
+            switch (CSISystemContext.Theme)
+            {
+                case "Light":
+                    contextThemeWrapper = new ContextThemeWrapper(BaseActivity, Resource.Style.MyTheme_Light_Base);
+                    break;
+                default:
+                    contextThemeWrapper = new ContextThemeWrapper(BaseActivity, Resource.Style.MyTheme_Base);
+                    break;
+            }
+
+            // clone the inflater using the ContextThemeWrapper
+            LayoutInflater localInflater = inflater.CloneInContext(contextThemeWrapper);
+
             // Inflate this fragment from the "flashcard_layout"
-            View view = inflater.Inflate(Resource.Layout.CSIModule, container, false);
+            View view = localInflater.Inflate(Resource.Layout.CSIModule, container, false);
 
             GridView ModuleGrid = view.FindViewById<GridView>(Resource.Id.ModuleGrid);
 
             ModuleGridViewerAdapter GridAdapter = new ModuleGridViewerAdapter((Android.Support.V4.App.Fragment)this, ModuleGrid);
-
+            if (Module == null)
+            {
+                MainActivity act = (MainActivity)BaseActivity;
+                Module = act.Modules[act.ModulePage.CurrentItem];
+            }
             foreach (ModuleAction Action in Module.ModuleActions)
             {
                 if (Action.Visible)

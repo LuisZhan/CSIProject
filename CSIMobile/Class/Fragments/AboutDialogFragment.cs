@@ -24,6 +24,11 @@ namespace CSIMobile.Class.Fragments
         private ListView ListView;
         private Dictionary<string, string> Whses = new Dictionary<string, string>();
 
+        public AboutDialogFragment() : base()
+        {
+
+        }
+
         public AboutDialogFragment(CSIBaseActivity activity = null) : base(activity)
         {
             Title = Application.Context.GetString(Resource.String.About);

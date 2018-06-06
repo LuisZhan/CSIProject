@@ -64,6 +64,10 @@ namespace CSIMobile.Class.Fragments
         List<string> SNs = new List<string>();
         bool SNPicked = true;
 
+        public DCOrderReturnFragment() : base()
+        {
+        }
+
         public DCOrderReturnFragment(CSIBaseActivity activity = null) : base(activity)
         {
             Title = Application.Context.GetString(Resource.String.SalesReturn);

@@ -31,7 +31,17 @@ namespace CSIMobile.Class.Common
         private int processCount = 0;
 
         protected int ThemeId = Resource.Style.MyTheme_Dialog;
-        protected int ThemeIdNoTitle = Resource.Style.MyTheme_Dialog_NoTitle;
+        protected int ThemeLightId = Resource.Style.MyTheme_Light_Dialog;
+        protected int ThemeNoTitleId = Resource.Style.MyTheme_Dialog_NoTitle;
+        protected int ThemeLighNoTitleId = Resource.Style.MyTheme_Light_Dialog_NoTitle;
+
+        public CSIBaseDialogFragment()
+        {
+            if (CSISystemContext == null)
+            {
+                CSISystemContext = new CSIContext();
+            }
+        }
 
         protected bool HasTitle
         {
@@ -171,17 +181,42 @@ namespace CSIMobile.Class.Common
 
         protected void SetStyleNoTitle()
         {
-            SetStyle(DialogFragmentStyle.NoTitle, ThemeIdNoTitle);
+            switch (CSISystemContext.Theme)
+            {
+                case "Light":
+                    SetStyle(DialogFragmentStyle.NoTitle, ThemeLighNoTitleId);
+                    break;
+                default:
+                    SetStyle(DialogFragmentStyle.NoTitle, ThemeNoTitleId);
+                    break;
+            }
+            
         }
 
         protected void SetStyleNormal()
         {
-            SetStyle(DialogFragmentStyle.Normal, ThemeId);
+            switch (CSISystemContext.Theme)
+            {
+                case "Light":
+                    SetStyle(DialogFragmentStyle.NoTitle, ThemeLightId);
+                    break;
+                default:
+                    SetStyle(DialogFragmentStyle.NoTitle, ThemeId);
+                    break;
+            }
         }
 
         protected void SetStyleNoInput()
         {
-            SetStyle(DialogFragmentStyle.NoInput, ThemeId);
+            switch (CSISystemContext.Theme)
+            {
+                case "Light":
+                    SetStyle(DialogFragmentStyle.NoTitle, ThemeLightId);
+                    break;
+                default:
+                    SetStyle(DialogFragmentStyle.NoTitle, ThemeId);
+                    break;
+            }
         }
 
         private void ShowDialog(Exception Ex)

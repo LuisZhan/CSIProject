@@ -15,6 +15,9 @@ namespace CSIMobile.Class.Fragments
 {
     public class ProgressFragment : CSIBaseDialogFragment
     {
+        public ProgressFragment() : base()
+        {
+        }
 
         public ProgressFragment(CSIBaseActivity activity = null) : base(activity)
         {
