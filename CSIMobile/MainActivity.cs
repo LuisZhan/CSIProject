@@ -74,6 +74,8 @@ namespace CSIMobile
                 MoudleButton[1].Click += (o, e) => { SetModuleDeck(int.Parse(MoudleButton[1].Tag.ToString())); };
                 MoudleButton[2].Click += (o, e) => { SetModuleDeck(int.Parse(MoudleButton[2].Tag.ToString())); };
                 MoudleButton[3].Click += (o, e) => { SetModuleDeck(int.Parse(MoudleButton[3].Tag.ToString())); };
+
+                SetModuleDeck(CSISystemContext.CurrentPageIndex);
                 GetModuleDeck();
 
                 //Show SignIn
@@ -83,7 +85,10 @@ namespace CSIMobile
                 }
                 else
                 {
-                    ShowSignInDialog();
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                    }
                 }
                 //Task startupWork = new Task(() => { ShowSignInDialog(); });
                 //startupWork.Start();
@@ -287,6 +292,7 @@ namespace CSIMobile
         public void SetModuleDeck(int Position)
         {
             ModulePage.SetCurrentItem(Position, true);
+            CSISystemContext.CurrentPageIndex = Position;
             GetModuleDeck();
         }
 

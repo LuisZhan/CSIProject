@@ -16,6 +16,7 @@ namespace CSIMobile.Class.Common
         public static string Action_Search = "Search";
         public static string Action_Process = "Process";
 
+        public int CurrentPageIndex { get; set; }
         public string Site { get; set; }
 
         //User Information
@@ -96,6 +97,8 @@ namespace CSIMobile.Class.Common
         public Bundle BuildBundle()
         {
             Bundle bundle = new Bundle();
+            bundle.PutInt("CurrentPageIndex", CurrentPageIndex);
+            bundle.PutString("Site", Site);
             //User Information
             bundle.PutString("User", User);
             bundle.PutString("Password", Password);
@@ -147,6 +150,8 @@ namespace CSIMobile.Class.Common
             {
                 return;
             }
+            CurrentPageIndex = bundle.GetInt("CurrentPageIndex");
+            Site = bundle.GetString("Site");
             //User Information
             User = bundle.GetString("User");
             UserDesc = bundle.GetString("UserDesc");

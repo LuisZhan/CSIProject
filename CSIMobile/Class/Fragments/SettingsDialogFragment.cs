@@ -354,18 +354,30 @@ namespace CSIMobile.Class.Fragments
                     CSIMessageDialog SignOutDialog = new CSIMessageDialog(GetString(Resource.String.app_name), GetString(Resource.String.SettingChanged), DialogTypes.YesNoCancle, this.BaseActivity);
                     SignOutDialog.YesHandler += (sender, args) =>
                     {
+                        bool bChangeTheme = false;
+                        if (CSISystemContext.CSIWebServerName != Theme)
+                        {
+                            bChangeTheme = true;
+                        }
                         SaveConfiguration();
                         if (Exit)
                         {
                             Dismiss();
                             Dispose();
-                            BaseActivity.StartActivity(new Intent(Application.Context, typeof(MainActivity))); ;
-                            BaseActivity.Finish();
+                            if (bChangeTheme)
+                            {
+                                Intent intent = new Intent(Application.Context, typeof(MainActivity));
+                                Bundle bundle = BaseActivity.GetCSISystemContext().BuildBundle();
+                                intent.PutExtra("CSISystemContext", bundle);
+                                BaseActivity.StartActivity(intent);
+                                BaseActivity.Finish();
+                            }
                         }
                     };
                     SignOutDialog.NoHandler += (sender, args) =>
                     {
                         CSISystemContext.CSIWebServerName = CSIWebServerName;
+                        CSISystemContext.Theme = Theme;
                         CSISystemContext.SavedUser = SavedUser;
                         CSISystemContext.SavedPassword = SavedPassword;
                         CSISystemContext.EnableHTTPS = EnableHTTPS;

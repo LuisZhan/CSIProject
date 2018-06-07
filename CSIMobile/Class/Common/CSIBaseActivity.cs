@@ -50,6 +50,7 @@ namespace CSIMobile.Class.Common
         {
             base.OnResume();
             SetMyTheme();
+            CSISystemContext.ParseBundle(Intent.GetBundleExtra("CSISystemContext"));
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
