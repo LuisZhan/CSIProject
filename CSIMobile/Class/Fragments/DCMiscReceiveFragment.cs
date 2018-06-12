@@ -230,7 +230,7 @@ namespace CSIMobile.Class.Fragments
             {
                 base.OnCreateView(inflater, container, savedInstanceState);
 
-                var view = inflater.Inflate(Resource.Layout.CSIMiscIssueReceiptAndQtyAdjus, container, false);
+                var view = inflater.Inflate(Resource.Layout.CSIMiscIssueReceiptAndQtyAdjust, container, false);
                 Cancelable = false;
                 
                 WhseEdit = view.FindViewById<EditText>(Resource.Id.WhseEdit);

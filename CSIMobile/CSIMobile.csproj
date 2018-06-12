@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
@@ -190,6 +190,7 @@
     <Compile Include="Class\Fragments\SerialGenerator.cs" />
     <Compile Include="Class\Fragments\SettingsDialogFragment.cs" />
     <Compile Include="Class\Fragments\ProgressFragment.cs" />
+    <Compile Include="Class\Fragments\ItemListFragment.cs" />
     <Compile Include="Class\Fragments\SignInDialogFragment.cs" />
     <Compile Include="Class\Common\CSIBaseActivity.cs" />
     <Compile Include="Class\Common\CSIBaseDataObject.cs" />
@@ -215,7 +216,7 @@
     <AndroidResource Include="Resources\drawable\SplashScreen.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\CSIMiscIssueReceiptAndQtyAdjus.axml" />
+    <AndroidResource Include="Resources\layout\CSIMiscIssueReceiptAndQtyAdjust.axml" />
     <AndroidResource Include="Resources\layout\CSIQuantityMove.axml" />
     <AndroidResource Include="Resources\layout\CSISignIn.axml">
       <SubType>Designer</SubType>
@@ -260,6 +261,10 @@
     <AndroidResource Include="Resources\layout\CSITransferOrderShip.axml" />
     <AndroidResource Include="Resources\layout\CSITransferOrderReceive.axml" />
     <AndroidResource Include="Resources\layout\CSIChangeWarehouse.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CSItemListViewItem.axml" />
+    <AndroidResource Include="Resources\layout\CSItemList.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
