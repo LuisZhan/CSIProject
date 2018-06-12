@@ -71,7 +71,7 @@ namespace CSIMobile.Class.Fragments
             adapter.Add(string.Format("{0}: {1}", Application.Context.GetString(Resource.String.Site), CSISystemContext.Site));
             adapter.Add(string.Format("{0}: {1}", Application.Context.GetString(Resource.String.Warehouse), CSISystemContext.DefaultWarehouse));
             adapter.Add(string.Format("{0}: {1}", Application.Context.GetString(Resource.String.Device), CSISystemContext.GetDeviceId()));
-            adapter.Add(string.Format("{0}: {1}", Application.Context.GetString(Resource.String.RegisterLicense), "UnLicensed"));
+            adapter.Add(string.Format("{0}: {1}", Application.Context.GetString(Resource.String.RegisterLicense), Application.Context.GetString(Resource.String.NoLicensed)));
             adapter.Add(string.Format("{0}: {1}", Application.Context.GetString(Resource.String.ExpirationDate), CSISystemContext.ExpDate));
             ListView.Adapter = adapter;
         }

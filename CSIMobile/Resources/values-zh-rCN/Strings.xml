@@ -204,4 +204,5 @@
   <string name="Theme">主题</string>
   <string name="OnHand">在库</string>
   <string name="Whse">仓库</string>
+  <string name="NoLicensed">未注册</string>
 </resources>
