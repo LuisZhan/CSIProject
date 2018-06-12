@@ -202,4 +202,6 @@
   <string name="LightTheme">亮色</string>
   <string name="DarkTheme">暗色</string>
   <string name="Theme">主题</string>
+  <string name="OnHand">在库</string>
+  <string name="Whse">仓库</string>
 </resources>

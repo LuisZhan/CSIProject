@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="6dp"
+    android:paddingRight="10dp">
+    <LinearLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout0">
+            <ImageView
+                android:src="@android:drawable/ic_menu_gallery"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/ItemImage"
+                android:layout_gravity="center" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayout5">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ItemEdit"
+                    android:gravity="center"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/DescriptionEdit"
+                    android:gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:id="@+id/imageView1"
+            android:background="@android:drawable/btn_default"
+            android:alpha="0.4" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayout3"
+                android:gravity="bottom">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout7"
+                    android:gravity="right">
+                    <TextView
+                        android:text="@string/MaterialType"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/MaterialTypeText"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:text="@string/ProductCode"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/ProductCodeText"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:text="@string/MaterialSource"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/MaterialSourceText"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
+                    <TextView
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/LotLabel"
+                        android:text="@string/LotTrack"
+                        android:gravity="right"
+                        android:layout_weight="3" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/LotTrackedImageView"
+                        android:src="@android:drawable/checkbox_on_background"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/SNLabel"
+                        android:text="@string/SNTrack"
+                        android:gravity="right"
+                        android:layout_weight="3" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/SNTrackedImageView"
+                        android:src="@android:drawable/checkbox_on_background"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/UnitofMeasureText"
+                        android:text="@string/UM"
+                        android:gravity="right"
+                        android:layout_weight="3" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
+                    <TextView
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/OnHandLabel"
+                        android:text="@string/OnHand"
+                        android:gravity="right"
+                        android:layout_weight="2" />
+                    <TextView
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/OnHandQuantityText"
+                        android:text="@string/OnHandQuantity"
+                        android:gravity="right"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="3" />
+                    <TextView
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/WhseText"
+                        android:text="@string/Whse"
+                        android:gravity="right"
+                        android:layout_weight="2" />
+                    <TextView
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ItmwhseQtyOnHandText"
+                        android:text="@string/OnHandQuantity"
+                        android:gravity="right"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="3" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

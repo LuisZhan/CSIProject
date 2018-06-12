@@ -549,7 +549,24 @@ namespace CSIMobile
                         DCTransferOrderReceiveFragment.RunFragment(this);
                         Success = true;
                     }
-                    break; 
+                    break;
+                case "Items":
+                    if (string.IsNullOrEmpty(CSISystemContext.Token))
+                    {
+                        ShowSignInDialog();
+                        Success = false;
+                    }
+                    else if (string.IsNullOrEmpty(CSISystemContext.EmpNum))
+                    {
+                        ShowNoEmpMessage();
+                        return false;
+                    }
+                    else
+                    {
+                        ItemListFragment.RunFragment(this);
+                        Success = true;
+                    }
+                    break;
                 default:
                     break;
             }

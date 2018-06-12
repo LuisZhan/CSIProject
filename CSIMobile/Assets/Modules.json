@@ -11,7 +11,7 @@
                     "Enabled": true,
                     "Visible": true,
                     "InvokeCommands": [
-                        ""
+                        "Items"
                     ]
                 },
                 {

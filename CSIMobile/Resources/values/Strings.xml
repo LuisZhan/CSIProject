@@ -99,7 +99,7 @@
   <string name="ItmIssueBy">Item Issue By</string>
   <string name="QtyOnHand">Quantity On Hand</string>
   <string name="QtyRsvd">Quantity Reserved</string>
-  <string name="ItmwhseQtyOnHand">Warehouse Quantity On Hand</string>
+  <string name="ItmwhseQtyOnHand">Whse Qty On Hand</string>
   <string name="Regular">Regular</string>
   <string name="Blanket">Blanket</string>
   <string name="Plan">Plan</string>
@@ -215,4 +215,6 @@
   <string name="LightTheme">Light</string>
   <string name="DarkTheme">Dark</string>
   <string name="Theme">Theme</string>
+  <string name="OnHand">On Hand</string>
+  <string name="Whse">Whse</string>
 </resources>
