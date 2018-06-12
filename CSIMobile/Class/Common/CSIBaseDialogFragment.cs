@@ -198,10 +198,10 @@ namespace CSIMobile.Class.Common
             switch (CSISystemContext.Theme)
             {
                 case "Light":
-                    SetStyle(DialogFragmentStyle.NoTitle, ThemeLightId);
+                    SetStyle(DialogFragmentStyle.Normal, ThemeLightId);
                     break;
                 default:
-                    SetStyle(DialogFragmentStyle.NoTitle, ThemeId);
+                    SetStyle(DialogFragmentStyle.Normal, ThemeId);
                     break;
             }
         }
@@ -211,10 +211,10 @@ namespace CSIMobile.Class.Common
             switch (CSISystemContext.Theme)
             {
                 case "Light":
-                    SetStyle(DialogFragmentStyle.NoTitle, ThemeLightId);
+                    SetStyle(DialogFragmentStyle.NoInput, ThemeLightId);
                     break;
                 default:
-                    SetStyle(DialogFragmentStyle.NoTitle, ThemeId);
+                    SetStyle(DialogFragmentStyle.NoInput, ThemeId);
                     break;
             }
         }
