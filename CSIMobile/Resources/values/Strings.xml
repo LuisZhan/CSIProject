@@ -193,7 +193,6 @@
   <string name="JobStartIndirect">Start Indirect</string>
   <string name="JobEndIndirect">End Indirect</string>
   <string name="JobMove">Job Move</string>
-  <string name="TransferOrder">Transfer Order</string>
   <string name="TransferLine">Line</string>
   <string name="From">From</string>
   <string name="To">To</string>
